@@ -1,0 +1,9 @@
+fetcher:
+  period: "5y"
+  interval: "1d"
+  auto_adjust: false
+
+paths:
+  raw_indices_dir: "data/raw/indices"
+  raw_ohlcv_dir: "data/raw/ohlcv"
+  schema_dir: "schemas"

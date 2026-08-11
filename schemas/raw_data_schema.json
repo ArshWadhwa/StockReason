@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RawDataSchema",
+  "description": "Raw OHLCV stock data and index historical levels schema for StockReason",
+  "stock_ohlcv_schema": {
+    "fields": [
+      {"name": "date", "type": "datetime64[ns]", "nullable": false},
+      {"name": "ticker", "type": "string", "nullable": false},
+      {"name": "open", "type": "float64", "nullable": false},
+      {"name": "high", "type": "float64", "nullable": false},
+      {"name": "low", "type": "float64", "nullable": false},
+      {"name": "close", "type": "float64", "nullable": false},
+      {"name": "adj_close", "type": "float64", "nullable": false},
+      {"name": "volume", "type": "int64", "nullable": false}
+    ]
+  },
+  "index_levels_schema": {
+    "fields": [
+      {"name": "date", "type": "datetime64[ns]", "nullable": false},
+      {"name": "symbol", "type": "string", "nullable": false},
+      {"name": "open", "type": "float64", "nullable": false},
+      {"name": "high", "type": "float64", "nullable": false},
+      {"name": "low", "type": "float64", "nullable": false},
+      {"name": "close", "type": "float64", "nullable": false},
+      {"name": "adj_close", "type": "float64", "nullable": false},
+      {"name": "volume", "type": "int64", "nullable": true}
+    ]
+  }
+}

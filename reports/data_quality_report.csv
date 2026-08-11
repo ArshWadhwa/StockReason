@@ -1,0 +1,2 @@
+total_tickers,total_rows,total_columns,date_range_start,date_range_end,total_missing_values,excluded_tickers_count,output_file
+0,44029,216,2021-10-20,2026-08-07,32856,5,data/processed/price_features.parquet

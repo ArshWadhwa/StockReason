@@ -1,0 +1,28 @@
+indices:
+  nifty_50: "^NSEI"
+  nifty_bank: "^NSEBANK"
+  india_vix: "^INDIAVIX"
+
+stocks:
+  nifty_50_pilot:
+    - RELIANCE.NS
+    - TCS.NS
+    - INFY.NS
+    - HDFCBANK.NS
+    - ICICIBANK.NS
+    - BHARTIARTL.NS
+    - ITC.NS
+    - LT.NS
+    - SBIN.NS
+    - AXISBANK.NS
+  nifty_bank_pilot:
+    - HDFCBANK.NS
+    - ICICIBANK.NS
+    - SBIN.NS
+    - AXISBANK.NS
+    - KOTAKBANK.NS
+    - INDUSINDBK.NS
+    - BANKBARODA.NS
+    - PNB.NS
+    - AUBANK.NS
+    - IDFCFIRSTB.NS
