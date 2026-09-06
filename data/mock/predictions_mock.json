@@ -1,0 +1,1234 @@
+{
+  "RELIANCE.NS": {
+    "ticker": "RELIANCE.NS",
+    "prediction_date": "2024-03-01",
+    "current_price": 3243.61,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.0071,
+        "predicted_price": 3266.64,
+        "confidence": 0.82,
+        "uncertainty_std": 0.0075,
+        "lower_bound": 3227.72,
+        "upper_bound": 3305.56
+      },
+      "1W": {
+        "expected_return": 0.0214,
+        "predicted_price": 3313.02,
+        "confidence": 0.74,
+        "uncertainty_std": 0.0186,
+        "lower_bound": 3231.93,
+        "upper_bound": 3394.11
+      },
+      "1M": {
+        "expected_return": 0.0475,
+        "predicted_price": 3397.68,
+        "confidence": 0.79,
+        "uncertainty_std": 0.0414,
+        "lower_bound": 3235.5,
+        "upper_bound": 3559.86
+      },
+      "6M": {
+        "expected_return": 0.1329,
+        "predicted_price": 3674.69,
+        "confidence": 0.71,
+        "uncertainty_std": 0.1064,
+        "lower_bound": 3350.32,
+        "upper_bound": 3999.05
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.0475,
+      "xgboost_return_1M": 0.0117,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.0358
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_14",
+        "impact": 0.0207,
+        "importance_score": 0.28,
+        "direction": "positive"
+      },
+      {
+        "feature": "dist_sma_50",
+        "impact": 0.0225,
+        "importance_score": 0.22,
+        "direction": "positive"
+      },
+      {
+        "feature": "finbert_sentiment_score",
+        "impact": 0.0205,
+        "importance_score": 0.2,
+        "direction": "positive"
+      },
+      {
+        "feature": "india_vix_return_5d",
+        "impact": -0.012,
+        "importance_score": 0.16,
+        "direction": "negative"
+      },
+      {
+        "feature": "macd_line_12_26",
+        "impact": 0.0055,
+        "importance_score": 0.14,
+        "direction": "positive"
+      }
+    ]
+  },
+  "TCS.NS": {
+    "ticker": "TCS.NS",
+    "prediction_date": "2024-03-01",
+    "current_price": 4449.84,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.0017,
+        "predicted_price": 4457.4,
+        "confidence": 0.83,
+        "uncertainty_std": 0.0056,
+        "lower_bound": 4404.01,
+        "upper_bound": 4510.8
+      },
+      "1W": {
+        "expected_return": 0.005,
+        "predicted_price": 4472.09,
+        "confidence": 0.81,
+        "uncertainty_std": 0.012,
+        "lower_bound": 4360.84,
+        "upper_bound": 4583.34
+      },
+      "1M": {
+        "expected_return": 0.0111,
+        "predicted_price": 4499.23,
+        "confidence": 0.82,
+        "uncertainty_std": 0.025,
+        "lower_bound": 4276.74,
+        "upper_bound": 4721.73
+      },
+      "6M": {
+        "expected_return": 0.031,
+        "predicted_price": 4587.79,
+        "confidence": 0.62,
+        "uncertainty_std": 0.0555,
+        "lower_bound": 4142.8,
+        "upper_bound": 5032.77
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.0111,
+      "xgboost_return_1M": 0.0082,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.0029
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_14",
+        "impact": 0.0317,
+        "importance_score": 0.28,
+        "direction": "positive"
+      },
+      {
+        "feature": "dist_sma_50",
+        "impact": 0.0136,
+        "importance_score": 0.22,
+        "direction": "positive"
+      },
+      {
+        "feature": "finbert_sentiment_score",
+        "impact": 0.0008,
+        "importance_score": 0.2,
+        "direction": "positive"
+      },
+      {
+        "feature": "india_vix_return_5d",
+        "impact": -0.012,
+        "importance_score": 0.16,
+        "direction": "negative"
+      },
+      {
+        "feature": "macd_line_12_26",
+        "impact": 0.0067,
+        "importance_score": 0.14,
+        "direction": "positive"
+      }
+    ]
+  },
+  "INFY.NS": {
+    "ticker": "INFY.NS",
+    "prediction_date": "2024-03-01",
+    "current_price": 1041.64,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.0018,
+        "predicted_price": 1043.51,
+        "confidence": 0.87,
+        "uncertainty_std": 0.0056,
+        "lower_bound": 1031.02,
+        "upper_bound": 1056.01
+      },
+      "1W": {
+        "expected_return": 0.0055,
+        "predicted_price": 1047.37,
+        "confidence": 0.71,
+        "uncertainty_std": 0.0122,
+        "lower_bound": 1021.33,
+        "upper_bound": 1073.41
+      },
+      "1M": {
+        "expected_return": 0.0123,
+        "predicted_price": 1054.45,
+        "confidence": 0.7,
+        "uncertainty_std": 0.0255,
+        "lower_bound": 1002.37,
+        "upper_bound": 1106.53
+      },
+      "6M": {
+        "expected_return": 0.0344,
+        "predicted_price": 1077.47,
+        "confidence": 0.56,
+        "uncertainty_std": 0.0572,
+        "lower_bound": 973.31,
+        "upper_bound": 1181.64
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.0123,
+      "xgboost_return_1M": 0.021,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.0087
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_14",
+        "impact": 0.0218,
+        "importance_score": 0.28,
+        "direction": "positive"
+      },
+      {
+        "feature": "dist_sma_50",
+        "impact": 0.0226,
+        "importance_score": 0.22,
+        "direction": "positive"
+      },
+      {
+        "feature": "finbert_sentiment_score",
+        "impact": 0.0124,
+        "importance_score": 0.2,
+        "direction": "positive"
+      },
+      {
+        "feature": "india_vix_return_5d",
+        "impact": -0.012,
+        "importance_score": 0.16,
+        "direction": "negative"
+      },
+      {
+        "feature": "macd_line_12_26",
+        "impact": 0.0085,
+        "importance_score": 0.14,
+        "direction": "positive"
+      }
+    ]
+  },
+  "HDFCBANK.NS": {
+    "ticker": "HDFCBANK.NS",
+    "prediction_date": "2024-03-01",
+    "current_price": 1534.02,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.0069,
+        "predicted_price": 1544.6,
+        "confidence": 0.9,
+        "uncertainty_std": 0.0074,
+        "lower_bound": 1526.2,
+        "upper_bound": 1563.01
+      },
+      "1W": {
+        "expected_return": 0.0206,
+        "predicted_price": 1565.62,
+        "confidence": 0.84,
+        "uncertainty_std": 0.0182,
+        "lower_bound": 1527.27,
+        "upper_bound": 1603.97
+      },
+      "1M": {
+        "expected_return": 0.0457,
+        "predicted_price": 1604.12,
+        "confidence": 0.66,
+        "uncertainty_std": 0.0406,
+        "lower_bound": 1527.42,
+        "upper_bound": 1680.83
+      },
+      "6M": {
+        "expected_return": 0.128,
+        "predicted_price": 1730.37,
+        "confidence": 0.56,
+        "uncertainty_std": 0.104,
+        "lower_bound": 1576.97,
+        "upper_bound": 1883.78
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.0457,
+      "xgboost_return_1M": 0.0609,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.0152
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_14",
+        "impact": 0.0144,
+        "importance_score": 0.28,
+        "direction": "positive"
+      },
+      {
+        "feature": "dist_sma_50",
+        "impact": 0.0236,
+        "importance_score": 0.22,
+        "direction": "positive"
+      },
+      {
+        "feature": "finbert_sentiment_score",
+        "impact": -0.004,
+        "importance_score": 0.2,
+        "direction": "negative"
+      },
+      {
+        "feature": "india_vix_return_5d",
+        "impact": -0.012,
+        "importance_score": 0.16,
+        "direction": "negative"
+      },
+      {
+        "feature": "macd_line_12_26",
+        "impact": 0.0066,
+        "importance_score": 0.14,
+        "direction": "positive"
+      }
+    ]
+  },
+  "ICICIBANK.NS": {
+    "ticker": "ICICIBANK.NS",
+    "prediction_date": "2024-03-01",
+    "current_price": 1049.87,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.0061,
+        "predicted_price": 1056.27,
+        "confidence": 0.88,
+        "uncertainty_std": 0.0071,
+        "lower_bound": 1043.68,
+        "upper_bound": 1068.87
+      },
+      "1W": {
+        "expected_return": 0.0184,
+        "predicted_price": 1069.19,
+        "confidence": 0.74,
+        "uncertainty_std": 0.0174,
+        "lower_bound": 1042.94,
+        "upper_bound": 1095.43
+      },
+      "1M": {
+        "expected_return": 0.0409,
+        "predicted_price": 1092.81,
+        "confidence": 0.85,
+        "uncertainty_std": 0.0384,
+        "lower_bound": 1040.32,
+        "upper_bound": 1145.3
+      },
+      "6M": {
+        "expected_return": 0.1144,
+        "predicted_price": 1169.98,
+        "confidence": 0.57,
+        "uncertainty_std": 0.0972,
+        "lower_bound": 1064.99,
+        "upper_bound": 1274.96
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.0409,
+      "xgboost_return_1M": 0.0536,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.0127
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_14",
+        "impact": 0.0263,
+        "importance_score": 0.28,
+        "direction": "positive"
+      },
+      {
+        "feature": "dist_sma_50",
+        "impact": 0.0113,
+        "importance_score": 0.22,
+        "direction": "positive"
+      },
+      {
+        "feature": "finbert_sentiment_score",
+        "impact": 0.0108,
+        "importance_score": 0.2,
+        "direction": "positive"
+      },
+      {
+        "feature": "india_vix_return_5d",
+        "impact": -0.012,
+        "importance_score": 0.16,
+        "direction": "negative"
+      },
+      {
+        "feature": "macd_line_12_26",
+        "impact": 0.0088,
+        "importance_score": 0.14,
+        "direction": "positive"
+      }
+    ]
+  },
+  "BHARTIARTL.NS": {
+    "ticker": "BHARTIARTL.NS",
+    "prediction_date": "2024-03-01",
+    "current_price": 1042.71,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.0105,
+        "predicted_price": 1053.66,
+        "confidence": 0.79,
+        "uncertainty_std": 0.0087,
+        "lower_bound": 1041.15,
+        "upper_bound": 1066.17
+      },
+      "1W": {
+        "expected_return": 0.0314,
+        "predicted_price": 1075.45,
+        "confidence": 0.76,
+        "uncertainty_std": 0.0226,
+        "lower_bound": 1049.38,
+        "upper_bound": 1101.52
+      },
+      "1M": {
+        "expected_return": 0.0698,
+        "predicted_price": 1115.49,
+        "confidence": 0.66,
+        "uncertainty_std": 0.0514,
+        "lower_bound": 1063.36,
+        "upper_bound": 1167.63
+      },
+      "6M": {
+        "expected_return": 0.1955,
+        "predicted_price": 1246.56,
+        "confidence": 0.54,
+        "uncertainty_std": 0.1378,
+        "lower_bound": 1142.29,
+        "upper_bound": 1350.83
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.0698,
+      "xgboost_return_1M": 0.0049,
+      "disagreement_detected": true,
+      "disagreement_delta": 0.0649
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_14",
+        "impact": 0.0196,
+        "importance_score": 0.28,
+        "direction": "positive"
+      },
+      {
+        "feature": "dist_sma_50",
+        "impact": 0.0169,
+        "importance_score": 0.22,
+        "direction": "positive"
+      },
+      {
+        "feature": "finbert_sentiment_score",
+        "impact": 0.0122,
+        "importance_score": 0.2,
+        "direction": "positive"
+      },
+      {
+        "feature": "india_vix_return_5d",
+        "impact": -0.012,
+        "importance_score": 0.16,
+        "direction": "negative"
+      },
+      {
+        "feature": "macd_line_12_26",
+        "impact": 0.0124,
+        "importance_score": 0.14,
+        "direction": "positive"
+      }
+    ]
+  },
+  "ITC.NS": {
+    "ticker": "ITC.NS",
+    "prediction_date": "2024-03-01",
+    "current_price": 286.93,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.0036,
+        "predicted_price": 287.96,
+        "confidence": 0.84,
+        "uncertainty_std": 0.0063,
+        "lower_bound": 284.52,
+        "upper_bound": 291.41
+      },
+      "1W": {
+        "expected_return": 0.0109,
+        "predicted_price": 290.06,
+        "confidence": 0.76,
+        "uncertainty_std": 0.0144,
+        "lower_bound": 282.88,
+        "upper_bound": 297.23
+      },
+      "1M": {
+        "expected_return": 0.0242,
+        "predicted_price": 293.87,
+        "confidence": 0.72,
+        "uncertainty_std": 0.0309,
+        "lower_bound": 279.53,
+        "upper_bound": 308.22
+      },
+      "6M": {
+        "expected_return": 0.0676,
+        "predicted_price": 306.33,
+        "confidence": 0.71,
+        "uncertainty_std": 0.0738,
+        "lower_bound": 277.63,
+        "upper_bound": 335.02
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.0242,
+      "xgboost_return_1M": 0.0361,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.0119
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_14",
+        "impact": 0.0247,
+        "importance_score": 0.28,
+        "direction": "positive"
+      },
+      {
+        "feature": "dist_sma_50",
+        "impact": 0.0083,
+        "importance_score": 0.22,
+        "direction": "positive"
+      },
+      {
+        "feature": "finbert_sentiment_score",
+        "impact": 0.0074,
+        "importance_score": 0.2,
+        "direction": "positive"
+      },
+      {
+        "feature": "india_vix_return_5d",
+        "impact": -0.012,
+        "importance_score": 0.16,
+        "direction": "negative"
+      },
+      {
+        "feature": "macd_line_12_26",
+        "impact": 0.0174,
+        "importance_score": 0.14,
+        "direction": "positive"
+      }
+    ]
+  },
+  "LT.NS": {
+    "ticker": "LT.NS",
+    "prediction_date": "2024-03-01",
+    "current_price": 3576.43,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.0067,
+        "predicted_price": 3600.39,
+        "confidence": 0.92,
+        "uncertainty_std": 0.0073,
+        "lower_bound": 3557.47,
+        "upper_bound": 3643.31
+      },
+      "1W": {
+        "expected_return": 0.0202,
+        "predicted_price": 3648.67,
+        "confidence": 0.72,
+        "uncertainty_std": 0.0181,
+        "lower_bound": 3559.26,
+        "upper_bound": 3738.08
+      },
+      "1M": {
+        "expected_return": 0.0449,
+        "predicted_price": 3737.01,
+        "confidence": 0.83,
+        "uncertainty_std": 0.0402,
+        "lower_bound": 3558.19,
+        "upper_bound": 3915.83
+      },
+      "6M": {
+        "expected_return": 0.1258,
+        "predicted_price": 4026.34,
+        "confidence": 0.54,
+        "uncertainty_std": 0.1029,
+        "lower_bound": 3668.7,
+        "upper_bound": 4383.99
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.0449,
+      "xgboost_return_1M": 0.0402,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.0047
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_14",
+        "impact": 0.0316,
+        "importance_score": 0.28,
+        "direction": "positive"
+      },
+      {
+        "feature": "dist_sma_50",
+        "impact": 0.0195,
+        "importance_score": 0.22,
+        "direction": "positive"
+      },
+      {
+        "feature": "finbert_sentiment_score",
+        "impact": 0.0082,
+        "importance_score": 0.2,
+        "direction": "positive"
+      },
+      {
+        "feature": "india_vix_return_5d",
+        "impact": -0.012,
+        "importance_score": 0.16,
+        "direction": "negative"
+      },
+      {
+        "feature": "macd_line_12_26",
+        "impact": 0.0175,
+        "importance_score": 0.14,
+        "direction": "positive"
+      }
+    ]
+  },
+  "SBIN.NS": {
+    "ticker": "SBIN.NS",
+    "prediction_date": "2024-03-01",
+    "current_price": 676.39,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.0043,
+        "predicted_price": 679.3,
+        "confidence": 0.91,
+        "uncertainty_std": 0.0065,
+        "lower_bound": 671.18,
+        "upper_bound": 687.42
+      },
+      "1W": {
+        "expected_return": 0.013,
+        "predicted_price": 685.18,
+        "confidence": 0.72,
+        "uncertainty_std": 0.0152,
+        "lower_bound": 668.27,
+        "upper_bound": 702.09
+      },
+      "1M": {
+        "expected_return": 0.029,
+        "predicted_price": 696.01,
+        "confidence": 0.69,
+        "uncertainty_std": 0.0331,
+        "lower_bound": 662.19,
+        "upper_bound": 729.82
+      },
+      "6M": {
+        "expected_return": 0.0811,
+        "predicted_price": 731.25,
+        "confidence": 0.62,
+        "uncertainty_std": 0.0806,
+        "lower_bound": 663.61,
+        "upper_bound": 798.88
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.029,
+      "xgboost_return_1M": 0.0635,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.0345
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_14",
+        "impact": 0.0133,
+        "importance_score": 0.28,
+        "direction": "positive"
+      },
+      {
+        "feature": "dist_sma_50",
+        "impact": 0.0089,
+        "importance_score": 0.22,
+        "direction": "positive"
+      },
+      {
+        "feature": "finbert_sentiment_score",
+        "impact": 0.0128,
+        "importance_score": 0.2,
+        "direction": "positive"
+      },
+      {
+        "feature": "india_vix_return_5d",
+        "impact": -0.012,
+        "importance_score": 0.16,
+        "direction": "negative"
+      },
+      {
+        "feature": "macd_line_12_26",
+        "impact": 0.0052,
+        "importance_score": 0.14,
+        "direction": "positive"
+      }
+    ]
+  },
+  "AXISBANK.NS": {
+    "ticker": "AXISBANK.NS",
+    "prediction_date": "2024-03-01",
+    "current_price": 915.15,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.0029,
+        "predicted_price": 917.8,
+        "confidence": 0.83,
+        "uncertainty_std": 0.006,
+        "lower_bound": 906.82,
+        "upper_bound": 928.79
+      },
+      "1W": {
+        "expected_return": 0.0086,
+        "predicted_price": 923.02,
+        "confidence": 0.81,
+        "uncertainty_std": 0.0134,
+        "lower_bound": 900.14,
+        "upper_bound": 945.9
+      },
+      "1M": {
+        "expected_return": 0.0192,
+        "predicted_price": 932.72,
+        "confidence": 0.66,
+        "uncertainty_std": 0.0286,
+        "lower_bound": 886.96,
+        "upper_bound": 978.48
+      },
+      "6M": {
+        "expected_return": 0.0537,
+        "predicted_price": 964.29,
+        "confidence": 0.52,
+        "uncertainty_std": 0.0668,
+        "lower_bound": 872.78,
+        "upper_bound": 1055.81
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.0192,
+      "xgboost_return_1M": -0.0458,
+      "disagreement_detected": true,
+      "disagreement_delta": 0.065
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_14",
+        "impact": 0.0241,
+        "importance_score": 0.28,
+        "direction": "positive"
+      },
+      {
+        "feature": "dist_sma_50",
+        "impact": 0.0107,
+        "importance_score": 0.22,
+        "direction": "positive"
+      },
+      {
+        "feature": "finbert_sentiment_score",
+        "impact": 0.0093,
+        "importance_score": 0.2,
+        "direction": "positive"
+      },
+      {
+        "feature": "india_vix_return_5d",
+        "impact": -0.012,
+        "importance_score": 0.16,
+        "direction": "negative"
+      },
+      {
+        "feature": "macd_line_12_26",
+        "impact": 0.0052,
+        "importance_score": 0.14,
+        "direction": "positive"
+      }
+    ]
+  },
+  "KOTAKBANK.NS": {
+    "ticker": "KOTAKBANK.NS",
+    "prediction_date": "2024-03-01",
+    "current_price": 1320.72,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.0087,
+        "predicted_price": 1332.21,
+        "confidence": 0.91,
+        "uncertainty_std": 0.008,
+        "lower_bound": 1316.36,
+        "upper_bound": 1348.06
+      },
+      "1W": {
+        "expected_return": 0.026,
+        "predicted_price": 1355.06,
+        "confidence": 0.79,
+        "uncertainty_std": 0.0204,
+        "lower_bound": 1322.04,
+        "upper_bound": 1388.08
+      },
+      "1M": {
+        "expected_return": 0.0579,
+        "predicted_price": 1397.19,
+        "confidence": 0.65,
+        "uncertainty_std": 0.0461,
+        "lower_bound": 1331.15,
+        "upper_bound": 1463.23
+      },
+      "6M": {
+        "expected_return": 0.1621,
+        "predicted_price": 1534.81,
+        "confidence": 0.54,
+        "uncertainty_std": 0.121,
+        "lower_bound": 1402.74,
+        "upper_bound": 1666.88
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.0579,
+      "xgboost_return_1M": 0.0716,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.0137
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_14",
+        "impact": 0.027,
+        "importance_score": 0.28,
+        "direction": "positive"
+      },
+      {
+        "feature": "dist_sma_50",
+        "impact": 0.0215,
+        "importance_score": 0.22,
+        "direction": "positive"
+      },
+      {
+        "feature": "finbert_sentiment_score",
+        "impact": 0.0142,
+        "importance_score": 0.2,
+        "direction": "positive"
+      },
+      {
+        "feature": "india_vix_return_5d",
+        "impact": -0.012,
+        "importance_score": 0.16,
+        "direction": "negative"
+      },
+      {
+        "feature": "macd_line_12_26",
+        "impact": 0.0077,
+        "importance_score": 0.14,
+        "direction": "positive"
+      }
+    ]
+  },
+  "INDUSINDBK.NS": {
+    "ticker": "INDUSINDBK.NS",
+    "prediction_date": "2024-03-01",
+    "current_price": 1646.04,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.0048,
+        "predicted_price": 1653.94,
+        "confidence": 0.84,
+        "uncertainty_std": 0.0067,
+        "lower_bound": 1634.19,
+        "upper_bound": 1673.69
+      },
+      "1W": {
+        "expected_return": 0.0144,
+        "predicted_price": 1669.74,
+        "confidence": 0.84,
+        "uncertainty_std": 0.0158,
+        "lower_bound": 1628.59,
+        "upper_bound": 1710.89
+      },
+      "1M": {
+        "expected_return": 0.0321,
+        "predicted_price": 1698.88,
+        "confidence": 0.75,
+        "uncertainty_std": 0.0344,
+        "lower_bound": 1616.58,
+        "upper_bound": 1781.18
+      },
+      "6M": {
+        "expected_return": 0.0899,
+        "predicted_price": 1794.02,
+        "confidence": 0.67,
+        "uncertainty_std": 0.0849,
+        "lower_bound": 1629.41,
+        "upper_bound": 1958.62
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.0321,
+      "xgboost_return_1M": 0.0335,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.0014
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_14",
+        "impact": 0.0159,
+        "importance_score": 0.28,
+        "direction": "positive"
+      },
+      {
+        "feature": "dist_sma_50",
+        "impact": 0.0193,
+        "importance_score": 0.22,
+        "direction": "positive"
+      },
+      {
+        "feature": "finbert_sentiment_score",
+        "impact": 0.0129,
+        "importance_score": 0.2,
+        "direction": "positive"
+      },
+      {
+        "feature": "india_vix_return_5d",
+        "impact": -0.012,
+        "importance_score": 0.16,
+        "direction": "negative"
+      },
+      {
+        "feature": "macd_line_12_26",
+        "impact": 0.0111,
+        "importance_score": 0.14,
+        "direction": "positive"
+      }
+    ]
+  },
+  "BANKBARODA.NS": {
+    "ticker": "BANKBARODA.NS",
+    "prediction_date": "2024-03-01",
+    "current_price": 313.97,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.0036,
+        "predicted_price": 315.1,
+        "confidence": 0.83,
+        "uncertainty_std": 0.0063,
+        "lower_bound": 311.33,
+        "upper_bound": 318.87
+      },
+      "1W": {
+        "expected_return": 0.0107,
+        "predicted_price": 317.33,
+        "confidence": 0.81,
+        "uncertainty_std": 0.0143,
+        "lower_bound": 309.48,
+        "upper_bound": 325.18
+      },
+      "1M": {
+        "expected_return": 0.0239,
+        "predicted_price": 321.47,
+        "confidence": 0.7,
+        "uncertainty_std": 0.0308,
+        "lower_bound": 305.78,
+        "upper_bound": 337.17
+      },
+      "6M": {
+        "expected_return": 0.0668,
+        "predicted_price": 334.94,
+        "confidence": 0.62,
+        "uncertainty_std": 0.0734,
+        "lower_bound": 303.55,
+        "upper_bound": 366.34
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.0239,
+      "xgboost_return_1M": 0.018,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.0059
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_14",
+        "impact": 0.0105,
+        "importance_score": 0.28,
+        "direction": "positive"
+      },
+      {
+        "feature": "dist_sma_50",
+        "impact": 0.0151,
+        "importance_score": 0.22,
+        "direction": "positive"
+      },
+      {
+        "feature": "finbert_sentiment_score",
+        "impact": 0.0068,
+        "importance_score": 0.2,
+        "direction": "positive"
+      },
+      {
+        "feature": "india_vix_return_5d",
+        "impact": -0.012,
+        "importance_score": 0.16,
+        "direction": "negative"
+      },
+      {
+        "feature": "macd_line_12_26",
+        "impact": 0.0172,
+        "importance_score": 0.14,
+        "direction": "positive"
+      }
+    ]
+  },
+  "PNB.NS": {
+    "ticker": "PNB.NS",
+    "prediction_date": "2024-03-01",
+    "current_price": 94.42,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.0031,
+        "predicted_price": 94.71,
+        "confidence": 0.9,
+        "uncertainty_std": 0.0061,
+        "lower_bound": 93.58,
+        "upper_bound": 95.85
+      },
+      "1W": {
+        "expected_return": 0.0093,
+        "predicted_price": 95.3,
+        "confidence": 0.82,
+        "uncertainty_std": 0.0137,
+        "lower_bound": 92.94,
+        "upper_bound": 97.66
+      },
+      "1M": {
+        "expected_return": 0.0207,
+        "predicted_price": 96.37,
+        "confidence": 0.75,
+        "uncertainty_std": 0.0293,
+        "lower_bound": 91.65,
+        "upper_bound": 101.1
+      },
+      "6M": {
+        "expected_return": 0.0579,
+        "predicted_price": 99.89,
+        "confidence": 0.58,
+        "uncertainty_std": 0.0689,
+        "lower_bound": 90.44,
+        "upper_bound": 109.33
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.0207,
+      "xgboost_return_1M": -0.0443,
+      "disagreement_detected": true,
+      "disagreement_delta": 0.065
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_14",
+        "impact": 0.0318,
+        "importance_score": 0.28,
+        "direction": "positive"
+      },
+      {
+        "feature": "dist_sma_50",
+        "impact": 0.0176,
+        "importance_score": 0.22,
+        "direction": "positive"
+      },
+      {
+        "feature": "finbert_sentiment_score",
+        "impact": 0.0091,
+        "importance_score": 0.2,
+        "direction": "positive"
+      },
+      {
+        "feature": "india_vix_return_5d",
+        "impact": -0.012,
+        "importance_score": 0.16,
+        "direction": "negative"
+      },
+      {
+        "feature": "macd_line_12_26",
+        "impact": 0.0113,
+        "importance_score": 0.14,
+        "direction": "positive"
+      }
+    ]
+  },
+  "AUBANK.NS": {
+    "ticker": "AUBANK.NS",
+    "prediction_date": "2024-03-01",
+    "current_price": 653.37,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.0024,
+        "predicted_price": 654.94,
+        "confidence": 0.78,
+        "uncertainty_std": 0.0058,
+        "lower_bound": 647.1,
+        "upper_bound": 662.78
+      },
+      "1W": {
+        "expected_return": 0.0072,
+        "predicted_price": 658.07,
+        "confidence": 0.81,
+        "uncertainty_std": 0.0129,
+        "lower_bound": 641.74,
+        "upper_bound": 674.41
+      },
+      "1M": {
+        "expected_return": 0.016,
+        "predicted_price": 663.82,
+        "confidence": 0.76,
+        "uncertainty_std": 0.0272,
+        "lower_bound": 631.16,
+        "upper_bound": 696.49
+      },
+      "6M": {
+        "expected_return": 0.0449,
+        "predicted_price": 682.71,
+        "confidence": 0.67,
+        "uncertainty_std": 0.0625,
+        "lower_bound": 617.37,
+        "upper_bound": 748.04
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.016,
+      "xgboost_return_1M": 0.0264,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.0104
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_14",
+        "impact": 0.0212,
+        "importance_score": 0.28,
+        "direction": "positive"
+      },
+      {
+        "feature": "dist_sma_50",
+        "impact": 0.0145,
+        "importance_score": 0.22,
+        "direction": "positive"
+      },
+      {
+        "feature": "finbert_sentiment_score",
+        "impact": 0.0016,
+        "importance_score": 0.2,
+        "direction": "positive"
+      },
+      {
+        "feature": "india_vix_return_5d",
+        "impact": -0.012,
+        "importance_score": 0.16,
+        "direction": "negative"
+      },
+      {
+        "feature": "macd_line_12_26",
+        "impact": 0.0122,
+        "importance_score": 0.14,
+        "direction": "positive"
+      }
+    ]
+  },
+  "IDFCFIRSTB.NS": {
+    "ticker": "IDFCFIRSTB.NS",
+    "prediction_date": "2024-03-01",
+    "current_price": 66.18,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.0031,
+        "predicted_price": 66.39,
+        "confidence": 0.86,
+        "uncertainty_std": 0.0061,
+        "lower_bound": 65.59,
+        "upper_bound": 67.18
+      },
+      "1W": {
+        "expected_return": 0.0092,
+        "predicted_price": 66.79,
+        "confidence": 0.75,
+        "uncertainty_std": 0.0137,
+        "lower_bound": 65.13,
+        "upper_bound": 68.44
+      },
+      "1M": {
+        "expected_return": 0.0205,
+        "predicted_price": 67.54,
+        "confidence": 0.75,
+        "uncertainty_std": 0.0292,
+        "lower_bound": 64.23,
+        "upper_bound": 70.85
+      },
+      "6M": {
+        "expected_return": 0.0574,
+        "predicted_price": 69.98,
+        "confidence": 0.68,
+        "uncertainty_std": 0.0687,
+        "lower_bound": 63.36,
+        "upper_bound": 76.6
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.0205,
+      "xgboost_return_1M": 0.0843,
+      "disagreement_detected": true,
+      "disagreement_delta": 0.0638
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_14",
+        "impact": 0.0338,
+        "importance_score": 0.28,
+        "direction": "positive"
+      },
+      {
+        "feature": "dist_sma_50",
+        "impact": 0.0199,
+        "importance_score": 0.22,
+        "direction": "positive"
+      },
+      {
+        "feature": "finbert_sentiment_score",
+        "impact": 0.0006,
+        "importance_score": 0.2,
+        "direction": "positive"
+      },
+      {
+        "feature": "india_vix_return_5d",
+        "impact": -0.012,
+        "importance_score": 0.16,
+        "direction": "negative"
+      },
+      {
+        "feature": "macd_line_12_26",
+        "impact": 0.0164,
+        "importance_score": 0.14,
+        "direction": "positive"
+      }
+    ]
+  }
+}

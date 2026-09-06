@@ -1,0 +1,306 @@
+{
+  "RELIANCE.NS": {
+    "ticker": "RELIANCE.NS",
+    "name": "Reliance Industries Ltd",
+    "sector": "Energy",
+    "universe": "NIFTY 50",
+    "current_price": 3243.61,
+    "signal": "BUY",
+    "signal_score": 90.0,
+    "confidence": 0.79,
+    "expected_return_1M": 0.0475,
+    "sentiment_score": 0.512,
+    "regime": "mean_reverting",
+    "ensemble_agreement": true,
+    "reasoning": [
+      "Projected 1-Month return of +4.75% clears high-conviction threshold (>+2.5%)",
+      "Monte Carlo Dropout confidence is robust at 79%",
+      "FinBERT news sentiment confirms positive tone (Score: +0.51)",
+      "LSTM sequence model and XGBoost ensemble are in tight consensus"
+    ]
+  },
+  "TCS.NS": {
+    "ticker": "TCS.NS",
+    "name": "Tata Consultancy Services",
+    "sector": "IT",
+    "universe": "NIFTY 50",
+    "current_price": 4449.84,
+    "signal": "HOLD",
+    "signal_score": 46.1,
+    "confidence": 0.82,
+    "expected_return_1M": 0.0111,
+    "sentiment_score": 0.02,
+    "regime": "mean_reverting",
+    "ensemble_agreement": true,
+    "reasoning": [
+      "Moderate 1-Month expected return of +1.11%",
+      "Risk/reward profile suggests maintaining existing positions rather than aggressive entry"
+    ]
+  },
+  "INFY.NS": {
+    "ticker": "INFY.NS",
+    "name": "Infosys Ltd",
+    "sector": "IT",
+    "universe": "NIFTY 50",
+    "current_price": 1041.64,
+    "signal": "HOLD",
+    "signal_score": 46.2,
+    "confidence": 0.7,
+    "expected_return_1M": 0.0123,
+    "sentiment_score": 0.31,
+    "regime": "high_vol_choppy",
+    "ensemble_agreement": true,
+    "reasoning": [
+      "Moderate 1-Month expected return of +1.23%",
+      "Risk/reward profile suggests maintaining existing positions rather than aggressive entry"
+    ]
+  },
+  "HDFCBANK.NS": {
+    "ticker": "HDFCBANK.NS",
+    "name": "HDFC Bank Ltd",
+    "sector": "Banking",
+    "universe": "NIFTY 50",
+    "current_price": 1534.02,
+    "signal": "HOLD",
+    "signal_score": 49.6,
+    "confidence": 0.66,
+    "expected_return_1M": 0.0457,
+    "sentiment_score": -0.1,
+    "regime": "high_vol_choppy",
+    "ensemble_agreement": true,
+    "reasoning": [
+      "Moderate 1-Month expected return of +4.57%",
+      "Risk/reward profile suggests maintaining existing positions rather than aggressive entry"
+    ]
+  },
+  "ICICIBANK.NS": {
+    "ticker": "ICICIBANK.NS",
+    "name": "ICICI Bank Ltd",
+    "sector": "Banking",
+    "universe": "NIFTY 50",
+    "current_price": 1049.87,
+    "signal": "BUY",
+    "signal_score": 89.3,
+    "confidence": 0.85,
+    "expected_return_1M": 0.0409,
+    "sentiment_score": 0.27,
+    "regime": "mean_reverting",
+    "ensemble_agreement": true,
+    "reasoning": [
+      "Projected 1-Month return of +4.09% clears high-conviction threshold (>+2.5%)",
+      "Monte Carlo Dropout confidence is robust at 85%",
+      "FinBERT news sentiment confirms positive tone (Score: +0.27)",
+      "LSTM sequence model and XGBoost ensemble are in tight consensus"
+    ]
+  },
+  "BHARTIARTL.NS": {
+    "ticker": "BHARTIARTL.NS",
+    "name": "Bharti Airtel Ltd",
+    "sector": "Telecom",
+    "universe": "NIFTY 50",
+    "current_price": 1042.71,
+    "signal": "HOLD",
+    "signal_score": 52.0,
+    "confidence": 0.66,
+    "expected_return_1M": 0.0698,
+    "sentiment_score": 0.306,
+    "regime": "mean_reverting",
+    "ensemble_agreement": false,
+    "reasoning": [
+      "Model Disagreement Warning: LSTM projects +7.0% but XGBoost projects +0.5% (Delta: 6.5%)",
+      "Moderate 1-Month expected return of +6.98%",
+      "Risk/reward profile suggests maintaining existing positions rather than aggressive entry"
+    ]
+  },
+  "ITC.NS": {
+    "ticker": "ITC.NS",
+    "name": "ITC Ltd",
+    "sector": "FMCG",
+    "universe": "NIFTY 50",
+    "current_price": 286.93,
+    "signal": "HOLD",
+    "signal_score": 47.4,
+    "confidence": 0.72,
+    "expected_return_1M": 0.0242,
+    "sentiment_score": 0.186,
+    "regime": "mean_reverting",
+    "ensemble_agreement": true,
+    "reasoning": [
+      "Moderate 1-Month expected return of +2.42%",
+      "Risk/reward profile suggests maintaining existing positions rather than aggressive entry"
+    ]
+  },
+  "LT.NS": {
+    "ticker": "LT.NS",
+    "name": "Larsen & Toubro Ltd",
+    "sector": "Capital Goods",
+    "universe": "NIFTY 50",
+    "current_price": 3576.43,
+    "signal": "BUY",
+    "signal_score": 90.1,
+    "confidence": 0.83,
+    "expected_return_1M": 0.0449,
+    "sentiment_score": 0.206,
+    "regime": "low_vol_trending",
+    "ensemble_agreement": true,
+    "reasoning": [
+      "Projected 1-Month return of +4.49% clears high-conviction threshold (>+2.5%)",
+      "Monte Carlo Dropout confidence is robust at 83%",
+      "FinBERT news sentiment confirms positive tone (Score: +0.21)",
+      "LSTM sequence model and XGBoost ensemble are in tight consensus"
+    ]
+  },
+  "SBIN.NS": {
+    "ticker": "SBIN.NS",
+    "name": "State Bank of India",
+    "sector": "Banking",
+    "universe": "NIFTY 50",
+    "current_price": 676.39,
+    "signal": "BUY",
+    "signal_score": 82.5,
+    "confidence": 0.69,
+    "expected_return_1M": 0.029,
+    "sentiment_score": 0.32,
+    "regime": "mean_reverting",
+    "ensemble_agreement": true,
+    "reasoning": [
+      "Projected 1-Month return of +2.90% clears high-conviction threshold (>+2.5%)",
+      "Monte Carlo Dropout confidence is robust at 69%",
+      "FinBERT news sentiment confirms positive tone (Score: +0.32)",
+      "LSTM sequence model and XGBoost ensemble are in tight consensus"
+    ]
+  },
+  "AXISBANK.NS": {
+    "ticker": "AXISBANK.NS",
+    "name": "Axis Bank Ltd",
+    "sector": "Banking",
+    "universe": "NIFTY 50",
+    "current_price": 915.15,
+    "signal": "AVOID",
+    "signal_score": 21.9,
+    "confidence": 0.66,
+    "expected_return_1M": 0.0192,
+    "sentiment_score": 0.232,
+    "regime": "low_vol_trending",
+    "ensemble_agreement": false,
+    "reasoning": [
+      "Model Disagreement Warning: LSTM projects +1.9% but XGBoost projects -4.6% (Delta: 6.5%)",
+      "Downside risk detected: 1-Month forecast is +1.92%",
+      "Uncertainty elevated due to LSTM vs XGBoost model divergence"
+    ]
+  },
+  "KOTAKBANK.NS": {
+    "ticker": "KOTAKBANK.NS",
+    "name": "Kotak Mahindra Bank",
+    "sector": "Banking",
+    "universe": "Nifty Bank",
+    "current_price": 1320.72,
+    "signal": "BUY",
+    "signal_score": 90.4,
+    "confidence": 0.65,
+    "expected_return_1M": 0.0579,
+    "sentiment_score": 0.354,
+    "regime": "mean_reverting",
+    "ensemble_agreement": true,
+    "reasoning": [
+      "Projected 1-Month return of +5.79% clears high-conviction threshold (>+2.5%)",
+      "Monte Carlo Dropout confidence is robust at 65%",
+      "FinBERT news sentiment confirms positive tone (Score: +0.35)",
+      "LSTM sequence model and XGBoost ensemble are in tight consensus"
+    ]
+  },
+  "INDUSINDBK.NS": {
+    "ticker": "INDUSINDBK.NS",
+    "name": "IndusInd Bank",
+    "sector": "Banking",
+    "universe": "Nifty Bank",
+    "current_price": 1646.04,
+    "signal": "BUY",
+    "signal_score": 84.6,
+    "confidence": 0.75,
+    "expected_return_1M": 0.0321,
+    "sentiment_score": 0.322,
+    "regime": "mean_reverting",
+    "ensemble_agreement": true,
+    "reasoning": [
+      "Projected 1-Month return of +3.21% clears high-conviction threshold (>+2.5%)",
+      "Monte Carlo Dropout confidence is robust at 75%",
+      "FinBERT news sentiment confirms positive tone (Score: +0.32)",
+      "LSTM sequence model and XGBoost ensemble are in tight consensus"
+    ]
+  },
+  "BANKBARODA.NS": {
+    "ticker": "BANKBARODA.NS",
+    "name": "Bank of Baroda",
+    "sector": "Banking",
+    "universe": "Nifty Bank",
+    "current_price": 313.97,
+    "signal": "HOLD",
+    "signal_score": 47.4,
+    "confidence": 0.7,
+    "expected_return_1M": 0.0239,
+    "sentiment_score": 0.17,
+    "regime": "mean_reverting",
+    "ensemble_agreement": true,
+    "reasoning": [
+      "Moderate 1-Month expected return of +2.39%",
+      "Risk/reward profile suggests maintaining existing positions rather than aggressive entry"
+    ]
+  },
+  "PNB.NS": {
+    "ticker": "PNB.NS",
+    "name": "Punjab National Bank",
+    "sector": "Banking",
+    "universe": "Nifty Bank",
+    "current_price": 94.42,
+    "signal": "HOLD",
+    "signal_score": 47.1,
+    "confidence": 0.75,
+    "expected_return_1M": 0.0207,
+    "sentiment_score": 0.228,
+    "regime": "mean_reverting",
+    "ensemble_agreement": false,
+    "reasoning": [
+      "Model Disagreement Warning: LSTM projects +2.1% but XGBoost projects -4.4% (Delta: 6.5%)",
+      "Moderate 1-Month expected return of +2.07%",
+      "Risk/reward profile suggests maintaining existing positions rather than aggressive entry"
+    ]
+  },
+  "AUBANK.NS": {
+    "ticker": "AUBANK.NS",
+    "name": "AU Small Finance Bank",
+    "sector": "Banking",
+    "universe": "Nifty Bank",
+    "current_price": 653.37,
+    "signal": "HOLD",
+    "signal_score": 46.6,
+    "confidence": 0.76,
+    "expected_return_1M": 0.016,
+    "sentiment_score": 0.04,
+    "regime": "low_vol_trending",
+    "ensemble_agreement": true,
+    "reasoning": [
+      "Moderate 1-Month expected return of +1.60%",
+      "Risk/reward profile suggests maintaining existing positions rather than aggressive entry"
+    ]
+  },
+  "IDFCFIRSTB.NS": {
+    "ticker": "IDFCFIRSTB.NS",
+    "name": "IDFC First Bank",
+    "sector": "Banking",
+    "universe": "Nifty Bank",
+    "current_price": 66.18,
+    "signal": "HOLD",
+    "signal_score": 47.0,
+    "confidence": 0.75,
+    "expected_return_1M": 0.0205,
+    "sentiment_score": 0.016,
+    "regime": "high_vol_choppy",
+    "ensemble_agreement": false,
+    "reasoning": [
+      "Model Disagreement Warning: LSTM projects +2.1% but XGBoost projects +8.4% (Delta: 6.4%)",
+      "Moderate 1-Month expected return of +2.05%",
+      "Risk/reward profile suggests maintaining existing positions rather than aggressive entry"
+    ]
+  }
+}

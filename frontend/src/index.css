@@ -1,0 +1,440 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #0b0b0b;
+  --panel: #111111;
+  --panel-2: #101010;
+  --line: #202020;
+  --line-2: #1b1b1b;
+  --text: #ececec;
+  --muted: #9a9a9a;
+  --mono: 'IBM Plex Mono', Consolas, monospace;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  --success: #4ade80;
+  --success-bg: #1a2e1a;
+  --success-border: #2d5a2d;
+  
+  --warning: #fbbf24;
+  --warning-bg: #2d2613;
+  --warning-border: #524218;
+
+  --danger: #e08c8c;
+  --danger-bg: #2b1717;
+  --danger-border: #572929;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 24px 36px;
+}
+
+.navnote, .eyebrow, .panel-label, .section-kicker, .feature-meta, .stat-title, .stat-value {
+  font-family: var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0 20px;
+  border-bottom: 1px solid var(--line-2);
+}
+
+.brand {
+  font-size: 15px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #f2f2f2;
+}
+
+.navnote {
+  color: #8d8d8d;
+  font-size: 12px;
+}
+
+.ticker-wrap {
+  border-top: 1px solid #1c1c1c;
+  border-bottom: 1px solid #1c1c1c;
+  margin: 0 0 26px;
+  overflow: hidden;
+  background: #0d0d0d;
+}
+
+.ticker-track {
+  display: inline-flex;
+  align-items: center;
+  width: max-content;
+  white-space: nowrap;
+  animation: ticker-scroll 35s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+.ticker-line {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-right: 1px solid #191919;
+  color: #efefef;
+  font-family: var(--mono);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.ticker-item:hover {
+  background: #141414;
+}
+
+.ticker-name { font-weight: 600; letter-spacing: 0.05em; }
+.ticker-price { color: #bcbcbc; }
+.ticker-up { color: #83d18d; }
+.ticker-down { color: #e08c8c; }
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 28px;
+  align-items: end;
+  padding: 24px 0 26px;
+}
+
+.eyebrow {
+  color: #9b9b9b;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+h1 {
+  font-size: clamp(38px, 5.2vw, 68px);
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+  margin: 0 0 18px;
+  color: #f4f4f4;
+}
+
+.hero p {
+  margin: 0;
+  max-width: 54ch;
+  color: #a9a9a9;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.hero-panel {
+  border: 1px solid #222;
+  background: #111;
+  padding: 18px;
+}
+
+.panel-label {
+  color: #8e8e8e;
+  font-size: 11px;
+  margin-bottom: 14px;
+}
+
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.stat-card {
+  border: 1px solid #222;
+  background: #0e0e0e;
+  padding: 14px;
+  min-height: 98px;
+}
+
+.stat-title {
+  color: #8b8b8b;
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-family: var(--mono);
+  font-size: 26px;
+  line-height: 1;
+  color: #f1f1f1;
+  margin-bottom: 8px;
+}
+
+.stat-desc {
+  color: #9a9a9a;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.insight-card, .chart-shell, .notes-shell, .feature-card {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 18px;
+}
+
+.hero-card {
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #161616 0%, #111111 100%);
+  border-radius: 10px;
+  padding: 22px 24px;
+}
+
+.chip {
+  display: inline-block;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  color: var(--muted);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 12px;
+  font-family: var(--mono);
+  margin: 4px 6px 0 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid #2a2a2a;
+  color: #efefef;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  background: #161616;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #f4f4f4;
+  color: #0b0b0b;
+  font-weight: 600;
+  border-color: #ffffff;
+}
+
+.btn.secondary {
+  background: transparent;
+  color: #b9b9b9;
+}
+
+.list-item {
+  border-top: 1px solid #1e1e1e;
+  padding: 14px 0;
+}
+
+.list-item:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.list-title {
+  color: #f0f0f0;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.list-body {
+  color: #9b9b9b;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.footer-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line-2);
+  color: #7f7f7f;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #141414 25%, #222222 50%, #141414 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@media (max-width: 980px) {
+  .hero { grid-template-columns: 1fr; }
+  .panel-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px) {
+  .shell { padding: 16px 14px; }
+  .panel-grid { grid-template-columns: 1fr; }
+}
+
+
+/* Ledger component support for Dashboard views */
+.ledger-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 20px;
+}
+
+.ledger-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line-2);
+  margin-bottom: 14px;
+}
+
+.ledger-panel-title {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: #8e8e8e;
+  text-transform: uppercase;
+}
+
+.ledger-stat-table {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.ledger-cell {
+  background: #0e0e0e;
+  border: 1px solid var(--line);
+  padding: 12px 14px;
+}
+
+.ledger-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: #7f7f7f;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.ledger-metric {
+  font-family: var(--mono);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.1;
+  color: #f1f1f1;
+  margin-bottom: 4px;
+}
+
+.ledger-metric-brass {
+  color: var(--success);
+}
+
+.ledger-metric-rust {
+  color: var(--danger);
+}
+
+.ledger-metric-slate {
+  color: #60a5fa;
+}
+
+.ledger-note {
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.ledger-tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 3px;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+}
+
+.tag-buy {
+  background: var(--success-bg);
+  color: var(--success);
+  border: 1px solid var(--success-border);
+}
+
+.tag-avoid {
+  background: var(--danger-bg);
+  color: var(--danger);
+  border: 1px solid var(--danger-border);
+}
+
+.tag-hold {
+  background: var(--warning-bg);
+  color: var(--warning);
+  border: 1px solid var(--warning-border);
+}
+
+.ledger-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ledger-btn-ghost:hover {
+  color: #fff;
+  border-color: #555;
+}

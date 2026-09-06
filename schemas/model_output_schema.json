@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ModelOutputSchema",
+  "description": "Multi-horizon return forecast, MC Dropout confidence, SHAP attributions and ensemble outputs from Module 3 (Modeling & Evaluation)",
+  "type": "object",
+  "required": ["ticker", "prediction_date", "current_price", "horizons", "ensemble", "shap_explainability"],
+  "properties": {
+    "ticker": {"type": "string"},
+    "prediction_date": {"type": "string", "format": "date"},
+    "current_price": {"type": "number"},
+    "horizons": {
+      "type": "object",
+      "required": ["1D", "1W", "1M", "6M"],
+      "properties": {
+        "1D": {
+          "type": "object",
+          "required": ["expected_return", "predicted_price", "confidence", "uncertainty_std", "lower_bound", "upper_bound"],
+          "properties": {
+            "expected_return": {"type": "number"},
+            "predicted_price": {"type": "number"},
+            "confidence": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+            "uncertainty_std": {"type": "number"},
+            "lower_bound": {"type": "number"},
+            "upper_bound": {"type": "number"}
+          }
+        },
+        "1W": {
+          "type": "object",
+          "required": ["expected_return", "predicted_price", "confidence", "uncertainty_std", "lower_bound", "upper_bound"]
+        },
+        "1M": {
+          "type": "object",
+          "required": ["expected_return", "predicted_price", "confidence", "uncertainty_std", "lower_bound", "upper_bound"]
+        },
+        "6M": {
+          "type": "object",
+          "required": ["expected_return", "predicted_price", "confidence", "uncertainty_std", "lower_bound", "upper_bound"]
+        }
+      }
+    },
+    "ensemble": {
+      "type": "object",
+      "required": ["lstm_return_1M", "xgboost_return_1M", "disagreement_detected", "disagreement_delta"],
+      "properties": {
+        "lstm_return_1M": {"type": "number"},
+        "xgboost_return_1M": {"type": "number"},
+        "disagreement_detected": {"type": "boolean"},
+        "disagreement_delta": {"type": "number"}
+      }
+    },
+    "shap_explainability": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["feature", "impact", "importance_score", "direction"],
+        "properties": {
+          "feature": {"type": "string"},
+          "impact": {"type": "number"},
+          "importance_score": {"type": "number"},
+          "direction": {"type": "string", "enum": ["positive", "negative"]}
+        }
+      }
+    }
+  }
+}
