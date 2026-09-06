@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StockReason Sentiment Data Schemas",
+  "description": "JSON schemas for Module 2 News & Sentiment Track",
+  "definitions": {
+    "ScoredHeadline": {
+      "type": "object",
+      "properties": {
+        "timestamp": { "type": "string", "format": "date-time" },
+        "date": { "type": "string", "format": "date" },
+        "ticker": { "type": "string" },
+        "title": { "type": "string" },
+        "source": { "type": ["string", "null"] },
+        "url": { "type": ["string", "null"] },
+        "score_finbert": { "type": "number", "minimum": -1.0, "maximum": 1.0 },
+        "score_textblob": { "type": "number", "minimum": -1.0, "maximum": 1.0 },
+        "sentiment_label": { "type": "string", "enum": ["positive", "neutral", "negative"] },
+        "confidence": { "type": "number", "minimum": 0.0, "maximum": 1.0 }
+      },
+      "required": ["timestamp", "date", "ticker", "title", "score_finbert", "sentiment_label", "confidence"]
+    },
+    "DailySentimentFeature": {
+      "type": "object",
+      "properties": {
+        "date": { "type": "string", "format": "date" },
+        "ticker": { "type": "string" },
+        "news_count": { "type": "integer", "minimum": 0 },
+        "sentiment_mean": { "type": "number", "minimum": -1.0, "maximum": 1.0 },
+        "sentiment_pos_ratio": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "sentiment_neg_ratio": { "type": "number", "minimum": 0.0, "maximum": 1.0 },
+        "sentiment_momentum_3d": { "type": "number" },
+        "sentiment_momentum_7d": { "type": "number" },
+        "sentiment_divergence_flag": { "type": "integer", "enum": [-1, 0, 1] },
+        "divergence_desc": { "type": ["string", "null"] }
+      },
+      "required": [
+        "date",
+        "ticker",
+        "news_count",
+        "sentiment_mean",
+        "sentiment_pos_ratio",
+        "sentiment_neg_ratio",
+        "sentiment_momentum_3d",
+        "sentiment_momentum_7d",
+        "sentiment_divergence_flag"
+      ]
+    }
+  }
+}
