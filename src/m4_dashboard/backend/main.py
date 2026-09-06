@@ -80,9 +80,9 @@ def get_stock_signal(ticker: str):
     return data
 
 @app.get("/api/signals/ranked", tags=["Signal Engine"])
-def get_ranked_signals():
+def get_ranked_signals(include_all: bool = Query(False)):
     """Returns all universe tickers ranked by signal conviction score (Watchlist/Portfolio View)."""
-    return data_service.get_ranked_signals()
+    return data_service.get_ranked_signals(include_all=include_all)
 
 @app.get("/api/backtest", response_model=BacktestResponse, tags=["Backtesting & Validation"])
 def get_backtest_results():

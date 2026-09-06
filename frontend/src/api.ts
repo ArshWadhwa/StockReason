@@ -33,8 +33,8 @@ export const api = {
   getStockSignal: (ticker: string) =>
     fetchJson<SignalData>(`${API_BASE}/stocks/${ticker}/signal`),
   
-  getRankedSignals: () =>
-    fetchJson<SignalData[]>(`${API_BASE}/signals/ranked`),
+  getRankedSignals: (includeAll = false) =>
+    fetchJson<SignalData[]>(`${API_BASE}/signals/ranked${includeAll ? '?include_all=true' : ''}`),
   
   getBacktest: () =>
     fetchJson<BacktestData>(`${API_BASE}/backtest`),

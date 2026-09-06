@@ -1,8 +1,9 @@
 data/raw/
-data/processed/
-*.parquet
+# Keep processed parquet for real data availability
+!data/processed/*.parquet
 .env
 __pycache__/
 .venv/
+.venv_py311/
 .ipynb_checkpoints/
 mlruns/

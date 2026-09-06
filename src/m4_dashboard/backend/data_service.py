@@ -33,6 +33,8 @@ class DataService:
 
         # M2 Integration: Incorporate live M2 processed sentiment if available
         self._load_m2_sentiment()
+        # Keep full list for home page ticker tape preview
+        self.all_signals = dict(self.signals)
         # M1 Integration: Incorporate live M1 processed price features if available
         self._load_m1_prices()
 
@@ -61,16 +63,59 @@ class DataService:
             try:
                 import pandas as pd
                 df_prices = pd.read_parquet(m1_price_path)
+                real_tickers = set(df_prices["ticker"].unique())
+                
+                # Filter prices and signals to only the real stocks
+                filtered_prices = {}
                 for ticker, grp in df_prices.groupby("ticker"):
                     grp_sorted = grp.sort_values(by="date")
-                    if ticker in self.prices and not grp_sorted.empty:
+                    if not grp_sorted.empty:
                         latest_row = grp_sorted.iloc[-1]
-                        self.prices[ticker]["current_price"] = float(latest_row.get("close", self.prices[ticker]["current_price"]))
-                        if len(grp_sorted) >= 2:
-                            prev_close = float(grp_sorted.iloc[-2].get("close", latest_row.get("close")))
-                            self.prices[ticker]["day_change_pct"] = round(((latest_row.get("close") - prev_close) / prev_close) * 100, 2)
-            except Exception:
-                pass
+                        prev_close = float(grp_sorted.iloc[-2].get("close", latest_row.get("close"))) if len(grp_sorted) >= 2 else float(latest_row.get("close"))
+                        curr_close = float(latest_row.get("close"))
+                        day_chg = round(((curr_close - prev_close) / prev_close) * 100, 2)
+                        
+                        # Build full real history list for charting
+                        history = []
+                        for _, row in grp_sorted.iterrows():
+                            dt_str = row["date"].strftime("%Y-%m-%d") if hasattr(row["date"], "strftime") else str(row["date"])[:10]
+                            history.append({
+                                "date": dt_str,
+                                "open": float(row.get("open", row["close"])),
+                                "high": float(row.get("high", row["close"])),
+                                "low": float(row.get("low", row["close"])),
+                                "close": float(row["close"]),
+                                "volume": int(row.get("volume", 0)),
+                                "sma_20": float(row.get("sma_20", row["close"])) if "sma_20" in row and not pd.isna(row["sma_20"]) else None,
+                                "sma_50": float(row.get("sma_50", row["close"])) if "sma_50" in row and not pd.isna(row["sma_50"]) else None,
+                                "rsi_14": float(row.get("rsi_14", 50.0)) if "rsi_14" in row and not pd.isna(row["rsi_14"]) else None,
+                                "macd": float(row.get("macd_line_12_26", 0.0)) if "macd_line_12_26" in row and not pd.isna(row.get("macd_line_12_26")) else None,
+                                "regime": str(row.get("market_regime", "trending")).lower()
+                            })
+                        
+                        stock_meta = self.prices.get(ticker, {
+                            "name": "Reliance Industries Ltd",
+                            "sector": "Energy",
+                            "universe": "NIFTY 50"
+                        })
+                        
+                        filtered_prices[ticker] = {
+                            "ticker": ticker,
+                            "name": stock_meta.get("name", ticker),
+                            "sector": stock_meta.get("sector", "Large Cap"),
+                            "universe": stock_meta.get("universe", "NIFTY 50"),
+                            "current_price": curr_close,
+                            "day_change_pct": day_chg,
+                            "history": history
+                        }
+
+                if filtered_prices:
+                    self.prices = filtered_prices
+                    self.signals = {t: sig for t, sig in self.signals.items() if t in real_tickers}
+                    self.sentiment = {t: sent for t, sent in self.sentiment.items() if t in real_tickers}
+                    self.predictions = {t: pred for t, pred in self.predictions.items() if t in real_tickers}
+            except Exception as e:
+                print("Error loading m1 prices:", e)
 
     def get_universes(self) -> Dict[str, Any]:
         indices = [
@@ -126,8 +171,9 @@ class DataService:
     def get_stock_signal(self, ticker: str) -> Optional[Dict[str, Any]]:
         return self.signals.get(ticker)
 
-    def get_ranked_signals(self) -> List[Dict[str, Any]]:
-        sig_list = list(self.signals.values())
+    def get_ranked_signals(self, include_all: bool = False) -> List[Dict[str, Any]]:
+        source = self.all_signals if include_all else self.signals
+        sig_list = list(source.values())
         sig_list.sort(key=lambda x: (
             {"BUY": 3, "HOLD": 2, "AVOID": 1}.get(x["signal"], 0),
             x["signal_score"]

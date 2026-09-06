@@ -46,7 +46,7 @@ export function App() {
         const [univRes, overRes, sigsRes, btRes, digRes] = await Promise.all([
           api.getUniverses(),
           api.getMarketOverview(),
-          api.getRankedSignals(),
+          api.getRankedSignals(true), // true = show all ticker strip names on landing home preview
           api.getBacktest(),
           api.getDailyDigest()
         ]);

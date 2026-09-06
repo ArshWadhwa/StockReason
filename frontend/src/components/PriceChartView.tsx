@@ -88,7 +88,7 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({ priceData, loadi
           <div style={{ textAlign: 'right' }}>
             <span className="ledger-tag tag-buy">BUY SIGNAL</span>
             <div style={{ fontFamily: 'var(--mono)', fontSize: '11px', color: '#777', marginTop: '6px' }}>
-              REGIME: {latest.regime.replace(/_/g, ' ').toUpperCase()}
+              REGIME: {(latest.regime || 'trending').replace(/_/g, ' ').toUpperCase()}
             </div>
           </div>
         </div>
