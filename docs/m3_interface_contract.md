@@ -26,26 +26,22 @@ M3 will provide predictions via JSON (or a database table) that M4's FastAPI bac
     "1D": {
       "expected_return_pct": 0.5,
       "confidence_score": 0.85,
-      "signal": "Buy",
-      "ensemble_disagreement": false
+      "signal": "Buy"
     },
     "1W": {
       "expected_return_pct": 1.2,
       "confidence_score": 0.60,
-      "signal": "Hold",
-      "ensemble_disagreement": true
+      "signal": "Hold"
     },
     "1M": {
       "expected_return_pct": 3.5,
       "confidence_score": 0.90,
-      "signal": "Buy",
-      "ensemble_disagreement": false
+      "signal": "Buy"
     },
     "6M": {
       "expected_return_pct": 8.0,
       "confidence_score": 0.75,
-      "signal": "Buy",
-      "ensemble_disagreement": false
+      "signal": "Buy"
     }
   },
   "shap_summary": {
@@ -59,4 +55,3 @@ M3 will provide predictions via JSON (or a database table) that M4's FastAPI bac
 *   `expected_return_pct`: Predicted percentage return for the horizon.
 *   `confidence_score`: Derived from Monte Carlo Dropout variance (0.0 to 1.0).
 *   `signal`: Rule-based label (Buy/Hold/Avoid) based on return and confidence.
-*   `ensemble_disagreement`: True if the baseline LSTM and XGBoost model predict opposite directions.

@@ -1,7 +1,7 @@
 """
 M3 Prediction Generator
 ========================
-Loads trained LSTM + XGBoost models, runs inference on latest data from
+Loads trained LSTM model, runs inference on latest data from
 data/processed/, and writes predictions.json consumed by the M4 dashboard.
 
 Usage:
@@ -34,7 +34,7 @@ PRICE_PARQUET = PROCESSED_DIR / "price_features.parquet"
 SENTIMENT_PARQUET = PROCESSED_DIR / "sentiment_features.parquet"
 
 LSTM_PATH = MODEL_DIR / "best_lstm.pth"
-XGB_PATH = MODEL_DIR / "xgboost_ensemble.pkl"
+
 FEATURE_SCALER_PATH = MODEL_DIR / "feature_scaler.pkl"
 TARGET_SCALER_PATH = MODEL_DIR / "target_scaler.pkl"
 
@@ -188,8 +188,6 @@ def generate_predictions() -> dict:
     # Determine number of features the LSTM was trained on
     num_model_features = f_scaler.n_features_in_
 
-    # Load XGBoost
-    xgb_models = joblib.load(XGB_PATH)
 
     # Load LSTM
     lstm = MultiHorizonLSTM(
@@ -248,15 +246,6 @@ def generate_predictions() -> dict:
         )[0] - t_scaler.inverse_transform(mean_pred)[0]       # approx std in return space
         std_ret = np.abs(std_ret)
 
-        # ── XGBoost ────────────────────────────────────────────────────
-        x_flat = window.reshape(1, -1)
-        xgb_preds_scaled = {}
-        for h_key, model in xgb_models.items():
-            xgb_preds_scaled[h_key] = model.predict(x_flat)[0]
-        # Inverse transform XGBoost preds (they are in scaled target space)
-        xgb_arr = np.array([[xgb_preds_scaled.get(h, 0.0) for h in HORIZONS]])
-        xgb_ret = t_scaler.inverse_transform(xgb_arr)[0]
-
         # ── Build horizons dict ────────────────────────────────────────
         horizons = {}
         for i, h_raw in enumerate(HORIZONS):
@@ -274,55 +263,44 @@ def generate_predictions() -> dict:
                 "upper_bound": round(current_price * (1 + ret + 1.96 * std), 2),
             }
 
-        # ── Ensemble comparison (1M = index 2) ────────────────────────
+        # ── Ensemble comparison (legacy compatibility) ───────────────────
         lstm_1m = float(mean_ret[2])
-        xgb_1m = float(xgb_ret[2])
-        delta = abs(lstm_1m - xgb_1m)
         ensemble = {
             "lstm_return_1M": round(lstm_1m, 6),
-            "xgboost_return_1M": round(xgb_1m, 6),
-            "disagreement_detected": delta > 0.05,
-            "disagreement_delta": round(delta, 6),
+            "disagreement_detected": False,
+            "disagreement_delta": 0.0,
         }
 
-        # ── Feature importance (XGBoost 21D model as proxy for SHAP) ──
-        xgb_21d = xgb_models.get("21D")
+        # ── Feature importance (LSTM gradient attribution for 21D horizon) ──
         shap_list = []
-        if xgb_21d is not None:
-            importances = xgb_21d.feature_importances_
-            # Map flat indices back to feature names
-            # Flat features = SEQUENCE_LENGTH * num_features
-            # We take the most recent timestep's features as representative
-            n_feats = num_model_features
-            # Sum importances across timesteps for each feature
-            imp_per_feat = np.zeros(n_feats)
-            for idx_flat, imp in enumerate(importances):
-                feat_idx = idx_flat % n_feats
-                imp_per_feat[feat_idx] += imp
-
-            # Normalize
+        lstm.eval()
+        x_attr = x_tensor.clone().detach().requires_grad_(True)
+        pred_attr = lstm(x_attr)
+        # 21D horizon is index 2
+        pred_attr[0, 2].backward()
+        
+        if x_attr.grad is not None:
+            # Saliency attribution: sum absolute gradient across time sequence
+            grad_abs = x_attr.grad.abs().sum(dim=1).squeeze(0).numpy()
+            raw_grad = x_attr.grad.sum(dim=1).squeeze(0).numpy()
+            
+            imp_per_feat = grad_abs[:num_model_features]
+            raw_grad_feat = raw_grad[:num_model_features]
+            
             total = imp_per_feat.sum()
             if total > 0:
                 imp_per_feat /= total
-
-            # Use available_feature_cols for naming (trimmed to num_model_features)
+                
             feat_names = available_feature_cols[:num_model_features]
             top_indices = np.argsort(imp_per_feat)[::-1][:8]
-
-            # Determine direction from latest feature values
+            
             for idx in top_indices:
                 if imp_per_feat[idx] < 0.005:
                     continue
                 feat_name = feat_names[idx] if idx < len(feat_names) else f"feature_{idx}"
-                # Direction: if LSTM return is positive, top features drive it positive
-                direction = "positive" if lstm_1m >= 0 else "negative"
-                # Alternate based on feature value relative to midpoint
-                raw_val = float(scaled[-1, idx]) if idx < scaled.shape[1] else 0.0
-                if raw_val < -0.3:
-                    direction = "negative"
-                elif raw_val > 0.3:
-                    direction = "positive"
-
+                # Direction matches the sign of the raw gradient
+                direction = "positive" if raw_grad_feat[idx] >= 0 else "negative"
+                
                 shap_list.append({
                     "feature": feat_name,
                     "feature_display": FEATURE_DISPLAY_NAMES.get(feat_name, feat_name.replace('_', ' ').title()),

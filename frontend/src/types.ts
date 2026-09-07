@@ -101,9 +101,8 @@ export interface PredictionData {
     '1M': HorizonForecast;
     '6M': HorizonForecast;
   };
-  ensemble: {
+  ensemble?: {
     lstm_return_1M: number;
-    xgboost_return_1M: number;
     disagreement_detected: boolean;
     disagreement_delta: number;
   };

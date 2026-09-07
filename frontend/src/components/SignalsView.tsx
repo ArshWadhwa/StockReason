@@ -92,7 +92,6 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
   }
 
   const horizons = prediction.horizons;
-  const ensemble = prediction.ensemble;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -126,28 +125,7 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
           </div>
         </div>
 
-        {/* Ensemble Disagreement Banner */}
-        {ensemble.disagreement_detected && (
-          <div style={{
-            marginTop: '18px',
-            padding: '14px 18px',
-            background: 'var(--rust-bg)',
-            border: '1px solid var(--rust-border)',
-            borderRadius: '2px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px'
-          }}>
-            <div>
-              <div style={{ fontWeight: '700', color: 'var(--rust-avoid)', fontSize: '12px', fontFamily: 'var(--font-data)' }}>
-                ▲ ENSEMBLE DISAGREEMENT ALERT (LSTM VS XGBOOST)
-              </div>
-              <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: '2px' }}>
-                LSTM projects {ensemble.lstm_return_1M >= 0 ? `+${(ensemble.lstm_return_1M*100).toFixed(1)}%` : `${(ensemble.lstm_return_1M*100).toFixed(1)}%`} while XGBoost projects {ensemble.xgboost_return_1M >= 0 ? `+${(ensemble.xgboost_return_1M*100).toFixed(1)}%` : `${(ensemble.xgboost_return_1M*100).toFixed(1)}%`} (Spread: {(ensemble.disagreement_delta*100).toFixed(1)}%).
-              </div>
-            </div>
-          </div>
-        )}
+
 
         {/* Decision Reasoning Trail */}
         <div style={{ marginTop: '22px' }}>
@@ -210,11 +188,11 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
               What's Driving This Prediction
             </div>
             <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: '4px' }}>
-              XGBoost feature importance — click any feature for details
+              LSTM feature attribution — click any feature for details
             </div>
           </div>
           <div style={{ fontSize: '11px', fontFamily: 'var(--font-data)', color: '#555' }}>
-            MODEL: LSTM + XGBoost Ensemble
+            MODEL: Multi-Horizon LSTM + MC Dropout
           </div>
         </div>
 

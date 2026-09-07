@@ -274,7 +274,6 @@ export function App() {
                 <div style={{ marginTop: '4px' }}>• Yahoo Finance — OHLCV</div>
                 <div>• News / FinBERT — NLP</div>
                 <div>• PyTorch LSTM + MC Dropout</div>
-                <div>• XGBoost Ensemble</div>
                 {systemStatus && (
                   <div style={{ marginTop: '10px', padding: '8px', background: '#0a0a0a', border: '1px solid #1a1a1a', borderRadius: '4px' }}>
                     <div style={{ color: '#4ade80', fontWeight: '600', fontSize: '10px', marginBottom: '4px' }}>● LIVE DATA</div>

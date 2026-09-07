@@ -40,10 +40,9 @@
     },
     "ensemble": {
       "type": "object",
-      "required": ["lstm_return_1M", "xgboost_return_1M", "disagreement_detected", "disagreement_delta"],
+      "required": ["lstm_return_1M", "disagreement_detected", "disagreement_delta"],
       "properties": {
         "lstm_return_1M": {"type": "number"},
-        "xgboost_return_1M": {"type": "number"},
         "disagreement_detected": {"type": "boolean"},
         "disagreement_delta": {"type": "number"}
       }

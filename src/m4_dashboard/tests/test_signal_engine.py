@@ -15,7 +15,6 @@ def test_signal_engine_buy_case(engine):
         sentiment_score=0.45,
         regime="low_vol_trending",
         lstm_return_1M=0.045,
-        xgboost_return_1M=0.042,
         sma_50=2900.0,
         rsi_14=60.0
     )
@@ -37,20 +36,16 @@ def test_signal_engine_avoid_on_negative_return(engine):
     assert res["signal"] == "AVOID"
     assert res["signal_score"] < 40.0
 
-def test_signal_engine_ensemble_disagreement_downgrade(engine):
-    # Positive return from LSTM, but large disagreement from XGBoost -> cannot be simple high-conviction BUY
+def test_signal_engine_low_confidence_downgrade(engine):
+    # Positive return, but confidence below minimum threshold -> HOLD
     res = engine.evaluate(
-        ticker="DISPUTE.NS",
+        ticker="LOWCONF.NS",
         current_price=1000.0,
         expected_return_1M=0.03,
-        confidence=0.70,
+        confidence=0.50, # below 0.65 threshold
         sentiment_score=0.1,
         regime="low_vol_trending",
-        lstm_return_1M=0.03,
-        xgboost_return_1M=-0.04  # 7% divergence (>5%)
     )
-    assert res["ensemble_agreement"] is False
-    assert any("Disagreement" in r for r in res["reasoning"])
     assert res["signal"] in ["HOLD", "AVOID"]
 
 def test_signal_engine_neutral_case(engine):
