@@ -1,15 +1,20 @@
+import sys
+import os
+# Add project root to python path to allow running directly
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
+
 import logging
 from typing import Optional
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
-from .models import (
+from src.m4_dashboard.backend.models import (
     HealthResponse, UniverseResponse, PriceHistoryResponse,
     SentimentResponse, PredictionResponse, SignalResponse,
     BacktestResponse, DailyDigest
 )
-from .data_service import DataService
-from .signal_engine import RuleBasedSignalEngine
+from src.m4_dashboard.backend.data_service import DataService
+from src.m4_dashboard.backend.signal_engine import RuleBasedSignalEngine
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("m4_backend")
