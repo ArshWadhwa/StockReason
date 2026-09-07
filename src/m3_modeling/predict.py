@@ -158,7 +158,7 @@ def generate_predictions() -> dict:
     """
     Main entry point. Returns the predictions dict AND writes it to disk.
     """
-    print("[M3] Loading data …")
+    print("[M3] Loading data ...")
     df_price = pd.read_parquet(PRICE_PARQUET)
     if 'ticker' not in df_price.columns and 'ticker' in df_price.index.names:
         df_price = df_price.reset_index()
@@ -175,7 +175,8 @@ def generate_predictions() -> dict:
             df_sent = df_sent.reset_index()
         df_sent['date'] = pd.to_datetime(df_sent['date'])
         df_price = pd.merge(df_price, df_sent, on=['date', 'ticker'], how='left')
-        df_price.fillna(0, inplace=True)
+        num_cols = df_price.select_dtypes(include=[np.number]).columns
+        df_price[num_cols] = df_price[num_cols].fillna(0)
 
     feature_cols = _get_feature_cols(df_price)
     tickers = sorted(df_price['ticker'].unique())
@@ -320,13 +321,13 @@ def generate_predictions() -> dict:
             "shap_explainability": shap_list,
             "generated_at": now_str,
         }
-        print(f"  ✓ {ticker}: 1M return={lstm_1m*100:+.2f}%, conf={horizons['1M']['confidence']:.0%}")
+        print(f"  [OK] {ticker}: 1M return={lstm_1m*100:+.2f}%, conf={horizons['1M']['confidence']:.0%}")
 
     # ── Write to disk ──────────────────────────────────────────────────
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(OUTPUT_PATH, "w") as f:
         json.dump(predictions, f, indent=2, default=str)
-    print(f"\n[M3] Wrote predictions for {len(predictions)} tickers → {OUTPUT_PATH}")
+    print(f"\n[M3] Wrote predictions for {len(predictions)} tickers -> {OUTPUT_PATH}")
 
     return predictions
 

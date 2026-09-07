@@ -133,7 +133,7 @@ class DataService:
         live = {}
         try:
             import yfinance as yf
-            logger.info(f"Fetching live prices for {len(tickers)} tickers from Yahoo Finance…")
+            logger.info(f"Fetching live prices for {len(tickers)} tickers from Yahoo Finance...")
             data = yf.download(tickers, period="2d", group_by='ticker', progress=False, threads=True)
             for ticker in tickers:
                 try:

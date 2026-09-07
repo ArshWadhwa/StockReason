@@ -43,7 +43,8 @@ def load_data_from_directory(data_dir):
                 df_merged = pd.concat([df_merged, df], axis=1)
                 
     # Fill missing sentiment or other left-joined features with 0 (neutral/baseline)
-    df_merged.fillna(0, inplace=True)
+    num_cols = df_merged.select_dtypes(include=[np.number]).columns
+    df_merged[num_cols] = df_merged[num_cols].fillna(0)
                 
     return df_merged
 

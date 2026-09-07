@@ -21,7 +21,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(me
 logger = logging.getLogger("m4_backend")
 
 # ── Generate predictions before starting the API ──────────────────────
-logger.info("Running M3 prediction pipeline…")
+logger.info("Running M3 prediction pipeline...")
 try:
     from src.m3_modeling.predict import generate_predictions
     generate_predictions()

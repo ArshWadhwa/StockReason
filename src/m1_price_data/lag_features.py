@@ -25,7 +25,12 @@ def generate_lag_features(df: pd.DataFrame, lag_periods: list = [1, 2, 3, 5, 10,
         return g
 
     if "ticker" in result_df.columns:
-        result_df = result_df.groupby("ticker", group_keys=False).apply(_compute_lags)
+        dfs = []
+        for ticker, group_df in result_df.groupby("ticker"):
+            g = _compute_lags(group_df)
+            g["ticker"] = ticker
+            dfs.append(g)
+        result_df = pd.concat(dfs, ignore_index=True)
     else:
         result_df = _compute_lags(result_df)
 
