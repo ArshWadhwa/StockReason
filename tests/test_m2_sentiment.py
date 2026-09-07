@@ -10,6 +10,8 @@ from src.m2_sentiment.baseline_scorer import score_single_text_baseline, score_h
 from src.m2_sentiment.finbert_scorer import score_texts_finbert
 from src.m2_sentiment.aggregator import aggregate_daily_sentiment
 from src.m2_sentiment.divergence import detect_sentiment_price_divergence
+from src.m2_sentiment.fetcher import fetch_finnhub_news
+from unittest.mock import patch, MagicMock
 
 
 # Sample financial headline fixtures
@@ -124,3 +126,35 @@ def test_sentiment_price_divergence():
     last_row = df_div.iloc[-1]
     assert last_row["sentiment_divergence_flag"] == 1
     assert "Bullish Divergence" in last_row["divergence_desc"]
+
+
+def test_finnhub_key_fallback():
+    # Primary key returns 429 Rate Limit, secondary key returns 200 with news
+    def mock_requests_get(url, **kwargs):
+        mock_resp = MagicMock()
+        if "token=primary_invalid" in url:
+            mock_resp.status_code = 429
+        elif "token=secondary_valid" in url:
+            mock_resp.status_code = 200
+            mock_resp.json.return_value = [
+                {
+                    "headline": "Fallback news article arrived safely",
+                    "source": "Finnhub",
+                    "url": "https://finnhub.io/news/1",
+                    "datetime": 1700000000,
+                    "summary": "Everything is normal."
+                }
+            ]
+        else:
+            mock_resp.status_code = 401
+        return mock_resp
+
+    with patch("requests.get", side_effect=mock_requests_get):
+        articles = fetch_finnhub_news(
+            ticker="RELIANCE.NS",
+            api_key="primary_invalid",
+            fallback_key="secondary_valid"
+        )
+        assert len(articles) == 1
+        assert articles[0]["title"] == "Fallback news article arrived safely"
+        assert articles[0]["source"] == "Finnhub"

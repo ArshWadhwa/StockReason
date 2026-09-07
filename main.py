@@ -12,6 +12,12 @@ import uvicorn
 # Ensure project root is in sys.path
 sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 from src.m4_dashboard.backend.main import app
 
 if __name__ == "__main__":

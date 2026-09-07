@@ -12,6 +12,11 @@ from pathlib import Path
 from typing import List, Dict, Any, Optional
 import feedparser
 import requests
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 from .config import (
     RAW_NEWS_DIR,
@@ -88,41 +93,64 @@ def fetch_google_news_rss(
 def fetch_finnhub_news(
     ticker: str,
     api_key: Optional[str] = None,
+    fallback_key: Optional[str] = None,
     days_back: int = 7
 ) -> List[Dict[str, Any]]:
     """
     Fetches company news from Finnhub if an API key is available.
+    Supports primary and secondary/fallback API keys if the primary key fails or hits rate limits.
     Falls back gracefully if not configured.
     """
-    api_key = api_key or os.getenv("FINNHUB_API_KEY")
-    if not api_key:
+    # Assemble available keys in priority order
+    candidate_keys = []
+    if api_key and api_key.strip():
+        candidate_keys.append(api_key.strip())
+    
+    env_primary = os.getenv("FINNHUB_API_KEY", "").strip()
+    if env_primary and env_primary not in candidate_keys:
+        candidate_keys.append(env_primary)
+        
+    if fallback_key and fallback_key.strip() and fallback_key.strip() not in candidate_keys:
+        candidate_keys.append(fallback_key.strip())
+        
+    env_fallback = (os.getenv("FINNHUB_API_KEY_FALLBACK", "") or os.getenv("FINNHUB_API_KEY_SECONDARY", "")).strip()
+    if env_fallback and env_fallback not in candidate_keys:
+        candidate_keys.append(env_fallback)
+        
+    if not candidate_keys:
         return []
     
     clean_sym = ticker.replace(".NS", "")
     to_date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     from_date = (datetime.now(timezone.utc) - timedelta(days=days_back)).strftime("%Y-%m-%d")
     
-    url = f"https://finnhub.io/api/v1/company-news?symbol={clean_sym}&from={from_date}&to={to_date}&token={api_key}"
-    try:
-        resp = requests.get(url, timeout=10)
-        if resp.status_code == 200:
-            data = resp.json()
-            articles = []
-            for item in data:
-                ts = item.get("datetime")
-                dt = datetime.fromtimestamp(ts, tz=timezone.utc) if ts else datetime.now(timezone.utc)
-                articles.append({
-                    "ticker": ticker,
-                    "title": _clean_headline_text(item.get("headline", "")),
-                    "source": item.get("source", "Finnhub"),
-                    "url": item.get("url", ""),
-                    "timestamp": dt.isoformat(),
-                    "date": dt.strftime("%Y-%m-%d"),
-                    "summary": _clean_headline_text(item.get("summary", ""))
-                })
-            return articles
-    except Exception:
-        pass
+    for key in candidate_keys:
+        url = f"https://finnhub.io/api/v1/company-news?symbol={clean_sym}&from={from_date}&to={to_date}&token={key}"
+        try:
+            resp = requests.get(url, timeout=10)
+            if resp.status_code == 200:
+                data = resp.json()
+                if isinstance(data, list):
+                    articles = []
+                    for item in data:
+                        ts = item.get("datetime")
+                        dt = datetime.fromtimestamp(ts, tz=timezone.utc) if ts else datetime.now(timezone.utc)
+                        articles.append({
+                            "ticker": ticker,
+                            "title": _clean_headline_text(item.get("headline", "")),
+                            "source": item.get("source", "Finnhub"),
+                            "url": item.get("url", ""),
+                            "timestamp": dt.isoformat(),
+                            "date": dt.strftime("%Y-%m-%d"),
+                            "summary": _clean_headline_text(item.get("summary", ""))
+                        })
+                    return articles
+            # If 401/403/429 or other HTTP error, iterate to fallback key
+            continue
+        except Exception:
+            # Network or connection failure, attempt with next key
+            continue
+            
     return []
 
 

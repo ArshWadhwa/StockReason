@@ -14,6 +14,12 @@ from pathlib import Path
 # Ensure project root is on Python path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 from src.m1_price_data.build_features import build_pipeline as build_m1_pipeline
 from src.m2_sentiment.pipeline import run_sentiment_pipeline as build_m2_pipeline
 
