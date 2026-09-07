@@ -160,11 +160,19 @@ def generate_predictions() -> dict:
     """
     print("[M3] Loading data …")
     df_price = pd.read_parquet(PRICE_PARQUET)
+    if 'ticker' not in df_price.columns and 'ticker' in df_price.index.names:
+        df_price = df_price.reset_index()
+    elif 'ticker' not in df_price.columns:
+        print("[M3 Error] price_features.parquet is missing 'ticker'. Please run refresh_data.py")
+        return {}
+
     df_price['date'] = pd.to_datetime(df_price['date'])
 
     # Merge sentiment
     if SENTIMENT_PARQUET.exists():
         df_sent = pd.read_parquet(SENTIMENT_PARQUET)
+        if 'ticker' not in df_sent.columns and 'ticker' in df_sent.index.names:
+            df_sent = df_sent.reset_index()
         df_sent['date'] = pd.to_datetime(df_sent['date'])
         df_price = pd.merge(df_price, df_sent, on=['date', 'ticker'], how='left')
         df_price.fillna(0, inplace=True)

@@ -74,6 +74,12 @@ class DataService:
             return
 
         df = pd.read_parquet(price_path)
+        if 'ticker' not in df.columns and 'ticker' in df.index.names:
+            df = df.reset_index()
+        elif 'ticker' not in df.columns:
+            logger.error("price_features.parquet missing 'ticker'. Please run refresh_data.py")
+            return
+
         df['date'] = pd.to_datetime(df['date'])
 
         # Fetch live prices from Yahoo Finance for accurate current price
@@ -168,6 +174,12 @@ class DataService:
             return
 
         df = pd.read_parquet(sent_path)
+        if 'ticker' not in df.columns and 'ticker' in df.index.names:
+            df = df.reset_index()
+        elif 'ticker' not in df.columns:
+            logger.error("sentiment_features.parquet missing 'ticker'. Please run refresh_data.py")
+            return
+
         df['date'] = pd.to_datetime(df['date'])
 
         for ticker, grp in df.groupby('ticker'):
