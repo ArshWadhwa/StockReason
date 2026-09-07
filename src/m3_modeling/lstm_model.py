@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 import os
-from data_loader import prepare_multi_horizon_data
+from src.m3_modeling.data_loader import prepare_multi_horizon_data
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 class MultiHorizonLSTM(nn.Module):

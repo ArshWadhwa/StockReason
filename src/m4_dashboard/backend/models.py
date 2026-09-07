@@ -3,9 +3,9 @@ from pydantic import BaseModel, Field
 
 class HealthResponse(BaseModel):
     status: str = "healthy"
-    version: str = "1.0.0"
+    version: str = "2.0.0"
     track: str = "M4 - Product & Dashboard"
-    data_mode: str = "mock"
+    data_mode: str = "real"
     ready_for_week4_swap: bool = True
 
 class TickerItem(BaseModel):
@@ -90,9 +90,12 @@ class EnsembleComparison(BaseModel):
 
 class ShapFeature(BaseModel):
     feature: str
+    feature_display: Optional[str] = None
+    feature_description: Optional[str] = None
     impact: float
     importance_score: float
     direction: str
+    current_value: Optional[float] = None
 
 class PredictionResponse(BaseModel):
     ticker: str

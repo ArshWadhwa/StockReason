@@ -1,6 +1,7 @@
 data/raw/
 # Keep processed parquet for real data availability
 !data/processed/*.parquet
+data/processed/predictions.json
 .env
 __pycache__/
 .venv/

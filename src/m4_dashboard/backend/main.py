@@ -4,6 +4,8 @@ import os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 
 import logging
+import asyncio
+import subprocess
 from typing import Optional
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
@@ -14,15 +16,23 @@ from src.m4_dashboard.backend.models import (
     BacktestResponse, DailyDigest
 )
 from src.m4_dashboard.backend.data_service import DataService
-from src.m4_dashboard.backend.signal_engine import RuleBasedSignalEngine
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("m4_backend")
 
+# ── Generate predictions before starting the API ──────────────────────
+logger.info("Running M3 prediction pipeline…")
+try:
+    from src.m3_modeling.predict import generate_predictions
+    generate_predictions()
+    logger.info("M3 predictions generated successfully")
+except Exception as e:
+    logger.warning(f"M3 prediction generation failed: {e}. Will use existing predictions.json if available.")
+
 app = FastAPI(
     title="StockReason Intelligence API",
-    description="Confidence-Aware Decision Support API for NIFTY 50 and Sectoral Indices (M4 Track)",
-    version="1.0.0"
+    description="Confidence-Aware Decision Support API for NIFTY 50 — Real Data Mode",
+    version="2.0.0"
 )
 
 # Enable CORS for React Frontend (standard Vite dev ports)
@@ -35,12 +45,47 @@ app.add_middleware(
 )
 
 data_service = DataService()
-signal_engine = RuleBasedSignalEngine()
+
+async def background_data_refresh():
+    """Prototype: Runs the full M1/M2/M3 pipeline every 1 minute."""
+    while True:
+        logger.info("Starting prototype 1-minute background refresh...")
+        try:
+            # Run refresh_data.py as a subprocess
+            root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
+            process = await asyncio.create_subprocess_exec(
+                sys.executable, "refresh_data.py",
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                cwd=root_dir
+            )
+            stdout, stderr = await process.communicate()
+            if process.returncode == 0:
+                logger.info("Background refresh complete. Reloading DataService.")
+                data_service._load_all()
+            else:
+                logger.error(f"Background refresh failed (code {process.returncode}):\n{stderr.decode()}")
+        except Exception as e:
+            logger.error(f"Error in background refresh loop: {e}")
+        
+        logger.info("Background loop sleeping for 60 seconds...")
+        await asyncio.sleep(60)
+
+@app.on_event("startup")
+async def startup_event():
+    # Start the background task when the server boots
+    asyncio.create_task(background_data_refresh())
+
 
 @app.get("/api/health", response_model=HealthResponse, tags=["Health"])
 def health_check():
-    """Week 1 Core Milestone: Health check endpoint confirming API status & contract compatibility."""
+    """Health check endpoint confirming API status."""
     return HealthResponse()
+
+@app.get("/api/system/status", tags=["System"])
+def get_system_status():
+    """Returns system status including last data refresh timestamp."""
+    return data_service.get_system_status()
 
 @app.get("/api/market/universes", tags=["Market Data"])
 def get_universes():
@@ -68,7 +113,7 @@ def get_stock_sentiment(ticker: str):
         raise HTTPException(status_code=404, detail=f"Sentiment records for ticker '{ticker}' not found")
     return data
 
-@app.get("/api/stocks/{ticker}/predictions", response_model=PredictionResponse, tags=["Model Predictions"])
+@app.get("/api/stocks/{ticker}/predictions", tags=["Model Predictions"])
 def get_stock_predictions(ticker: str):
     """Returns multi-horizon return forecasts (1D, 1W, 1M, 6M) with MC Dropout confidence, ensemble check, and SHAP."""
     data = data_service.get_stock_prediction(ticker)
