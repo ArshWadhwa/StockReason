@@ -109,9 +109,12 @@ export interface PredictionData {
   };
   shap_explainability: Array<{
     feature: string;
+    feature_display?: string;
+    feature_description?: string;
     impact: number;
     importance_score: number;
     direction: 'positive' | 'negative';
+    current_value?: number;
   }>;
 }
 
@@ -188,4 +191,13 @@ export interface DailyDigestData {
   }>;
   top_opportunities: string[];
   high_risk_alerts: string[];
+}
+
+export interface SystemStatus {
+  last_refreshed: string;
+  tickers_loaded: number;
+  predictions_loaded: number;
+  sentiment_loaded: number;
+  signals_generated: number;
+  data_source: string;
 }

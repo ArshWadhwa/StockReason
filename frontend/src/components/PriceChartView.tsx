@@ -86,7 +86,6 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({ priceData, loadi
           </div>
 
           <div style={{ textAlign: 'right' }}>
-            <span className="ledger-tag tag-buy">BUY SIGNAL</span>
             <div style={{ fontFamily: 'var(--mono)', fontSize: '11px', color: '#777', marginTop: '6px' }}>
               REGIME: {(latest.regime || 'trending').replace(/_/g, ' ').toUpperCase()}
             </div>
@@ -97,8 +96,6 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({ priceData, loadi
           <span>SECTOR: {priceData.sector}</span>
           <span style={{ color: '#333' }}>|</span>
           <span>UNIVERSE: {priceData.universe}</span>
-          <span style={{ color: '#333' }}>|</span>
-          <span style={{ color: 'var(--success)' }}>MC CONFIDENCE: 88%</span>
         </div>
       </div>
 

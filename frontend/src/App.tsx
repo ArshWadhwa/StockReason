@@ -3,7 +3,7 @@ import { api } from './api';
 import type {
   UniverseStock, MarketOverviewData,
   StockPriceData, SentimentData, PredictionData,
-  SignalData, BacktestData, DailyDigestData
+  SignalData, BacktestData, DailyDigestData, SystemStatus
 } from './types';
 
 import { LandingHome } from './components/LandingHome';
@@ -35,6 +35,7 @@ export function App() {
   const [signalData, setSignalData] = useState<SignalData | null>(null);
   const [backtestData, setBacktestData] = useState<BacktestData | null>(null);
   const [digestData, setDigestData] = useState<DailyDigestData | null>(null);
+  const [systemStatus, setSystemStatus] = useState<SystemStatus | null>(null);
 
   // Initial Data Load
   useEffect(() => {
@@ -43,12 +44,13 @@ export function App() {
         setLoading(true);
         setError(null);
 
-        const [univRes, overRes, sigsRes, btRes, digRes] = await Promise.all([
+        const [univRes, overRes, sigsRes, btRes, digRes, statusRes] = await Promise.all([
           api.getUniverses(),
           api.getMarketOverview(),
           api.getRankedSignals(true), // true = show all ticker strip names on landing home preview
           api.getBacktest(),
-          api.getDailyDigest()
+          api.getDailyDigest(),
+          api.getSystemStatus()
         ]);
 
         setStocks(univRes.stocks);
@@ -56,6 +58,7 @@ export function App() {
         setRankedSignals(sigsRes);
         setBacktestData(btRes);
         setDigestData(digRes);
+        setSystemStatus(statusRes);
 
         if (univRes.stocks.length > 0) {
           setSelectedTicker(univRes.stocks[0].ticker);
@@ -271,6 +274,17 @@ export function App() {
                 <div style={{ marginTop: '4px' }}>• Yahoo Finance — OHLCV</div>
                 <div>• News / FinBERT — NLP</div>
                 <div>• PyTorch LSTM + MC Dropout</div>
+                <div>• XGBoost Ensemble</div>
+                {systemStatus && (
+                  <div style={{ marginTop: '10px', padding: '8px', background: '#0a0a0a', border: '1px solid #1a1a1a', borderRadius: '4px' }}>
+                    <div style={{ color: '#4ade80', fontWeight: '600', fontSize: '10px', marginBottom: '4px' }}>● LIVE DATA</div>
+                    <div style={{ fontSize: '10px', color: '#888' }}>Last refreshed:</div>
+                    <div style={{ fontSize: '11px', color: '#ccc', marginTop: '2px' }}>{systemStatus.last_refreshed}</div>
+                    <div style={{ fontSize: '10px', color: '#555', marginTop: '4px' }}>
+                      {systemStatus.tickers_loaded} stocks · {systemStatus.predictions_loaded} predictions
+                    </div>
+                  </div>
+                )}
               </div>
             </aside>
 
@@ -328,8 +342,8 @@ export function App() {
               )}
 
               <footer className="footer-line" style={{ marginTop: '30px' }}>
-                <div>StockReason / NIFTY 50 Analysis Terminal</div>
-                <div>Active Ticker: {selectedTicker}</div>
+                <div>StockReason / NIFTY 50 Analysis Terminal — {systemStatus?.data_source === 'real' ? '100% Real Data' : 'Loading…'}</div>
+                <div>Active Ticker: {selectedTicker}{systemStatus ? ` · Refreshed: ${systemStatus.last_refreshed}` : ''}</div>
               </footer>
             </main>
 

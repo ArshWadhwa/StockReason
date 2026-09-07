@@ -6,8 +6,8 @@ import joblib
 import xgboost as xgb
 import numpy as np
 
-from data_loader import prepare_multi_horizon_data
-from lstm_model import MultiHorizonLSTM, mc_dropout_inference
+from src.m3_modeling.data_loader import prepare_multi_horizon_data
+from src.m3_modeling.lstm_model import MultiHorizonLSTM, mc_dropout_inference
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 def train_xgboost_ensemble(train_loader, test_loader, t_scaler, output_dir):

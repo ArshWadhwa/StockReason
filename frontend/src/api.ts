@@ -1,7 +1,7 @@
 import type {
   UniverseIndex, UniverseStock, MarketOverviewData,
   StockPriceData, SentimentData, PredictionData,
-  SignalData, BacktestData, DailyDigestData
+  SignalData, BacktestData, DailyDigestData, SystemStatus
 } from './types';
 
 const API_BASE = 'http://localhost:8000/api';
@@ -16,6 +16,8 @@ async function fetchJson<T>(url: string): Promise<T> {
 
 export const api = {
   getHealth: () => fetchJson<{ status: string; ready_for_week4_swap: boolean }>(`${API_BASE}/health`),
+  
+  getSystemStatus: () => fetchJson<SystemStatus>(`${API_BASE}/system/status`),
   
   getUniverses: () => fetchJson<{ indices: UniverseIndex[]; stocks: UniverseStock[] }>(`${API_BASE}/market/universes`),
   
