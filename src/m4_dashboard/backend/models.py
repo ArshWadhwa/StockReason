@@ -84,9 +84,8 @@ class HorizonForecast(BaseModel):
 
 class EnsembleComparison(BaseModel):
     lstm_return_1M: float
-    xgboost_return_1M: float
-    disagreement_detected: bool
-    disagreement_delta: float
+    disagreement_detected: bool = False
+    disagreement_delta: float = 0.0
 
 class ShapFeature(BaseModel):
     feature: str

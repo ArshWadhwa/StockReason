@@ -270,7 +270,6 @@ class DataService:
                 sentiment_score=sentiment_score,
                 regime=regime,
                 lstm_return_1M=ensemble.get('lstm_return_1M'),
-                xgboost_return_1M=ensemble.get('xgboost_return_1M'),
                 sma_50=sma_50,
                 rsi_14=rsi_14,
                 metadata=STOCK_META.get(ticker, {"name": ticker, "sector": "Unknown", "universe": "NIFTY 50"}),

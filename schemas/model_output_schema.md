@@ -6,7 +6,7 @@ This document establishes the official interface contract between Module 3 (`m3_
 
 ## 1. Prediction Payload Format
 
-Module 3 generates multi-horizon predictions with Monte Carlo Dropout uncertainty estimates, classical ML (XGBoost) cross-checks, and SHAP attribution vectors.
+Module 3 generates multi-horizon predictions with Monte Carlo Dropout uncertainty estimates and gradient-based attribution vectors.
 
 ### Horizon Forecast Structure
 Each ticker forecast contains predictions for four distinct time horizons:
@@ -23,13 +23,12 @@ For each horizon:
 - `lower_bound`: 95% confidence interval floor
 - `upper_bound`: 95% confidence interval ceiling
 
-### Ensemble Disagreement Field
+### Ensemble Structure
 - `lstm_return_1M`: LSTM model predicted return
-- `xgboost_return_1M`: XGBoost model predicted return
-- `disagreement_detected`: Boolean set to `True` if `abs(lstm - xgboost) > 0.05` (5% divergence)
-- `disagreement_delta`: Absolute return spread between models
+- `disagreement_detected`: Legacy boolean (currently false)
+- `disagreement_delta`: Legacy delta (currently 0.0)
 
-### SHAP Explainability Field
+### Feature Explainability Field
 List of top feature attributions explaining the direction and magnitude of the primary 1M prediction:
 - `feature`: Feature name (e.g. `rsi_14`, `dist_sma_50`, `daily_sentiment_score`, `india_vix_return_5d`)
 - `impact`: Raw SHAP value

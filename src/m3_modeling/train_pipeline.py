@@ -3,37 +3,12 @@ import os
 import torch
 import torch.nn as nn
 import joblib
-import xgboost as xgb
 import numpy as np
 
 from src.m3_modeling.data_loader import prepare_multi_horizon_data
 from src.m3_modeling.lstm_model import MultiHorizonLSTM, mc_dropout_inference
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
-def train_xgboost_ensemble(train_loader, test_loader, t_scaler, output_dir):
-    def flatten_loader(loader):
-        x_list, y_list = [], []
-        for bx, by in loader:
-            x_list.append(bx.numpy().reshape(bx.shape[0], -1))
-            y_list.append(by.numpy())
-        return np.vstack(x_list), np.vstack(y_list)
-        
-    x_train, y_train = flatten_loader(train_loader)
-    x_test, y_test = flatten_loader(test_loader)
-    
-    print("Training XGBoost Ensemble Models...")
-    horizons = ["1D", "5D", "21D", "126D"]
-    models = {}
-    
-    for i, h in enumerate(horizons):
-        model = xgb.XGBRegressor(n_estimators=100, learning_rate=0.1, random_state=42)
-        model.fit(x_train, y_train[:, i])
-        models[h] = model
-        
-    # Save models
-    xgb_path = os.path.join(output_dir, "xgboost_ensemble.pkl")
-    joblib.dump(models, xgb_path)
-    print(f"Saved XGBoost models to {xgb_path}")
 
 def main():
     parser = argparse.ArgumentParser(description="M3 Model Training Pipeline")
@@ -100,8 +75,7 @@ def main():
             
     print(f"Saved best LSTM model to {best_model_path}")
     
-    # 3. Train XGBoost
-    train_xgboost_ensemble(train_loader, test_loader, t_scaler, model_dir)
+
     
     print("\n--- Pipeline Complete ---")
 

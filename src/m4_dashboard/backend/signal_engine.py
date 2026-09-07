@@ -16,14 +16,12 @@ class RuleBasedSignalEngine:
         buy_return_threshold: float = 0.025,       # +2.5% 1-Month expected return
         avoid_return_threshold: float = -0.015,     # -1.5% 1-Month expected return
         min_confidence_buy: float = 0.65,          # 65% MC Dropout minimum confidence
-        min_sentiment_buy: float = -0.10,          # FinBERT sentiment threshold
-        disagreement_delta_threshold: float = 0.05 # 5% LSTM vs XGBoost divergence
+        min_sentiment_buy: float = -0.10           # FinBERT sentiment threshold
     ):
         self.buy_return_threshold = buy_return_threshold
         self.avoid_return_threshold = avoid_return_threshold
         self.min_confidence_buy = min_confidence_buy
         self.min_sentiment_buy = min_sentiment_buy
-        self.disagreement_delta_threshold = disagreement_delta_threshold
 
     def evaluate(
         self,
@@ -34,7 +32,6 @@ class RuleBasedSignalEngine:
         sentiment_score: float,
         regime: str = "low_vol_trending",
         lstm_return_1M: Optional[float] = None,
-        xgboost_return_1M: Optional[float] = None,
         sma_50: Optional[float] = None,
         rsi_14: Optional[float] = None,
         metadata: Optional[Dict[str, Any]] = None
@@ -45,19 +42,7 @@ class RuleBasedSignalEngine:
         metadata = metadata or {}
         reasoning: List[str] = []
 
-        # 1. Ensemble Disagreement Check
-        if lstm_return_1M is not None and xgboost_return_1M is not None:
-            disagreement_delta = abs(lstm_return_1M - xgboost_return_1M)
-            disagreement_detected = disagreement_delta > self.disagreement_delta_threshold
-        else:
-            disagreement_delta = 0.0
-            disagreement_detected = False
-
-        if disagreement_detected:
-            reasoning.append(
-                f"Model Disagreement: LSTM ({lstm_return_1M*100:+.1f}%) diverges from XGBoost "
-                f"({xgboost_return_1M*100:+.1f}%) by {disagreement_delta*100:.1f}%. Conviction lowered."
-            )
+        disagreement_detected = False
 
         # 2. Technical Trend Modifier
         above_sma50 = True if (sma_50 and current_price >= sma_50) else False
@@ -88,8 +73,7 @@ class RuleBasedSignalEngine:
             reasoning.append(f"FinBERT news sentiment confirms positive outlook (Score: {sentiment_score:+.2f})")
             if above_sma50:
                 reasoning.append("Price holds above 50-day SMA, confirming medium-term technical uptrend")
-            if not disagreement_detected:
-                reasoning.append("LSTM and XGBoost ensemble are in consensus")
+
         elif is_avoid:
             signal = "AVOID"
             signal_score = max(5.0, 20.0 + (expected_return_1M * 100.0))
