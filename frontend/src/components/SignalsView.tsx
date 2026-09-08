@@ -77,8 +77,72 @@ const FEATURE_CATEGORIES: Record<string, { label: string; color: string }> = {
 };
 
 // Returns null for uncategorized — chip is suppressed, not shown as "Other"
-const getCategory = (feature: string) =>
-  FEATURE_CATEGORIES[feature] ?? null;
+const getCategory = (feature: string) => {
+  const normalized = feature.toLowerCase().replace(/[\s-]+/g, '_');
+  if (FEATURE_CATEGORIES[normalized]) return FEATURE_CATEGORIES[normalized];
+  if (/^(rsi|macd|williams|stoch|cci)/.test(normalized)) return { label: 'Momentum', color: '#3B6FD4' };
+  if (/^(dist_|sma_|ema_|adx|close_slope)/.test(normalized)) return { label: 'Trend', color: '#1A7F4B' };
+  if (/(volatility|atr|bb_)/.test(normalized)) return { label: 'Volatility', color: '#946C00' };
+  if (/(log_)?return/.test(normalized)) return { label: 'Returns', color: '#2E7D8C' };
+  return null;
+};
+
+/** A readable fallback for features from older model runs which do not include
+ * a display name or description in their prediction payload. */
+const getFeatureExplanation = (feature: string, suppliedDescription?: string) => {
+  if (suppliedDescription) return suppliedDescription;
+
+  const normalized = feature.toLowerCase().replace(/[\s-]+/g, '_');
+  if (/^rsi[_]?\d*.*lag[_]?\d+/.test(normalized)) {
+    return 'Relative Strength Index (RSI) from an earlier trading day. RSI measures the speed and size of recent price moves on a 0–100 scale.';
+  }
+  if (/^rsi[_]?\d*/.test(normalized)) {
+    return 'Relative Strength Index (RSI), a 0–100 measure of the speed and size of recent price moves.';
+  }
+  if (normalized.includes('williams')) return 'Williams %R, a momentum measure showing where price sits within its recent high–low range.';
+  if (normalized.includes('volatility')) return 'How much the price has varied over this lookback period. Higher values mean a less stable price path.';
+  if (normalized.includes('dist_sma') || normalized.includes('dist_ema')) return 'How far the current price is above or below its moving-average trend line.';
+  if (normalized.includes('sma') && normalized.includes('ratio')) return 'The relationship between two moving averages, used to describe the short- versus longer-term trend.';
+  if (normalized.includes('log_return') || normalized.includes('return')) return 'The stock’s price change over this lookback period. Positive values indicate a gain; negative values indicate a loss.';
+  if (normalized.includes('macd')) return 'MACD, a momentum indicator that compares short- and long-term price trends.';
+  if (normalized.includes('volume')) return 'Recent trading activity, which can show how strongly price moves are being supported.';
+  return 'A market data input used by the forecasting model.';
+};
+
+const readableFeatureName = (feature: string, suppliedName?: string) => {
+  const generatedName = feature
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/_/g, ' ')
+    .replace(/\bRsi\b/gi, 'RSI')
+    .replace(/\bSma\b/gi, 'SMA')
+    .replace(/\b\w/g, c => c.toUpperCase());
+  // Keep deliberate API labels, but improve the mechanical fallback labels from older runs.
+  if (suppliedName && suppliedName.toLowerCase() !== generatedName.toLowerCase()) return suppliedName;
+
+  const normalized = feature.toLowerCase().replace(/[\s-]+/g, '_');
+  const rsiLag = normalized.match(/^rsi_(\d+)_lag_?(\d+)$/);
+  if (rsiLag) return `RSI (${rsiLag[1]}-day), ${rsiLag[2]} days ago`;
+  const volatility = normalized.match(/^volatility_(\d+)d?$/);
+  if (volatility) return `${volatility[1]}-day volatility`;
+  const logReturn = normalized.match(/^log_return_(\d+)d?$/);
+  if (logReturn) return `${logReturn[1]}-day log return`;
+  const smaRatio = normalized.match(/^sma_(\d+)_(\d+)_ratio$/);
+  if (smaRatio) return `${smaRatio[1]}-day vs. ${smaRatio[2]}-day SMA`;
+  const williams = normalized.match(/^williams_r_?(\d+)?$/);
+  if (williams) return `Williams %R${williams[1] ? ` (${williams[1]}-day)` : ''}`;
+  return generatedName;
+};
+
+const formatCurrentValue = (feature: string, value: number | string) => {
+  if (typeof value !== 'number') return value;
+  const normalized = feature.toLowerCase();
+  if (normalized.includes('volatility') || normalized.includes('return') || normalized.includes('dist_')) {
+    return `${(value * 100).toFixed(1)}%`;
+  }
+  return Math.abs(value) > 1000
+    ? value.toLocaleString('en-IN', { maximumFractionDigits: 0 })
+    : value.toFixed(2);
+};
 
 const DEFAULT_VISIBLE = 3;
 
@@ -238,7 +302,7 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
         })}
       </div>
 
-      {/* ── SHAP Feature Attribution — progressive disclosure ── */}
+      {/* ── Forecast drivers — progressive disclosure ── */}
       <div className="ledger-panel">
         <div style={{
           display: 'flex',
@@ -255,10 +319,10 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
               fontWeight: '700',
               color: 'var(--ink)',
             }}>
-              What's driving this prediction
+              Why the 1-month forecast leans this way
             </div>
             <div style={{ fontSize: '12px', color: 'var(--dash-muted)', marginTop: '3px' }}>
-              LSTM feature attribution · click any factor for detail
+              The model’s most influential market inputs — these are not separate buy or sell signals.
             </div>
           </div>
           <div style={{
@@ -271,8 +335,25 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
             borderRadius: '6px',
             fontWeight: '600',
           }}>
-            Multi-horizon LSTM + MC Dropout
+            Explains the 1-month forecast
           </div>
+        </div>
+
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))',
+          gap: '10px',
+          padding: '11px 13px',
+          marginBottom: '16px',
+          background: 'var(--paper)',
+          borderRadius: '8px',
+          color: '#475569',
+          fontSize: '11px',
+          lineHeight: '1.5',
+        }}>
+          <div><strong style={{ color: 'var(--loss)' }}>Red / lowers forecast</strong><br />This input is pulling the model’s 1-month estimate down.</div>
+          <div><strong style={{ color: 'var(--gain)' }}>Green / raises forecast</strong><br />This input is pushing the model’s 1-month estimate up.</div>
+          <div><strong style={{ color: 'var(--ink)' }}>Model weight</strong><br />Its share of the model’s sensitivity; bar length is relative to the top factor.</div>
         </div>
 
         {allFeatures.length === 0 ? (
@@ -284,10 +365,8 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
             <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
               {visibleFeatures.map((f, i) => {
                 const cat = getCategory(f.feature);
-                const displayName = f.feature_display || f.feature
-                  .replace(/_/g, ' ')
-                  .replace(/\b\w/g, c => c.toUpperCase());
-                const description = f.feature_description || '';
+                const displayName = readableFeatureName(f.feature, f.feature_display);
+                const description = getFeatureExplanation(f.feature, f.feature_description);
                 const isExpanded = expandedFeature === i;
 
                 // Relative bar: scaled to the top-ranked feature
@@ -322,7 +401,7 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
                         {i + 1}
                       </span>
 
-                      {/* Feature name + category chip */}
+                      {/* Feature name, explanation, and model effect */}
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                           <span style={{
@@ -349,6 +428,16 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
                               {cat.label}
                             </span>
                           )}
+                        </div>
+
+                        <div style={{
+                          fontSize: '11px',
+                          lineHeight: '1.45',
+                          color: '#64748b',
+                          marginTop: '4px',
+                          maxWidth: '760px',
+                        }}>
+                          {description}
                         </div>
 
                         {/* Relative importance bar */}
@@ -387,7 +476,7 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
                             minWidth: '52px',
                             textAlign: 'right',
                           }}>
-                            {f.direction === 'positive' ? '▲' : '▼'} {(f.importance_score * 100).toFixed(1)}%
+                            {f.direction === 'positive' ? 'Raises' : 'Lowers'} forecast · {(f.importance_score * 100).toFixed(1)}% weight
                           </span>
                         </div>
                       </div>
@@ -401,7 +490,7 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
                             fontFamily: 'var(--sans)',
                             marginBottom: '2px',
                           }}>
-                            Current
+                            Latest reading
                           </div>
                           <div style={{
                             fontSize: '13px',
@@ -410,11 +499,7 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
                             fontFamily: 'var(--mono)',
                             fontVariantNumeric: 'tabular-nums',
                           }}>
-                            {typeof f.current_value === 'number'
-                              ? (Math.abs(f.current_value) > 1000
-                                ? f.current_value.toLocaleString('en-IN', { maximumFractionDigits: 0 })
-                                : f.current_value.toFixed(2))
-                              : f.current_value}
+                            {formatCurrentValue(f.feature, f.current_value)}
                           </div>
                         </div>
                       )}
@@ -430,8 +515,8 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
                       </span>
                     </div>
 
-                    {/* Expanded description */}
-                    {isExpanded && description && (
+                    {/* Expanded detail */}
+                    {isExpanded && (
                       <div style={{
                         marginTop: '12px',
                         padding: '10px 12px 10px 30px',
@@ -441,12 +526,11 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
                         borderTop: '1px solid var(--accent-border)',
                       }}>
                         <span style={{ color: cat?.color ?? 'var(--accent)', fontWeight: '600' }}>
-                          What this means:{' '}
+                          Model interpretation:{' '}
                         </span>
-                        {description}
                         {f.direction === 'positive'
-                          ? ' This factor is currently pushing the forecast higher.'
-                          : ' This factor is currently pulling the forecast lower.'}
+                          ? 'With the current reading, the model treats this as upward pressure on its 1-month forecast.'
+                          : 'With the current reading, the model treats this as downward pressure on its 1-month forecast.'}
                       </div>
                     )}
                   </div>
