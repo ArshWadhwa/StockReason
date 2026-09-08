@@ -1,0 +1,2704 @@
+[
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "torch",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch",
+        "description": "torch",
+        "detail": "torch",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "matplotlib.pyplot",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "matplotlib.pyplot",
+        "description": "matplotlib.pyplot",
+        "detail": "matplotlib.pyplot",
+        "documentation": {}
+    },
+    {
+        "label": "seaborn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "seaborn",
+        "description": "seaborn",
+        "detail": "seaborn",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "mean_absolute_error",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "mean_absolute_error",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "mean_squared_error",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "prepare_multi_horizon_data",
+        "importPath": "src.m3_modeling.data_loader",
+        "description": "src.m3_modeling.data_loader",
+        "isExtraImport": true,
+        "detail": "src.m3_modeling.data_loader",
+        "documentation": {}
+    },
+    {
+        "label": "prepare_multi_horizon_data",
+        "importPath": "src.m3_modeling.data_loader",
+        "description": "src.m3_modeling.data_loader",
+        "isExtraImport": true,
+        "detail": "src.m3_modeling.data_loader",
+        "documentation": {}
+    },
+    {
+        "label": "prepare_walk_forward_folds",
+        "importPath": "src.m3_modeling.data_loader",
+        "description": "src.m3_modeling.data_loader",
+        "isExtraImport": true,
+        "detail": "src.m3_modeling.data_loader",
+        "documentation": {}
+    },
+    {
+        "label": "MultiHorizonLSTM",
+        "importPath": "src.m3_modeling.lstm_model",
+        "description": "src.m3_modeling.lstm_model",
+        "isExtraImport": true,
+        "detail": "src.m3_modeling.lstm_model",
+        "documentation": {}
+    },
+    {
+        "label": "mc_dropout_inference",
+        "importPath": "src.m3_modeling.lstm_model",
+        "description": "src.m3_modeling.lstm_model",
+        "isExtraImport": true,
+        "detail": "src.m3_modeling.lstm_model",
+        "documentation": {}
+    },
+    {
+        "label": "MultiHorizonLSTM",
+        "importPath": "src.m3_modeling.lstm_model",
+        "description": "src.m3_modeling.lstm_model",
+        "isExtraImport": true,
+        "detail": "src.m3_modeling.lstm_model",
+        "documentation": {}
+    },
+    {
+        "label": "mc_dropout_inference",
+        "importPath": "src.m3_modeling.lstm_model",
+        "description": "src.m3_modeling.lstm_model",
+        "isExtraImport": true,
+        "detail": "src.m3_modeling.lstm_model",
+        "documentation": {}
+    },
+    {
+        "label": "MultiHorizonLSTM",
+        "importPath": "src.m3_modeling.lstm_model",
+        "description": "src.m3_modeling.lstm_model",
+        "isExtraImport": true,
+        "detail": "src.m3_modeling.lstm_model",
+        "documentation": {}
+    },
+    {
+        "label": "mc_dropout_inference",
+        "importPath": "src.m3_modeling.lstm_model",
+        "description": "src.m3_modeling.lstm_model",
+        "isExtraImport": true,
+        "detail": "src.m3_modeling.lstm_model",
+        "documentation": {}
+    },
+    {
+        "label": "BaselineLSTM",
+        "importPath": "src.m3_modeling.baseline_lstm",
+        "description": "src.m3_modeling.baseline_lstm",
+        "isExtraImport": true,
+        "detail": "src.m3_modeling.baseline_lstm",
+        "documentation": {}
+    },
+    {
+        "label": "BaselineLSTM",
+        "importPath": "src.m3_modeling.baseline_lstm",
+        "description": "src.m3_modeling.baseline_lstm",
+        "isExtraImport": true,
+        "detail": "src.m3_modeling.baseline_lstm",
+        "documentation": {}
+    },
+    {
+        "label": "BaselineLSTM",
+        "importPath": "src.m3_modeling.baseline_lstm",
+        "description": "src.m3_modeling.baseline_lstm",
+        "isExtraImport": true,
+        "detail": "src.m3_modeling.baseline_lstm",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "yaml",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "yaml",
+        "description": "yaml",
+        "detail": "yaml",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Dict",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "yfinance",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "yfinance",
+        "description": "yfinance",
+        "detail": "yfinance",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timezone",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "TextBlob",
+        "importPath": "textblob",
+        "description": "textblob",
+        "isExtraImport": true,
+        "detail": "textblob",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "urllib.parse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "urllib.parse",
+        "description": "urllib.parse",
+        "detail": "urllib.parse",
+        "documentation": {}
+    },
+    {
+        "label": "feedparser",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "feedparser",
+        "description": "feedparser",
+        "detail": "feedparser",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "torch.nn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "torch.nn",
+        "description": "torch.nn",
+        "detail": "torch.nn",
+        "documentation": {}
+    },
+    {
+        "label": "TensorDataset",
+        "importPath": "torch.utils.data",
+        "description": "torch.utils.data",
+        "isExtraImport": true,
+        "detail": "torch.utils.data",
+        "documentation": {}
+    },
+    {
+        "label": "DataLoader",
+        "importPath": "torch.utils.data",
+        "description": "torch.utils.data",
+        "isExtraImport": true,
+        "detail": "torch.utils.data",
+        "documentation": {}
+    },
+    {
+        "label": "MinMaxScaler",
+        "importPath": "sklearn.preprocessing",
+        "description": "sklearn.preprocessing",
+        "isExtraImport": true,
+        "detail": "sklearn.preprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "glob",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "glob",
+        "description": "glob",
+        "detail": "glob",
+        "documentation": {}
+    },
+    {
+        "label": "joblib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "joblib",
+        "description": "joblib",
+        "detail": "joblib",
+        "documentation": {}
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "asyncio",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Query",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "CORSMiddleware",
+        "importPath": "fastapi.middleware.cors",
+        "description": "fastapi.middleware.cors",
+        "isExtraImport": true,
+        "detail": "fastapi.middleware.cors",
+        "documentation": {}
+    },
+    {
+        "label": "HealthResponse",
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "isExtraImport": true,
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "UniverseResponse",
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "isExtraImport": true,
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "PriceHistoryResponse",
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "isExtraImport": true,
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "SentimentResponse",
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "isExtraImport": true,
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "PredictionResponse",
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "isExtraImport": true,
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "SignalResponse",
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "isExtraImport": true,
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "BacktestResponse",
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "isExtraImport": true,
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "DailyDigest",
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "isExtraImport": true,
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "DataService",
+        "importPath": "src.m4_dashboard.backend.data_service",
+        "description": "src.m4_dashboard.backend.data_service",
+        "isExtraImport": true,
+        "detail": "src.m4_dashboard.backend.data_service",
+        "documentation": {}
+    },
+    {
+        "label": "is_trading_day",
+        "importPath": "src.m1_price_data.nse_holidays",
+        "description": "src.m1_price_data.nse_holidays",
+        "isExtraImport": true,
+        "detail": "src.m1_price_data.nse_holidays",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "pytest",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pytest",
+        "description": "pytest",
+        "detail": "pytest",
+        "documentation": {}
+    },
+    {
+        "label": "TestClient",
+        "importPath": "fastapi.testclient",
+        "description": "fastapi.testclient",
+        "isExtraImport": true,
+        "detail": "fastapi.testclient",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "isExtraImport": true,
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "isExtraImport": true,
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "BacktestEngine",
+        "importPath": "src.m4_dashboard.backend.backtester",
+        "description": "src.m4_dashboard.backend.backtester",
+        "isExtraImport": true,
+        "detail": "src.m4_dashboard.backend.backtester",
+        "documentation": {}
+    },
+    {
+        "label": "RuleBasedSignalEngine",
+        "importPath": "src.m4_dashboard.backend.signal_engine",
+        "description": "src.m4_dashboard.backend.signal_engine",
+        "isExtraImport": true,
+        "detail": "src.m4_dashboard.backend.signal_engine",
+        "documentation": {}
+    },
+    {
+        "label": "clean_price_data",
+        "importPath": "src.m1_price_data.cleaner",
+        "description": "src.m1_price_data.cleaner",
+        "isExtraImport": true,
+        "detail": "src.m1_price_data.cleaner",
+        "documentation": {}
+    },
+    {
+        "label": "generate_technical_features",
+        "importPath": "src.m1_price_data.technical_features",
+        "description": "src.m1_price_data.technical_features",
+        "isExtraImport": true,
+        "detail": "src.m1_price_data.technical_features",
+        "documentation": {}
+    },
+    {
+        "label": "detect_market_regime",
+        "importPath": "src.m1_price_data.regime_detection",
+        "description": "src.m1_price_data.regime_detection",
+        "isExtraImport": true,
+        "detail": "src.m1_price_data.regime_detection",
+        "documentation": {}
+    },
+    {
+        "label": "generate_lag_features",
+        "importPath": "src.m1_price_data.lag_features",
+        "description": "src.m1_price_data.lag_features",
+        "isExtraImport": true,
+        "detail": "src.m1_price_data.lag_features",
+        "documentation": {}
+    },
+    {
+        "label": "score_single_text_baseline",
+        "importPath": "src.m2_sentiment.baseline_scorer",
+        "description": "src.m2_sentiment.baseline_scorer",
+        "isExtraImport": true,
+        "detail": "src.m2_sentiment.baseline_scorer",
+        "documentation": {}
+    },
+    {
+        "label": "score_headlines_baseline",
+        "importPath": "src.m2_sentiment.baseline_scorer",
+        "description": "src.m2_sentiment.baseline_scorer",
+        "isExtraImport": true,
+        "detail": "src.m2_sentiment.baseline_scorer",
+        "documentation": {}
+    },
+    {
+        "label": "score_texts_finbert",
+        "importPath": "src.m2_sentiment.finbert_scorer",
+        "description": "src.m2_sentiment.finbert_scorer",
+        "isExtraImport": true,
+        "detail": "src.m2_sentiment.finbert_scorer",
+        "documentation": {}
+    },
+    {
+        "label": "aggregate_daily_sentiment",
+        "importPath": "src.m2_sentiment.aggregator",
+        "description": "src.m2_sentiment.aggregator",
+        "isExtraImport": true,
+        "detail": "src.m2_sentiment.aggregator",
+        "documentation": {}
+    },
+    {
+        "label": "detect_sentiment_price_divergence",
+        "importPath": "src.m2_sentiment.divergence",
+        "description": "src.m2_sentiment.divergence",
+        "isExtraImport": true,
+        "detail": "src.m2_sentiment.divergence",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_finnhub_news",
+        "importPath": "src.m2_sentiment.fetcher",
+        "description": "src.m2_sentiment.fetcher",
+        "isExtraImport": true,
+        "detail": "src.m2_sentiment.fetcher",
+        "documentation": {}
+    },
+    {
+        "label": "patch",
+        "importPath": "unittest.mock",
+        "description": "unittest.mock",
+        "isExtraImport": true,
+        "detail": "unittest.mock",
+        "documentation": {}
+    },
+    {
+        "label": "MagicMock",
+        "importPath": "unittest.mock",
+        "description": "unittest.mock",
+        "isExtraImport": true,
+        "detail": "unittest.mock",
+        "documentation": {}
+    },
+    {
+        "label": "uvicorn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uvicorn",
+        "description": "uvicorn",
+        "detail": "uvicorn",
+        "documentation": {}
+    },
+    {
+        "label": "build_pipeline",
+        "importPath": "src.m1_price_data.build_features",
+        "description": "src.m1_price_data.build_features",
+        "isExtraImport": true,
+        "detail": "src.m1_price_data.build_features",
+        "documentation": {}
+    },
+    {
+        "label": "run_sentiment_pipeline",
+        "importPath": "src.m2_sentiment.pipeline",
+        "description": "src.m2_sentiment.pipeline",
+        "isExtraImport": true,
+        "detail": "src.m2_sentiment.pipeline",
+        "documentation": {}
+    },
+    {
+        "label": "save_plot",
+        "kind": 2,
+        "importPath": "artifacts.generate_ppt_graphs",
+        "description": "artifacts.generate_ppt_graphs",
+        "peekOfCode": "def save_plot(filename):\n    out_dir = PROJECT_ROOT / \"artifacts\" / \"ppt_graphs\"\n    out_dir.mkdir(parents=True, exist_ok=True)\n    plt.savefig(out_dir / filename, dpi=300, bbox_inches='tight')\n    plt.close()\n    print(f\"Saved {filename}\")\ndef main():\n    print(\"Loading data...\")\n    data_dir = str(PROJECT_ROOT / \"data\" / \"processed\")\n    train_loader, test_loader, f_scaler, t_scaler, x_test_raw, y_test_raw, num_features = prepare_multi_horizon_data(data_dir)",
+        "detail": "artifacts.generate_ppt_graphs",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "artifacts.generate_ppt_graphs",
+        "description": "artifacts.generate_ppt_graphs",
+        "peekOfCode": "def main():\n    print(\"Loading data...\")\n    data_dir = str(PROJECT_ROOT / \"data\" / \"processed\")\n    train_loader, test_loader, f_scaler, t_scaler, x_test_raw, y_test_raw, num_features = prepare_multi_horizon_data(data_dir)\n    model_dir = PROJECT_ROOT / \"artifacts\" / \"models\"\n    print(\"Loading models...\")\n    primary_model = MultiHorizonLSTM(input_dim=num_features, hidden_dim=64, num_layers=2, output_dim=4, dropout_rate=0.3)\n    primary_model.load_state_dict(torch.load(model_dir / \"best_lstm_primary.pth\", map_location='cpu', weights_only=True))\n    primary_model.eval()\n    secondary_model = BaselineLSTM(input_dim=num_features, hidden_dim=128, num_layers=1, output_dim=4, dropout_rate=0.2)",
+        "detail": "artifacts.generate_ppt_graphs",
+        "documentation": {}
+    },
+    {
+        "label": "PROJECT_ROOT",
+        "kind": 5,
+        "importPath": "artifacts.generate_ppt_graphs",
+        "description": "artifacts.generate_ppt_graphs",
+        "peekOfCode": "PROJECT_ROOT = Path(__file__).resolve().parent.parent\nsys.path.insert(0, str(PROJECT_ROOT))\nfrom src.m3_modeling.data_loader import prepare_multi_horizon_data\nfrom src.m3_modeling.lstm_model import MultiHorizonLSTM, mc_dropout_inference\nfrom src.m3_modeling.baseline_lstm import BaselineLSTM\n# Set style for presentation (clean, high contrast, readable fonts)\nplt.style.use('dark_background')\nsns.set_theme(style=\"darkgrid\", rc={\"axes.facecolor\": \"#121212\", \"figure.facecolor\": \"#121212\", \"grid.color\": \"#333333\"})\nsns.set_palette(\"husl\")\ndef save_plot(filename):",
+        "detail": "artifacts.generate_ppt_graphs",
+        "documentation": {}
+    },
+    {
+        "label": "load_configs",
+        "kind": 2,
+        "importPath": "src.m1_price_data.build_features",
+        "description": "src.m1_price_data.build_features",
+        "peekOfCode": "def load_configs():\n    with open(BASE_DIR / \"config\" / \"tickers.yaml\", \"r\") as f:\n        tickers_cfg = yaml.safe_load(f)\n    with open(BASE_DIR / \"config\" / \"settings.yaml\", \"r\") as f:\n        settings_cfg = yaml.safe_load(f)\n    return tickers_cfg, settings_cfg\ndef build_pipeline():\n    \"\"\"\n    Master pipeline orchestrator (Week 1 -> Week 3):\n    Fetch Raw Data -> Clean & Align -> Merge Market Context -> 100+ Features -> Lag Features -> Regime Detection -> Export price_features.parquet",
+        "detail": "src.m1_price_data.build_features",
+        "documentation": {}
+    },
+    {
+        "label": "build_pipeline",
+        "kind": 2,
+        "importPath": "src.m1_price_data.build_features",
+        "description": "src.m1_price_data.build_features",
+        "peekOfCode": "def build_pipeline():\n    \"\"\"\n    Master pipeline orchestrator (Week 1 -> Week 3):\n    Fetch Raw Data -> Clean & Align -> Merge Market Context -> 100+ Features -> Lag Features -> Regime Detection -> Export price_features.parquet\n    \"\"\"\n    logger.info(\"==================================================\")\n    logger.info(\"Starting M1 Feature Pipeline Execution (Week 1 to Week 3)\")\n    logger.info(\"==================================================\")\n    tickers_cfg, settings_cfg = load_configs()\n    period = settings_cfg.get(\"fetcher\", {}).get(\"period\", \"5y\")",
+        "detail": "src.m1_price_data.build_features",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "src.m1_price_data.build_features",
+        "description": "src.m1_price_data.build_features",
+        "peekOfCode": "logger = logging.getLogger(__name__)\nBASE_DIR = Path(__file__).resolve().parent.parent.parent\ndef load_configs():\n    with open(BASE_DIR / \"config\" / \"tickers.yaml\", \"r\") as f:\n        tickers_cfg = yaml.safe_load(f)\n    with open(BASE_DIR / \"config\" / \"settings.yaml\", \"r\") as f:\n        settings_cfg = yaml.safe_load(f)\n    return tickers_cfg, settings_cfg\ndef build_pipeline():\n    \"\"\"",
+        "detail": "src.m1_price_data.build_features",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "src.m1_price_data.build_features",
+        "description": "src.m1_price_data.build_features",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent.parent\ndef load_configs():\n    with open(BASE_DIR / \"config\" / \"tickers.yaml\", \"r\") as f:\n        tickers_cfg = yaml.safe_load(f)\n    with open(BASE_DIR / \"config\" / \"settings.yaml\", \"r\") as f:\n        settings_cfg = yaml.safe_load(f)\n    return tickers_cfg, settings_cfg\ndef build_pipeline():\n    \"\"\"\n    Master pipeline orchestrator (Week 1 -> Week 3):",
+        "detail": "src.m1_price_data.build_features",
+        "documentation": {}
+    },
+    {
+        "label": "clean_price_data",
+        "kind": 2,
+        "importPath": "src.m1_price_data.cleaner",
+        "description": "src.m1_price_data.cleaner",
+        "peekOfCode": "def clean_price_data(df: pd.DataFrame) -> pd.DataFrame:\n    \"\"\"\n    Clean raw stock OHLCV DataFrame.\n    Handles:\n    - Normalizing dates to YYYY-MM-DD\n    - Dropping duplicate (date, ticker) records\n    - Replacing zero/negative price values with NaNs and forward/backward filling\n    - Imputing missing volume with 0\n    - Enforcing logical price boundaries (high >= low, high >= open, high >= close)\n    \"\"\"",
+        "detail": "src.m1_price_data.cleaner",
+        "documentation": {}
+    },
+    {
+        "label": "align_and_clean_dataset",
+        "kind": 2,
+        "importPath": "src.m1_price_data.cleaner",
+        "description": "src.m1_price_data.cleaner",
+        "peekOfCode": "def align_and_clean_dataset(\n    stocks_df: pd.DataFrame,\n    indices_dict: Dict[str, pd.DataFrame],\n    macro_dict: Dict[str, pd.DataFrame]\n) -> pd.DataFrame:\n    \"\"\"\n    Merge and align stock OHLCV data with market indices (Nifty 50, Nifty Bank, Nifty IT, India VIX)\n    and macroeconomic indicators (USD/INR, Crude Oil) into a unified time-series DataFrame.\n    \"\"\"\n    logger.info(\"Aligning stock prices with market context (Indices & Macro data)...\")",
+        "detail": "src.m1_price_data.cleaner",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "src.m1_price_data.cleaner",
+        "description": "src.m1_price_data.cleaner",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef clean_price_data(df: pd.DataFrame) -> pd.DataFrame:\n    \"\"\"\n    Clean raw stock OHLCV DataFrame.\n    Handles:\n    - Normalizing dates to YYYY-MM-DD\n    - Dropping duplicate (date, ticker) records\n    - Replacing zero/negative price values with NaNs and forward/backward filling\n    - Imputing missing volume with 0\n    - Enforcing logical price boundaries (high >= low, high >= open, high >= close)",
+        "detail": "src.m1_price_data.cleaner",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_stock_data",
+        "kind": 2,
+        "importPath": "src.m1_price_data.fetcher",
+        "description": "src.m1_price_data.fetcher",
+        "peekOfCode": "def fetch_stock_data(ticker: str, period: str = \"5y\", interval: str = \"1d\") -> pd.DataFrame:\n    \"\"\"\n    Fetch 5+ years of daily OHLCV data for a single stock ticker using yfinance.\n    Returns standardized DataFrame with columns: [date, ticker, open, high, low, close, adj_close, volume].\n    \"\"\"\n    logger.info(f\"Fetching stock OHLCV data for {ticker} (period: {period})...\")\n    try:\n        t_obj = yf.Ticker(ticker)\n        df = t_obj.history(period=period, interval=interval, auto_adjust=False)\n        if df.empty:",
+        "detail": "src.m1_price_data.fetcher",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_multiple_stocks",
+        "kind": 2,
+        "importPath": "src.m1_price_data.fetcher",
+        "description": "src.m1_price_data.fetcher",
+        "peekOfCode": "def fetch_multiple_stocks(tickers: List[str], period: str = \"5y\", interval: str = \"1d\") -> Tuple[pd.DataFrame, List[Dict[str, str]]]:\n    \"\"\"\n    Fetch OHLCV data for multiple stock tickers across NIFTY 50, Nifty Bank, Nifty IT, Nifty Next 50.\n    Returns:\n      - Combined DataFrame of valid tickers.\n      - List of excluded tickers with reasons.\n    \"\"\"\n    valid_dfs = []\n    excluded_info = []\n    for t in sorted(list(set(tickers))):",
+        "detail": "src.m1_price_data.fetcher",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_index_data",
+        "kind": 2,
+        "importPath": "src.m1_price_data.fetcher",
+        "description": "src.m1_price_data.fetcher",
+        "peekOfCode": "def fetch_index_data(symbol: str, name: str, period: str = \"5y\", interval: str = \"1d\") -> pd.DataFrame:\n    \"\"\"\n    Fetch historical daily index level data for a given index ticker.\n    Returns DataFrame with columns: [date, symbol, index_name, open, high, low, close, adj_close, volume].\n    \"\"\"\n    logger.info(f\"Fetching index data for {name} ({symbol})...\")\n    try:\n        t_obj = yf.Ticker(symbol)\n        df = t_obj.history(period=period, interval=interval, auto_adjust=False)\n        if df.empty:",
+        "detail": "src.m1_price_data.fetcher",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_all_indices",
+        "kind": 2,
+        "importPath": "src.m1_price_data.fetcher",
+        "description": "src.m1_price_data.fetcher",
+        "peekOfCode": "def fetch_all_indices(indices_dict: Dict[str, str], period: str = \"5y\", interval: str = \"1d\") -> Dict[str, pd.DataFrame]:\n    results = {}\n    for name, symbol in indices_dict.items():\n        df_idx = fetch_index_data(symbol=symbol, name=name, period=period, interval=interval)\n        if not df_idx.empty:\n            results[name] = df_idx\n        else:\n            logger.warning(f\"Failed to fetch index: {name} ({symbol})\")\n    return results\n# -----------------------------------------------------------------------------",
+        "detail": "src.m1_price_data.fetcher",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_macro_data",
+        "kind": 2,
+        "importPath": "src.m1_price_data.fetcher",
+        "description": "src.m1_price_data.fetcher",
+        "peekOfCode": "def fetch_macro_data(symbol: str, name: str, period: str = \"5y\", interval: str = \"1d\") -> pd.DataFrame:\n    \"\"\"\n    Fetch macroeconomic daily data (e.g. USD/INR exchange rate, Crude Oil).\n    \"\"\"\n    logger.info(f\"Fetching macro data for {name} ({symbol})...\")\n    try:\n        t_obj = yf.Ticker(symbol)\n        df = t_obj.history(period=period, interval=interval, auto_adjust=False)\n        if df.empty:\n            logger.warning(f\"No macro data returned for symbol: {symbol}\")",
+        "detail": "src.m1_price_data.fetcher",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_all_macro",
+        "kind": 2,
+        "importPath": "src.m1_price_data.fetcher",
+        "description": "src.m1_price_data.fetcher",
+        "peekOfCode": "def fetch_all_macro(macro_dict: Dict[str, str], period: str = \"5y\", interval: str = \"1d\") -> Dict[str, pd.DataFrame]:\n    results = {}\n    for name, symbol in macro_dict.items():\n        df_m = fetch_macro_data(symbol=symbol, name=name, period=period, interval=interval)\n        if not df_m.empty:\n            results[name] = df_m\n        else:\n            logger.warning(f\"Failed to fetch macro indicator: {name} ({symbol})\")\n    return results",
+        "detail": "src.m1_price_data.fetcher",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "src.m1_price_data.fetcher",
+        "description": "src.m1_price_data.fetcher",
+        "peekOfCode": "logger = logging.getLogger(__name__)\n# -----------------------------------------------------------------------------\n# 1. Stock Price Fetcher\n# -----------------------------------------------------------------------------\ndef fetch_stock_data(ticker: str, period: str = \"5y\", interval: str = \"1d\") -> pd.DataFrame:\n    \"\"\"\n    Fetch 5+ years of daily OHLCV data for a single stock ticker using yfinance.\n    Returns standardized DataFrame with columns: [date, ticker, open, high, low, close, adj_close, volume].\n    \"\"\"\n    logger.info(f\"Fetching stock OHLCV data for {ticker} (period: {period})...\")",
+        "detail": "src.m1_price_data.fetcher",
+        "documentation": {}
+    },
+    {
+        "label": "generate_lag_features",
+        "kind": 2,
+        "importPath": "src.m1_price_data.lag_features",
+        "description": "src.m1_price_data.lag_features",
+        "peekOfCode": "def generate_lag_features(df: pd.DataFrame, lag_periods: list = [1, 2, 3, 5, 10, 21]) -> pd.DataFrame:\n    \"\"\"\n    Generate historical lag features for returns, volume, and core indicators.\n    CRITICAL: Uses shift(k) with k >= 1 to strictly prevent future data leakage.\n    \"\"\"\n    logger.info(f\"Generating lag features for periods: {lag_periods} (zero future leakage)...\")\n    if df.empty:\n        return df\n    result_df = df.copy()\n    target_cols = [c for c in [\"return_1d\", \"volume\", \"rsi_14\", \"macd_line_12_26\", \"volatility_20d\", \"atr_14\"] if c in result_df.columns]",
+        "detail": "src.m1_price_data.lag_features",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "src.m1_price_data.lag_features",
+        "description": "src.m1_price_data.lag_features",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef generate_lag_features(df: pd.DataFrame, lag_periods: list = [1, 2, 3, 5, 10, 21]) -> pd.DataFrame:\n    \"\"\"\n    Generate historical lag features for returns, volume, and core indicators.\n    CRITICAL: Uses shift(k) with k >= 1 to strictly prevent future data leakage.\n    \"\"\"\n    logger.info(f\"Generating lag features for periods: {lag_periods} (zero future leakage)...\")\n    if df.empty:\n        return df\n    result_df = df.copy()",
+        "detail": "src.m1_price_data.lag_features",
+        "documentation": {}
+    },
+    {
+        "label": "is_trading_day",
+        "kind": 2,
+        "importPath": "src.m1_price_data.nse_holidays",
+        "description": "src.m1_price_data.nse_holidays",
+        "peekOfCode": "def is_trading_day(date_obj: Union[datetime.date, datetime.datetime]) -> bool:\n    \"\"\"\n    Checks if the given date is an NSE trading day.\n    A trading day is a weekday (Monday-Friday) that is not an official NSE holiday.\n    \"\"\"\n    # Check if it's a weekend (Saturday=5, Sunday=6)\n    if date_obj.weekday() >= 5:\n        return False\n    date_str = date_obj.strftime(\"%Y-%m-%d\")\n    if date_str in NSE_HOLIDAYS:",
+        "detail": "src.m1_price_data.nse_holidays",
+        "documentation": {}
+    },
+    {
+        "label": "NSE_HOLIDAYS",
+        "kind": 5,
+        "importPath": "src.m1_price_data.nse_holidays",
+        "description": "src.m1_price_data.nse_holidays",
+        "peekOfCode": "NSE_HOLIDAYS = {\n    # 2024\n    \"2024-01-22\", # Special Holiday (Ayodhya Ram Mandir)\n    \"2024-01-26\", # Republic Day\n    \"2024-03-08\", # Mahashivratri\n    \"2024-03-25\", # Holi\n    \"2024-03-29\", # Good Friday\n    \"2024-04-11\", # Id-Ul-Fitr (Ramadan)\n    \"2024-04-17\", # Shri Ram Navami\n    \"2024-05-01\", # Maharashtra Day",
+        "detail": "src.m1_price_data.nse_holidays",
+        "documentation": {}
+    },
+    {
+        "label": "detect_market_regime",
+        "kind": 2,
+        "importPath": "src.m1_price_data.regime_detection",
+        "description": "src.m1_price_data.regime_detection",
+        "peekOfCode": "def detect_market_regime(df: pd.DataFrame) -> pd.DataFrame:\n    \"\"\"\n    Classify market state into categories:\n      - 'VOLATILE' : High VIX (> 18.0) or high ATR ratio\n      - 'TRENDING' : Strong directional trend (ADX > 25 or SMA_20/SMA_50 slope divergence)\n      - 'CHOPPY'   : Low trend strength, range-bound sideways market\n    Appends 'market_regime' column to DataFrame.\n    \"\"\"\n    logger.info(\"Detecting market regimes (TRENDING / CHOPPY / VOLATILE)...\")\n    if df.empty:",
+        "detail": "src.m1_price_data.regime_detection",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "src.m1_price_data.regime_detection",
+        "description": "src.m1_price_data.regime_detection",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef detect_market_regime(df: pd.DataFrame) -> pd.DataFrame:\n    \"\"\"\n    Classify market state into categories:\n      - 'VOLATILE' : High VIX (> 18.0) or high ATR ratio\n      - 'TRENDING' : Strong directional trend (ADX > 25 or SMA_20/SMA_50 slope divergence)\n      - 'CHOPPY'   : Low trend strength, range-bound sideways market\n    Appends 'market_regime' column to DataFrame.\n    \"\"\"\n    logger.info(\"Detecting market regimes (TRENDING / CHOPPY / VOLATILE)...\")",
+        "detail": "src.m1_price_data.regime_detection",
+        "documentation": {}
+    },
+    {
+        "label": "generate_technical_features",
+        "kind": 2,
+        "importPath": "src.m1_price_data.technical_features",
+        "description": "src.m1_price_data.technical_features",
+        "peekOfCode": "def generate_technical_features(df: pd.DataFrame) -> pd.DataFrame:\n    logger.info(\"Generating 100+ technical indicators...\")\n    if df.empty:\n        return df\n    if \"ticker\" in df.columns:\n        feature_dfs = []\n        for ticker, df_group in df.groupby(\"ticker\"):\n            df_group_sorted = df_group.sort_values(\"date\").reset_index(drop=True)\n            df_feat = _compute_single_ticker_indicators(df_group_sorted)\n            feature_dfs.append(df_feat)",
+        "detail": "src.m1_price_data.technical_features",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "src.m1_price_data.technical_features",
+        "description": "src.m1_price_data.technical_features",
+        "peekOfCode": "logger = logging.getLogger(__name__)\ndef _compute_single_ticker_indicators(df_t: pd.DataFrame) -> pd.DataFrame:\n    df = df_t.copy()\n    close = df[\"close\"]\n    high = df[\"high\"]\n    low = df[\"low\"]\n    open_p = df[\"open\"]\n    volume = df[\"volume\"]\n    # 1. Simple Moving Averages (SMA) & Exponential Moving Averages (EMA)\n    for p in [5, 10, 15, 20, 30, 50, 100, 150, 200]:",
+        "detail": "src.m1_price_data.technical_features",
+        "documentation": {}
+    },
+    {
+        "label": "aggregate_daily_sentiment",
+        "kind": 2,
+        "importPath": "src.m2_sentiment.aggregator",
+        "description": "src.m2_sentiment.aggregator",
+        "peekOfCode": "def aggregate_daily_sentiment(\n    scored_articles: List[Dict[str, Any]],\n    date_range: Optional[pd.DatetimeIndex] = None,\n    decay_rate: float = 0.5\n) -> pd.DataFrame:\n    \"\"\"\n    Aggregates headline sentiment into daily features per ticker.\n    Matches schemas/sentiment_schema.md.\n    \"\"\"\n    if not scored_articles:",
+        "detail": "src.m2_sentiment.aggregator",
+        "documentation": {}
+    },
+    {
+        "label": "score_single_text_baseline",
+        "kind": 2,
+        "importPath": "src.m2_sentiment.baseline_scorer",
+        "description": "src.m2_sentiment.baseline_scorer",
+        "peekOfCode": "def score_single_text_baseline(text: str) -> Dict[str, Any]:\n    \"\"\"\n    Computes baseline sentiment metrics using TextBlob.\n    Returns polarity (-1.0 to 1.0), subjectivity (0.0 to 1.0), categorical label, and confidence.\n    \"\"\"\n    if not text or not text.strip():\n        return {\n            \"score_textblob\": 0.0,\n            \"subjectivity\": 0.0,\n            \"sentiment_label\": \"neutral\",",
+        "detail": "src.m2_sentiment.baseline_scorer",
+        "documentation": {}
+    },
+    {
+        "label": "score_headlines_baseline",
+        "kind": 2,
+        "importPath": "src.m2_sentiment.baseline_scorer",
+        "description": "src.m2_sentiment.baseline_scorer",
+        "peekOfCode": "def score_headlines_baseline(articles: List[Dict[str, Any]]) -> List[Dict[str, Any]]:\n    \"\"\"\n    Scores a list of article dictionaries using the baseline TextBlob scorer.\n    Adds baseline fields to each article.\n    \"\"\"\n    scored_articles = []\n    for art in articles:\n        text = art.get(\"title\", \"\")\n        if art.get(\"summary\"):\n            text = f\"{text}. {art.get('summary')}\"",
+        "detail": "src.m2_sentiment.baseline_scorer",
+        "documentation": {}
+    },
+    {
+        "label": "PROJECT_ROOT",
+        "kind": 5,
+        "importPath": "src.m2_sentiment.config",
+        "description": "src.m2_sentiment.config",
+        "peekOfCode": "PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent\nDATA_DIR = PROJECT_ROOT / \"data\"\nRAW_NEWS_DIR = DATA_DIR / \"raw\" / \"news\"\nPROCESSED_DATA_DIR = DATA_DIR / \"processed\"\nCONFIG_DIR = PROJECT_ROOT / \"config\"\n# Ensure target directories exist\nRAW_NEWS_DIR.mkdir(parents=True, exist_ok=True)\nPROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)\n# Company name / alias lookup for rich Indian financial news retrieval\nTICKER_QUERY_MAP = {",
+        "detail": "src.m2_sentiment.config",
+        "documentation": {}
+    },
+    {
+        "label": "DATA_DIR",
+        "kind": 5,
+        "importPath": "src.m2_sentiment.config",
+        "description": "src.m2_sentiment.config",
+        "peekOfCode": "DATA_DIR = PROJECT_ROOT / \"data\"\nRAW_NEWS_DIR = DATA_DIR / \"raw\" / \"news\"\nPROCESSED_DATA_DIR = DATA_DIR / \"processed\"\nCONFIG_DIR = PROJECT_ROOT / \"config\"\n# Ensure target directories exist\nRAW_NEWS_DIR.mkdir(parents=True, exist_ok=True)\nPROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)\n# Company name / alias lookup for rich Indian financial news retrieval\nTICKER_QUERY_MAP = {\n    # NIFTY 50 & Major Stocks",
+        "detail": "src.m2_sentiment.config",
+        "documentation": {}
+    },
+    {
+        "label": "RAW_NEWS_DIR",
+        "kind": 5,
+        "importPath": "src.m2_sentiment.config",
+        "description": "src.m2_sentiment.config",
+        "peekOfCode": "RAW_NEWS_DIR = DATA_DIR / \"raw\" / \"news\"\nPROCESSED_DATA_DIR = DATA_DIR / \"processed\"\nCONFIG_DIR = PROJECT_ROOT / \"config\"\n# Ensure target directories exist\nRAW_NEWS_DIR.mkdir(parents=True, exist_ok=True)\nPROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)\n# Company name / alias lookup for rich Indian financial news retrieval\nTICKER_QUERY_MAP = {\n    # NIFTY 50 & Major Stocks\n    \"RELIANCE.NS\": [\"Reliance Industries\", \"RIL\", \"Mukesh Ambani Reliance\", \"Jio Financial\"],",
+        "detail": "src.m2_sentiment.config",
+        "documentation": {}
+    },
+    {
+        "label": "PROCESSED_DATA_DIR",
+        "kind": 5,
+        "importPath": "src.m2_sentiment.config",
+        "description": "src.m2_sentiment.config",
+        "peekOfCode": "PROCESSED_DATA_DIR = DATA_DIR / \"processed\"\nCONFIG_DIR = PROJECT_ROOT / \"config\"\n# Ensure target directories exist\nRAW_NEWS_DIR.mkdir(parents=True, exist_ok=True)\nPROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)\n# Company name / alias lookup for rich Indian financial news retrieval\nTICKER_QUERY_MAP = {\n    # NIFTY 50 & Major Stocks\n    \"RELIANCE.NS\": [\"Reliance Industries\", \"RIL\", \"Mukesh Ambani Reliance\", \"Jio Financial\"],\n    \"TCS.NS\": [\"Tata Consultancy Services\", \"TCS\", \"Tata Consultancy\"],",
+        "detail": "src.m2_sentiment.config",
+        "documentation": {}
+    },
+    {
+        "label": "CONFIG_DIR",
+        "kind": 5,
+        "importPath": "src.m2_sentiment.config",
+        "description": "src.m2_sentiment.config",
+        "peekOfCode": "CONFIG_DIR = PROJECT_ROOT / \"config\"\n# Ensure target directories exist\nRAW_NEWS_DIR.mkdir(parents=True, exist_ok=True)\nPROCESSED_DATA_DIR.mkdir(parents=True, exist_ok=True)\n# Company name / alias lookup for rich Indian financial news retrieval\nTICKER_QUERY_MAP = {\n    # NIFTY 50 & Major Stocks\n    \"RELIANCE.NS\": [\"Reliance Industries\", \"RIL\", \"Mukesh Ambani Reliance\", \"Jio Financial\"],\n    \"TCS.NS\": [\"Tata Consultancy Services\", \"TCS\", \"Tata Consultancy\"],\n    \"INFY.NS\": [\"Infosys\", \"Infosys quarterly results\", \"Salil Parekh\"],",
+        "detail": "src.m2_sentiment.config",
+        "documentation": {}
+    },
+    {
+        "label": "TICKER_QUERY_MAP",
+        "kind": 5,
+        "importPath": "src.m2_sentiment.config",
+        "description": "src.m2_sentiment.config",
+        "peekOfCode": "TICKER_QUERY_MAP = {\n    # NIFTY 50 & Major Stocks\n    \"RELIANCE.NS\": [\"Reliance Industries\", \"RIL\", \"Mukesh Ambani Reliance\", \"Jio Financial\"],\n    \"TCS.NS\": [\"Tata Consultancy Services\", \"TCS\", \"Tata Consultancy\"],\n    \"INFY.NS\": [\"Infosys\", \"Infosys quarterly results\", \"Salil Parekh\"],\n    \"HDFCBANK.NS\": [\"HDFC Bank\", \"HDFC Bank merger\", \"HDFC Q3\"],\n    \"ICICIBANK.NS\": [\"ICICI Bank\", \"Sandeep Bakhshi ICICI\"],\n    \"BHARTIARTL.NS\": [\"Bharti Airtel\", \"Airtel 5G\", \"Sunil Mittal Airtel\"],\n    \"ITC.NS\": [\"ITC Limited\", \"ITC cigarette hotel demerger\"],\n    \"LT.NS\": [\"Larsen & Toubro\", \"L&T infrastructure order\"],",
+        "detail": "src.m2_sentiment.config",
+        "documentation": {}
+    },
+    {
+        "label": "FINBERT_MODEL_NAME",
+        "kind": 5,
+        "importPath": "src.m2_sentiment.config",
+        "description": "src.m2_sentiment.config",
+        "peekOfCode": "FINBERT_MODEL_NAME = \"ProsusAI/finbert\"\nDEFAULT_BATCH_SIZE = 16\nDEFAULT_MAX_HEADLINES_PER_TICKER = 25",
+        "detail": "src.m2_sentiment.config",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_BATCH_SIZE",
+        "kind": 5,
+        "importPath": "src.m2_sentiment.config",
+        "description": "src.m2_sentiment.config",
+        "peekOfCode": "DEFAULT_BATCH_SIZE = 16\nDEFAULT_MAX_HEADLINES_PER_TICKER = 25",
+        "detail": "src.m2_sentiment.config",
+        "documentation": {}
+    },
+    {
+        "label": "DEFAULT_MAX_HEADLINES_PER_TICKER",
+        "kind": 5,
+        "importPath": "src.m2_sentiment.config",
+        "description": "src.m2_sentiment.config",
+        "peekOfCode": "DEFAULT_MAX_HEADLINES_PER_TICKER = 25",
+        "detail": "src.m2_sentiment.config",
+        "documentation": {}
+    },
+    {
+        "label": "detect_sentiment_price_divergence",
+        "kind": 2,
+        "importPath": "src.m2_sentiment.divergence",
+        "description": "src.m2_sentiment.divergence",
+        "peekOfCode": "def detect_sentiment_price_divergence(\n    df_sentiment: pd.DataFrame,\n    df_price: Optional[pd.DataFrame] = None,\n    price_return_col: str = \"close_pct_change_5d\",\n    sentiment_col: str = \"sentiment_mean\",\n    price_dip_thresh: float = -0.02,     # -2% price dip\n    price_rally_thresh: float = 0.02,    # +2% price rally\n    sent_pos_thresh: float = 0.15,       # Positive sentiment threshold\n    sent_neg_thresh: float = -0.15       # Negative sentiment threshold\n) -> pd.DataFrame:",
+        "detail": "src.m2_sentiment.divergence",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_google_news_rss",
+        "kind": 2,
+        "importPath": "src.m2_sentiment.fetcher",
+        "description": "src.m2_sentiment.fetcher",
+        "peekOfCode": "def fetch_google_news_rss(\n    ticker: str,\n    query: Optional[str] = None,\n    max_items: int = DEFAULT_MAX_HEADLINES_PER_TICKER\n) -> List[Dict[str, Any]]:\n    \"\"\"\n    Fetches latest financial news articles for a given ticker using Google News RSS feeds.\n    Free, no API key required, supports localized Indian financial media.\n    \"\"\"\n    if not query:",
+        "detail": "src.m2_sentiment.fetcher",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_finnhub_news",
+        "kind": 2,
+        "importPath": "src.m2_sentiment.fetcher",
+        "description": "src.m2_sentiment.fetcher",
+        "peekOfCode": "def fetch_finnhub_news(\n    ticker: str,\n    api_key: Optional[str] = None,\n    fallback_key: Optional[str] = None,\n    days_back: int = 7\n) -> List[Dict[str, Any]]:\n    \"\"\"\n    Fetches company news from Finnhub if an API key is available.\n    Supports primary and secondary/fallback API keys if the primary key fails or hits rate limits.\n    Falls back gracefully if not configured.",
+        "detail": "src.m2_sentiment.fetcher",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_news_for_ticker",
+        "kind": 2,
+        "importPath": "src.m2_sentiment.fetcher",
+        "description": "src.m2_sentiment.fetcher",
+        "peekOfCode": "def fetch_news_for_ticker(\n    ticker: str,\n    days_back: int = 7,\n    max_headlines: int = DEFAULT_MAX_HEADLINES_PER_TICKER,\n    use_cache: bool = True\n) -> List[Dict[str, Any]]:\n    \"\"\"\n    Fetches, deduplicates, and caches news headlines for a given ticker.\n    Uses Google News RSS + Finnhub fallback.\n    \"\"\"",
+        "detail": "src.m2_sentiment.fetcher",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_all_universe_news",
+        "kind": 2,
+        "importPath": "src.m2_sentiment.fetcher",
+        "description": "src.m2_sentiment.fetcher",
+        "peekOfCode": "def fetch_all_universe_news(\n    tickers: List[str],\n    days_back: int = 7,\n    max_per_ticker: int = DEFAULT_MAX_HEADLINES_PER_TICKER,\n    use_cache: bool = True\n) -> Dict[str, List[Dict[str, Any]]]:\n    \"\"\"\n    Fetches news for all tickers across the universe.\n    Returns a dictionary mapping ticker -> list of articles.\n    \"\"\"",
+        "detail": "src.m2_sentiment.fetcher",
+        "documentation": {}
+    },
+    {
+        "label": "load_finbert",
+        "kind": 2,
+        "importPath": "src.m2_sentiment.finbert_scorer",
+        "description": "src.m2_sentiment.finbert_scorer",
+        "peekOfCode": "def load_finbert(model_name: str = FINBERT_MODEL_NAME):\n    \"\"\"\n    Safe lazy loader for FinBERT model and tokenizer.\n    Ensures safe initialization and caches in memory.\n    \"\"\"\n    global _tokenizer, _model, _torch, _device, _finbert_available\n    if _finbert_available is False:\n        return None, None\n    if _tokenizer is None or _model is None:\n        try:",
+        "detail": "src.m2_sentiment.finbert_scorer",
+        "documentation": {}
+    },
+    {
+        "label": "score_texts_finbert",
+        "kind": 2,
+        "importPath": "src.m2_sentiment.finbert_scorer",
+        "description": "src.m2_sentiment.finbert_scorer",
+        "peekOfCode": "def score_texts_finbert(\n    texts: List[str],\n    batch_size: int = DEFAULT_BATCH_SIZE\n) -> List[Dict[str, Any]]:\n    \"\"\"\n    Runs batch inference on a list of financial texts using FinBERT.\n    Falls back gracefully to financial lexicon + TextBlob scoring if FinBERT is unavailable.\n    \"\"\"\n    if not texts:\n        return []",
+        "detail": "src.m2_sentiment.finbert_scorer",
+        "documentation": {}
+    },
+    {
+        "label": "score_headlines",
+        "kind": 2,
+        "importPath": "src.m2_sentiment.finbert_scorer",
+        "description": "src.m2_sentiment.finbert_scorer",
+        "peekOfCode": "def score_headlines(\n    articles: List[Dict[str, Any]],\n    use_finbert: bool = True\n) -> List[Dict[str, Any]]:\n    \"\"\"\n    Scores a list of article dictionaries with FinBERT (or enhanced financial scorer).\n    \"\"\"\n    if not articles:\n        return []\n    scored = score_headlines_baseline(articles)",
+        "detail": "src.m2_sentiment.finbert_scorer",
+        "documentation": {}
+    },
+    {
+        "label": "_tokenizer",
+        "kind": 5,
+        "importPath": "src.m2_sentiment.finbert_scorer",
+        "description": "src.m2_sentiment.finbert_scorer",
+        "peekOfCode": "_tokenizer = None\n_model = None\n_torch = None\n_device = \"cpu\"\n_finbert_available = None\n# Curated financial keywords for high-accuracy financial scoring fallback\nFINANCIAL_KEYWORD_WEIGHTS = {\n    # Positive triggers\n    \"surges\": 0.6, \"jumps\": 0.5, \"beats\": 0.5, \"soars\": 0.6, \"profit\": 0.4,\n    \"revenue up\": 0.5, \"growth\": 0.3, \"dividend\": 0.3, \"expansion\": 0.3,",
+        "detail": "src.m2_sentiment.finbert_scorer",
+        "documentation": {}
+    },
+    {
+        "label": "_model",
+        "kind": 5,
+        "importPath": "src.m2_sentiment.finbert_scorer",
+        "description": "src.m2_sentiment.finbert_scorer",
+        "peekOfCode": "_model = None\n_torch = None\n_device = \"cpu\"\n_finbert_available = None\n# Curated financial keywords for high-accuracy financial scoring fallback\nFINANCIAL_KEYWORD_WEIGHTS = {\n    # Positive triggers\n    \"surges\": 0.6, \"jumps\": 0.5, \"beats\": 0.5, \"soars\": 0.6, \"profit\": 0.4,\n    \"revenue up\": 0.5, \"growth\": 0.3, \"dividend\": 0.3, \"expansion\": 0.3,\n    \"bullish\": 0.6, \"outperform\": 0.5, \"record high\": 0.6, \"buyback\": 0.4,",
+        "detail": "src.m2_sentiment.finbert_scorer",
+        "documentation": {}
+    },
+    {
+        "label": "_torch",
+        "kind": 5,
+        "importPath": "src.m2_sentiment.finbert_scorer",
+        "description": "src.m2_sentiment.finbert_scorer",
+        "peekOfCode": "_torch = None\n_device = \"cpu\"\n_finbert_available = None\n# Curated financial keywords for high-accuracy financial scoring fallback\nFINANCIAL_KEYWORD_WEIGHTS = {\n    # Positive triggers\n    \"surges\": 0.6, \"jumps\": 0.5, \"beats\": 0.5, \"soars\": 0.6, \"profit\": 0.4,\n    \"revenue up\": 0.5, \"growth\": 0.3, \"dividend\": 0.3, \"expansion\": 0.3,\n    \"bullish\": 0.6, \"outperform\": 0.5, \"record high\": 0.6, \"buyback\": 0.4,\n    \"order win\": 0.4, \"approved\": 0.3, \"gain\": 0.3, \"upgrade\": 0.5,",
+        "detail": "src.m2_sentiment.finbert_scorer",
+        "documentation": {}
+    },
+    {
+        "label": "_device",
+        "kind": 5,
+        "importPath": "src.m2_sentiment.finbert_scorer",
+        "description": "src.m2_sentiment.finbert_scorer",
+        "peekOfCode": "_device = \"cpu\"\n_finbert_available = None\n# Curated financial keywords for high-accuracy financial scoring fallback\nFINANCIAL_KEYWORD_WEIGHTS = {\n    # Positive triggers\n    \"surges\": 0.6, \"jumps\": 0.5, \"beats\": 0.5, \"soars\": 0.6, \"profit\": 0.4,\n    \"revenue up\": 0.5, \"growth\": 0.3, \"dividend\": 0.3, \"expansion\": 0.3,\n    \"bullish\": 0.6, \"outperform\": 0.5, \"record high\": 0.6, \"buyback\": 0.4,\n    \"order win\": 0.4, \"approved\": 0.3, \"gain\": 0.3, \"upgrade\": 0.5,\n    # Negative triggers",
+        "detail": "src.m2_sentiment.finbert_scorer",
+        "documentation": {}
+    },
+    {
+        "label": "_finbert_available",
+        "kind": 5,
+        "importPath": "src.m2_sentiment.finbert_scorer",
+        "description": "src.m2_sentiment.finbert_scorer",
+        "peekOfCode": "_finbert_available = None\n# Curated financial keywords for high-accuracy financial scoring fallback\nFINANCIAL_KEYWORD_WEIGHTS = {\n    # Positive triggers\n    \"surges\": 0.6, \"jumps\": 0.5, \"beats\": 0.5, \"soars\": 0.6, \"profit\": 0.4,\n    \"revenue up\": 0.5, \"growth\": 0.3, \"dividend\": 0.3, \"expansion\": 0.3,\n    \"bullish\": 0.6, \"outperform\": 0.5, \"record high\": 0.6, \"buyback\": 0.4,\n    \"order win\": 0.4, \"approved\": 0.3, \"gain\": 0.3, \"upgrade\": 0.5,\n    # Negative triggers\n    \"plunges\": -0.6, \"slumps\": -0.5, \"falls\": -0.4, \"drops\": -0.4, \"losses\": -0.6,",
+        "detail": "src.m2_sentiment.finbert_scorer",
+        "documentation": {}
+    },
+    {
+        "label": "FINANCIAL_KEYWORD_WEIGHTS",
+        "kind": 5,
+        "importPath": "src.m2_sentiment.finbert_scorer",
+        "description": "src.m2_sentiment.finbert_scorer",
+        "peekOfCode": "FINANCIAL_KEYWORD_WEIGHTS = {\n    # Positive triggers\n    \"surges\": 0.6, \"jumps\": 0.5, \"beats\": 0.5, \"soars\": 0.6, \"profit\": 0.4,\n    \"revenue up\": 0.5, \"growth\": 0.3, \"dividend\": 0.3, \"expansion\": 0.3,\n    \"bullish\": 0.6, \"outperform\": 0.5, \"record high\": 0.6, \"buyback\": 0.4,\n    \"order win\": 0.4, \"approved\": 0.3, \"gain\": 0.3, \"upgrade\": 0.5,\n    # Negative triggers\n    \"plunges\": -0.6, \"slumps\": -0.5, \"falls\": -0.4, \"drops\": -0.4, \"losses\": -0.6,\n    \"penalty\": -0.6, \"lawsuit\": -0.5, \"fraud\": -0.8, \"cuts\": -0.4, \"warning\": -0.5,\n    \"downgrade\": -0.5, \"bearish\": -0.6, \"investigation\": -0.6, \"default\": -0.7,",
+        "detail": "src.m2_sentiment.finbert_scorer",
+        "documentation": {}
+    },
+    {
+        "label": "load_universe_tickers",
+        "kind": 2,
+        "importPath": "src.m2_sentiment.pipeline",
+        "description": "src.m2_sentiment.pipeline",
+        "peekOfCode": "def load_universe_tickers() -> List[str]:\n    \"\"\"Loads tickers configured in config/tickers.yaml or defaults to query map.\"\"\"\n    tickers_file = CONFIG_DIR / \"tickers.yaml\"\n    if tickers_file.exists():\n        try:\n            with open(tickers_file, \"r\") as f:\n                cfg = yaml.safe_load(f)\n                stocks = []\n                if \"stocks\" in cfg:\n                    for k, v in cfg[\"stocks\"].items():",
+        "detail": "src.m2_sentiment.pipeline",
+        "documentation": {}
+    },
+    {
+        "label": "run_sentiment_pipeline",
+        "kind": 2,
+        "importPath": "src.m2_sentiment.pipeline",
+        "description": "src.m2_sentiment.pipeline",
+        "peekOfCode": "def run_sentiment_pipeline(\n    tickers: Optional[List[str]] = None,\n    days_back: int = 7,\n    max_headlines_per_ticker: int = 20,\n    use_cache: bool = True,\n    use_finbert: bool = True\n) -> pd.DataFrame:\n    \"\"\"\n    Executes the full News & Sentiment pipeline.\n    \"\"\"",
+        "detail": "src.m2_sentiment.pipeline",
+        "documentation": {}
+    },
+    {
+        "label": "BaselineLSTM",
+        "kind": 6,
+        "importPath": "src.m3_modeling.baseline_lstm",
+        "description": "src.m3_modeling.baseline_lstm",
+        "peekOfCode": "class BaselineLSTM(nn.Module):\n    def __init__(self, input_dim=1, hidden_dim=128, num_layers=1, output_dim=4, dropout_rate=0.2):\n        super(BaselineLSTM, self).__init__()\n        self.hidden_dim = hidden_dim\n        self.num_layers = num_layers\n        # Single-layer LSTM (different architecture from primary for ensemble diversity)\n        self.lstm = nn.LSTM(input_dim, hidden_dim, num_layers, batch_first=True,\n                            dropout=dropout_rate if num_layers > 1 else 0.0)\n        # MC Dropout layer before linear output\n        self.dropout = nn.Dropout(dropout_rate)",
+        "detail": "src.m3_modeling.baseline_lstm",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_stock_data",
+        "kind": 2,
+        "importPath": "src.m3_modeling.data_fetcher",
+        "description": "src.m3_modeling.data_fetcher",
+        "peekOfCode": "def fetch_stock_data(ticker=\"RELIANCE.NS\", period=\"5y\", interval=\"1d\", output_dir=\"data/processed\"):\n    \"\"\"\n    Downloads OHLCV data for a single stock.\n    \"\"\"\n    print(f\"Fetching data for {ticker} (period={period}, interval={interval})...\")\n    os.makedirs(output_dir, exist_ok=True)\n    df = yf.download(ticker, period=period, interval=interval)\n    if df.empty:\n        print(f\"Failed to fetch data for {ticker}. Check the ticker symbol.\")\n        return None",
+        "detail": "src.m3_modeling.data_fetcher",
+        "documentation": {}
+    },
+    {
+        "label": "load_data_from_directory",
+        "kind": 2,
+        "importPath": "src.m3_modeling.data_loader",
+        "description": "src.m3_modeling.data_loader",
+        "peekOfCode": "def load_data_from_directory(data_dir):\n    \"\"\"\n    Loads all Parquet files in a directory and merges them on date and ticker.\n    If a single file is passed, loads just that file.\n    \"\"\"\n    if os.path.isfile(data_dir):\n        if data_dir.endswith('.parquet'):\n            return pd.read_parquet(data_dir)\n        return pd.read_csv(data_dir, index_col=0, parse_dates=True)\n    parquet_files = glob.glob(os.path.join(data_dir, \"*.parquet\"))",
+        "detail": "src.m3_modeling.data_loader",
+        "documentation": {}
+    },
+    {
+        "label": "prepare_multi_horizon_data",
+        "kind": 2,
+        "importPath": "src.m3_modeling.data_loader",
+        "description": "src.m3_modeling.data_loader",
+        "peekOfCode": "def prepare_multi_horizon_data(data_dir, sequence_length=60, split_ratio=0.8, batch_size=32):\n    \"\"\"\n    Loads data, generates targets, builds per-ticker sequences, splits\n    chronologically, then fits scalers on TRAIN ONLY to prevent data leakage.\n    Returns DataLoaders and the fitted scalers.\n    \"\"\"\n    df = load_data_from_directory(data_dir)\n    # Target Generation (forward-looking returns based on close price)\n    if 'close' not in df.columns:\n        raise ValueError(\"Data must contain a 'close' column to calculate targets.\")",
+        "detail": "src.m3_modeling.data_loader",
+        "documentation": {}
+    },
+    {
+        "label": "prepare_walk_forward_folds",
+        "kind": 2,
+        "importPath": "src.m3_modeling.data_loader",
+        "description": "src.m3_modeling.data_loader",
+        "peekOfCode": "def prepare_walk_forward_folds(data_dir, sequence_length=60, n_folds=5, batch_size=32):\n    \"\"\"\n    Walk-forward (expanding window) cross-validation for financial time series.\n    Returns a list of dicts, each containing:\n        - train_loader, val_loader\n        - feature_scaler, target_scaler (fit on that fold's train data only)\n        - x_val_raw, y_val_raw (unscaled validation data for evaluation)\n        - num_features\n        - fold_idx\n    Each fold: train on all data up to cutoff, validate on cutoff → cutoff+val_size.",
+        "detail": "src.m3_modeling.data_loader",
+        "documentation": {}
+    },
+    {
+        "label": "MultiHorizonLSTM",
+        "kind": 6,
+        "importPath": "src.m3_modeling.lstm_model",
+        "description": "src.m3_modeling.lstm_model",
+        "peekOfCode": "class MultiHorizonLSTM(nn.Module):\n    def __init__(self, input_dim=1, hidden_dim=64, num_layers=2, output_dim=4, dropout_rate=0.3):\n        super(MultiHorizonLSTM, self).__init__()\n        self.hidden_dim = hidden_dim\n        self.num_layers = num_layers\n        # LSTM with dropout between layers\n        self.lstm = nn.LSTM(input_dim, hidden_dim, num_layers, batch_first=True, dropout=dropout_rate)\n        # MC Dropout layer before linear output\n        self.dropout = nn.Dropout(dropout_rate)\n        # Output layer for 4 horizons: 1D, 5D, 21D, 126D",
+        "detail": "src.m3_modeling.lstm_model",
+        "documentation": {}
+    },
+    {
+        "label": "mc_dropout_inference",
+        "kind": 2,
+        "importPath": "src.m3_modeling.lstm_model",
+        "description": "src.m3_modeling.lstm_model",
+        "peekOfCode": "def mc_dropout_inference(model, x, num_passes=50):\n    \"\"\"\n    Runs Monte Carlo Dropout inference by enabling dropout during evaluation.\n    Returns the mean prediction and the standard deviation (uncertainty).\n    \"\"\"\n    model.train()  # Force dropout to be active\n    predictions = []\n    with torch.no_grad():\n        for _ in range(num_passes):\n            predictions.append(model(x).numpy())",
+        "detail": "src.m3_modeling.lstm_model",
+        "documentation": {}
+    },
+    {
+        "label": "generate_predictions",
+        "kind": 2,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "def generate_predictions() -> dict:\n    \"\"\"\n    Main entry point. Runs ensemble inference and writes predictions to disk.\n    Also appends to predictions_log.jsonl for drift monitoring.\n    \"\"\"\n    print(\"[M3] Loading data …\")\n    df_price = pd.read_parquet(PRICE_PARQUET)\n    if 'ticker' not in df_price.columns and 'ticker' in df_price.index.names:\n        df_price = df_price.reset_index()\n    elif 'ticker' not in df_price.columns:",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "PROJECT_ROOT",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent\nsys.path.insert(0, str(PROJECT_ROOT))\nfrom src.m3_modeling.lstm_model import MultiHorizonLSTM, mc_dropout_inference\nfrom src.m3_modeling.baseline_lstm import BaselineLSTM\n# ── Paths ──────────────────────────────────────────────────────────────\nPROCESSED_DIR = PROJECT_ROOT / \"data\" / \"processed\"\nMODEL_DIR = PROJECT_ROOT / \"artifacts\" / \"models\"\nOUTPUT_PATH = PROCESSED_DIR / \"predictions.json\"\nLOG_PATH = PROCESSED_DIR / \"predictions_log.jsonl\"\nPRICE_PARQUET = PROCESSED_DIR / \"price_features.parquet\"",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "PROCESSED_DIR",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "PROCESSED_DIR = PROJECT_ROOT / \"data\" / \"processed\"\nMODEL_DIR = PROJECT_ROOT / \"artifacts\" / \"models\"\nOUTPUT_PATH = PROCESSED_DIR / \"predictions.json\"\nLOG_PATH = PROCESSED_DIR / \"predictions_log.jsonl\"\nPRICE_PARQUET = PROCESSED_DIR / \"price_features.parquet\"\nSENTIMENT_PARQUET = PROCESSED_DIR / \"sentiment_features.parquet\"\nPRIMARY_PATH = MODEL_DIR / \"best_lstm_primary.pth\"\nSECONDARY_PATH = MODEL_DIR / \"best_lstm_secondary.pth\"\nLEGACY_PATH = MODEL_DIR / \"best_lstm.pth\"\nFEATURE_SCALER_PATH = MODEL_DIR / \"feature_scaler.pkl\"",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "MODEL_DIR",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "MODEL_DIR = PROJECT_ROOT / \"artifacts\" / \"models\"\nOUTPUT_PATH = PROCESSED_DIR / \"predictions.json\"\nLOG_PATH = PROCESSED_DIR / \"predictions_log.jsonl\"\nPRICE_PARQUET = PROCESSED_DIR / \"price_features.parquet\"\nSENTIMENT_PARQUET = PROCESSED_DIR / \"sentiment_features.parquet\"\nPRIMARY_PATH = MODEL_DIR / \"best_lstm_primary.pth\"\nSECONDARY_PATH = MODEL_DIR / \"best_lstm_secondary.pth\"\nLEGACY_PATH = MODEL_DIR / \"best_lstm.pth\"\nFEATURE_SCALER_PATH = MODEL_DIR / \"feature_scaler.pkl\"\nTARGET_SCALER_PATH = MODEL_DIR / \"target_scaler.pkl\"",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "OUTPUT_PATH",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "OUTPUT_PATH = PROCESSED_DIR / \"predictions.json\"\nLOG_PATH = PROCESSED_DIR / \"predictions_log.jsonl\"\nPRICE_PARQUET = PROCESSED_DIR / \"price_features.parquet\"\nSENTIMENT_PARQUET = PROCESSED_DIR / \"sentiment_features.parquet\"\nPRIMARY_PATH = MODEL_DIR / \"best_lstm_primary.pth\"\nSECONDARY_PATH = MODEL_DIR / \"best_lstm_secondary.pth\"\nLEGACY_PATH = MODEL_DIR / \"best_lstm.pth\"\nFEATURE_SCALER_PATH = MODEL_DIR / \"feature_scaler.pkl\"\nTARGET_SCALER_PATH = MODEL_DIR / \"target_scaler.pkl\"\nSEQUENCE_LENGTH = 60",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "LOG_PATH",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "LOG_PATH = PROCESSED_DIR / \"predictions_log.jsonl\"\nPRICE_PARQUET = PROCESSED_DIR / \"price_features.parquet\"\nSENTIMENT_PARQUET = PROCESSED_DIR / \"sentiment_features.parquet\"\nPRIMARY_PATH = MODEL_DIR / \"best_lstm_primary.pth\"\nSECONDARY_PATH = MODEL_DIR / \"best_lstm_secondary.pth\"\nLEGACY_PATH = MODEL_DIR / \"best_lstm.pth\"\nFEATURE_SCALER_PATH = MODEL_DIR / \"feature_scaler.pkl\"\nTARGET_SCALER_PATH = MODEL_DIR / \"target_scaler.pkl\"\nSEQUENCE_LENGTH = 60\nMC_PASSES = 50",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "PRICE_PARQUET",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "PRICE_PARQUET = PROCESSED_DIR / \"price_features.parquet\"\nSENTIMENT_PARQUET = PROCESSED_DIR / \"sentiment_features.parquet\"\nPRIMARY_PATH = MODEL_DIR / \"best_lstm_primary.pth\"\nSECONDARY_PATH = MODEL_DIR / \"best_lstm_secondary.pth\"\nLEGACY_PATH = MODEL_DIR / \"best_lstm.pth\"\nFEATURE_SCALER_PATH = MODEL_DIR / \"feature_scaler.pkl\"\nTARGET_SCALER_PATH = MODEL_DIR / \"target_scaler.pkl\"\nSEQUENCE_LENGTH = 60\nMC_PASSES = 50\nHORIZONS = [\"1D\", \"5D\", \"21D\", \"126D\"]",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "SENTIMENT_PARQUET",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "SENTIMENT_PARQUET = PROCESSED_DIR / \"sentiment_features.parquet\"\nPRIMARY_PATH = MODEL_DIR / \"best_lstm_primary.pth\"\nSECONDARY_PATH = MODEL_DIR / \"best_lstm_secondary.pth\"\nLEGACY_PATH = MODEL_DIR / \"best_lstm.pth\"\nFEATURE_SCALER_PATH = MODEL_DIR / \"feature_scaler.pkl\"\nTARGET_SCALER_PATH = MODEL_DIR / \"target_scaler.pkl\"\nSEQUENCE_LENGTH = 60\nMC_PASSES = 50\nHORIZONS = [\"1D\", \"5D\", \"21D\", \"126D\"]\nHORIZON_LABELS = {\"1D\": \"1D\", \"5D\": \"1W\", \"21D\": \"1M\", \"126D\": \"6M\"}",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "PRIMARY_PATH",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "PRIMARY_PATH = MODEL_DIR / \"best_lstm_primary.pth\"\nSECONDARY_PATH = MODEL_DIR / \"best_lstm_secondary.pth\"\nLEGACY_PATH = MODEL_DIR / \"best_lstm.pth\"\nFEATURE_SCALER_PATH = MODEL_DIR / \"feature_scaler.pkl\"\nTARGET_SCALER_PATH = MODEL_DIR / \"target_scaler.pkl\"\nSEQUENCE_LENGTH = 60\nMC_PASSES = 50\nHORIZONS = [\"1D\", \"5D\", \"21D\", \"126D\"]\nHORIZON_LABELS = {\"1D\": \"1D\", \"5D\": \"1W\", \"21D\": \"1M\", \"126D\": \"6M\"}\n# Disagreement threshold: if primary and secondary 1M returns differ by >5%, flag it",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "SECONDARY_PATH",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "SECONDARY_PATH = MODEL_DIR / \"best_lstm_secondary.pth\"\nLEGACY_PATH = MODEL_DIR / \"best_lstm.pth\"\nFEATURE_SCALER_PATH = MODEL_DIR / \"feature_scaler.pkl\"\nTARGET_SCALER_PATH = MODEL_DIR / \"target_scaler.pkl\"\nSEQUENCE_LENGTH = 60\nMC_PASSES = 50\nHORIZONS = [\"1D\", \"5D\", \"21D\", \"126D\"]\nHORIZON_LABELS = {\"1D\": \"1D\", \"5D\": \"1W\", \"21D\": \"1M\", \"126D\": \"6M\"}\n# Disagreement threshold: if primary and secondary 1M returns differ by >5%, flag it\nDISAGREEMENT_THRESHOLD = 0.05",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "LEGACY_PATH",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "LEGACY_PATH = MODEL_DIR / \"best_lstm.pth\"\nFEATURE_SCALER_PATH = MODEL_DIR / \"feature_scaler.pkl\"\nTARGET_SCALER_PATH = MODEL_DIR / \"target_scaler.pkl\"\nSEQUENCE_LENGTH = 60\nMC_PASSES = 50\nHORIZONS = [\"1D\", \"5D\", \"21D\", \"126D\"]\nHORIZON_LABELS = {\"1D\": \"1D\", \"5D\": \"1W\", \"21D\": \"1M\", \"126D\": \"6M\"}\n# Disagreement threshold: if primary and secondary 1M returns differ by >5%, flag it\nDISAGREEMENT_THRESHOLD = 0.05\n# 126D (6M) confidence discount factor — ~9.5 independent windows per ticker",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "FEATURE_SCALER_PATH",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "FEATURE_SCALER_PATH = MODEL_DIR / \"feature_scaler.pkl\"\nTARGET_SCALER_PATH = MODEL_DIR / \"target_scaler.pkl\"\nSEQUENCE_LENGTH = 60\nMC_PASSES = 50\nHORIZONS = [\"1D\", \"5D\", \"21D\", \"126D\"]\nHORIZON_LABELS = {\"1D\": \"1D\", \"5D\": \"1W\", \"21D\": \"1M\", \"126D\": \"6M\"}\n# Disagreement threshold: if primary and secondary 1M returns differ by >5%, flag it\nDISAGREEMENT_THRESHOLD = 0.05\n# 126D (6M) confidence discount factor — ~9.5 independent windows per ticker\n# means this horizon has very low statistical power",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "TARGET_SCALER_PATH",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "TARGET_SCALER_PATH = MODEL_DIR / \"target_scaler.pkl\"\nSEQUENCE_LENGTH = 60\nMC_PASSES = 50\nHORIZONS = [\"1D\", \"5D\", \"21D\", \"126D\"]\nHORIZON_LABELS = {\"1D\": \"1D\", \"5D\": \"1W\", \"21D\": \"1M\", \"126D\": \"6M\"}\n# Disagreement threshold: if primary and secondary 1M returns differ by >5%, flag it\nDISAGREEMENT_THRESHOLD = 0.05\n# 126D (6M) confidence discount factor — ~9.5 independent windows per ticker\n# means this horizon has very low statistical power\nHORIZON_126D_CONFIDENCE_DISCOUNT = 0.5",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "SEQUENCE_LENGTH",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "SEQUENCE_LENGTH = 60\nMC_PASSES = 50\nHORIZONS = [\"1D\", \"5D\", \"21D\", \"126D\"]\nHORIZON_LABELS = {\"1D\": \"1D\", \"5D\": \"1W\", \"21D\": \"1M\", \"126D\": \"6M\"}\n# Disagreement threshold: if primary and secondary 1M returns differ by >5%, flag it\nDISAGREEMENT_THRESHOLD = 0.05\n# 126D (6M) confidence discount factor — ~9.5 independent windows per ticker\n# means this horizon has very low statistical power\nHORIZON_126D_CONFIDENCE_DISCOUNT = 0.5\n# ── Human-readable feature name map ───────────────────────────────────",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "MC_PASSES",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "MC_PASSES = 50\nHORIZONS = [\"1D\", \"5D\", \"21D\", \"126D\"]\nHORIZON_LABELS = {\"1D\": \"1D\", \"5D\": \"1W\", \"21D\": \"1M\", \"126D\": \"6M\"}\n# Disagreement threshold: if primary and secondary 1M returns differ by >5%, flag it\nDISAGREEMENT_THRESHOLD = 0.05\n# 126D (6M) confidence discount factor — ~9.5 independent windows per ticker\n# means this horizon has very low statistical power\nHORIZON_126D_CONFIDENCE_DISCOUNT = 0.5\n# ── Human-readable feature name map ───────────────────────────────────\nFEATURE_DISPLAY_NAMES = {",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "HORIZONS",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "HORIZONS = [\"1D\", \"5D\", \"21D\", \"126D\"]\nHORIZON_LABELS = {\"1D\": \"1D\", \"5D\": \"1W\", \"21D\": \"1M\", \"126D\": \"6M\"}\n# Disagreement threshold: if primary and secondary 1M returns differ by >5%, flag it\nDISAGREEMENT_THRESHOLD = 0.05\n# 126D (6M) confidence discount factor — ~9.5 independent windows per ticker\n# means this horizon has very low statistical power\nHORIZON_126D_CONFIDENCE_DISCOUNT = 0.5\n# ── Human-readable feature name map ───────────────────────────────────\nFEATURE_DISPLAY_NAMES = {\n    \"rsi_14\": \"RSI (14-day)\",",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "HORIZON_LABELS",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "HORIZON_LABELS = {\"1D\": \"1D\", \"5D\": \"1W\", \"21D\": \"1M\", \"126D\": \"6M\"}\n# Disagreement threshold: if primary and secondary 1M returns differ by >5%, flag it\nDISAGREEMENT_THRESHOLD = 0.05\n# 126D (6M) confidence discount factor — ~9.5 independent windows per ticker\n# means this horizon has very low statistical power\nHORIZON_126D_CONFIDENCE_DISCOUNT = 0.5\n# ── Human-readable feature name map ───────────────────────────────────\nFEATURE_DISPLAY_NAMES = {\n    \"rsi_14\": \"RSI (14-day)\",\n    \"rsi_7\": \"RSI (7-day)\",",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "DISAGREEMENT_THRESHOLD",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "DISAGREEMENT_THRESHOLD = 0.05\n# 126D (6M) confidence discount factor — ~9.5 independent windows per ticker\n# means this horizon has very low statistical power\nHORIZON_126D_CONFIDENCE_DISCOUNT = 0.5\n# ── Human-readable feature name map ───────────────────────────────────\nFEATURE_DISPLAY_NAMES = {\n    \"rsi_14\": \"RSI (14-day)\",\n    \"rsi_7\": \"RSI (7-day)\",\n    \"rsi_21\": \"RSI (21-day)\",\n    \"rsi_28\": \"RSI (28-day)\",",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "HORIZON_126D_CONFIDENCE_DISCOUNT",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "HORIZON_126D_CONFIDENCE_DISCOUNT = 0.5\n# ── Human-readable feature name map ───────────────────────────────────\nFEATURE_DISPLAY_NAMES = {\n    \"rsi_14\": \"RSI (14-day)\",\n    \"rsi_7\": \"RSI (7-day)\",\n    \"rsi_21\": \"RSI (21-day)\",\n    \"rsi_28\": \"RSI (28-day)\",\n    \"macd_line_12_26\": \"MACD Line (12,26)\",\n    \"macd_hist_12_26\": \"MACD Histogram\",\n    \"macd_signal_12_26\": \"MACD Signal\",",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "FEATURE_DISPLAY_NAMES",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "FEATURE_DISPLAY_NAMES = {\n    \"rsi_14\": \"RSI (14-day)\",\n    \"rsi_7\": \"RSI (7-day)\",\n    \"rsi_21\": \"RSI (21-day)\",\n    \"rsi_28\": \"RSI (28-day)\",\n    \"macd_line_12_26\": \"MACD Line (12,26)\",\n    \"macd_hist_12_26\": \"MACD Histogram\",\n    \"macd_signal_12_26\": \"MACD Signal\",\n    \"dist_sma_50\": \"Distance from 50-day SMA\",\n    \"dist_sma_20\": \"Distance from 20-day SMA\",",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "FEATURE_DESCRIPTIONS",
+        "kind": 5,
+        "importPath": "src.m3_modeling.predict",
+        "description": "src.m3_modeling.predict",
+        "peekOfCode": "FEATURE_DESCRIPTIONS = {\n    \"rsi_14\": \"Measures if the stock is overbought (>70) or oversold (<30) over 14 days\",\n    \"macd_line_12_26\": \"Shows momentum direction — positive means bullish momentum building\",\n    \"macd_hist_12_26\": \"Histogram gap between MACD and signal — widening means stronger trend\",\n    \"dist_sma_50\": \"How far price is from its 50-day average — positive means trading above trend\",\n    \"dist_sma_20\": \"How far price is from its 20-day average — measures short-term deviation\",\n    \"dist_sma_200\": \"How far price is from its 200-day average — key long-term trend indicator\",\n    \"atr_14\": \"Average daily price range over 14 days — higher means more volatile\",\n    \"volatility_20d\": \"Annualized price volatility over 20 trading days\",\n    \"bb_width_20\": \"Width of Bollinger Bands — narrow means potential breakout ahead\",",
+        "detail": "src.m3_modeling.predict",
+        "documentation": {}
+    },
+    {
+        "label": "load_prediction_history",
+        "kind": 2,
+        "importPath": "src.m3_modeling.prediction_tracker",
+        "description": "src.m3_modeling.prediction_tracker",
+        "peekOfCode": "def load_prediction_history():\n    \"\"\"Load all prediction entries from the JSONL log.\"\"\"\n    if not LOG_PATH.exists():\n        return []\n    entries = []\n    with open(LOG_PATH) as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                try:",
+        "detail": "src.m3_modeling.prediction_tracker",
+        "documentation": {}
+    },
+    {
+        "label": "load_price_data",
+        "kind": 2,
+        "importPath": "src.m3_modeling.prediction_tracker",
+        "description": "src.m3_modeling.prediction_tracker",
+        "peekOfCode": "def load_price_data():\n    \"\"\"Load price features for realized return computation.\"\"\"\n    if not PRICE_PARQUET.exists():\n        return None\n    df = pd.read_parquet(PRICE_PARQUET)\n    if 'ticker' not in df.columns and 'ticker' in df.index.names:\n        df = df.reset_index()\n    df['date'] = pd.to_datetime(df['date'])\n    return df\ndef compute_realized_returns(df_prices, ticker, prediction_date, horizons_to_check):",
+        "detail": "src.m3_modeling.prediction_tracker",
+        "documentation": {}
+    },
+    {
+        "label": "compute_realized_returns",
+        "kind": 2,
+        "importPath": "src.m3_modeling.prediction_tracker",
+        "description": "src.m3_modeling.prediction_tracker",
+        "peekOfCode": "def compute_realized_returns(df_prices, ticker, prediction_date, horizons_to_check):\n    \"\"\"\n    Compute actual realized returns for a given prediction date and ticker.\n    Returns dict of {horizon_label: actual_return} or None if data not available.\n    \"\"\"\n    df_t = df_prices[df_prices['ticker'] == ticker].sort_values('date')\n    pred_date = pd.to_datetime(prediction_date)\n    # Find the row closest to prediction date\n    idx = df_t[df_t['date'] <= pred_date].index\n    if len(idx) == 0:",
+        "detail": "src.m3_modeling.prediction_tracker",
+        "documentation": {}
+    },
+    {
+        "label": "compute_accuracy_report",
+        "kind": 2,
+        "importPath": "src.m3_modeling.prediction_tracker",
+        "description": "src.m3_modeling.prediction_tracker",
+        "peekOfCode": "def compute_accuracy_report():\n    \"\"\"\n    Main function: computes rolling directional accuracy per ticker per horizon.\n    Returns the report dict and writes it to disk.\n    \"\"\"\n    entries = load_prediction_history()\n    if not entries:\n        print(\"[Tracker] No prediction log entries found. Run predict.py first.\")\n        return {\"status\": \"no_data\", \"drift_detected\": False}\n    df_prices = load_price_data()",
+        "detail": "src.m3_modeling.prediction_tracker",
+        "documentation": {}
+    },
+    {
+        "label": "check_drift",
+        "kind": 2,
+        "importPath": "src.m3_modeling.prediction_tracker",
+        "description": "src.m3_modeling.prediction_tracker",
+        "peekOfCode": "def check_drift():\n    \"\"\"Quick check: returns True if model drift is detected.\"\"\"\n    report = compute_accuracy_report()\n    return report.get('drift_detected', False)\nif __name__ == \"__main__\":\n    compute_accuracy_report()",
+        "detail": "src.m3_modeling.prediction_tracker",
+        "documentation": {}
+    },
+    {
+        "label": "PROJECT_ROOT",
+        "kind": 5,
+        "importPath": "src.m3_modeling.prediction_tracker",
+        "description": "src.m3_modeling.prediction_tracker",
+        "peekOfCode": "PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent\nsys.path.insert(0, str(PROJECT_ROOT))\nPROCESSED_DIR = PROJECT_ROOT / \"data\" / \"processed\"\nLOG_PATH = PROCESSED_DIR / \"predictions_log.jsonl\"\nPRICE_PARQUET = PROCESSED_DIR / \"price_features.parquet\"\nREPORT_PATH = PROCESSED_DIR / \"accuracy_report.json\"\n# If rolling accuracy drops below this, recommend retraining\nDRIFT_THRESHOLD = 0.52  # 52% — near random for directional prediction\nHORIZON_FORWARD_DAYS = {\n    \"1D\": 1,",
+        "detail": "src.m3_modeling.prediction_tracker",
+        "documentation": {}
+    },
+    {
+        "label": "PROCESSED_DIR",
+        "kind": 5,
+        "importPath": "src.m3_modeling.prediction_tracker",
+        "description": "src.m3_modeling.prediction_tracker",
+        "peekOfCode": "PROCESSED_DIR = PROJECT_ROOT / \"data\" / \"processed\"\nLOG_PATH = PROCESSED_DIR / \"predictions_log.jsonl\"\nPRICE_PARQUET = PROCESSED_DIR / \"price_features.parquet\"\nREPORT_PATH = PROCESSED_DIR / \"accuracy_report.json\"\n# If rolling accuracy drops below this, recommend retraining\nDRIFT_THRESHOLD = 0.52  # 52% — near random for directional prediction\nHORIZON_FORWARD_DAYS = {\n    \"1D\": 1,\n    \"1W\": 5,\n    \"1M\": 21,",
+        "detail": "src.m3_modeling.prediction_tracker",
+        "documentation": {}
+    },
+    {
+        "label": "LOG_PATH",
+        "kind": 5,
+        "importPath": "src.m3_modeling.prediction_tracker",
+        "description": "src.m3_modeling.prediction_tracker",
+        "peekOfCode": "LOG_PATH = PROCESSED_DIR / \"predictions_log.jsonl\"\nPRICE_PARQUET = PROCESSED_DIR / \"price_features.parquet\"\nREPORT_PATH = PROCESSED_DIR / \"accuracy_report.json\"\n# If rolling accuracy drops below this, recommend retraining\nDRIFT_THRESHOLD = 0.52  # 52% — near random for directional prediction\nHORIZON_FORWARD_DAYS = {\n    \"1D\": 1,\n    \"1W\": 5,\n    \"1M\": 21,\n    \"6M\": 126,",
+        "detail": "src.m3_modeling.prediction_tracker",
+        "documentation": {}
+    },
+    {
+        "label": "PRICE_PARQUET",
+        "kind": 5,
+        "importPath": "src.m3_modeling.prediction_tracker",
+        "description": "src.m3_modeling.prediction_tracker",
+        "peekOfCode": "PRICE_PARQUET = PROCESSED_DIR / \"price_features.parquet\"\nREPORT_PATH = PROCESSED_DIR / \"accuracy_report.json\"\n# If rolling accuracy drops below this, recommend retraining\nDRIFT_THRESHOLD = 0.52  # 52% — near random for directional prediction\nHORIZON_FORWARD_DAYS = {\n    \"1D\": 1,\n    \"1W\": 5,\n    \"1M\": 21,\n    \"6M\": 126,\n}",
+        "detail": "src.m3_modeling.prediction_tracker",
+        "documentation": {}
+    },
+    {
+        "label": "REPORT_PATH",
+        "kind": 5,
+        "importPath": "src.m3_modeling.prediction_tracker",
+        "description": "src.m3_modeling.prediction_tracker",
+        "peekOfCode": "REPORT_PATH = PROCESSED_DIR / \"accuracy_report.json\"\n# If rolling accuracy drops below this, recommend retraining\nDRIFT_THRESHOLD = 0.52  # 52% — near random for directional prediction\nHORIZON_FORWARD_DAYS = {\n    \"1D\": 1,\n    \"1W\": 5,\n    \"1M\": 21,\n    \"6M\": 126,\n}\ndef load_prediction_history():",
+        "detail": "src.m3_modeling.prediction_tracker",
+        "documentation": {}
+    },
+    {
+        "label": "DRIFT_THRESHOLD",
+        "kind": 5,
+        "importPath": "src.m3_modeling.prediction_tracker",
+        "description": "src.m3_modeling.prediction_tracker",
+        "peekOfCode": "DRIFT_THRESHOLD = 0.52  # 52% — near random for directional prediction\nHORIZON_FORWARD_DAYS = {\n    \"1D\": 1,\n    \"1W\": 5,\n    \"1M\": 21,\n    \"6M\": 126,\n}\ndef load_prediction_history():\n    \"\"\"Load all prediction entries from the JSONL log.\"\"\"\n    if not LOG_PATH.exists():",
+        "detail": "src.m3_modeling.prediction_tracker",
+        "documentation": {}
+    },
+    {
+        "label": "HORIZON_FORWARD_DAYS",
+        "kind": 5,
+        "importPath": "src.m3_modeling.prediction_tracker",
+        "description": "src.m3_modeling.prediction_tracker",
+        "peekOfCode": "HORIZON_FORWARD_DAYS = {\n    \"1D\": 1,\n    \"1W\": 5,\n    \"1M\": 21,\n    \"6M\": 126,\n}\ndef load_prediction_history():\n    \"\"\"Load all prediction entries from the JSONL log.\"\"\"\n    if not LOG_PATH.exists():\n        return []",
+        "detail": "src.m3_modeling.prediction_tracker",
+        "documentation": {}
+    },
+    {
+        "label": "train_single_model",
+        "kind": 2,
+        "importPath": "src.m3_modeling.train_pipeline",
+        "description": "src.m3_modeling.train_pipeline",
+        "peekOfCode": "def train_single_model(model, train_loader, val_loader, epochs, model_name, save_path,\n                       patience=7, lr=0.001, lr_patience=3, lr_factor=0.5):\n    \"\"\"\n    Train a model with early stopping, LR scheduling, and gradient clipping.\n    Returns best validation loss achieved.\n    \"\"\"\n    criterion = nn.MSELoss()\n    optimizer = torch.optim.Adam(model.parameters(), lr=lr)\n    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(\n        optimizer, mode='min', factor=lr_factor, patience=lr_patience",
+        "detail": "src.m3_modeling.train_pipeline",
+        "documentation": {}
+    },
+    {
+        "label": "evaluate_model",
+        "kind": 2,
+        "importPath": "src.m3_modeling.train_pipeline",
+        "description": "src.m3_modeling.train_pipeline",
+        "peekOfCode": "def evaluate_model(model, x_test, y_test, t_scaler, model_name):\n    \"\"\"Evaluate model with MC Dropout and report per-horizon metrics.\"\"\"\n    model.eval()\n    x_tensor = torch.tensor(x_test, dtype=torch.float32)\n    # MC Dropout inference\n    mean_pred, std_pred = mc_dropout_inference(model, x_tensor, num_passes=30)\n    # Inverse transform\n    mean_real = t_scaler.inverse_transform(mean_pred)\n    y_real = t_scaler.inverse_transform(y_test) if hasattr(y_test, 'shape') else y_test\n    horizons = [\"1D\", \"5D\", \"21D\", \"126D\"]",
+        "detail": "src.m3_modeling.train_pipeline",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "src.m3_modeling.train_pipeline",
+        "description": "src.m3_modeling.train_pipeline",
+        "peekOfCode": "def main():\n    parser = argparse.ArgumentParser(description=\"M3 Model Training Pipeline\")\n    parser.add_argument(\"--data_dir\", type=str, default=\"data/processed\",\n                        help=\"Directory containing Parquet files (default: data/processed)\")\n    parser.add_argument(\"--epochs\", type=int, default=50, help=\"Max training epochs per model\")\n    parser.add_argument(\"--hidden_dim\", type=int, default=64, help=\"Primary LSTM hidden dimensions\")\n    parser.add_argument(\"--layers\", type=int, default=2, help=\"Primary LSTM layers\")\n    parser.add_argument(\"--dropout\", type=float, default=0.3, help=\"Dropout rate\")\n    parser.add_argument(\"--patience\", type=int, default=7, help=\"Early stopping patience\")\n    parser.add_argument(\"--walk_forward\", action=\"store_true\",",
+        "detail": "src.m3_modeling.train_pipeline",
+        "documentation": {}
+    },
+    {
+        "label": "BacktestEngine",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.backtester",
+        "description": "src.m4_dashboard.backend.backtester",
+        "peekOfCode": "class BacktestEngine:\n    \"\"\"\n    Backtesting engine evaluating trading signals against historical returns.\n    Computes Sharpe ratio, maximum drawdown, win rate, and benchmarks against:\n    1. Benchmark (Buy & Hold NIFTY 50)\n    2. Random-strategy baseline\n    \"\"\"\n    @staticmethod\n    def calculate_metrics(returns: List[float]) -> Dict[str, Any]:\n        if not returns:",
+        "detail": "src.m4_dashboard.backend.backtester",
+        "documentation": {}
+    },
+    {
+        "label": "DataService",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.data_service",
+        "description": "src.m4_dashboard.backend.data_service",
+        "peekOfCode": "class DataService:\n    \"\"\"\n    Real data service — zero mock data.\n    All data is loaded from processed parquet/JSON files generated by M1/M2/M3 pipelines.\n    \"\"\"\n    def __init__(self):\n        self.last_refreshed = datetime.now().strftime(\"%Y-%m-%d %H:%M:%S\")\n        self.prices: Dict[str, Any] = {}\n        self.predictions: Dict[str, Any] = {}\n        self.sentiment: Dict[str, Any] = {}",
+        "detail": "src.m4_dashboard.backend.data_service",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "src.m4_dashboard.backend.data_service",
+        "description": "src.m4_dashboard.backend.data_service",
+        "peekOfCode": "logger = logging.getLogger(\"m4_backend\")\nBASE_DIR = Path(__file__).resolve().parent.parent.parent.parent\nPROCESSED_DIR = BASE_DIR / \"data\" / \"processed\"\nPREDICTIONS_PATH = PROCESSED_DIR / \"predictions.json\"\n# ── Stock metadata ─────────────────────────────────────────────────────\nSTOCK_META = {\n    \"RELIANCE.NS\": {\"name\": \"Reliance Industries\", \"sector\": \"Energy\", \"universe\": \"NIFTY 50\"},\n    \"TCS.NS\": {\"name\": \"Tata Consultancy Services\", \"sector\": \"IT\", \"universe\": \"NIFTY 50\"},\n    \"INFY.NS\": {\"name\": \"Infosys\", \"sector\": \"IT\", \"universe\": \"NIFTY 50\"},\n    \"HDFCBANK.NS\": {\"name\": \"HDFC Bank\", \"sector\": \"Banking\", \"universe\": \"NIFTY 50\"},",
+        "detail": "src.m4_dashboard.backend.data_service",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_DIR",
+        "kind": 5,
+        "importPath": "src.m4_dashboard.backend.data_service",
+        "description": "src.m4_dashboard.backend.data_service",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent\nPROCESSED_DIR = BASE_DIR / \"data\" / \"processed\"\nPREDICTIONS_PATH = PROCESSED_DIR / \"predictions.json\"\n# ── Stock metadata ─────────────────────────────────────────────────────\nSTOCK_META = {\n    \"RELIANCE.NS\": {\"name\": \"Reliance Industries\", \"sector\": \"Energy\", \"universe\": \"NIFTY 50\"},\n    \"TCS.NS\": {\"name\": \"Tata Consultancy Services\", \"sector\": \"IT\", \"universe\": \"NIFTY 50\"},\n    \"INFY.NS\": {\"name\": \"Infosys\", \"sector\": \"IT\", \"universe\": \"NIFTY 50\"},\n    \"HDFCBANK.NS\": {\"name\": \"HDFC Bank\", \"sector\": \"Banking\", \"universe\": \"NIFTY 50\"},\n    \"ICICIBANK.NS\": {\"name\": \"ICICI Bank\", \"sector\": \"Banking\", \"universe\": \"NIFTY 50\"},",
+        "detail": "src.m4_dashboard.backend.data_service",
+        "documentation": {}
+    },
+    {
+        "label": "PROCESSED_DIR",
+        "kind": 5,
+        "importPath": "src.m4_dashboard.backend.data_service",
+        "description": "src.m4_dashboard.backend.data_service",
+        "peekOfCode": "PROCESSED_DIR = BASE_DIR / \"data\" / \"processed\"\nPREDICTIONS_PATH = PROCESSED_DIR / \"predictions.json\"\n# ── Stock metadata ─────────────────────────────────────────────────────\nSTOCK_META = {\n    \"RELIANCE.NS\": {\"name\": \"Reliance Industries\", \"sector\": \"Energy\", \"universe\": \"NIFTY 50\"},\n    \"TCS.NS\": {\"name\": \"Tata Consultancy Services\", \"sector\": \"IT\", \"universe\": \"NIFTY 50\"},\n    \"INFY.NS\": {\"name\": \"Infosys\", \"sector\": \"IT\", \"universe\": \"NIFTY 50\"},\n    \"HDFCBANK.NS\": {\"name\": \"HDFC Bank\", \"sector\": \"Banking\", \"universe\": \"NIFTY 50\"},\n    \"ICICIBANK.NS\": {\"name\": \"ICICI Bank\", \"sector\": \"Banking\", \"universe\": \"NIFTY 50\"},\n    \"BHARTIARTL.NS\": {\"name\": \"Bharti Airtel\", \"sector\": \"Telecom\", \"universe\": \"NIFTY 50\"},",
+        "detail": "src.m4_dashboard.backend.data_service",
+        "documentation": {}
+    },
+    {
+        "label": "PREDICTIONS_PATH",
+        "kind": 5,
+        "importPath": "src.m4_dashboard.backend.data_service",
+        "description": "src.m4_dashboard.backend.data_service",
+        "peekOfCode": "PREDICTIONS_PATH = PROCESSED_DIR / \"predictions.json\"\n# ── Stock metadata ─────────────────────────────────────────────────────\nSTOCK_META = {\n    \"RELIANCE.NS\": {\"name\": \"Reliance Industries\", \"sector\": \"Energy\", \"universe\": \"NIFTY 50\"},\n    \"TCS.NS\": {\"name\": \"Tata Consultancy Services\", \"sector\": \"IT\", \"universe\": \"NIFTY 50\"},\n    \"INFY.NS\": {\"name\": \"Infosys\", \"sector\": \"IT\", \"universe\": \"NIFTY 50\"},\n    \"HDFCBANK.NS\": {\"name\": \"HDFC Bank\", \"sector\": \"Banking\", \"universe\": \"NIFTY 50\"},\n    \"ICICIBANK.NS\": {\"name\": \"ICICI Bank\", \"sector\": \"Banking\", \"universe\": \"NIFTY 50\"},\n    \"BHARTIARTL.NS\": {\"name\": \"Bharti Airtel\", \"sector\": \"Telecom\", \"universe\": \"NIFTY 50\"},\n    \"ITC.NS\": {\"name\": \"ITC Limited\", \"sector\": \"FMCG\", \"universe\": \"NIFTY 50\"},",
+        "detail": "src.m4_dashboard.backend.data_service",
+        "documentation": {}
+    },
+    {
+        "label": "STOCK_META",
+        "kind": 5,
+        "importPath": "src.m4_dashboard.backend.data_service",
+        "description": "src.m4_dashboard.backend.data_service",
+        "peekOfCode": "STOCK_META = {\n    \"RELIANCE.NS\": {\"name\": \"Reliance Industries\", \"sector\": \"Energy\", \"universe\": \"NIFTY 50\"},\n    \"TCS.NS\": {\"name\": \"Tata Consultancy Services\", \"sector\": \"IT\", \"universe\": \"NIFTY 50\"},\n    \"INFY.NS\": {\"name\": \"Infosys\", \"sector\": \"IT\", \"universe\": \"NIFTY 50\"},\n    \"HDFCBANK.NS\": {\"name\": \"HDFC Bank\", \"sector\": \"Banking\", \"universe\": \"NIFTY 50\"},\n    \"ICICIBANK.NS\": {\"name\": \"ICICI Bank\", \"sector\": \"Banking\", \"universe\": \"NIFTY 50\"},\n    \"BHARTIARTL.NS\": {\"name\": \"Bharti Airtel\", \"sector\": \"Telecom\", \"universe\": \"NIFTY 50\"},\n    \"ITC.NS\": {\"name\": \"ITC Limited\", \"sector\": \"FMCG\", \"universe\": \"NIFTY 50\"},\n    \"LT.NS\": {\"name\": \"Larsen & Toubro\", \"sector\": \"Infrastructure\", \"universe\": \"NIFTY 50\"},\n    \"SBIN.NS\": {\"name\": \"State Bank of India\", \"sector\": \"Banking\", \"universe\": \"NIFTY 50\"},",
+        "detail": "src.m4_dashboard.backend.data_service",
+        "documentation": {}
+    },
+    {
+        "label": "load_scheduler_state",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "def load_scheduler_state() -> dict:\n    try:\n        if SCHEDULER_STATE_FILE.exists():\n            with open(SCHEDULER_STATE_FILE, \"r\") as f:\n                return json.load(f)\n    except Exception as e:\n        logger.warning(f\"Failed to load scheduler state: {e}. Defaulting to empty state.\")\n    return {\"last_daily_run\": None, \"last_weekly_check_iso_week\": None}\ndef save_scheduler_state(state: dict):\n    try:",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "save_scheduler_state",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "def save_scheduler_state(state: dict):\n    try:\n        SCHEDULER_STATE_FILE.parent.mkdir(parents=True, exist_ok=True)\n        with open(SCHEDULER_STATE_FILE, \"w\") as f:\n            json.dump(state, f)\n    except Exception as e:\n        logger.warning(f\"Failed to save scheduler state: {e}\")\ndef _is_market_hours() -> bool:\n    \"\"\"Check if current time is within IST market hours (9:15 AM - 3:30 PM).\"\"\"\n    now = datetime.now()",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "health_check",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "def health_check():\n    \"\"\"Health check endpoint confirming API status.\"\"\"\n    return HealthResponse()\n@app.get(\"/api/system/status\", tags=[\"System\"])\ndef get_system_status():\n    \"\"\"Returns system status including last data refresh timestamp.\"\"\"\n    return data_service.get_system_status()\n@app.get(\"/api/system/accuracy\", tags=[\"System\"])\ndef get_accuracy_report():\n    \"\"\"Returns model accuracy and drift monitoring report.\"\"\"",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_system_status",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "def get_system_status():\n    \"\"\"Returns system status including last data refresh timestamp.\"\"\"\n    return data_service.get_system_status()\n@app.get(\"/api/system/accuracy\", tags=[\"System\"])\ndef get_accuracy_report():\n    \"\"\"Returns model accuracy and drift monitoring report.\"\"\"\n    return data_service.get_accuracy_report()\n@app.get(\"/api/market/universes\", tags=[\"Market Data\"])\ndef get_universes():\n    \"\"\"Returns covered indices and stocks across NIFTY 50, Nifty Bank, Nifty IT, Nifty Next 50.\"\"\"",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_accuracy_report",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "def get_accuracy_report():\n    \"\"\"Returns model accuracy and drift monitoring report.\"\"\"\n    return data_service.get_accuracy_report()\n@app.get(\"/api/market/universes\", tags=[\"Market Data\"])\ndef get_universes():\n    \"\"\"Returns covered indices and stocks across NIFTY 50, Nifty Bank, Nifty IT, Nifty Next 50.\"\"\"\n    return data_service.get_universes()\n@app.get(\"/api/market/overview\", tags=[\"Market Data\"])\ndef get_market_overview():\n    \"\"\"Returns macro context, index benchmarks, India VIX level, and current market regime.\"\"\"",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_universes",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "def get_universes():\n    \"\"\"Returns covered indices and stocks across NIFTY 50, Nifty Bank, Nifty IT, Nifty Next 50.\"\"\"\n    return data_service.get_universes()\n@app.get(\"/api/market/overview\", tags=[\"Market Data\"])\ndef get_market_overview():\n    \"\"\"Returns macro context, index benchmarks, India VIX level, and current market regime.\"\"\"\n    return data_service.get_market_overview()\n@app.get(\"/api/stocks/{ticker}/prices\", response_model=PriceHistoryResponse, tags=[\"Price & Indicators\"])\ndef get_stock_prices(ticker: str, days: int = Query(180, ge=10, le=365)):\n    \"\"\"Returns OHLCV price series + technical indicator columns (SMA, EMA, RSI, MACD, Bollinger Bands).\"\"\"",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_market_overview",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "def get_market_overview():\n    \"\"\"Returns macro context, index benchmarks, India VIX level, and current market regime.\"\"\"\n    return data_service.get_market_overview()\n@app.get(\"/api/stocks/{ticker}/prices\", response_model=PriceHistoryResponse, tags=[\"Price & Indicators\"])\ndef get_stock_prices(ticker: str, days: int = Query(180, ge=10, le=365)):\n    \"\"\"Returns OHLCV price series + technical indicator columns (SMA, EMA, RSI, MACD, Bollinger Bands).\"\"\"\n    data = data_service.get_stock_prices(ticker, days=days)\n    if not data:\n        raise HTTPException(status_code=404, detail=f\"Stock ticker '{ticker}' not found in active universe\")\n    return data",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_stock_prices",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "def get_stock_prices(ticker: str, days: int = Query(180, ge=10, le=365)):\n    \"\"\"Returns OHLCV price series + technical indicator columns (SMA, EMA, RSI, MACD, Bollinger Bands).\"\"\"\n    data = data_service.get_stock_prices(ticker, days=days)\n    if not data:\n        raise HTTPException(status_code=404, detail=f\"Stock ticker '{ticker}' not found in active universe\")\n    return data\n@app.get(\"/api/stocks/{ticker}/sentiment\", response_model=SentimentResponse, tags=[\"News & Sentiment\"])\ndef get_stock_sentiment(ticker: str):\n    \"\"\"Returns FinBERT headline scores, daily aggregate sentiment, and sentiment-price divergence alerts.\"\"\"\n    data = data_service.get_stock_sentiment(ticker)",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_stock_sentiment",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "def get_stock_sentiment(ticker: str):\n    \"\"\"Returns FinBERT headline scores, daily aggregate sentiment, and sentiment-price divergence alerts.\"\"\"\n    data = data_service.get_stock_sentiment(ticker)\n    if not data:\n        raise HTTPException(status_code=404, detail=f\"Sentiment records for ticker '{ticker}' not found\")\n    return data\n@app.get(\"/api/stocks/{ticker}/predictions\", tags=[\"Model Predictions\"])\ndef get_stock_predictions(ticker: str):\n    \"\"\"Returns multi-horizon return forecasts (1D, 1W, 1M, 6M) with MC Dropout confidence, ensemble check, and SHAP.\"\"\"\n    data = data_service.get_stock_prediction(ticker)",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_stock_predictions",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "def get_stock_predictions(ticker: str):\n    \"\"\"Returns multi-horizon return forecasts (1D, 1W, 1M, 6M) with MC Dropout confidence, ensemble check, and SHAP.\"\"\"\n    data = data_service.get_stock_prediction(ticker)\n    if not data:\n        raise HTTPException(status_code=404, detail=f\"Predictions for ticker '{ticker}' not found\")\n    return data\n@app.get(\"/api/stocks/{ticker}/signal\", response_model=SignalResponse, tags=[\"Signal Engine\"])\ndef get_stock_signal(ticker: str):\n    \"\"\"Returns rule-based Buy / Hold / Avoid decision with full transparent reasoning trail.\"\"\"\n    data = data_service.get_stock_signal(ticker)",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_stock_signal",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "def get_stock_signal(ticker: str):\n    \"\"\"Returns rule-based Buy / Hold / Avoid decision with full transparent reasoning trail.\"\"\"\n    data = data_service.get_stock_signal(ticker)\n    if not data:\n        raise HTTPException(status_code=404, detail=f\"Signal for ticker '{ticker}' not found\")\n    return data\n@app.get(\"/api/signals/ranked\", tags=[\"Signal Engine\"])\ndef get_ranked_signals(include_all: bool = Query(False)):\n    \"\"\"Returns all universe tickers ranked by signal conviction score (Watchlist/Portfolio View).\"\"\"\n    return data_service.get_ranked_signals(include_all=include_all)",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_ranked_signals",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "def get_ranked_signals(include_all: bool = Query(False)):\n    \"\"\"Returns all universe tickers ranked by signal conviction score (Watchlist/Portfolio View).\"\"\"\n    return data_service.get_ranked_signals(include_all=include_all)\n@app.get(\"/api/backtest\", response_model=BacktestResponse, tags=[\"Backtesting & Validation\"])\ndef get_backtest_results():\n    \"\"\"Returns backtest equity curve, metrics (Sharpe, max drawdown, win rate), and random-strategy baseline comparison.\"\"\"\n    return data_service.get_backtest()\n@app.get(\"/api/digest/daily\", response_model=DailyDigest, tags=[\"Daily Digest\"])\ndef get_daily_digest():\n    \"\"\"Returns auto-generated plain-English summary of signal changes and market commentary.\"\"\"",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_backtest_results",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "def get_backtest_results():\n    \"\"\"Returns backtest equity curve, metrics (Sharpe, max drawdown, win rate), and random-strategy baseline comparison.\"\"\"\n    return data_service.get_backtest()\n@app.get(\"/api/digest/daily\", response_model=DailyDigest, tags=[\"Daily Digest\"])\ndef get_daily_digest():\n    \"\"\"Returns auto-generated plain-English summary of signal changes and market commentary.\"\"\"\n    return data_service.get_daily_digest()\nif __name__ == \"__main__\":\n    import uvicorn\n    uvicorn.run(app, host=\"0.0.0.0\", port=8000)",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "get_daily_digest",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "def get_daily_digest():\n    \"\"\"Returns auto-generated plain-English summary of signal changes and market commentary.\"\"\"\n    return data_service.get_daily_digest()\nif __name__ == \"__main__\":\n    import uvicorn\n    uvicorn.run(app, host=\"0.0.0.0\", port=8000)",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "logger = logging.getLogger(\"m4_backend\")\n# ── Generate predictions before starting the API ──────────────────────\nlogger.info(\"Running M3 prediction pipeline…\")\ntry:\n    from src.m3_modeling.predict import generate_predictions\n    generate_predictions()\n    logger.info(\"M3 predictions generated successfully\")\nexcept Exception as e:\n    logger.warning(f\"M3 prediction generation failed: {e}. Will use existing predictions.json if available.\")\napp = FastAPI(",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "app = FastAPI(\n    title=\"StockReason Intelligence API\",\n    description=\"Confidence-Aware Decision Support API for NIFTY 50 — Real Data Mode\",\n    version=\"3.0.0\"\n)\n# Enable CORS for React Frontend (standard Vite dev ports)\napp.add_middleware(\n    CORSMiddleware,\n    allow_origins=[\"*\"],\n    allow_credentials=True,",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "data_service",
+        "kind": 5,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "data_service = DataService()\n# ══════════════════════════════════════════════════════════════════════\n# Smart Background Refresh Architecture (Issue #4)\n# ══════════════════════════════════════════════════════════════════════\n# Instead of re-running the entire M1+M2+M3 pipeline every 60 seconds,\n# we split into three tiers:\n#\n# 1. LIVE PRICE POLLER: Every 60s during market hours — lightweight\n#    yfinance call to update current prices in memory.\n#",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "SCHEDULER_STATE_FILE",
+        "kind": 5,
+        "importPath": "src.m4_dashboard.backend.main",
+        "description": "src.m4_dashboard.backend.main",
+        "peekOfCode": "SCHEDULER_STATE_FILE = Path(\"data/processed/scheduler_state.json\")\ndef load_scheduler_state() -> dict:\n    try:\n        if SCHEDULER_STATE_FILE.exists():\n            with open(SCHEDULER_STATE_FILE, \"r\") as f:\n                return json.load(f)\n    except Exception as e:\n        logger.warning(f\"Failed to load scheduler state: {e}. Defaulting to empty state.\")\n    return {\"last_daily_run\": None, \"last_weekly_check_iso_week\": None}\ndef save_scheduler_state(state: dict):",
+        "detail": "src.m4_dashboard.backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "HealthResponse",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class HealthResponse(BaseModel):\n    status: str = \"healthy\"\n    version: str = \"2.0.0\"\n    track: str = \"M4 - Product & Dashboard\"\n    data_mode: str = \"real\"\n    ready_for_week4_swap: bool = True\nclass TickerItem(BaseModel):\n    ticker: str\n    name: str\n    sector: str",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "TickerItem",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class TickerItem(BaseModel):\n    ticker: str\n    name: str\n    sector: str\n    universe: str\n    current_price: Optional[float] = None\n    day_change_pct: Optional[float] = None\nclass IndexItem(BaseModel):\n    symbol: str\n    name: str",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "IndexItem",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class IndexItem(BaseModel):\n    symbol: str\n    name: str\n    category: str\n    base_level: Optional[float] = None\nclass UniverseResponse(BaseModel):\n    indices: List[Dict[str, Any]]\n    stocks: List[Dict[str, Any]]\nclass PricePoint(BaseModel):\n    date: str",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "UniverseResponse",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class UniverseResponse(BaseModel):\n    indices: List[Dict[str, Any]]\n    stocks: List[Dict[str, Any]]\nclass PricePoint(BaseModel):\n    date: str\n    open: float\n    high: float\n    low: float\n    close: float\n    volume: int",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "PricePoint",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class PricePoint(BaseModel):\n    date: str\n    open: float\n    high: float\n    low: float\n    close: float\n    volume: int\n    sma_20: Optional[float] = None\n    sma_50: Optional[float] = None\n    rsi_14: Optional[float] = None",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "PriceHistoryResponse",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class PriceHistoryResponse(BaseModel):\n    ticker: str\n    name: str\n    sector: str\n    universe: str\n    current_price: float\n    day_change_pct: float\n    history: List[PricePoint]\nclass HeadlineItem(BaseModel):\n    id: str",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "HeadlineItem",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class HeadlineItem(BaseModel):\n    id: str\n    headline: str\n    source: str\n    published_at: str\n    sentiment_score: float\n    sentiment_label: str\n    confidence: float\nclass DivergenceAlert(BaseModel):\n    has_divergence: bool",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "DivergenceAlert",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class DivergenceAlert(BaseModel):\n    has_divergence: bool\n    message: str\nclass SentimentResponse(BaseModel):\n    ticker: str\n    avg_sentiment_score: float\n    sentiment_label: str\n    article_count: int\n    bullish_ratio: float\n    bearish_ratio: float",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "SentimentResponse",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class SentimentResponse(BaseModel):\n    ticker: str\n    avg_sentiment_score: float\n    sentiment_label: str\n    article_count: int\n    bullish_ratio: float\n    bearish_ratio: float\n    divergence_alert: DivergenceAlert\n    headlines: List[HeadlineItem]\nclass HorizonForecast(BaseModel):",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "HorizonForecast",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class HorizonForecast(BaseModel):\n    expected_return: float\n    predicted_price: float\n    confidence: float\n    uncertainty_std: float\n    lower_bound: float\n    upper_bound: float\nclass EnsembleComparison(BaseModel):\n    lstm_return_1M: float\n    secondary_return_1M: Optional[float] = None",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "EnsembleComparison",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class EnsembleComparison(BaseModel):\n    lstm_return_1M: float\n    secondary_return_1M: Optional[float] = None\n    disagreement_detected: bool = False\n    disagreement_delta: float = 0.0\nclass ShapFeature(BaseModel):\n    feature: str\n    feature_display: Optional[str] = None\n    feature_description: Optional[str] = None\n    impact: float",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "ShapFeature",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class ShapFeature(BaseModel):\n    feature: str\n    feature_display: Optional[str] = None\n    feature_description: Optional[str] = None\n    impact: float\n    importance_score: float\n    direction: str\n    current_value: Optional[float] = None\nclass PredictionResponse(BaseModel):\n    ticker: str",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "PredictionResponse",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class PredictionResponse(BaseModel):\n    ticker: str\n    prediction_date: str\n    current_price: float\n    horizons: Dict[str, HorizonForecast]\n    ensemble: EnsembleComparison\n    shap_explainability: List[ShapFeature]\nclass EntryExitBracket(BaseModel):\n    entry_price: float\n    stop_loss: float",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "EntryExitBracket",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class EntryExitBracket(BaseModel):\n    entry_price: float\n    stop_loss: float\n    take_profit: float\n    risk_reward_ratio: float\n    atr_14: float\n    bracket_type: str\nclass SignalResponse(BaseModel):\n    ticker: str\n    name: str",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "SignalResponse",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class SignalResponse(BaseModel):\n    ticker: str\n    name: str\n    sector: str\n    universe: str\n    current_price: float\n    signal: str\n    signal_score: float\n    confidence: float\n    expected_return_1M: float",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "BacktestMetrics",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class BacktestMetrics(BaseModel):\n    cumulative_return: float\n    annualized_return: float\n    sharpe_ratio: float\n    max_drawdown: float\n    win_rate: float\n    total_trades: int\nclass BacktestResponse(BaseModel):\n    strategy_metrics: BacktestMetrics\n    benchmark_metrics: Dict[str, Any]",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "BacktestResponse",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class BacktestResponse(BaseModel):\n    strategy_metrics: BacktestMetrics\n    benchmark_metrics: Dict[str, Any]\n    random_baseline_metrics: Dict[str, Any]\n    confidence_calibration: List[Dict[str, Any]]\n    equity_curve: List[Dict[str, Any]]\nclass DailyDigest(BaseModel):\n    digest_date: str\n    market_summary: str\n    signal_upgrades: List[Dict[str, Any]]",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "DailyDigest",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.models",
+        "description": "src.m4_dashboard.backend.models",
+        "peekOfCode": "class DailyDigest(BaseModel):\n    digest_date: str\n    market_summary: str\n    signal_upgrades: List[Dict[str, Any]]\n    signal_downgrades: List[Dict[str, Any]]\n    top_opportunities: List[str]\n    high_risk_alerts: List[str]",
+        "detail": "src.m4_dashboard.backend.models",
+        "documentation": {}
+    },
+    {
+        "label": "RuleBasedSignalEngine",
+        "kind": 6,
+        "importPath": "src.m4_dashboard.backend.signal_engine",
+        "description": "src.m4_dashboard.backend.signal_engine",
+        "peekOfCode": "class RuleBasedSignalEngine:\n    \"\"\"\n    Rule-Based Decision Engine with Real Ensemble Disagreement & Entry/Exit Brackets.\n    Combines multi-horizon return, Monte Carlo Dropout confidence, FinBERT sentiment,\n    technicals (moving averages, RSI), and genuine two-model ensemble agreement\n    into transparent Buy / Hold / Avoid signals with actionable entry/exit timing.\n    \"\"\"\n    def __init__(\n        self,\n        buy_return_threshold: float = 0.025,       # +2.5% 1-Month expected return",
+        "detail": "src.m4_dashboard.backend.signal_engine",
+        "documentation": {}
+    },
+    {
+        "label": "client",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_api",
+        "description": "src.m4_dashboard.tests.test_api",
+        "peekOfCode": "def client():\n    return TestClient(app)\ndef test_health_endpoint(client):\n    res = client.get(\"/api/health\")\n    assert res.status_code == 200\n    data = res.json()\n    assert data[\"status\"] == \"healthy\"\n    assert data[\"track\"] == \"M4 - Product & Dashboard\"\n    assert data[\"ready_for_week4_swap\"] is True\ndef test_market_universes(client):",
+        "detail": "src.m4_dashboard.tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_health_endpoint",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_api",
+        "description": "src.m4_dashboard.tests.test_api",
+        "peekOfCode": "def test_health_endpoint(client):\n    res = client.get(\"/api/health\")\n    assert res.status_code == 200\n    data = res.json()\n    assert data[\"status\"] == \"healthy\"\n    assert data[\"track\"] == \"M4 - Product & Dashboard\"\n    assert data[\"ready_for_week4_swap\"] is True\ndef test_market_universes(client):\n    res = client.get(\"/api/market/universes\")\n    assert res.status_code == 200",
+        "detail": "src.m4_dashboard.tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_market_universes",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_api",
+        "description": "src.m4_dashboard.tests.test_api",
+        "peekOfCode": "def test_market_universes(client):\n    res = client.get(\"/api/market/universes\")\n    assert res.status_code == 200\n    data = res.json()\n    assert \"indices\" in data\n    assert \"stocks\" in data\n    assert len(data[\"stocks\"]) > 0\ndef test_stock_prices(client):\n    res = client.get(\"/api/stocks/RELIANCE.NS/prices?days=60\")\n    assert res.status_code == 200",
+        "detail": "src.m4_dashboard.tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_stock_prices",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_api",
+        "description": "src.m4_dashboard.tests.test_api",
+        "peekOfCode": "def test_stock_prices(client):\n    res = client.get(\"/api/stocks/RELIANCE.NS/prices?days=60\")\n    assert res.status_code == 200\n    data = res.json()\n    assert data[\"ticker\"] == \"RELIANCE.NS\"\n    assert len(data[\"history\"]) <= 60\n    assert \"sma_20\" in data[\"history\"][-1]\n    assert \"rsi_14\" in data[\"history\"][-1]\ndef test_stock_sentiment(client):\n    res = client.get(\"/api/stocks/INFY.NS/sentiment\")",
+        "detail": "src.m4_dashboard.tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_stock_sentiment",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_api",
+        "description": "src.m4_dashboard.tests.test_api",
+        "peekOfCode": "def test_stock_sentiment(client):\n    res = client.get(\"/api/stocks/INFY.NS/sentiment\")\n    assert res.status_code == 200\n    data = res.json()\n    assert data[\"ticker\"] == \"INFY.NS\"\n    assert \"avg_sentiment_score\" in data\n    assert \"headlines\" in data\n    assert len(data[\"headlines\"]) > 0\ndef test_stock_prediction(client):\n    res = client.get(\"/api/stocks/TCS.NS/predictions\")",
+        "detail": "src.m4_dashboard.tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_stock_prediction",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_api",
+        "description": "src.m4_dashboard.tests.test_api",
+        "peekOfCode": "def test_stock_prediction(client):\n    res = client.get(\"/api/stocks/TCS.NS/predictions\")\n    assert res.status_code == 200\n    data = res.json()\n    assert \"horizons\" in data\n    assert \"1D\" in data[\"horizons\"]\n    assert \"1M\" in data[\"horizons\"]\n    assert \"ensemble\" in data\n    assert \"shap_explainability\" in data\ndef test_stock_signal(client):",
+        "detail": "src.m4_dashboard.tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_stock_signal",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_api",
+        "description": "src.m4_dashboard.tests.test_api",
+        "peekOfCode": "def test_stock_signal(client):\n    res = client.get(\"/api/stocks/RELIANCE.NS/signal\")\n    assert res.status_code == 200\n    data = res.json()\n    assert data[\"signal\"] in [\"BUY\", \"HOLD\", \"AVOID\"]\n    assert \"reasoning\" in data\n    assert len(data[\"reasoning\"]) > 0\ndef test_ranked_signals(client):\n    res = client.get(\"/api/signals/ranked\")\n    assert res.status_code == 200",
+        "detail": "src.m4_dashboard.tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_ranked_signals",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_api",
+        "description": "src.m4_dashboard.tests.test_api",
+        "peekOfCode": "def test_ranked_signals(client):\n    res = client.get(\"/api/signals/ranked\")\n    assert res.status_code == 200\n    data = res.json()\n    assert isinstance(data, list)\n    assert len(data) > 0\ndef test_backtest_endpoint(client):\n    res = client.get(\"/api/backtest\")\n    assert res.status_code == 200\n    data = res.json()",
+        "detail": "src.m4_dashboard.tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_backtest_endpoint",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_api",
+        "description": "src.m4_dashboard.tests.test_api",
+        "peekOfCode": "def test_backtest_endpoint(client):\n    res = client.get(\"/api/backtest\")\n    assert res.status_code == 200\n    data = res.json()\n    assert \"strategy_metrics\" in data\n    assert \"random_baseline_metrics\" in data\n    assert \"equity_curve\" in data\ndef test_daily_digest(client):\n    res = client.get(\"/api/digest/daily\")\n    assert res.status_code == 200",
+        "detail": "src.m4_dashboard.tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_daily_digest",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_api",
+        "description": "src.m4_dashboard.tests.test_api",
+        "peekOfCode": "def test_daily_digest(client):\n    res = client.get(\"/api/digest/daily\")\n    assert res.status_code == 200\n    data = res.json()\n    assert \"market_summary\" in data\n    assert \"signal_upgrades\" in data",
+        "detail": "src.m4_dashboard.tests.test_api",
+        "documentation": {}
+    },
+    {
+        "label": "test_backtester_metrics",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_backtester",
+        "description": "src.m4_dashboard.tests.test_backtester",
+        "peekOfCode": "def test_backtester_metrics():\n    # Synthetic positive returns\n    returns = [0.01, 0.015, -0.005, 0.02, -0.01, 0.012]\n    metrics = BacktestEngine.calculate_metrics(returns)\n    assert metrics[\"cumulative_return\"] > 0\n    assert metrics[\"total_trades\"] == 6\n    assert metrics[\"win_rate\"] == round((4 / 6) * 100, 2)\n    assert metrics[\"sharpe_ratio\"] > 0\ndef test_backtester_simulation_vs_random():\n    price_series = [",
+        "detail": "src.m4_dashboard.tests.test_backtester",
+        "documentation": {}
+    },
+    {
+        "label": "test_backtester_simulation_vs_random",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_backtester",
+        "description": "src.m4_dashboard.tests.test_backtester",
+        "peekOfCode": "def test_backtester_simulation_vs_random():\n    price_series = [\n        {\"close\": 100.0},\n        {\"close\": 102.0},\n        {\"close\": 101.0},\n        {\"close\": 104.0},\n        {\"close\": 106.0}\n    ]\n    signals = [\"BUY\", \"HOLD\", \"BUY\", \"AVOID\"]\n    res = BacktestEngine.simulate_strategy_vs_random(price_series, signals)",
+        "detail": "src.m4_dashboard.tests.test_backtester",
+        "documentation": {}
+    },
+    {
+        "label": "engine",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_signal_engine",
+        "description": "src.m4_dashboard.tests.test_signal_engine",
+        "peekOfCode": "def engine():\n    return RuleBasedSignalEngine()\ndef test_signal_engine_buy_case(engine):\n    # High return, high confidence, positive sentiment, models agree -> BUY\n    res = engine.evaluate(\n        ticker=\"RELIANCE.NS\",\n        current_price=3000.0,\n        expected_return_1M=0.045,\n        confidence=0.85,\n        sentiment_score=0.45,",
+        "detail": "src.m4_dashboard.tests.test_signal_engine",
+        "documentation": {}
+    },
+    {
+        "label": "test_signal_engine_buy_case",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_signal_engine",
+        "description": "src.m4_dashboard.tests.test_signal_engine",
+        "peekOfCode": "def test_signal_engine_buy_case(engine):\n    # High return, high confidence, positive sentiment, models agree -> BUY\n    res = engine.evaluate(\n        ticker=\"RELIANCE.NS\",\n        current_price=3000.0,\n        expected_return_1M=0.045,\n        confidence=0.85,\n        sentiment_score=0.45,\n        regime=\"low_vol_trending\",\n        lstm_return_1M=0.045,",
+        "detail": "src.m4_dashboard.tests.test_signal_engine",
+        "documentation": {}
+    },
+    {
+        "label": "test_signal_engine_avoid_on_negative_return",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_signal_engine",
+        "description": "src.m4_dashboard.tests.test_signal_engine",
+        "peekOfCode": "def test_signal_engine_avoid_on_negative_return(engine):\n    # Negative return -> AVOID\n    res = engine.evaluate(\n        ticker=\"WEAK.NS\",\n        current_price=500.0,\n        expected_return_1M=-0.03,\n        confidence=0.75,\n        sentiment_score=-0.1,\n        regime=\"high_vol_choppy\"\n    )",
+        "detail": "src.m4_dashboard.tests.test_signal_engine",
+        "documentation": {}
+    },
+    {
+        "label": "test_signal_engine_ensemble_disagreement_downgrade",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_signal_engine",
+        "description": "src.m4_dashboard.tests.test_signal_engine",
+        "peekOfCode": "def test_signal_engine_ensemble_disagreement_downgrade(engine):\n    # Positive return from primary LSTM, but large disagreement from secondary -> conviction lowered\n    res = engine.evaluate(\n        ticker=\"DISPUTE.NS\",\n        current_price=1000.0,\n        expected_return_1M=0.03,\n        confidence=0.70,\n        sentiment_score=0.1,\n        regime=\"low_vol_trending\",\n        lstm_return_1M=0.03,",
+        "detail": "src.m4_dashboard.tests.test_signal_engine",
+        "documentation": {}
+    },
+    {
+        "label": "test_signal_engine_low_confidence_downgrade",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_signal_engine",
+        "description": "src.m4_dashboard.tests.test_signal_engine",
+        "peekOfCode": "def test_signal_engine_low_confidence_downgrade(engine):\n    # Positive return, but confidence below minimum threshold -> HOLD\n    res = engine.evaluate(\n        ticker=\"LOWCONF.NS\",\n        current_price=1000.0,\n        expected_return_1M=0.03,\n        confidence=0.50,  # below 0.65 threshold\n        sentiment_score=0.1,\n        regime=\"low_vol_trending\",\n    )",
+        "detail": "src.m4_dashboard.tests.test_signal_engine",
+        "documentation": {}
+    },
+    {
+        "label": "test_signal_engine_neutral_case",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_signal_engine",
+        "description": "src.m4_dashboard.tests.test_signal_engine",
+        "peekOfCode": "def test_signal_engine_neutral_case(engine):\n    # Modest return -> HOLD\n    res = engine.evaluate(\n        ticker=\"TCS.NS\",\n        current_price=4100.0,\n        expected_return_1M=0.012,\n        confidence=0.68,\n        sentiment_score=0.05,\n        regime=\"mean_reverting\"\n    )",
+        "detail": "src.m4_dashboard.tests.test_signal_engine",
+        "documentation": {}
+    },
+    {
+        "label": "test_signal_engine_entry_exit_brackets",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_signal_engine",
+        "description": "src.m4_dashboard.tests.test_signal_engine",
+        "peekOfCode": "def test_signal_engine_entry_exit_brackets(engine):\n    # Verify entry/exit bracket computation\n    res = engine.evaluate(\n        ticker=\"TEST.NS\",\n        current_price=1000.0,\n        expected_return_1M=0.05,\n        confidence=0.80,\n        sentiment_score=0.20,\n        regime=\"low_vol_trending\",\n        lstm_return_1M=0.05,",
+        "detail": "src.m4_dashboard.tests.test_signal_engine",
+        "documentation": {}
+    },
+    {
+        "label": "test_signal_engine_no_atr_no_brackets",
+        "kind": 2,
+        "importPath": "src.m4_dashboard.tests.test_signal_engine",
+        "description": "src.m4_dashboard.tests.test_signal_engine",
+        "peekOfCode": "def test_signal_engine_no_atr_no_brackets(engine):\n    # Without ATR data, entry_exit should be None\n    res = engine.evaluate(\n        ticker=\"NOATR.NS\",\n        current_price=500.0,\n        expected_return_1M=0.04,\n        confidence=0.75,\n        sentiment_score=0.15,\n        regime=\"low_vol_trending\",\n    )",
+        "detail": "src.m4_dashboard.tests.test_signal_engine",
+        "documentation": {}
+    },
+    {
+        "label": "test_clean_price_data_deduplication",
+        "kind": 2,
+        "importPath": "tests.test_cleaner",
+        "description": "tests.test_cleaner",
+        "peekOfCode": "def test_clean_price_data_deduplication():\n    data = {\n        \"date\": [\"2024-01-01\", \"2024-01-01\", \"2024-01-02\"],\n        \"ticker\": [\"RELIANCE.NS\", \"RELIANCE.NS\", \"RELIANCE.NS\"],\n        \"open\": [2500.0, 2510.0, 2520.0],\n        \"high\": [2550.0, 2560.0, 2570.0],\n        \"low\": [2490.0, 2500.0, 2510.0],\n        \"close\": [2540.0, 2550.0, 2560.0],\n        \"volume\": [1000, 1100, 1200]\n    }",
+        "detail": "tests.test_cleaner",
+        "documentation": {}
+    },
+    {
+        "label": "test_clean_price_data_missing_values",
+        "kind": 2,
+        "importPath": "tests.test_cleaner",
+        "description": "tests.test_cleaner",
+        "peekOfCode": "def test_clean_price_data_missing_values():\n    data = {\n        \"date\": [\"2024-01-01\", \"2024-01-02\", \"2024-01-03\"],\n        \"ticker\": [\"TCS.NS\", \"TCS.NS\", \"TCS.NS\"],\n        \"open\": [3500.0, np.nan, 3520.0],\n        \"high\": [3550.0, 3560.0, 3570.0],\n        \"low\": [3490.0, 3500.0, 3510.0],\n        \"close\": [3540.0, 3550.0, 3560.0],\n        \"volume\": [1000, np.nan, 1200]\n    }",
+        "detail": "tests.test_cleaner",
+        "documentation": {}
+    },
+    {
+        "label": "test_technical_features_generation",
+        "kind": 2,
+        "importPath": "tests.test_features",
+        "description": "tests.test_features",
+        "peekOfCode": "def test_technical_features_generation():\n    dates = pd.date_range(\"2024-01-01\", periods=100)\n    df = pd.DataFrame({\n        \"date\": dates,\n        \"ticker\": \"INFY.NS\",\n        \"open\": np.random.uniform(1400, 1500, 100),\n        \"high\": np.random.uniform(1500, 1550, 100),\n        \"low\": np.random.uniform(1350, 1400, 100),\n        \"close\": np.random.uniform(1410, 1510, 100),\n        \"volume\": np.random.randint(100000, 500000, 100)",
+        "detail": "tests.test_features",
+        "documentation": {}
+    },
+    {
+        "label": "test_regime_detection",
+        "kind": 2,
+        "importPath": "tests.test_features",
+        "description": "tests.test_features",
+        "peekOfCode": "def test_regime_detection():\n    df = pd.DataFrame({\n        \"date\": pd.date_range(\"2024-01-01\", periods=5),\n        \"vix_close\": [12.0, 14.0, 20.0, 15.0, 13.0],\n        \"adx_14\": [18.0, 30.0, 15.0, 28.0, 14.0],\n        \"natr_14\": [1.2, 1.5, 3.5, 1.8, 1.1]\n    })\n    reg_df = detect_market_regime(df)\n    assert \"market_regime\" in reg_df.columns\n    assert reg_df.iloc[2][\"market_regime\"] == \"VOLATILE\", \"High VIX should trigger VOLATILE regime\"",
+        "detail": "tests.test_features",
+        "documentation": {}
+    },
+    {
+        "label": "test_no_future_data_leakage",
+        "kind": 2,
+        "importPath": "tests.test_leakage",
+        "description": "tests.test_leakage",
+        "peekOfCode": "def test_no_future_data_leakage():\n    dates = pd.date_range(\"2024-01-01\", periods=10)\n    df = pd.DataFrame({\n        \"date\": dates,\n        \"ticker\": \"TCS.NS\",\n        \"return_1d\": [0.01 * i for i in range(10)],\n        \"volume\": [1000 * i for i in range(10)]\n    })\n    lagged_df = generate_lag_features(df, lag_periods=[1, 2, 5])\n    # For row index 0 (first date), lag_1 must be NaN because t-1 does not exist",
+        "detail": "tests.test_leakage",
+        "documentation": {}
+    },
+    {
+        "label": "test_baseline_scorer_positive_and_negative",
+        "kind": 2,
+        "importPath": "tests.test_m2_sentiment",
+        "description": "tests.test_m2_sentiment",
+        "peekOfCode": "def test_baseline_scorer_positive_and_negative():\n    pos_res = score_single_text_baseline(\"Company reports stellar earnings and massive record profits\")\n    assert pos_res[\"score_textblob\"] > 0\n    assert pos_res[\"sentiment_label\"] == \"positive\"\n    neg_res = score_single_text_baseline(\"Company suffers severe losses and major product recalls\")\n    assert neg_res[\"score_textblob\"] < 0\n    assert neg_res[\"sentiment_label\"] == \"negative\"\ndef test_baseline_headlines_batch():\n    scored = score_headlines_baseline(SAMPLE_HEADLINES)\n    assert len(scored) == len(SAMPLE_HEADLINES)",
+        "detail": "tests.test_m2_sentiment",
+        "documentation": {}
+    },
+    {
+        "label": "test_baseline_headlines_batch",
+        "kind": 2,
+        "importPath": "tests.test_m2_sentiment",
+        "description": "tests.test_m2_sentiment",
+        "peekOfCode": "def test_baseline_headlines_batch():\n    scored = score_headlines_baseline(SAMPLE_HEADLINES)\n    assert len(scored) == len(SAMPLE_HEADLINES)\n    for item in scored:\n        assert \"score_textblob\" in item\n        assert \"sentiment_label\" in item\n        assert \"confidence\" in item\n        assert -1.0 <= item[\"score_textblob\"] <= 1.0\ndef test_finbert_financial_semantics():\n    texts = [",
+        "detail": "tests.test_m2_sentiment",
+        "documentation": {}
+    },
+    {
+        "label": "test_finbert_financial_semantics",
+        "kind": 2,
+        "importPath": "tests.test_m2_sentiment",
+        "description": "tests.test_m2_sentiment",
+        "peekOfCode": "def test_finbert_financial_semantics():\n    texts = [\n        \"Company quarterly profit jumps 25% beating all analyst estimates\",\n        \"Company faces huge regulatory penalty and lawsuit amid accounting fraud\",\n        \"The board meeting will be held on Thursday afternoon\"\n    ]\n    results = score_texts_finbert(texts)\n    assert len(results) == 3\n    # First should be positive\n    assert results[0][\"sentiment_label\"] == \"positive\"",
+        "detail": "tests.test_m2_sentiment",
+        "documentation": {}
+    },
+    {
+        "label": "test_aggregator_daily_metrics",
+        "kind": 2,
+        "importPath": "tests.test_m2_sentiment",
+        "description": "tests.test_m2_sentiment",
+        "peekOfCode": "def test_aggregator_daily_metrics():\n    scored = score_headlines_baseline(SAMPLE_HEADLINES)\n    df_daily = aggregate_daily_sentiment(scored)\n    assert not df_daily.empty\n    assert \"sentiment_mean\" in df_daily.columns\n    assert \"news_count\" in df_daily.columns\n    assert \"sentiment_pos_ratio\" in df_daily.columns\n    assert \"sentiment_neg_ratio\" in df_daily.columns\n    assert \"sentiment_momentum_3d\" in df_daily.columns\n    # Check Reliance aggregation (2 articles)",
+        "detail": "tests.test_m2_sentiment",
+        "documentation": {}
+    },
+    {
+        "label": "test_sentiment_price_divergence",
+        "kind": 2,
+        "importPath": "tests.test_m2_sentiment",
+        "description": "tests.test_m2_sentiment",
+        "peekOfCode": "def test_sentiment_price_divergence():\n    # Setup mock sentiment and price\n    dates = pd.date_range(\"2024-01-01\", periods=6, freq=\"D\")\n    df_sent = pd.DataFrame({\n        \"ticker\": [\"RELIANCE.NS\"] * 6,\n        \"date\": dates,\n        \"sentiment_mean\": [0.60, 0.70, 0.65, 0.80, 0.75, 0.85]  # Strongly positive news\n    })\n    # Price plummets from 100 to 90 (-10%)\n    df_price = pd.DataFrame({",
+        "detail": "tests.test_m2_sentiment",
+        "documentation": {}
+    },
+    {
+        "label": "test_finnhub_key_fallback",
+        "kind": 2,
+        "importPath": "tests.test_m2_sentiment",
+        "description": "tests.test_m2_sentiment",
+        "peekOfCode": "def test_finnhub_key_fallback():\n    # Primary key returns 429 Rate Limit, secondary key returns 200 with news\n    def mock_requests_get(url, **kwargs):\n        mock_resp = MagicMock()\n        if \"token=primary_invalid\" in url:\n            mock_resp.status_code = 429\n        elif \"token=secondary_valid\" in url:\n            mock_resp.status_code = 200\n            mock_resp.json.return_value = [\n                {",
+        "detail": "tests.test_m2_sentiment",
+        "documentation": {}
+    },
+    {
+        "label": "SAMPLE_HEADLINES",
+        "kind": 5,
+        "importPath": "tests.test_m2_sentiment",
+        "description": "tests.test_m2_sentiment",
+        "peekOfCode": "SAMPLE_HEADLINES = [\n    {\n        \"ticker\": \"RELIANCE.NS\",\n        \"title\": \"Reliance Q3 net profit surges 12% on strong retail and telecom earnings\",\n        \"source\": \"Economic Times\",\n        \"url\": \"https://example.com/1\",\n        \"timestamp\": \"2024-01-15T09:30:00+00:00\",\n        \"date\": \"2024-01-15\"\n    },\n    {",
+        "detail": "tests.test_m2_sentiment",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "refresh_data",
+        "description": "refresh_data",
+        "peekOfCode": "def main():\n    parser = argparse.ArgumentParser(description=\"StockReason Data & Sentiment Pipeline Refresh\")\n    parser.add_argument(\"--m1\", action=\"store_true\", help=\"Run M1 Price Data pipeline only\")\n    parser.add_argument(\"--m2\", action=\"store_true\", help=\"Run M2 News & Sentiment pipeline only\")\n    parser.add_argument(\"--m3\", action=\"store_true\", help=\"Run M3 Prediction Generation only\")\n    parser.add_argument(\"--fast\", action=\"store_true\", help=\"Use fast baseline scoring for M2\")\n    args = parser.parse_args()\n    run_all = not (args.m1 or args.m2 or args.m3)\n    if args.m1 or run_all:\n        print(\"\\n=======================================================\")",
+        "detail": "refresh_data",
+        "documentation": {}
+    }
+]

@@ -64,13 +64,39 @@ data_service = DataService()
 #    retraining if accuracy has degraded.
 # ══════════════════════════════════════════════════════════════════════
 
+import json
+from pathlib import Path
+from src.m1_price_data.nse_holidays import is_trading_day
+
+SCHEDULER_STATE_FILE = Path("data/processed/scheduler_state.json")
+
+def load_scheduler_state() -> dict:
+    try:
+        if SCHEDULER_STATE_FILE.exists():
+            with open(SCHEDULER_STATE_FILE, "r") as f:
+                return json.load(f)
+    except Exception as e:
+        logger.warning(f"Failed to load scheduler state: {e}. Defaulting to empty state.")
+    return {"last_daily_run": None, "last_weekly_check_iso_week": None}
+
+def save_scheduler_state(state: dict):
+    try:
+        SCHEDULER_STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
+        with open(SCHEDULER_STATE_FILE, "w") as f:
+            json.dump(state, f)
+    except Exception as e:
+        logger.warning(f"Failed to save scheduler state: {e}")
+
 def _is_market_hours() -> bool:
     """Check if current time is within IST market hours (9:15 AM - 3:30 PM)."""
     now = datetime.now()
     market_open = dtime(9, 15)
     market_close = dtime(15, 30)
-    # Monday=0, Sunday=6
-    return now.weekday() < 5 and market_open <= now.time() <= market_close
+    
+    if not is_trading_day(now.date()):
+        return False
+        
+    return market_open <= now.time() <= market_close
 
 
 async def live_price_poller():
@@ -81,7 +107,10 @@ async def live_price_poller():
     """
     while True:
         try:
-            if _is_market_hours():
+            now_date = datetime.now().date()
+            if not is_trading_day(now_date):
+                logger.debug("[Poller] skipped — trading holiday")
+            elif _is_market_hours():
                 logger.info("[Poller] Fetching live prices (market hours)...")
                 tickers = list(data_service.prices.keys())
                 if tickers:
@@ -111,19 +140,29 @@ async def daily_pipeline_runner():
     Tier 2: Full M1+M2+M3 pipeline refresh once per day after market close.
     Runs at ~4:00 PM IST (16:00). Checks every 5 minutes if it's time.
     """
-    last_run_date = None
+    state = load_scheduler_state()
+    last_run_date = state.get("last_daily_run")
 
     while True:
         now = datetime.now()
         today = now.date()
         current_time = now.time()
+        today_str = today.strftime("%Y-%m-%d")
 
-        # Run once per day, after 4:00 PM IST, on weekdays only
-        should_run = (
-            now.weekday() < 5 and           # Weekday
-            current_time >= dtime(16, 0) and  # After 4 PM
-            last_run_date != today            # Haven't run today
-        )
+        if not is_trading_day(today):
+            # Check just so we can log it explicitly once per day after 16:00
+            if current_time >= dtime(16, 0) and last_run_date != today_str:
+                logger.info("[Daily] skipped — trading holiday")
+                last_run_date = today_str
+                state["last_daily_run"] = today_str
+                save_scheduler_state(state)
+            should_run = False
+        else:
+            # Run once per day, after 4:00 PM IST, on trading days only
+            should_run = (
+                current_time >= dtime(16, 0) and  # After 4 PM
+                last_run_date != today_str        # Haven't run today
+            )
 
         if should_run:
             logger.info("[Daily] Starting full M1+M2+M3 pipeline refresh...")
@@ -139,7 +178,9 @@ async def daily_pipeline_runner():
                 if process.returncode == 0:
                     logger.info("[Daily] Pipeline refresh complete. Reloading DataService.")
                     data_service._load_all()
-                    last_run_date = today
+                    last_run_date = today_str
+                    state["last_daily_run"] = today_str
+                    save_scheduler_state(state)
                 else:
                     logger.error(f"[Daily] Pipeline failed (code {process.returncode}):\n{stderr.decode()}")
             except Exception as e:
@@ -163,16 +204,18 @@ async def weekly_retrain_check():
     Tier 3: Weekly check (Sunday midnight) to see if model needs retraining.
     Only triggers retraining if drift was detected during the week.
     """
-    last_check_week = None
+    state = load_scheduler_state()
+    last_check_week = state.get("last_weekly_check_iso_week")
 
     while True:
         now = datetime.now()
-        current_week = now.isocalendar()[1]
+        current_year, current_iso_week, _ = now.isocalendar()
+        current_week_str = f"{current_year}-W{current_iso_week:02d}"
 
         # Run on Sunday (weekday=6) after midnight, once per week
         should_check = (
             now.weekday() == 6 and
-            last_check_week != current_week
+            last_check_week != current_week_str
         )
 
         if should_check:
@@ -209,7 +252,9 @@ async def weekly_retrain_check():
                 else:
                     logger.info("[Weekly] No drift detected — model is healthy, skipping retrain.")
 
-                last_check_week = current_week
+                last_check_week = current_week_str
+                state["last_weekly_check_iso_week"] = current_week_str
+                save_scheduler_state(state)
             except Exception as e:
                 logger.error(f"[Weekly] Error: {e}")
 

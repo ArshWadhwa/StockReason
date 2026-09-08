@@ -215,28 +215,34 @@ export const BacktestView: React.FC<BacktestViewProps> = ({ backtest, loading })
       {/* Confidence Calibration Table */}
       <div className="ledger-panel">
         <div className="ledger-panel-title" style={{ marginBottom: '16px' }}>Confidence Calibration Report</div>
-        <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '12px', fontFamily: 'var(--mono)' }}>
-            <thead>
-              <tr style={{ borderBottom: '2px solid #e2e8f0', color: '#64748b', background: '#f8fafc' }}>
-                <th style={{ padding: '10px 12px' }}>CONFIDENCE BIN</th>
-                <th style={{ padding: '10px 12px' }}>STATED PROB</th>
-                <th style={{ padding: '10px 12px' }}>EMPIRICAL ACCURACY</th>
-                <th style={{ padding: '10px 12px' }}>SAMPLE COUNT</th>
-              </tr>
-            </thead>
-            <tbody>
-              {backtest.confidence_calibration.map((bin, i) => (
-                <tr key={i} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                  <td style={{ padding: '12px', color: '#0f172a', fontWeight: '600' }}>{bin.confidence_bin}</td>
-                  <td style={{ padding: '12px', color: '#475569' }}>{(bin.predicted_prob * 100).toFixed(0)}%</td>
-                  <td style={{ padding: '12px', color: '#16a34a', fontWeight: '700' }}>{(bin.actual_accuracy * 100).toFixed(0)}%</td>
-                  <td style={{ padding: '12px', color: '#64748b' }}>{bin.sample_count} trades</td>
+        {backtest.confidence_calibration.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: '24px 0', color: '#64748b', fontFamily: 'var(--mono)', fontSize: '13px' }}>
+            Collecting and validating out-of-fold predictions to generate calibration report...
+          </div>
+        ) : (
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '12px', fontFamily: 'var(--mono)' }}>
+              <thead>
+                <tr style={{ borderBottom: '2px solid #e2e8f0', color: '#64748b', background: '#f8fafc' }}>
+                  <th style={{ padding: '10px 12px' }}>CONFIDENCE BIN</th>
+                  <th style={{ padding: '10px 12px' }}>STATED PROB</th>
+                  <th style={{ padding: '10px 12px' }}>EMPIRICAL ACCURACY</th>
+                  <th style={{ padding: '10px 12px' }}>SAMPLE COUNT</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {backtest.confidence_calibration.map((bin, i) => (
+                  <tr key={i} style={{ borderBottom: '1px solid #f1f5f9' }}>
+                    <td style={{ padding: '12px', color: '#0f172a', fontWeight: '600' }}>{bin.confidence_bin}</td>
+                    <td style={{ padding: '12px', color: '#475569' }}>{(bin.predicted_prob * 100).toFixed(0)}%</td>
+                    <td style={{ padding: '12px', color: '#16a34a', fontWeight: '700' }}>{(bin.actual_accuracy * 100).toFixed(0)}%</td>
+                    <td style={{ padding: '12px', color: '#64748b' }}>{bin.sample_count} trades</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );

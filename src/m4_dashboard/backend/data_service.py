@@ -461,8 +461,10 @@ class DataService:
 
     # ── Backtest (computed from real data) ──────────────────────────────
     def _compute_backtest(self) -> Dict[str, Any]:
-        """Simple backtest: simulate signal-based decisions on historical data."""
+        """Compute backtest using the true BacktestEngine and SignalEngine."""
         import pandas as pd
+        from src.m4_dashboard.backend.backtester import BacktestEngine
+        from src.m4_dashboard.backend.signal_engine import RuleBasedSignalEngine
 
         price_path = PROCESSED_DIR / "price_features.parquet"
         if not price_path.exists():
@@ -470,92 +472,107 @@ class DataService:
 
         df = pd.read_parquet(price_path)
         df['date'] = pd.to_datetime(df['date'])
+        
+        # Sort chronologically
+        df = df.sort_values('date')
+        
+        # We sample a representative basket to run daily backtest
+        tickers = sorted(df['ticker'].unique())[:10]
+        if not tickers:
+            return self._empty_backtest()
 
-        # Use RELIANCE.NS as representative for backtesting the signal strategy
-        tickers = sorted(df['ticker'].unique())
-
-        # Aggregate returns across tickers
         all_dates = sorted(df['date'].unique())
         n_dates = len(all_dates)
-        if n_dates < 22:
+        if n_dates < 20:
             return self._empty_backtest()
 
-        # Strategy: for each monthly window, compute average cross-sectional return
-        # weighted by signal score
-        monthly_returns = []
-        nifty_returns = []
+        engine = RuleBasedSignalEngine()
+        
+        daily_strat = []
+        daily_bench = []
+        daily_rand = []
+        
+        import random
+        rnd = random.Random(42)
 
-        step = 21  # monthly
-        for i in range(0, n_dates - step, step):
-            start_date = all_dates[i]
-            end_date = all_dates[min(i + step, n_dates - 1)]
+        # Iterate over days to compute daily portfolio returns
+        for i in range(1, n_dates):
+            date_prev = all_dates[i - 1]
+            date_curr = all_dates[i]
 
-            window_start = df[df['date'] == start_date]
-            window_end = df[df['date'] == end_date]
+            window_prev = df[df['date'] == date_prev]
+            window_curr = df[df['date'] == date_curr]
 
-            if window_start.empty or window_end.empty:
+            if window_prev.empty or window_curr.empty:
                 continue
-
-            # Strategy return: equal-weight top half by RSI-momentum signal
+                
             strat_rets = []
+            bench_rets = []
+            rand_rets = []
+
             for ticker in tickers:
-                start_row = window_start[window_start['ticker'] == ticker]
-                end_row = window_end[window_end['ticker'] == ticker]
-                if start_row.empty or end_row.empty:
+                row_prev = window_prev[window_prev['ticker'] == ticker]
+                row_curr = window_curr[window_curr['ticker'] == ticker]
+                
+                if row_prev.empty or row_curr.empty:
                     continue
-                s_close = float(start_row.iloc[0]['close'])
-                e_close = float(end_row.iloc[0]['close'])
+                    
+                s_close = float(row_prev.iloc[0]['close'])
+                e_close = float(row_curr.iloc[0]['close'])
+                
                 if s_close > 0:
                     ret = (e_close - s_close) / s_close
-                    rsi = float(start_row.iloc[0].get('rsi_14', 50))
-                    # Simple strategy: go long if RSI between 30-70 (not overbought/oversold)
-                    if 30 <= rsi <= 70:
-                        strat_rets.append(ret)
+                    bench_rets.append(ret)
+                    
+                    # Generate realistic historical signal based on indicators
+                    rsi = float(row_prev.iloc[0].get('rsi_14', 50))
+                    sma = float(row_prev.iloc[0].get('sma_50', s_close))
+                    atr = float(row_prev.iloc[0].get('atr_14', 0))
+                    natr = float(row_prev.iloc[0].get('natr_14', 0))
+                    
+                    # Proxy ML input: return prediction based on technical momentum
+                    proxy_expected_return = (s_close - sma) / sma if sma > 0 else 0
+                    
+                    sig = engine.evaluate(
+                        ticker=ticker,
+                        current_price=s_close,
+                        expected_return_1M=proxy_expected_return,
+                        confidence=0.75, # default
+                        sentiment_score=0.0, # default
+                        sma_50=sma,
+                        rsi_14=rsi,
+                        atr_14=atr,
+                        natr_14=natr
+                    )["signal"]
+                    
+                    weight = 1.0 if sig == "BUY" else (0.5 if sig == "HOLD" else 0.0)
+                    strat_rets.append(ret * weight)
+                    
+                    rand_choice = rnd.choice([1.0, 0.5, 0.0])
+                    rand_rets.append(ret * rand_choice)
 
-            if strat_rets:
-                monthly_returns.append(np.mean(strat_rets))
-            else:
-                monthly_returns.append(0.0)
+            if bench_rets:
+                daily_bench.append(np.mean(bench_rets))
+                daily_strat.append(np.mean(strat_rets) if strat_rets else 0.0)
+                daily_rand.append(np.mean(rand_rets) if rand_rets else 0.0)
 
-            # Benchmark: Nifty 50 return
-            nifty_start = float(window_start.iloc[0].get('nifty_50_close', 1))
-            nifty_end = float(window_end.iloc[0].get('nifty_50_close', 1))
-            if nifty_start > 0:
-                nifty_returns.append((nifty_end - nifty_start) / nifty_start)
-            else:
-                nifty_returns.append(0.0)
-
-        if not monthly_returns:
+        if not daily_bench:
             return self._empty_backtest()
 
-        # Compute cumulative
-        strat_cum = np.cumprod([1 + r for r in monthly_returns])
-        bench_cum = np.cumprod([1 + r for r in nifty_returns])
-        rand_returns = [np.random.uniform(-0.02, 0.02) for _ in monthly_returns]
-        rand_cum = np.cumprod([1 + r for r in rand_returns])
+        strat_metrics = BacktestEngine.calculate_metrics(daily_strat)
+        bench_metrics = BacktestEngine.calculate_metrics(daily_bench)
+        rand_metrics = BacktestEngine.calculate_metrics(daily_rand)
+        bench_metrics["name"] = "NIFTY 50 (Proxy)"
+        rand_metrics["name"] = "Random Baseline"
 
-        strat_total = (strat_cum[-1] - 1) * 100
-        bench_total = (bench_cum[-1] - 1) * 100
-        rand_total = (rand_cum[-1] - 1) * 100
+        # Compute cumulative for equity curve sampling (we don't want 1250 points, sample every 20 days)
+        strat_cum = np.cumprod([1 + r for r in daily_strat])
+        bench_cum = np.cumprod([1 + r for r in daily_bench])
+        rand_cum = np.cumprod([1 + r for r in daily_rand])
 
-        # Sharpe
-        strat_sharpe = round(np.mean(monthly_returns) / (np.std(monthly_returns) + 1e-6) * np.sqrt(12), 2)
-        bench_sharpe = round(np.mean(nifty_returns) / (np.std(nifty_returns) + 1e-6) * np.sqrt(12), 2)
-
-        # Max drawdown
-        def max_dd(cum):
-            peak = np.maximum.accumulate(cum)
-            dd = (cum - peak) / peak
-            return round(float(np.min(dd)) * 100, 2)
-
-        # Win rate
-        strat_wins = sum(1 for r in monthly_returns if r > 0)
-        strat_wr = round(strat_wins / len(monthly_returns) * 100, 1)
-
-        # Equity curve
         equity_curve = []
-        for i in range(len(strat_cum)):
-            date_idx = min(i * step, n_dates - 1)
+        for i in range(0, len(strat_cum), max(1, len(strat_cum) // 60)):
+            date_idx = min(i + 1, n_dates - 1)
             dt = str(all_dates[date_idx])[:10]
             equity_curve.append({
                 "date": dt,
@@ -563,39 +580,21 @@ class DataService:
                 "benchmark": round((bench_cum[i] - 1) * 100, 2),
                 "random_baseline": round((rand_cum[i] - 1) * 100, 2),
             })
+            
+        # Append the very last data point if not there
+        if equity_curve and equity_curve[-1]["date"] != str(all_dates[-1])[:10]:
+            equity_curve.append({
+                "date": str(all_dates[-1])[:10],
+                "strategy": round((strat_cum[-1] - 1) * 100, 2),
+                "benchmark": round((bench_cum[-1] - 1) * 100, 2),
+                "random_baseline": round((rand_cum[-1] - 1) * 100, 2),
+            })
 
         return {
-            "strategy_metrics": {
-                "cumulative_return": round(strat_total, 2),
-                "annualized_return": round(strat_total / max(1, len(monthly_returns) / 12), 2),
-                "sharpe_ratio": strat_sharpe,
-                "max_drawdown": max_dd(strat_cum),
-                "win_rate": strat_wr,
-                "total_trades": len(monthly_returns),
-            },
-            "benchmark_metrics": {
-                "name": "NIFTY 50",
-                "cumulative_return": round(bench_total, 2),
-                "annualized_return": round(bench_total / max(1, len(nifty_returns) / 12), 2),
-                "sharpe_ratio": bench_sharpe,
-                "max_drawdown": max_dd(bench_cum),
-                "win_rate": round(sum(1 for r in nifty_returns if r > 0) / len(nifty_returns) * 100, 1),
-            },
-            "random_baseline_metrics": {
-                "name": "Random Baseline",
-                "cumulative_return": round(rand_total, 2),
-                "annualized_return": round(rand_total / max(1, len(rand_returns) / 12), 2),
-                "sharpe_ratio": round(np.mean(rand_returns) / (np.std(rand_returns) + 1e-6) * np.sqrt(12), 2),
-                "max_drawdown": max_dd(rand_cum),
-                "win_rate": round(sum(1 for r in rand_returns if r > 0) / len(rand_returns) * 100, 1),
-                "total_trades": len(rand_returns),
-            },
-            "confidence_calibration": [
-                {"confidence_bin": "0.60–0.70", "predicted_prob": 0.65, "actual_accuracy": round(strat_wr / 100 * 0.9, 2), "sample_count": len(monthly_returns) // 3},
-                {"confidence_bin": "0.70–0.80", "predicted_prob": 0.75, "actual_accuracy": round(strat_wr / 100 * 0.95, 2), "sample_count": len(monthly_returns) // 3},
-                {"confidence_bin": "0.80–0.90", "predicted_prob": 0.85, "actual_accuracy": round(strat_wr / 100, 2), "sample_count": len(monthly_returns) // 3},
-                {"confidence_bin": "0.90–1.00", "predicted_prob": 0.95, "actual_accuracy": round(min(1.0, strat_wr / 100 * 1.05), 2), "sample_count": max(1, len(monthly_returns) // 6)},
-            ],
+            "strategy_metrics": strat_metrics,
+            "benchmark_metrics": bench_metrics,
+            "random_baseline_metrics": rand_metrics,
+            "confidence_calibration": [], # Real system requires time to build calibration
             "equity_curve": equity_curve,
         }
 
@@ -631,13 +630,24 @@ class DataService:
             f"Data refreshed at {self.last_refreshed}."
         )
 
+        # Estimate previous signal based on recent price trend proxy
+        def _guess_prev(ticker: str, new_sig: str) -> str:
+            # We proxy the previous signal based on recent RSI to avoid hardcoding "HOLD".
+            # This is a naive heuristic since we don't store historical signals yet.
+            rsi = self._get_latest_indicator(ticker, 'rsi_14')
+            if not rsi:
+                return "UNRATED"
+            if rsi > 65 and new_sig == "AVOID": return "BUY"
+            if rsi < 35 and new_sig == "BUY": return "AVOID"
+            return "HOLD"
+
         # Signal upgrades = top BUY signals
         upgrades = []
         for s in buys[:3]:
             reasons = s.get("reasoning", [])
             upgrades.append({
                 "ticker": s["ticker"],
-                "previous_signal": "HOLD",
+                "previous_signal": _guess_prev(s["ticker"], "BUY"),
                 "new_signal": "BUY",
                 "primary_catalyst": reasons[0] if reasons else "Strong model conviction",
             })
@@ -648,7 +658,7 @@ class DataService:
             reasons = s.get("reasoning", [])
             downgrades.append({
                 "ticker": s["ticker"],
-                "previous_signal": "HOLD",
+                "previous_signal": _guess_prev(s["ticker"], "AVOID"),
                 "new_signal": "AVOID",
                 "primary_catalyst": reasons[0] if reasons else "Negative outlook",
             })
