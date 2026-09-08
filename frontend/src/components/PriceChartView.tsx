@@ -43,8 +43,15 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({ priceData, loadi
 
   const latest = allHistory[allHistory.length - 1];
   const prev = allHistory[allHistory.length - 2] || latest;
-  const dayChangePct = ((latest.close - prev.close) / prev.close) * 100;
-  const dayChangeVal = latest.close - prev.close;
+
+  // Use live current price & day change from priceData if available
+  const currentPrice = priceData.current_price ?? latest.close;
+  const dayChangePct = priceData.day_change_pct !== undefined && priceData.day_change_pct !== null
+    ? priceData.day_change_pct
+    : ((latest.close - prev.close) / (prev.close || 1)) * 100;
+  const dayChangeVal = prev && prev.close && priceData.current_price
+    ? priceData.current_price - prev.close
+    : (latest.close - prev.close);
 
   const return1w = ((latest.close - allHistory[Math.max(0, allHistory.length - 6)].close) / allHistory[Math.max(0, allHistory.length - 6)].close) * 100;
   const return1m = ((latest.close - allHistory[Math.max(0, allHistory.length - 22)].close) / allHistory[Math.max(0, allHistory.length - 22)].close) * 100;
@@ -138,7 +145,7 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({ priceData, loadi
 
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '14px', marginTop: '12px' }}>
               <span style={{ fontSize: '36px', fontWeight: '700', fontFamily: 'var(--mono)', color: 'var(--text-primary)', letterSpacing: '-0.03em' }}>
-                ₹{latest.close.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                ₹{currentPrice.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </span>
               <span style={{
                 fontSize: '13px',

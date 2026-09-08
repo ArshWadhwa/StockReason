@@ -1,8 +1,10 @@
 """
-M3 Prediction Generator
-========================
-Loads trained LSTM model, runs inference on latest data from
-data/processed/, and writes predictions.json consumed by the M4 dashboard.
+M3 Prediction Generator — Real Ensemble Mode
+==============================================
+Loads trained primary and secondary LSTM models, runs MC Dropout inference
+on both, computes real ensemble disagreement, and writes predictions.json.
+
+Also appends to predictions_log.jsonl for drift monitoring.
 
 Usage:
     python -m src.m3_modeling.predict            # from project root
@@ -23,17 +25,21 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.m3_modeling.lstm_model import MultiHorizonLSTM, mc_dropout_inference
+from src.m3_modeling.baseline_lstm import BaselineLSTM
 
 
 # ── Paths ──────────────────────────────────────────────────────────────
 PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
 MODEL_DIR = PROJECT_ROOT / "artifacts" / "models"
 OUTPUT_PATH = PROCESSED_DIR / "predictions.json"
+LOG_PATH = PROCESSED_DIR / "predictions_log.jsonl"
 
 PRICE_PARQUET = PROCESSED_DIR / "price_features.parquet"
 SENTIMENT_PARQUET = PROCESSED_DIR / "sentiment_features.parquet"
 
-LSTM_PATH = MODEL_DIR / "best_lstm.pth"
+PRIMARY_PATH = MODEL_DIR / "best_lstm_primary.pth"
+SECONDARY_PATH = MODEL_DIR / "best_lstm_secondary.pth"
+LEGACY_PATH = MODEL_DIR / "best_lstm.pth"
 
 FEATURE_SCALER_PATH = MODEL_DIR / "feature_scaler.pkl"
 TARGET_SCALER_PATH = MODEL_DIR / "target_scaler.pkl"
@@ -42,6 +48,13 @@ SEQUENCE_LENGTH = 60
 MC_PASSES = 50
 HORIZONS = ["1D", "5D", "21D", "126D"]
 HORIZON_LABELS = {"1D": "1D", "5D": "1W", "21D": "1M", "126D": "6M"}
+
+# Disagreement threshold: if primary and secondary 1M returns differ by >5%, flag it
+DISAGREEMENT_THRESHOLD = 0.05
+
+# 126D (6M) confidence discount factor — ~9.5 independent windows per ticker
+# means this horizon has very low statistical power
+HORIZON_126D_CONFIDENCE_DISCOUNT = 0.5
 
 # ── Human-readable feature name map ───────────────────────────────────
 FEATURE_DISPLAY_NAMES = {
@@ -154,11 +167,44 @@ def _get_feature_cols(df):
             if c not in exclude and pd.api.types.is_numeric_dtype(df[c])]
 
 
+def _load_models(num_model_features):
+    """Load primary and secondary LSTM models. Falls back gracefully."""
+    models = {}
+
+    # Primary model
+    primary_path = PRIMARY_PATH if PRIMARY_PATH.exists() else LEGACY_PATH
+    if primary_path.exists():
+        lstm = MultiHorizonLSTM(
+            input_dim=num_model_features, hidden_dim=64,
+            num_layers=2, output_dim=4, dropout_rate=0.3,
+        )
+        lstm.load_state_dict(torch.load(primary_path, map_location="cpu", weights_only=True))
+        models['primary'] = lstm
+        print(f"[M3] Loaded primary model from {primary_path.name}")
+    else:
+        print("[M3 ERROR] No primary model found!")
+
+    # Secondary model (ensemble member)
+    if SECONDARY_PATH.exists():
+        secondary = BaselineLSTM(
+            input_dim=num_model_features, hidden_dim=128,
+            num_layers=1, output_dim=4, dropout_rate=0.2,
+        )
+        secondary.load_state_dict(torch.load(SECONDARY_PATH, map_location="cpu", weights_only=True))
+        models['secondary'] = secondary
+        print(f"[M3] Loaded secondary model from {SECONDARY_PATH.name}")
+    else:
+        print("[M3] Secondary model not found — running single-model mode")
+
+    return models
+
+
 def generate_predictions() -> dict:
     """
-    Main entry point. Returns the predictions dict AND writes it to disk.
+    Main entry point. Runs ensemble inference and writes predictions to disk.
+    Also appends to predictions_log.jsonl for drift monitoring.
     """
-    print("[M3] Loading data ...")
+    print("[M3] Loading data …")
     df_price = pd.read_parquet(PRICE_PARQUET)
     if 'ticker' not in df_price.columns and 'ticker' in df_price.index.names:
         df_price = df_price.reset_index()
@@ -175,8 +221,7 @@ def generate_predictions() -> dict:
             df_sent = df_sent.reset_index()
         df_sent['date'] = pd.to_datetime(df_sent['date'])
         df_price = pd.merge(df_price, df_sent, on=['date', 'ticker'], how='left')
-        num_cols = df_price.select_dtypes(include=[np.number]).columns
-        df_price[num_cols] = df_price[num_cols].fillna(0)
+        df_price.fillna(0, inplace=True)
 
     feature_cols = _get_feature_cols(df_price)
     tickers = sorted(df_price['ticker'].unique())
@@ -186,19 +231,14 @@ def generate_predictions() -> dict:
     f_scaler = joblib.load(FEATURE_SCALER_PATH)
     t_scaler = joblib.load(TARGET_SCALER_PATH)
 
-    # Determine number of features the LSTM was trained on
     num_model_features = f_scaler.n_features_in_
+    models = _load_models(num_model_features)
 
+    if 'primary' not in models:
+        print("[M3 ERROR] Cannot generate predictions without primary model.")
+        return {}
 
-    # Load LSTM
-    lstm = MultiHorizonLSTM(
-        input_dim=num_model_features,
-        hidden_dim=64,
-        num_layers=2,
-        output_dim=4,
-        dropout_rate=0.3,
-    )
-    lstm.load_state_dict(torch.load(LSTM_PATH, map_location="cpu", weights_only=True))
+    has_ensemble = 'secondary' in models
 
     # ── Per-ticker inference ───────────────────────────────────────────
     predictions = {}
@@ -214,13 +254,11 @@ def generate_predictions() -> dict:
         current_price = float(latest_row['close'])
         latest_date = str(latest_row['date'])[:10]
 
-        # Build feature matrix — use the same cols the scaler saw
-        # The scaler was fit on the training data's numeric cols.
-        # We need to match the same number of columns.
+        # Build feature matrix — match the scaler's expected columns
         available_feature_cols = [c for c in feature_cols if c in df_t.columns]
+        feat_matrix = df_t[available_feature_cols].values
 
         # Pad or trim to match scaler expectation
-        feat_matrix = df_t[available_feature_cols].values
         if feat_matrix.shape[1] < num_model_features:
             pad = np.zeros((feat_matrix.shape[0], num_model_features - feat_matrix.shape[1]))
             feat_matrix = np.hstack([feat_matrix, pad])
@@ -238,14 +276,39 @@ def generate_predictions() -> dict:
         window = scaled[-SEQUENCE_LENGTH:]
         x_tensor = torch.tensor(window, dtype=torch.float32).unsqueeze(0)
 
-        # ── LSTM MC Dropout ────────────────────────────────────────────
-        mean_pred, std_pred = mc_dropout_inference(lstm, x_tensor, num_passes=MC_PASSES)
-        # Inverse-transform predictions back to return space
-        mean_ret = t_scaler.inverse_transform(mean_pred)[0]   # shape (4,)
-        std_ret = t_scaler.inverse_transform(
-            mean_pred + std_pred
-        )[0] - t_scaler.inverse_transform(mean_pred)[0]       # approx std in return space
-        std_ret = np.abs(std_ret)
+        # ── Primary LSTM MC Dropout ────────────────────────────────────
+        primary_mean, primary_std = mc_dropout_inference(models['primary'], x_tensor, num_passes=MC_PASSES)
+        primary_ret = t_scaler.inverse_transform(primary_mean)[0]
+        primary_std_ret = np.abs(
+            t_scaler.inverse_transform(primary_mean + primary_std)[0]
+            - t_scaler.inverse_transform(primary_mean)[0]
+        )
+
+        # ── Secondary LSTM MC Dropout (if available) ───────────────────
+        if has_ensemble:
+            secondary_mean, secondary_std = mc_dropout_inference(models['secondary'], x_tensor, num_passes=MC_PASSES)
+            secondary_ret = t_scaler.inverse_transform(secondary_mean)[0]
+
+            # Ensemble: average predictions from both models
+            ensemble_ret = (primary_ret + secondary_ret) / 2.0
+            ensemble_std = (primary_std_ret + np.abs(
+                t_scaler.inverse_transform(secondary_mean + secondary_std)[0]
+                - t_scaler.inverse_transform(secondary_mean)[0]
+            )) / 2.0
+
+            # Real disagreement detection
+            disagreement_delta = float(abs(primary_ret[2] - secondary_ret[2]))  # 21D (1M) horizon
+            disagreement_detected = disagreement_delta > DISAGREEMENT_THRESHOLD
+
+            mean_ret = ensemble_ret
+            std_ret = ensemble_std
+            secondary_1m = float(secondary_ret[2])
+        else:
+            mean_ret = primary_ret
+            std_ret = primary_std_ret
+            disagreement_delta = 0.0
+            disagreement_detected = False
+            secondary_1m = None
 
         # ── Build horizons dict ────────────────────────────────────────
         horizons = {}
@@ -255,7 +318,12 @@ def generate_predictions() -> dict:
             std = float(std_ret[i])
             pred_price = current_price * (1 + ret)
             conf = float(max(0.0, min(1.0, 1.0 / (1.0 + std * 10))))
-            horizons[h_label] = {
+
+            # Issue #7: Apply 126D confidence discount
+            if h_raw == "126D":
+                conf *= HORIZON_126D_CONFIDENCE_DISCOUNT
+
+            horizon_data = {
                 "expected_return": round(ret, 6),
                 "predicted_price": round(pred_price, 2),
                 "confidence": round(conf, 4),
@@ -264,44 +332,53 @@ def generate_predictions() -> dict:
                 "upper_bound": round(current_price * (1 + ret + 1.96 * std), 2),
             }
 
-        # ── Ensemble comparison (legacy compatibility) ───────────────────
-        lstm_1m = float(mean_ret[2])
+            # Add confidence note for 126D
+            if h_raw == "126D":
+                horizon_data["confidence_note"] = (
+                    "Low statistical power — only ~9.5 independent windows per ticker. "
+                    "Confidence discounted by 50%."
+                )
+
+            horizons[h_label] = horizon_data
+
+        # ── Real Ensemble comparison ───────────────────────────────────
+        lstm_1m = float(primary_ret[2])
         ensemble = {
             "lstm_return_1M": round(lstm_1m, 6),
-            "disagreement_detected": False,
-            "disagreement_delta": 0.0,
+            "secondary_return_1M": round(secondary_1m, 6) if secondary_1m is not None else None,
+            "disagreement_detected": disagreement_detected,
+            "disagreement_delta": round(disagreement_delta, 6),
         }
 
-        # ── Feature importance (LSTM gradient attribution for 21D horizon) ──
+        # ── Feature importance (gradient attribution for 21D horizon) ──
         shap_list = []
-        lstm.eval()
+        primary_model = models['primary']
+        primary_model.eval()
         x_attr = x_tensor.clone().detach().requires_grad_(True)
-        pred_attr = lstm(x_attr)
+        pred_attr = primary_model(x_attr)
         # 21D horizon is index 2
         pred_attr[0, 2].backward()
-        
+
         if x_attr.grad is not None:
-            # Saliency attribution: sum absolute gradient across time sequence
             grad_abs = x_attr.grad.abs().sum(dim=1).squeeze(0).numpy()
             raw_grad = x_attr.grad.sum(dim=1).squeeze(0).numpy()
-            
+
             imp_per_feat = grad_abs[:num_model_features]
             raw_grad_feat = raw_grad[:num_model_features]
-            
+
             total = imp_per_feat.sum()
             if total > 0:
                 imp_per_feat /= total
-                
+
             feat_names = available_feature_cols[:num_model_features]
             top_indices = np.argsort(imp_per_feat)[::-1][:8]
-            
+
             for idx in top_indices:
                 if imp_per_feat[idx] < 0.005:
                     continue
                 feat_name = feat_names[idx] if idx < len(feat_names) else f"feature_{idx}"
-                # Direction matches the sign of the raw gradient
                 direction = "positive" if raw_grad_feat[idx] >= 0 else "negative"
-                
+
                 shap_list.append({
                     "feature": feat_name,
                     "feature_display": FEATURE_DISPLAY_NAMES.get(feat_name, feat_name.replace('_', ' ').title()),
@@ -321,13 +398,38 @@ def generate_predictions() -> dict:
             "shap_explainability": shap_list,
             "generated_at": now_str,
         }
-        print(f"  [OK] {ticker}: 1M return={lstm_1m*100:+.2f}%, conf={horizons['1M']['confidence']:.0%}")
 
-    # ── Write to disk ──────────────────────────────────────────────────
+        disagree_flag = " ⚠️ DISAGREE" if disagreement_detected else ""
+        ensemble_mode = "ensemble" if has_ensemble else "single"
+        print(f"  ✓ {ticker}: 1M return={lstm_1m*100:+.2f}%, conf={horizons['1M']['confidence']:.0%} [{ensemble_mode}]{disagree_flag}")
+
+    # ── Write latest predictions to disk ───────────────────────────────
     OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(OUTPUT_PATH, "w") as f:
         json.dump(predictions, f, indent=2, default=str)
-    print(f"\n[M3] Wrote predictions for {len(predictions)} tickers -> {OUTPUT_PATH}")
+    print(f"\n[M3] Wrote predictions for {len(predictions)} tickers → {OUTPUT_PATH}")
+
+    # ── Append to predictions log for drift monitoring (Issue #10) ─────
+    try:
+        log_entry = {
+            "timestamp": now_str,
+            "predictions": {
+                ticker: {
+                    "current_price": pred["current_price"],
+                    "horizons": {
+                        h: {"expected_return": hd["expected_return"], "confidence": hd["confidence"]}
+                        for h, hd in pred["horizons"].items()
+                    },
+                    "ensemble": pred["ensemble"],
+                }
+                for ticker, pred in predictions.items()
+            }
+        }
+        with open(LOG_PATH, "a") as f:
+            f.write(json.dumps(log_entry, default=str) + "\n")
+        print(f"[M3] Appended prediction log → {LOG_PATH}")
+    except Exception as e:
+        print(f"[M3] Warning: Failed to write prediction log: {e}")
 
     return predictions
 

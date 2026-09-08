@@ -42,11 +42,13 @@ def clean_price_data(df: pd.DataFrame) -> pd.DataFrame:
     for col in price_cols:
         cleaned[col] = cleaned[col].apply(lambda x: np.nan if x is not None and x <= 0 else x)
 
-    # Impute missing values per ticker group
+    # Impute missing values per ticker group (forward-fill only to prevent future leakage)
     if "ticker" in cleaned.columns:
-        cleaned[price_cols] = cleaned.groupby("ticker")[price_cols].ffill().bfill()
+        cleaned[price_cols] = cleaned.groupby("ticker")[price_cols].ffill()
     else:
-        cleaned[price_cols] = cleaned[price_cols].ffill().bfill()
+        cleaned[price_cols] = cleaned[price_cols].ffill()
+    # Drop rows that still have NaN prices (start of series — cannot be safely imputed)
+    cleaned.dropna(subset=price_cols, inplace=True)
 
     # 4. Enforce high/low logical boundaries
     if all(c in cleaned.columns for c in ["high", "low", "open", "close"]):
@@ -113,9 +115,9 @@ def align_and_clean_dataset(
 
         merged_df = pd.merge(merged_df, sub_macro, on="date", how="left")
 
-    # Forward-fill missing market/macro context values per ticker
+    # Forward-fill missing market/macro context values per ticker (no backfill to prevent leakage)
     context_cols = [c for c in merged_df.columns if c not in ["date", "ticker", "open", "high", "low", "close", "adj_close", "volume"]]
     if context_cols:
-        merged_df[context_cols] = merged_df.groupby("ticker")[context_cols].ffill().bfill()
+        merged_df[context_cols] = merged_df.groupby("ticker")[context_cols].ffill().fillna(0)
 
     return merged_df.sort_values(["ticker", "date"]).reset_index(drop=True)

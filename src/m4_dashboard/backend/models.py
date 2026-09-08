@@ -84,6 +84,7 @@ class HorizonForecast(BaseModel):
 
 class EnsembleComparison(BaseModel):
     lstm_return_1M: float
+    secondary_return_1M: Optional[float] = None
     disagreement_detected: bool = False
     disagreement_delta: float = 0.0
 
@@ -104,6 +105,14 @@ class PredictionResponse(BaseModel):
     ensemble: EnsembleComparison
     shap_explainability: List[ShapFeature]
 
+class EntryExitBracket(BaseModel):
+    entry_price: float
+    stop_loss: float
+    take_profit: float
+    risk_reward_ratio: float
+    atr_14: float
+    bracket_type: str
+
 class SignalResponse(BaseModel):
     ticker: str
     name: str
@@ -118,6 +127,7 @@ class SignalResponse(BaseModel):
     regime: str
     ensemble_agreement: bool
     reasoning: List[str]
+    entry_exit: Optional[EntryExitBracket] = None
 
 class BacktestMetrics(BaseModel):
     cumulative_return: float

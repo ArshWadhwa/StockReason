@@ -1,9 +1,21 @@
 *.parquet
 data/raw/
-data/processed/predictions.json
+data/processed/
+data/sample/
 .env
 __pycache__/
+*.pyc
 .venv/
 .venv_py311/
 .ipynb_checkpoints/
 mlruns/
+.DS_Store
+
+# Temporary & presentation artifacts
+*.pdf
+artifacts/ppt_graphs/
+artifacts/*.png
+artifacts/generate_ppt_graphs.py
+artifacts/models/best_lstm_primary.pth
+artifacts/models/best_lstm_secondary.pth
+AUDIT_AND_VERIFICATION_REPORT.md

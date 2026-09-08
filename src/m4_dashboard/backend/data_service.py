@@ -94,9 +94,15 @@ class DataService:
 
             # Use live price if available, otherwise use latest close from parquet
             latest_row = grp.iloc[-1]
-            live = live_prices.get(ticker, {})
-            current_price = live.get('price', float(latest_row['close']))
-            prev_close = float(grp.iloc[-2]['close']) if len(grp) >= 2 else current_price
+            has_live = ticker in live_prices
+            if has_live:
+                current_price = float(live_prices[ticker]['price'])
+                # If we have an active live price, previous day close is the last closed day from parquet
+                prev_close = float(latest_row['close'])
+            else:
+                current_price = float(latest_row['close'])
+                prev_close = float(grp.iloc[-2]['close']) if len(grp) >= 2 else current_price
+
             day_change = round(((current_price - prev_close) / prev_close) * 100, 2) if prev_close else 0.0
 
             # Build history
@@ -117,15 +123,35 @@ class DataService:
                     "regime": str(row.get('market_regime', 'trending')).lower(),
                 })
 
+            # Append/update today's live point in history if live price is active
+            today_str = datetime.now().strftime('%Y-%m-%d')
+            if history and history[-1]['date'] != today_str and has_live:
+                history.append({
+                    "date": today_str,
+                    "open": round(current_price, 2),
+                    "high": round(current_price, 2),
+                    "low": round(current_price, 2),
+                    "close": round(current_price, 2),
+                    "volume": 0,
+                    "sma_20": history[-1].get('sma_20'),
+                    "sma_50": history[-1].get('sma_50'),
+                    "rsi_14": history[-1].get('rsi_14'),
+                    "macd": history[-1].get('macd'),
+                    "regime": history[-1].get('regime', 'trending'),
+                })
+            elif history and history[-1]['date'] == today_str and has_live:
+                history[-1]['close'] = round(current_price, 2)
+
             self.prices[ticker] = {
                 "ticker": ticker,
                 "name": meta["name"],
                 "sector": meta["sector"],
                 "universe": meta["universe"],
                 "current_price": round(current_price, 2),
+                "previous_close": round(prev_close, 2),
                 "day_change_pct": day_change,
                 "history": history,
-                "live_price_source": "yahoo_finance" if ticker in live_prices else "parquet_latest",
+                "live_price_source": "yahoo_finance" if has_live else "parquet_latest",
             }
 
     def _fetch_live_prices(self, tickers: list) -> Dict[str, Dict]:
@@ -286,6 +312,10 @@ class DataService:
             rsi_14 = latest_hist.get('rsi_14')
             regime = latest_hist.get('regime', 'trending')
 
+            # Get ATR from price features for entry/exit brackets
+            atr_14 = self._get_latest_indicator(ticker, 'atr_14')
+            natr_14 = self._get_latest_indicator(ticker, 'natr_14')
+
             sentiment_score = sent_data['avg_sentiment_score'] if sent_data else 0.0
 
             signal = engine.evaluate(
@@ -296,11 +326,30 @@ class DataService:
                 sentiment_score=sentiment_score,
                 regime=regime,
                 lstm_return_1M=ensemble.get('lstm_return_1M'),
+                secondary_return_1M=ensemble.get('secondary_return_1M'),
                 sma_50=sma_50,
                 rsi_14=rsi_14,
+                atr_14=atr_14,
+                natr_14=natr_14,
                 metadata=STOCK_META.get(ticker, {"name": ticker, "sector": "Unknown", "universe": "NIFTY 50"}),
             )
             self.signals[ticker] = signal
+
+    def _get_latest_indicator(self, ticker: str, indicator: str) -> Optional[float]:
+        """Get the latest value of a technical indicator from the price parquet."""
+        try:
+            import pandas as pd
+            price_path = PROCESSED_DIR / "price_features.parquet"
+            if not price_path.exists():
+                return None
+            df = pd.read_parquet(price_path)
+            df_t = df[df['ticker'] == ticker].sort_values('date')
+            if df_t.empty or indicator not in df_t.columns:
+                return None
+            val = df_t.iloc[-1][indicator]
+            return float(val) if pd.notna(val) else None
+        except Exception:
+            return None
 
     # ── Public API Methods ─────────────────────────────────────────────
     def get_universes(self) -> Dict[str, Any]:
@@ -622,4 +671,17 @@ class DataService:
             "sentiment_loaded": len(self.sentiment),
             "signals_generated": len(self.signals),
             "data_source": "real",
+        }
+
+    def get_accuracy_report(self) -> Dict[str, Any]:
+        """Return model accuracy and drift monitoring report."""
+        import json
+        report_path = PROCESSED_DIR / "accuracy_report.json"
+        if report_path.exists():
+            with open(report_path) as f:
+                return json.load(f)
+        return {
+            "status": "not_available",
+            "drift_detected": False,
+            "message": "Run prediction_tracker.py to generate the accuracy report.",
         }

@@ -136,14 +136,14 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
         signal: s.signal,
       }))
     : [
-        { ticker: 'RELIANCE.NS', name: 'Reliance Industries', current_price: 2948.5, expected_return_1M: 0.0128, signal: 'BUY' },
-        { ticker: 'TCS.NS', name: 'Tata Consultancy', current_price: 3842.1, expected_return_1M: 0.0075, signal: 'BUY' },
-        { ticker: 'INFY.NS', name: 'Infosys', current_price: 1456.3, expected_return_1M: 0.0052, signal: 'BUY' },
-        { ticker: 'HDFCBANK.NS', name: 'HDFC Bank', current_price: 1612.8, expected_return_1M: -0.0031, signal: 'HOLD' },
-        { ticker: 'ICICIBANK.NS', name: 'ICICI Bank', current_price: 1084.2, expected_return_1M: 0.0142, signal: 'BUY' },
-        { ticker: 'LT.NS', name: 'Larsen & Toubro', current_price: 3520.4, expected_return_1M: 0.0089, signal: 'BUY' },
-        { ticker: 'ITC.NS', name: 'ITC Limited', current_price: 432.0, expected_return_1M: 0.0041, signal: 'HOLD' },
-        { ticker: 'BHARTIARTL.NS', name: 'Bharti Airtel', current_price: 1210.5, expected_return_1M: 0.0165, signal: 'BUY' },
+        { ticker: 'RELIANCE.NS', name: 'Reliance Industries', current_price: 1298.5, expected_return_1M: 0.0128, signal: 'BUY' },
+        { ticker: 'TCS.NS', name: 'Tata Consultancy', current_price: 2261.0, expected_return_1M: 0.0075, signal: 'BUY' },
+        { ticker: 'INFY.NS', name: 'Infosys', current_price: 1086.5, expected_return_1M: 0.0052, signal: 'BUY' },
+        { ticker: 'HDFCBANK.NS', name: 'HDFC Bank', current_price: 705.2, expected_return_1M: -0.0031, signal: 'HOLD' },
+        { ticker: 'ICICIBANK.NS', name: 'ICICI Bank', current_price: 1412.0, expected_return_1M: 0.0142, signal: 'BUY' },
+        { ticker: 'LT.NS', name: 'Larsen & Toubro', current_price: 3964.0, expected_return_1M: 0.0089, signal: 'BUY' },
+        { ticker: 'ITC.NS', name: 'ITC Limited', current_price: 264.0, expected_return_1M: 0.0041, signal: 'HOLD' },
+        { ticker: 'BHARTIARTL.NS', name: 'Bharti Airtel', current_price: 1840.0, expected_return_1M: 0.0165, signal: 'BUY' },
       ];
 
   return (
@@ -356,7 +356,7 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
                   <g transform="translate(372, 42)">
                     <rect x="0" y="0" width="86" height="24" rx="6" fill="#1e4d1f" />
                     <text x="43" y="16" fill="#ffffff" fontSize="10" fontFamily="var(--mono)" textAnchor="middle" fontWeight="700">
-                      ₹{topBuy ? topBuy.current_price.toFixed(1) : '2,948.5'}
+                      ₹{topBuy ? topBuy.current_price.toFixed(1) : '1,298.5'}
                     </text>
                   </g>
                 </svg>
@@ -373,7 +373,7 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
                   </div>
                 </div>
                 <div className="hero-chart-footer-right">
-                  <div className="price-big">₹{topBuy ? topBuy.current_price.toLocaleString(undefined, { maximumFractionDigits: 0 }) : '2,948'}</div>
+                  <div className="price-big">₹{topBuy ? topBuy.current_price.toLocaleString(undefined, { maximumFractionDigits: 0 }) : '1,298'}</div>
                   <div className="price-change-row">
                     {topBuy && topBuy.expected_return_1M >= 0 ? (
                       <span className="price-change up">

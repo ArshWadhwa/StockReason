@@ -6,6 +6,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../.
 import logging
 import asyncio
 import subprocess
+from datetime import datetime, time as dtime
 from typing import Optional
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
@@ -21,7 +22,7 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(me
 logger = logging.getLogger("m4_backend")
 
 # ── Generate predictions before starting the API ──────────────────────
-logger.info("Running M3 prediction pipeline...")
+logger.info("Running M3 prediction pipeline…")
 try:
     from src.m3_modeling.predict import generate_predictions
     generate_predictions()
@@ -32,7 +33,7 @@ except Exception as e:
 app = FastAPI(
     title="StockReason Intelligence API",
     description="Confidence-Aware Decision Support API for NIFTY 50 — Real Data Mode",
-    version="2.0.0"
+    version="3.0.0"
 )
 
 # Enable CORS for React Frontend (standard Vite dev ports)
@@ -46,35 +47,183 @@ app.add_middleware(
 
 data_service = DataService()
 
-async def background_data_refresh():
-    """Prototype: Runs the full M1/M2/M3 pipeline every 1 minute."""
+
+# ══════════════════════════════════════════════════════════════════════
+# Smart Background Refresh Architecture (Issue #4)
+# ══════════════════════════════════════════════════════════════════════
+# Instead of re-running the entire M1+M2+M3 pipeline every 60 seconds,
+# we split into three tiers:
+#
+# 1. LIVE PRICE POLLER: Every 60s during market hours — lightweight
+#    yfinance call to update current prices in memory.
+#
+# 2. DAILY PIPELINE: Once per day after market close (4:00 PM IST) —
+#    full M1+M2+M3 refresh from refresh_data.py.
+#
+# 3. WEEKLY RETRAIN CHECK: Sunday midnight — checks drift and triggers
+#    retraining if accuracy has degraded.
+# ══════════════════════════════════════════════════════════════════════
+
+def _is_market_hours() -> bool:
+    """Check if current time is within IST market hours (9:15 AM - 3:30 PM)."""
+    now = datetime.now()
+    market_open = dtime(9, 15)
+    market_close = dtime(15, 30)
+    # Monday=0, Sunday=6
+    return now.weekday() < 5 and market_open <= now.time() <= market_close
+
+
+async def live_price_poller():
+    """
+    Tier 1: Lightweight live price polling every 60 seconds.
+    Only fetches current prices from Yahoo Finance — no disk I/O, no ML inference.
+    Only runs during market hours to avoid wasting API calls.
+    """
     while True:
-        logger.info("Starting prototype 1-minute background refresh...")
         try:
-            # Run refresh_data.py as a subprocess
-            root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
-            process = await asyncio.create_subprocess_exec(
-                sys.executable, "refresh_data.py",
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                cwd=root_dir
-            )
-            stdout, stderr = await process.communicate()
-            if process.returncode == 0:
-                logger.info("Background refresh complete. Reloading DataService.")
-                data_service._load_all()
+            if _is_market_hours():
+                logger.info("[Poller] Fetching live prices (market hours)...")
+                tickers = list(data_service.prices.keys())
+                if tickers:
+                    live_prices = data_service._fetch_live_prices(tickers)
+                    # Update in-memory prices only
+                    for ticker, live_data in live_prices.items():
+                        if ticker in data_service.prices:
+                            prev_close = data_service.prices[ticker].get("previous_close")
+                            new_price = live_data["price"]
+                            data_service.prices[ticker]["current_price"] = new_price
+                            data_service.prices[ticker]["live_price_source"] = "yahoo_finance_live"
+                            if prev_close and prev_close > 0:
+                                data_service.prices[ticker]["day_change_pct"] = round(
+                                    ((new_price - prev_close) / prev_close) * 100, 2
+                                )
+                    logger.info(f"[Poller] Updated {len(live_prices)} live prices")
             else:
-                logger.error(f"Background refresh failed (code {process.returncode}):\n{stderr.decode()}")
+                logger.debug("[Poller] Outside market hours — skipping")
         except Exception as e:
-            logger.error(f"Error in background refresh loop: {e}")
-        
-        logger.info("Background loop sleeping for 60 seconds...")
+            logger.error(f"[Poller] Error: {e}")
+
         await asyncio.sleep(60)
+
+
+async def daily_pipeline_runner():
+    """
+    Tier 2: Full M1+M2+M3 pipeline refresh once per day after market close.
+    Runs at ~4:00 PM IST (16:00). Checks every 5 minutes if it's time.
+    """
+    last_run_date = None
+
+    while True:
+        now = datetime.now()
+        today = now.date()
+        current_time = now.time()
+
+        # Run once per day, after 4:00 PM IST, on weekdays only
+        should_run = (
+            now.weekday() < 5 and           # Weekday
+            current_time >= dtime(16, 0) and  # After 4 PM
+            last_run_date != today            # Haven't run today
+        )
+
+        if should_run:
+            logger.info("[Daily] Starting full M1+M2+M3 pipeline refresh...")
+            try:
+                root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
+                process = await asyncio.create_subprocess_exec(
+                    sys.executable, "refresh_data.py",
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    cwd=root_dir
+                )
+                stdout, stderr = await process.communicate()
+                if process.returncode == 0:
+                    logger.info("[Daily] Pipeline refresh complete. Reloading DataService.")
+                    data_service._load_all()
+                    last_run_date = today
+                else:
+                    logger.error(f"[Daily] Pipeline failed (code {process.returncode}):\n{stderr.decode()}")
+            except Exception as e:
+                logger.error(f"[Daily] Error: {e}")
+
+            # Also run prediction tracker for drift monitoring
+            try:
+                from src.m3_modeling.prediction_tracker import compute_accuracy_report
+                report = compute_accuracy_report()
+                if report.get('drift_detected'):
+                    logger.warning("[Daily] ⚠️  Model drift detected! Consider retraining.")
+            except Exception as e:
+                logger.warning(f"[Daily] Prediction tracker error: {e}")
+
+        # Check every 5 minutes
+        await asyncio.sleep(300)
+
+
+async def weekly_retrain_check():
+    """
+    Tier 3: Weekly check (Sunday midnight) to see if model needs retraining.
+    Only triggers retraining if drift was detected during the week.
+    """
+    last_check_week = None
+
+    while True:
+        now = datetime.now()
+        current_week = now.isocalendar()[1]
+
+        # Run on Sunday (weekday=6) after midnight, once per week
+        should_check = (
+            now.weekday() == 6 and
+            last_check_week != current_week
+        )
+
+        if should_check:
+            logger.info("[Weekly] Running weekly retrain check...")
+            try:
+                from src.m3_modeling.prediction_tracker import check_drift
+                drift = check_drift()
+
+                if drift:
+                    logger.warning("[Weekly] Drift detected — triggering model retraining!")
+                    root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..'))
+                    process = await asyncio.create_subprocess_exec(
+                        sys.executable, "-m", "src.m3_modeling.train_pipeline",
+                        "--data_dir", "data/processed",
+                        "--epochs", "50",
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE,
+                        cwd=root_dir
+                    )
+                    stdout, stderr = await process.communicate()
+                    if process.returncode == 0:
+                        logger.info("[Weekly] Retraining complete! Regenerating predictions...")
+                        # Re-generate predictions with new model
+                        pred_process = await asyncio.create_subprocess_exec(
+                            sys.executable, "-m", "src.m3_modeling.predict",
+                            stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE,
+                            cwd=root_dir
+                        )
+                        await pred_process.communicate()
+                        data_service._load_all()
+                    else:
+                        logger.error(f"[Weekly] Retraining failed:\n{stderr.decode()}")
+                else:
+                    logger.info("[Weekly] No drift detected — model is healthy, skipping retrain.")
+
+                last_check_week = current_week
+            except Exception as e:
+                logger.error(f"[Weekly] Error: {e}")
+
+        # Check every hour
+        await asyncio.sleep(3600)
+
 
 @app.on_event("startup")
 async def startup_event():
-    # Start the background task when the server boots
-    asyncio.create_task(background_data_refresh())
+    """Start the three-tier background refresh system."""
+    asyncio.create_task(live_price_poller())
+    asyncio.create_task(daily_pipeline_runner())
+    asyncio.create_task(weekly_retrain_check())
+    logger.info("Background tasks started: Live Poller (60s) | Daily Pipeline (4PM) | Weekly Retrain (Sunday)")
 
 
 @app.get("/api/health", response_model=HealthResponse, tags=["Health"])
@@ -86,6 +235,11 @@ def health_check():
 def get_system_status():
     """Returns system status including last data refresh timestamp."""
     return data_service.get_system_status()
+
+@app.get("/api/system/accuracy", tags=["System"])
+def get_accuracy_report():
+    """Returns model accuracy and drift monitoring report."""
+    return data_service.get_accuracy_report()
 
 @app.get("/api/market/universes", tags=["Market Data"])
 def get_universes():
