@@ -12,6 +12,7 @@ import { SignalsView } from './components/SignalsView';
 import { SentimentView } from './components/SentimentView';
 import { BacktestView } from './components/BacktestView';
 import { DigestView } from './components/DigestView';
+import { BrandMark } from './components/BrandMark';
 
 import {
   LineChart,
@@ -264,10 +265,7 @@ export function App() {
               style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
             >
               <div className="brand-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
-                  <polyline points="16 7 22 7 22 13" />
-                </svg>
+                <BrandMark />
               </div>
               StockReason
             </a>
@@ -345,10 +343,7 @@ export function App() {
             style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
           >
             <div className="brand-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
-                <polyline points="16 7 22 7 22 13" />
-              </svg>
+              <BrandMark />
             </div>
             StockReason
           </a>
