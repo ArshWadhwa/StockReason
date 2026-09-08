@@ -54,39 +54,39 @@ export const BacktestView: React.FC<BacktestViewProps> = ({ backtest, loading })
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       {/* Metrics Scorecards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '14px' }}>
-        <div className="ledger-panel" style={{ borderTop: '4px solid #16a34a' }}>
-          <div className="ledger-label" style={{ color: '#1e4d1f' }}>AI Signal Strategy</div>
-          <div className="ledger-metric ledger-metric-brass" style={{ margin: '8px 0', fontSize: '30px' }}>
+        <div className="ledger-panel" style={{ borderTop: '4px solid var(--gain)' }}>
+          <div className="ledger-label" style={{ color: 'var(--gain)' }}>AI signal strategy</div>
+          <div className="ledger-metric ledger-metric-brass" style={{ margin: '8px 0' }}>
             +{strat.cumulative_return}%
           </div>
-          <div style={{ fontSize: '11px', fontFamily: 'var(--mono)', color: '#64748b', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-            <div>Sharpe Ratio: <strong style={{ color: '#0f172a' }}>{strat.sharpe_ratio}</strong></div>
-            <div>Max Drawdown: <strong style={{ color: '#0f172a' }}>{strat.max_drawdown}%</strong></div>
-            <div>Win Rate: <strong style={{ color: '#0f172a' }}>{strat.win_rate}%</strong></div>
+          <div style={{ fontSize: '12px', color: 'var(--dash-muted)', display: 'flex', flexDirection: 'column', gap: '5px', fontVariantNumeric: 'tabular-nums' }}>
+            <div>Sharpe ratio: <strong style={{ color: 'var(--ink)', fontFamily: 'var(--mono)' }}>{strat.sharpe_ratio}</strong></div>
+            <div>Max drawdown: <strong style={{ color: 'var(--ink)', fontFamily: 'var(--mono)' }}>{strat.max_drawdown}%</strong></div>
+            <div>Win rate: <strong style={{ color: 'var(--ink)', fontFamily: 'var(--mono)' }}>{strat.win_rate}%</strong></div>
           </div>
         </div>
 
-        <div className="ledger-panel" style={{ borderTop: '4px solid #2563eb' }}>
-          <div className="ledger-label" style={{ color: '#2563eb' }}>Nifty 50 Benchmark</div>
-          <div className="ledger-metric" style={{ margin: '8px 0', fontSize: '30px', color: '#2563eb' }}>
+        <div className="ledger-panel" style={{ borderTop: '4px solid var(--accent)' }}>
+          <div className="ledger-label" style={{ color: 'var(--accent)' }}>Nifty 50 benchmark</div>
+          <div className="ledger-metric ledger-metric-slate" style={{ margin: '8px 0' }}>
             +{bench.cumulative_return}%
           </div>
-          <div style={{ fontSize: '11px', fontFamily: 'var(--mono)', color: '#64748b', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-            <div>Sharpe Ratio: <strong style={{ color: '#0f172a' }}>{bench.sharpe_ratio}</strong></div>
-            <div>Max Drawdown: <strong style={{ color: '#0f172a' }}>{bench.max_drawdown}%</strong></div>
-            <div>Ann. Return: <strong style={{ color: '#0f172a' }}>+{bench.annualized_return}%</strong></div>
+          <div style={{ fontSize: '12px', color: 'var(--dash-muted)', display: 'flex', flexDirection: 'column', gap: '5px', fontVariantNumeric: 'tabular-nums' }}>
+            <div>Sharpe ratio: <strong style={{ color: 'var(--ink)', fontFamily: 'var(--mono)' }}>{bench.sharpe_ratio}</strong></div>
+            <div>Max drawdown: <strong style={{ color: 'var(--ink)', fontFamily: 'var(--mono)' }}>{bench.max_drawdown}%</strong></div>
+            <div>Ann. return: <strong style={{ color: 'var(--ink)', fontFamily: 'var(--mono)' }}>+{bench.annualized_return}%</strong></div>
           </div>
         </div>
 
-        <div className="ledger-panel" style={{ borderTop: '4px solid #94a3b8' }}>
-          <div className="ledger-label" style={{ color: '#64748b' }}>Random Trading Baseline</div>
-          <div className="ledger-metric" style={{ margin: '8px 0', fontSize: '30px', color: '#64748b' }}>
+        <div className="ledger-panel" style={{ borderTop: '4px solid var(--rule)' }}>
+          <div className="ledger-label" style={{ color: 'var(--dash-muted)' }}>Random trading baseline</div>
+          <div className="ledger-metric" style={{ margin: '8px 0', color: 'var(--dash-muted)' }}>
             +{rand.cumulative_return}%
           </div>
-          <div style={{ fontSize: '11px', fontFamily: 'var(--mono)', color: '#64748b', display: 'flex', flexDirection: 'column', gap: '6px' }}>
-            <div>Sharpe Ratio: <strong style={{ color: '#0f172a' }}>{rand.sharpe_ratio}</strong></div>
-            <div>Max Drawdown: <strong style={{ color: '#0f172a' }}>{rand.max_drawdown}%</strong></div>
-            <div>Win Rate: <strong style={{ color: '#0f172a' }}>{rand.win_rate}%</strong></div>
+          <div style={{ fontSize: '12px', color: 'var(--dash-muted)', display: 'flex', flexDirection: 'column', gap: '5px', fontVariantNumeric: 'tabular-nums' }}>
+            <div>Sharpe ratio: <strong style={{ color: 'var(--ink)', fontFamily: 'var(--mono)' }}>{rand.sharpe_ratio}</strong></div>
+            <div>Max drawdown: <strong style={{ color: 'var(--ink)', fontFamily: 'var(--mono)' }}>{rand.max_drawdown}%</strong></div>
+            <div>Win rate: <strong style={{ color: 'var(--ink)', fontFamily: 'var(--mono)' }}>{rand.win_rate}%</strong></div>
           </div>
         </div>
       </div>
@@ -95,18 +95,18 @@ export const BacktestView: React.FC<BacktestViewProps> = ({ backtest, loading })
       <div className="ledger-panel">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
           <div>
-            <div style={{ fontFamily: 'var(--display)', fontSize: '17px', fontWeight: '700', color: 'var(--text-primary)' }}>
-              Cumulative Out-of-Sample Performance Curve
+            <div style={{ fontFamily: 'var(--sans)', fontSize: '17px', fontWeight: '700', color: 'var(--ink)' }}>
+              Cumulative out-of-sample performance
             </div>
-            <div style={{ fontFamily: 'var(--mono)', fontSize: '11px', color: '#64748b', marginTop: '2px' }}>
-              AI Strategy vs Benchmark & Random Baseline
+            <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: 'var(--dash-muted)', marginTop: '2px' }}>
+              AI strategy vs benchmark and random baseline
             </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '16px', fontFamily: 'var(--mono)', fontSize: '11px' }}>
-            <span style={{ color: '#1e4d1f', fontWeight: '700' }}>── AI Strategy (+{strat.cumulative_return}%)</span>
-            <span style={{ color: '#2563eb', fontWeight: '600' }}>── Nifty 50 (+{bench.cumulative_return}%)</span>
-            <span style={{ color: '#94a3b8' }}>- - Random (+{rand.cumulative_return}%)</span>
+          <div style={{ display: 'flex', gap: '16px', fontFamily: 'var(--mono)', fontSize: '11px', fontVariantNumeric: 'tabular-nums' }}>
+            <span style={{ color: 'var(--gain)', fontWeight: '700' }}>── AI strategy (+{strat.cumulative_return}%)</span>
+            <span style={{ color: 'var(--accent)', fontWeight: '600' }}>── Nifty 50 (+{bench.cumulative_return}%)</span>
+            <span style={{ color: 'var(--dash-muted)' }}>- - Random (+{rand.cumulative_return}%)</span>
           </div>
         </div>
 
@@ -162,13 +162,13 @@ export const BacktestView: React.FC<BacktestViewProps> = ({ backtest, loading })
             <polyline fill="none" stroke="#94a3b8" strokeWidth="1.5" strokeDasharray="4 4" points={randPoints} />
 
             {/* Benchmark Line */}
-            <polyline fill="none" stroke="#2563eb" strokeWidth="2" points={benchPoints} />
+            <polyline fill="none" stroke="var(--accent)" strokeWidth="2" points={benchPoints} />
 
             {/* Strategy Fill & Line */}
             <polygon fill="url(#stratGradient)" points={stratArea} />
             <polyline
               fill="none"
-              stroke="#2d6a2e"
+              stroke="var(--gain)"
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -183,7 +183,7 @@ export const BacktestView: React.FC<BacktestViewProps> = ({ backtest, loading })
                   y1={0}
                   x2={activeX}
                   y2={height}
-                  stroke="#2d6a2e"
+                  stroke="var(--gain)"
                   strokeWidth="1.2"
                   strokeDasharray="3 3"
                   opacity="0.6"
@@ -192,7 +192,7 @@ export const BacktestView: React.FC<BacktestViewProps> = ({ backtest, loading })
                   cx={activeX}
                   cy={height - ((activeItem.strategy - minVal) / valRange) * height}
                   r="4.5"
-                  fill="#2d6a2e"
+                  fill="var(--gain)"
                   stroke="#ffffff"
                   strokeWidth="2"
                 />
@@ -214,34 +214,61 @@ export const BacktestView: React.FC<BacktestViewProps> = ({ backtest, loading })
 
       {/* Confidence Calibration Table */}
       <div className="ledger-panel">
-        <div className="ledger-panel-title" style={{ marginBottom: '16px' }}>Confidence Calibration Report</div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px', flexWrap: 'wrap', gap: '8px' }}>
+          <div>
+            <div className="ledger-panel-title">Confidence calibration</div>
+            <div style={{ fontSize: '12px', color: 'var(--dash-muted)', marginTop: '4px', maxWidth: '60ch' }}>
+              Comparison of stated model confidence vs empirical accuracy on held-out trades.
+              Rows highlighted in red are bins where the model overstates confidence by &gt;10 pp.
+            </div>
+          </div>
+        </div>
         {backtest.confidence_calibration.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '24px 0', color: '#64748b', fontFamily: 'var(--mono)', fontSize: '13px' }}>
             Collecting and validating out-of-fold predictions to generate calibration report...
           </div>
         ) : (
-          <div style={{ overflowX: 'auto' }}>
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '12px', fontFamily: 'var(--mono)' }}>
-              <thead>
-                <tr style={{ borderBottom: '2px solid #e2e8f0', color: '#64748b', background: '#f8fafc' }}>
-                  <th style={{ padding: '10px 12px' }}>CONFIDENCE BIN</th>
-                  <th style={{ padding: '10px 12px' }}>STATED PROB</th>
-                  <th style={{ padding: '10px 12px' }}>EMPIRICAL ACCURACY</th>
-                  <th style={{ padding: '10px 12px' }}>SAMPLE COUNT</th>
-                </tr>
-              </thead>
-              <tbody>
-                {backtest.confidence_calibration.map((bin, i) => (
-                  <tr key={i} style={{ borderBottom: '1px solid #f1f5f9' }}>
-                    <td style={{ padding: '12px', color: '#0f172a', fontWeight: '600' }}>{bin.confidence_bin}</td>
-                    <td style={{ padding: '12px', color: '#475569' }}>{(bin.predicted_prob * 100).toFixed(0)}%</td>
-                    <td style={{ padding: '12px', color: '#16a34a', fontWeight: '700' }}>{(bin.actual_accuracy * 100).toFixed(0)}%</td>
-                    <td style={{ padding: '12px', color: '#64748b' }}>{bin.sample_count} trades</td>
+          <>
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '12px', fontFamily: 'var(--mono)', fontVariantNumeric: 'tabular-nums' }}>
+                <thead>
+                  <tr style={{ borderBottom: '2px solid var(--rule)', color: 'var(--dash-muted)', background: 'var(--paper)' }}>
+                    <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Confidence bin</th>
+                    <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Stated prob.</th>
+                    <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Empirical accuracy</th>
+                    <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Gap (stated − empirical)</th>
+                    <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Trades</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody>
+                  {backtest.confidence_calibration.map((bin, i) => {
+                    const stated = bin.predicted_prob * 100;
+                    const actual = bin.actual_accuracy * 100;
+                    const gap = stated - actual;
+                    const isOverconfident = gap > 10;
+                    return (
+                      <tr key={i} style={{
+                        borderBottom: '1px solid var(--rule)',
+                        background: isOverconfident ? 'var(--loss-bg)' : 'transparent',
+                      }}>
+                        <td style={{ padding: '11px 12px', color: 'var(--ink)', fontWeight: '600' }}>{bin.confidence_bin}</td>
+                        <td style={{ padding: '11px 12px', color: 'var(--dash-muted)' }}>{stated.toFixed(0)}%</td>
+                        <td style={{ padding: '11px 12px', color: 'var(--gain)', fontWeight: '700' }}>{actual.toFixed(0)}%</td>
+                        <td style={{ padding: '11px 12px', color: isOverconfident ? 'var(--loss)' : 'var(--dash-muted)', fontWeight: isOverconfident ? '700' : '400' }}>
+                          {isOverconfident ? `+${gap.toFixed(0)} pp ⚠` : `+${gap.toFixed(0)} pp`}
+                        </td>
+                        <td style={{ padding: '11px 12px', color: 'var(--dash-muted)' }}>{bin.sample_count}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+            <div style={{ marginTop: '14px', padding: '10px 14px', background: 'var(--paper)', borderRadius: '8px', fontSize: '11px', color: 'var(--dash-muted)', fontFamily: 'var(--sans)' }}>
+              <strong style={{ color: 'var(--ink)' }}>Note on these numbers:</strong> Backtest and calibration figures were generated before the latest model retrain.
+              Treat them as pre-fix baseline estimates until a fresh out-of-sample run confirms performance.
+            </div>
+          </>
         )}
       </div>
     </div>

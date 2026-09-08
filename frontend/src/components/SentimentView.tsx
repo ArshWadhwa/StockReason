@@ -47,32 +47,32 @@ export const SentimentView: React.FC<SentimentViewProps> = ({ sentiment, loading
       <div className="ledger-panel">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
           <div>
-            <h2 style={{ fontFamily: 'var(--display)', fontSize: '24px', fontWeight: '700', color: 'var(--text-primary)', margin: 0 }}>
-              FinBERT Sentiment Trajectory
+            <h2 style={{ fontFamily: 'var(--sans)', fontSize: '20px', fontWeight: '700', color: 'var(--ink)', margin: 0 }}>
+              FinBERT sentiment trajectory
             </h2>
-            <p style={{ fontSize: '13px', color: '#64748b', marginTop: '6px', margin: 0 }}>
-              Domain-tuned NLP scoring and real-time financial news sentiment for <strong style={{ color: '#0f172a' }}>{sentiment.ticker}</strong>
+            <p style={{ fontSize: '13px', color: 'var(--dash-muted)', marginTop: '6px', margin: '6px 0 0' }}>
+              Domain-tuned NLP scoring for <strong style={{ color: 'var(--ink)' }}>{sentiment.ticker.replace('.NS', '')}</strong>
             </p>
           </div>
 
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
             {/* Daily NLP Score */}
             <div className="ledger-cell" style={{ minWidth: '130px', padding: '12px 18px' }}>
-              <div className="ledger-label">FinBERT NLP Score</div>
+              <div className="ledger-label">FinBERT NLP score</div>
               <div style={{
-                fontSize: '26px',
-                fontWeight: '700',
-                fontFamily: 'var(--mono)',
-                color: sentiment.avg_sentiment_score >= 0 ? '#16a34a' : '#dc2626',
-                marginTop: '4px'
+                fontFamily: 'var(--serif)',
+                fontSize: '28px',
+                fontWeight: '400',
+                color: sentiment.avg_sentiment_score >= 0 ? 'var(--gain)' : 'var(--loss)',
+                marginTop: '4px',
+                fontVariantNumeric: 'tabular-nums',
               }}>
                 {sentiment.avg_sentiment_score >= 0 ? `+${sentiment.avg_sentiment_score.toFixed(2)}` : sentiment.avg_sentiment_score.toFixed(2)}
               </div>
             </div>
 
-            {/* Overall Tone Classification */}
             <div className="ledger-cell" style={{ minWidth: '130px', padding: '12px 18px' }}>
-              <div className="ledger-label">Sentiment Tone</div>
+              <div className="ledger-label">Tone</div>
               <div style={{
                 fontSize: '12px',
                 fontWeight: '700',
@@ -92,15 +92,19 @@ export const SentimentView: React.FC<SentimentViewProps> = ({ sentiment, loading
               </div>
             </div>
 
-            {/* Bullish Ratio */}
-            <div className="ledger-cell" style={{ minWidth: '130px', padding: '12px 18px' }}>
-              <div className="ledger-label">Bullish Ratio</div>
+            <div
+              className="ledger-cell"
+              style={{ minWidth: '130px', padding: '12px 18px' }}
+              title="Bullish ratio is the percentage of individual articles that scored clearly positive. This is NOT the same as the aggregate tone — even 0% bullish articles can produce a Neutral tone if articles are mixed or muted rather than negative."
+            >
+              <div className="ledger-label">Bullish ratio (?)</div>
               <div style={{
-                fontSize: '26px',
-                fontWeight: '700',
-                fontFamily: 'var(--mono)',
-                color: '#0f172a',
-                marginTop: '4px'
+                fontFamily: 'var(--serif)',
+                fontSize: '28px',
+                fontWeight: '400',
+                color: 'var(--ink)',
+                marginTop: '4px',
+                fontVariantNumeric: 'tabular-nums',
               }}>
                 {Math.round((sentiment.bullish_ratio || 0) * 100)}%
               </div>
@@ -109,54 +113,53 @@ export const SentimentView: React.FC<SentimentViewProps> = ({ sentiment, loading
         </div>
 
         {/* Divergence Alert */}
-        <div style={{
-          marginTop: '20px',
-          padding: '14px 18px',
-          borderRadius: '10px',
-          background: alert.has_divergence ? '#fef2f2' : '#f0fdf4',
-          border: `1px solid ${alert.has_divergence ? '#fecaca' : '#bbf7d0'}`
-        }}>
           <div style={{
-            fontWeight: '700',
-            color: alert.has_divergence ? '#b91c1c' : '#1e4d1f',
-            fontSize: '11px',
-            fontFamily: 'var(--mono)',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '6px',
-            letterSpacing: '0.04em'
+            marginTop: '20px',
+            padding: '14px 18px',
+            borderRadius: '8px',
+            background: alert.has_divergence ? 'var(--loss-bg)' : 'var(--gain-bg)',
+            border: `1px solid ${alert.has_divergence ? 'var(--loss-border)' : 'var(--gain-border)'}`,
           }}>
-            <span>{alert.has_divergence ? '⚠️' : '✓'}</span>
-            {alert.has_divergence ? 'SENTIMENT-PRICE DIVERGENCE FLAG' : 'SENTIMENT & TECHNICAL TREND CONVERGENCE'}
+            <div style={{
+              fontWeight: '700',
+              color: alert.has_divergence ? 'var(--loss)' : 'var(--gain)',
+              fontSize: '12px',
+              fontFamily: 'var(--sans)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+            }}>
+              <span>{alert.has_divergence ? '⚠' : '✓'}</span>
+              {alert.has_divergence ? 'Sentiment-price divergence detected' : 'Sentiment and technical trend aligned'}
+            </div>
+            <div style={{ fontSize: '13px', color: '#475569', marginTop: '6px', lineHeight: '1.55' }}>
+              {alert.message}
+            </div>
           </div>
-          <div style={{ fontSize: '13px', color: '#475569', marginTop: '6px', lineHeight: '1.5' }}>
-            {alert.message}
-          </div>
-        </div>
       </div>
 
       {/* Headlines Feed */}
       <div className="ledger-panel">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
           <div>
-            <div style={{ fontFamily: 'var(--display)', fontSize: '18px', fontWeight: '700', color: 'var(--text-primary)' }}>
-              Recent Financial News & Sentiment Assessment
+            <div style={{ fontFamily: 'var(--sans)', fontSize: '17px', fontWeight: '700', color: 'var(--ink)' }}>
+              Recent news and sentiment
             </div>
-            <div style={{ fontFamily: 'var(--mono)', fontSize: '11px', color: '#64748b', marginTop: '2px' }}>
-              Financial RSS headlines parsed and evaluated with FinBERT NLP
+            <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: 'var(--dash-muted)', marginTop: '3px' }}>
+              Financial RSS headlines scored with FinBERT NLP
             </div>
           </div>
           <span style={{
             fontFamily: 'var(--mono)',
             fontSize: '11px',
-            color: '#475569',
-            background: '#f8fafc',
-            border: '1px solid #e2e8f0',
+            color: 'var(--dash-muted)',
+            background: 'var(--paper)',
+            border: '1px solid var(--rule)',
             padding: '4px 10px',
             borderRadius: '6px',
-            fontWeight: '600'
+            fontWeight: '600',
           }}>
-            {sentiment.headlines.length} Articles Analyzed
+            {sentiment.headlines.length} articles
           </span>
         </div>
 
@@ -186,13 +189,13 @@ export const SentimentView: React.FC<SentimentViewProps> = ({ sentiment, loading
                 }}
               >
                 <div style={{ flex: '1 1 400px' }}>
-                  <div style={{ fontSize: '14px', fontWeight: '600', color: 'var(--text-primary)', marginBottom: '6px', lineHeight: '1.45' }}>
+                  <div style={{ fontSize: '14px', fontWeight: '600', color: 'var(--ink)', marginBottom: '5px', lineHeight: '1.45' }}>
                     {cleanHeadline(item.headline)}
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', color: '#64748b', fontFamily: 'var(--mono)' }}>
-                    <span style={{ fontWeight: '600', color: '#334155' }}>{item.source}</span>
-                    <span style={{ opacity: 0.4 }}>•</span>
-                    <span>{formatPublishDate(item.published_at)}</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', color: 'var(--dash-muted)' }}>
+                    <span style={{ fontWeight: '600', color: 'var(--ink)' }}>{item.source}</span>
+                    <span style={{ opacity: 0.35 }}>|</span>
+                    <span style={{ fontFamily: 'var(--mono)', fontVariantNumeric: 'tabular-nums' }}>{formatPublishDate(item.published_at)} IST</span>
                   </div>
                 </div>
 

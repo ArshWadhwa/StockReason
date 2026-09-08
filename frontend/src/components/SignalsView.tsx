@@ -8,118 +8,148 @@ interface SignalsViewProps {
 }
 
 // Category classification for visual grouping
-const FEATURE_CATEGORIES: Record<string, { label: string; color: string; icon: string }> = {
-  // Technical / Momentum
-  rsi_14: { label: 'Momentum', color: '#60a5fa', icon: '📊' },
-  rsi_7: { label: 'Momentum', color: '#60a5fa', icon: '📊' },
-  rsi_21: { label: 'Momentum', color: '#60a5fa', icon: '📊' },
-  rsi_28: { label: 'Momentum', color: '#60a5fa', icon: '📊' },
-  macd_line_12_26: { label: 'Momentum', color: '#60a5fa', icon: '📈' },
-  macd_hist_12_26: { label: 'Momentum', color: '#60a5fa', icon: '📈' },
-  macd_signal_12_26: { label: 'Momentum', color: '#60a5fa', icon: '📈' },
-  stoch_k_14: { label: 'Momentum', color: '#60a5fa', icon: '📊' },
-  stoch_d_14: { label: 'Momentum', color: '#60a5fa', icon: '📊' },
-  williams_r_14: { label: 'Momentum', color: '#60a5fa', icon: '📊' },
-  cci_14: { label: 'Momentum', color: '#60a5fa', icon: '📊' },
-  cci_20: { label: 'Momentum', color: '#60a5fa', icon: '📊' },
+const FEATURE_CATEGORIES: Record<string, { label: string; color: string }> = {
+  // Momentum
+  rsi_14:           { label: 'Momentum', color: '#3B6FD4' },
+  rsi_7:            { label: 'Momentum', color: '#3B6FD4' },
+  rsi_21:           { label: 'Momentum', color: '#3B6FD4' },
+  rsi_28:           { label: 'Momentum', color: '#3B6FD4' },
+  macd_line_12_26:  { label: 'Momentum', color: '#3B6FD4' },
+  macd_hist_12_26:  { label: 'Momentum', color: '#3B6FD4' },
+  macd_signal_12_26:{ label: 'Momentum', color: '#3B6FD4' },
+  stoch_k_14:       { label: 'Momentum', color: '#3B6FD4' },
+  stoch_d_14:       { label: 'Momentum', color: '#3B6FD4' },
+  williams_r_14:    { label: 'Momentum', color: '#3B6FD4' },
+  cci_14:           { label: 'Momentum', color: '#3B6FD4' },
+  cci_20:           { label: 'Momentum', color: '#3B6FD4' },
 
   // Trend
-  dist_sma_50: { label: 'Trend', color: '#4ade80', icon: '📐' },
-  dist_sma_20: { label: 'Trend', color: '#4ade80', icon: '📐' },
-  dist_sma_200: { label: 'Trend', color: '#4ade80', icon: '📐' },
-  dist_ema_50: { label: 'Trend', color: '#4ade80', icon: '📐' },
-  dist_ema_20: { label: 'Trend', color: '#4ade80', icon: '📐' },
-  sma_50_200_ratio: { label: 'Trend', color: '#4ade80', icon: '📐' },
-  sma_20_50_ratio: { label: 'Trend', color: '#4ade80', icon: '📐' },
-  adx_14: { label: 'Trend', color: '#4ade80', icon: '📐' },
-  close_slope_20: { label: 'Trend', color: '#4ade80', icon: '📐' },
-  close_slope_10: { label: 'Trend', color: '#4ade80', icon: '📐' },
-  close_slope_5: { label: 'Trend', color: '#4ade80', icon: '📐' },
+  dist_sma_50:      { label: 'Trend', color: '#1A7F4B' },
+  dist_sma_20:      { label: 'Trend', color: '#1A7F4B' },
+  dist_sma_200:     { label: 'Trend', color: '#1A7F4B' },
+  dist_ema_50:      { label: 'Trend', color: '#1A7F4B' },
+  dist_ema_20:      { label: 'Trend', color: '#1A7F4B' },
+  sma_50_200_ratio: { label: 'Trend', color: '#1A7F4B' },
+  sma_20_50_ratio:  { label: 'Trend', color: '#1A7F4B' },
+  adx_14:           { label: 'Trend', color: '#1A7F4B' },
+  close_slope_20:   { label: 'Trend', color: '#1A7F4B' },
+  close_slope_10:   { label: 'Trend', color: '#1A7F4B' },
+  close_slope_5:    { label: 'Trend', color: '#1A7F4B' },
 
   // Volatility
-  atr_14: { label: 'Volatility', color: '#f59e0b', icon: '⚡' },
-  natr_14: { label: 'Volatility', color: '#f59e0b', icon: '⚡' },
-  volatility_20d: { label: 'Volatility', color: '#f59e0b', icon: '⚡' },
-  volatility_5d: { label: 'Volatility', color: '#f59e0b', icon: '⚡' },
-  volatility_60d: { label: 'Volatility', color: '#f59e0b', icon: '⚡' },
-  bb_width_20: { label: 'Volatility', color: '#f59e0b', icon: '⚡' },
-  bb_pct_b_20: { label: 'Volatility', color: '#f59e0b', icon: '⚡' },
+  atr_14:           { label: 'Volatility', color: '#946C00' },
+  natr_14:          { label: 'Volatility', color: '#946C00' },
+  volatility_20d:   { label: 'Volatility', color: '#946C00' },
+  volatility_5d:    { label: 'Volatility', color: '#946C00' },
+  volatility_60d:   { label: 'Volatility', color: '#946C00' },
+  bb_width_20:      { label: 'Volatility', color: '#946C00' },
+  bb_pct_b_20:      { label: 'Volatility', color: '#946C00' },
 
-  // Volume / Flow
-  volume: { label: 'Volume', color: '#a78bfa', icon: '📦' },
-  vol_ratio_20: { label: 'Volume', color: '#a78bfa', icon: '📦' },
-  vol_ratio_5: { label: 'Volume', color: '#a78bfa', icon: '📦' },
-  obv: { label: 'Volume', color: '#a78bfa', icon: '📦' },
-  cmf_20: { label: 'Volume', color: '#a78bfa', icon: '💰' },
-  pvt: { label: 'Volume', color: '#a78bfa', icon: '📦' },
+  // Volume
+  volume:           { label: 'Volume', color: '#6B52C8' },
+  vol_ratio_20:     { label: 'Volume', color: '#6B52C8' },
+  vol_ratio_5:      { label: 'Volume', color: '#6B52C8' },
+  obv:              { label: 'Volume', color: '#6B52C8' },
+  cmf_20:           { label: 'Volume', color: '#6B52C8' },
+  pvt:              { label: 'Volume', color: '#6B52C8' },
 
   // Sentiment
-  sentiment_mean: { label: 'Sentiment', color: '#f472b6', icon: '🧠' },
-  sentiment_pos_ratio: { label: 'Sentiment', color: '#f472b6', icon: '🧠' },
-  sentiment_neg_ratio: { label: 'Sentiment', color: '#f472b6', icon: '🧠' },
-  sentiment_momentum_3d: { label: 'Sentiment', color: '#f472b6', icon: '🧠' },
-  sentiment_momentum_7d: { label: 'Sentiment', color: '#f472b6', icon: '🧠' },
+  sentiment_mean:         { label: 'Sentiment', color: '#B0457E' },
+  sentiment_pos_ratio:    { label: 'Sentiment', color: '#B0457E' },
+  sentiment_neg_ratio:    { label: 'Sentiment', color: '#B0457E' },
+  sentiment_momentum_3d:  { label: 'Sentiment', color: '#B0457E' },
+  sentiment_momentum_7d:  { label: 'Sentiment', color: '#B0457E' },
 
   // Macro
-  vix_close: { label: 'Macro', color: '#fb923c', icon: '🌍' },
-  vix_close_return: { label: 'Macro', color: '#fb923c', icon: '🌍' },
-  nifty_50_close: { label: 'Macro', color: '#fb923c', icon: '🌍' },
-  nifty_50_close_return: { label: 'Macro', color: '#fb923c', icon: '🌍' },
-  nifty_bank_close_return: { label: 'Macro', color: '#fb923c', icon: '🌍' },
+  vix_close:              { label: 'Macro', color: '#C0392B' },
+  vix_close_return:       { label: 'Macro', color: '#C0392B' },
+  nifty_50_close:         { label: 'Macro', color: '#C0392B' },
+  nifty_50_close_return:  { label: 'Macro', color: '#C0392B' },
+  nifty_bank_close_return:{ label: 'Macro', color: '#C0392B' },
 
-  // Price / Returns
-  return_1d: { label: 'Returns', color: '#22d3ee', icon: '💹' },
-  return_5d: { label: 'Returns', color: '#22d3ee', icon: '💹' },
-  return_21d: { label: 'Returns', color: '#22d3ee', icon: '💹' },
-  return_63d: { label: 'Returns', color: '#22d3ee', icon: '💹' },
-  close: { label: 'Price', color: '#22d3ee', icon: '💹' },
-  hl_spread_pct: { label: 'Price', color: '#22d3ee', icon: '💹' },
+  // Returns
+  return_1d:    { label: 'Returns', color: '#2E7D8C' },
+  return_5d:    { label: 'Returns', color: '#2E7D8C' },
+  return_21d:   { label: 'Returns', color: '#2E7D8C' },
+  return_63d:   { label: 'Returns', color: '#2E7D8C' },
+  close:        { label: 'Price', color: '#2E7D8C' },
+  hl_spread_pct:{ label: 'Price', color: '#2E7D8C' },
 };
 
+// Returns null for uncategorized — chip is suppressed, not shown as "Other"
 const getCategory = (feature: string) =>
-  FEATURE_CATEGORIES[feature] || { label: 'Other', color: '#888', icon: '📋' };
+  FEATURE_CATEGORIES[feature] ?? null;
+
+const DEFAULT_VISIBLE = 3;
 
 export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, loading }) => {
   const [expandedFeature, setExpandedFeature] = useState<number | null>(null);
+  const [showAllFeatures, setShowAllFeatures] = useState(false);
 
   if (loading || !signal || !prediction) {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-        <div className="ledger-panel" style={{ height: '180px' }} />
-        <div className="ledger-panel" style={{ height: '300px' }} />
+        <div className="ledger-panel skeleton" style={{ height: '180px' }} />
+        <div className="ledger-panel skeleton" style={{ height: '300px' }} />
       </div>
     );
   }
 
   const horizons = prediction.horizons;
+  const allFeatures = prediction.shap_explainability;
+
+  // Relative bar scaling — bars sized relative to the top feature, not absolute 0–100%
+  const maxScore = Math.max(...allFeatures.map(f => f.importance_score), 0.001);
+  const visibleFeatures = showAllFeatures ? allFeatures : allFeatures.slice(0, DEFAULT_VISIBLE);
+
+  const signalColor = signal.signal === 'BUY' ? '#1A7F4B' : (signal.signal === 'HOLD' ? '#946C00' : '#C0392B');
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-      {/* Primary Signal Verdict Card */}
+
+      {/* ── Primary Signal Verdict — PRIMARY card treatment ── */}
       <div className="ledger-panel" style={{
-        borderLeft: `5px solid ${
-          signal.signal === 'BUY' ? '#16a34a' :
-          (signal.signal === 'HOLD' ? '#b45309' : '#dc2626')
-        }`
+        borderLeft: `4px solid ${signalColor}`,
+        borderRadius: '12px',
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px' }}>
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <span className={`ledger-tag ${signal.signal === 'BUY' ? 'tag-buy' : (signal.signal === 'HOLD' ? 'tag-hold' : 'tag-avoid')}`}>
-                {signal.signal} SIGNAL
+            {/* Signal badge + conviction inline */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+              <span className={`ledger-tag ${signal.signal === 'BUY' ? 'tag-buy' : (signal.signal === 'HOLD' ? 'tag-hold' : 'tag-avoid')}`}
+                style={{ fontSize: '13px', padding: '5px 13px' }}>
+                {signal.signal}
               </span>
-              <span style={{ fontSize: '12px', color: '#64748b', fontFamily: 'var(--mono)' }}>
-                Conviction: <strong style={{ color: '#0f172a' }}>{signal.signal_score} / 100</strong>
+              <span style={{ fontSize: '13px', color: 'var(--dash-muted)', fontFamily: 'var(--sans)' }}>
+                Conviction: <strong style={{ color: 'var(--ink)', fontVariantNumeric: 'tabular-nums' }}>{signal.signal_score} / 100</strong>
               </span>
             </div>
-            <div style={{ fontFamily: 'var(--display)', fontSize: '26px', fontWeight: '700', color: 'var(--text-primary)', marginTop: '10px' }}>
-              {signal.name} <span style={{ fontFamily: 'var(--mono)', fontSize: '18px', color: '#64748b', fontWeight: '500' }}>({signal.ticker})</span>
+
+            {/* Company name — display font, not repeated ticker */}
+            <div style={{
+              fontFamily: 'var(--serif)',
+              fontSize: '26px',
+              fontWeight: '400',
+              color: 'var(--ink)',
+              marginTop: '10px',
+              lineHeight: '1.15',
+            }}>
+              {signal.name}
             </div>
           </div>
 
+          {/* Confidence score — primary metric, serif */}
           <div style={{ textAlign: 'right' }}>
-            <div className="ledger-label">MC Dropout Confidence</div>
-            <div style={{ fontSize: '32px', fontWeight: '700', color: '#1e4d1f', fontFamily: 'var(--mono)' }}>
+            <div className="ledger-label">MC Dropout confidence</div>
+            <div style={{
+              fontFamily: 'var(--serif)',
+              fontSize: '38px',
+              fontWeight: '400',
+              color: signalColor,
+              fontVariantNumeric: 'tabular-nums',
+              lineHeight: '1',
+              marginTop: '4px',
+            }}>
               {Math.round(signal.confidence * 100)}%
             </div>
           </div>
@@ -127,22 +157,18 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
 
         {/* Decision Reasoning Trail */}
         <div style={{ marginTop: '22px' }}>
-          <div className="ledger-label">Decision Reasoning Trail</div>
-          <ul style={{ display: 'flex', flexDirection: 'column', gap: '8px', listStyleType: 'none', marginTop: '10px' }}>
+          <div className="ledger-label" style={{ marginBottom: '10px' }}>Decision reasoning</div>
+          <ul style={{ display: 'flex', flexDirection: 'column', gap: '6px', listStyleType: 'none' }}>
             {signal.reasoning.map((r, idx) => (
-              <li key={idx} style={{
+              <li key={idx} className="ledger-row" style={{
                 fontSize: '13px',
                 color: '#334155',
                 display: 'flex',
                 alignItems: 'baseline',
                 gap: '10px',
-                background: '#f8fafc',
-                padding: '10px 14px',
-                borderRadius: '8px',
-                border: '1px solid #e2e8f0',
-                lineHeight: '1.5'
+                lineHeight: '1.5',
               }}>
-                <span style={{ color: '#16a34a', fontWeight: '700', fontSize: '12px' }}>✓</span>
+                <span style={{ color: 'var(--gain)', fontWeight: '700', fontSize: '11px', flexShrink: 0 }}>✓</span>
                 {r}
               </li>
             ))}
@@ -150,192 +176,301 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
         </div>
       </div>
 
-      {/* Multi-Horizon Cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px' }}>
+      {/* ── Multi-Horizon Cards — SECONDARY treatment ── */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
         {(['1D', '1W', '1M', '6M'] as const).map((hKey) => {
           const h = horizons[hKey];
           const isPos = h.expected_return >= 0;
+          const labelMap = { '1D': 'Next day', '1W': '1 week', '1M': '1 month', '6M': '6 months' };
           return (
             <div key={hKey} className="ledger-cell">
-              <div style={{ display: 'flex', justifyContent: 'space-between', color: '#64748b', fontSize: '11px', fontFamily: 'var(--mono)' }}>
-                <span>{hKey === '1D' ? 'NEXT DAY' : (hKey === '1W' ? '1 WEEK' : (hKey === '1M' ? '1 MONTH' : '6 MONTHS'))}</span>
-                <span style={{ fontWeight: '700', color: '#0f172a' }}>{hKey}</span>
+              <div style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                marginBottom: '8px',
+              }}>
+                <span style={{ fontSize: '12px', color: 'var(--dash-muted)', fontFamily: 'var(--sans)', fontWeight: '500' }}>
+                  {labelMap[hKey]}
+                </span>
+                <span style={{
+                  fontFamily: 'var(--mono)',
+                  fontSize: '10px',
+                  fontWeight: '700',
+                  color: 'var(--ink)',
+                  background: 'var(--paper)',
+                  padding: '2px 6px',
+                  borderRadius: '4px',
+                }}>
+                  {hKey}
+                </span>
               </div>
               <div style={{
-                fontSize: '24px',
-                fontWeight: '700',
-                margin: '8px 0',
-                fontFamily: 'var(--mono)',
-                color: isPos ? '#16a34a' : '#dc2626'
+                fontFamily: 'var(--serif)',
+                fontSize: '26px',
+                fontWeight: '400',
+                color: isPos ? 'var(--gain)' : 'var(--loss)',
+                fontVariantNumeric: 'tabular-nums',
+                lineHeight: '1.1',
+                marginBottom: '6px',
               }}>
                 {isPos ? `+${(h.expected_return * 100).toFixed(2)}%` : `${(h.expected_return * 100).toFixed(2)}%`}
               </div>
-              <div style={{ fontSize: '12px', color: '#475569', fontFamily: 'var(--mono)', fontWeight: '500' }}>
-                Target: ₹{h.predicted_price.toLocaleString('en-IN', { minimumFractionDigits: 1 })}
+              <div style={{
+                fontSize: '12px',
+                color: 'var(--dash-muted)',
+                fontFamily: 'var(--mono)',
+                fontVariantNumeric: 'tabular-nums',
+              }}>
+                ₹{h.predicted_price.toLocaleString('en-IN', { minimumFractionDigits: 1 })}
               </div>
-              <div style={{ fontSize: '11px', color: '#94a3b8', fontFamily: 'var(--mono)', marginTop: '4px' }}>
-                Conf: {Math.round(h.confidence * 100)}% · ±₹{Math.round(h.upper_bound - h.lower_bound)}
+              <div style={{
+                fontSize: '11px',
+                color: '#94a3b8',
+                fontFamily: 'var(--mono)',
+                marginTop: '3px',
+                fontVariantNumeric: 'tabular-nums',
+              }}>
+                {Math.round(h.confidence * 100)}% conf · ±₹{Math.round(h.upper_bound - h.lower_bound)}
               </div>
             </div>
           );
         })}
       </div>
 
-      {/* SHAP Feature Attribution — Human Readable */}
+      {/* ── SHAP Feature Attribution — progressive disclosure ── */}
       <div className="ledger-panel">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '10px' }}>
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
+          marginBottom: '20px',
+          flexWrap: 'wrap',
+          gap: '12px',
+        }}>
           <div>
-            <div style={{ fontFamily: 'var(--display)', fontSize: '18px', fontWeight: '700', color: 'var(--text-primary)' }}>
-              What's Driving This Prediction
+            <div style={{
+              fontFamily: 'var(--sans)',
+              fontSize: '17px',
+              fontWeight: '700',
+              color: 'var(--ink)',
+            }}>
+              What's driving this prediction
             </div>
-            <div style={{ fontSize: '12px', color: '#64748b', marginTop: '2px' }}>
-              LSTM feature attribution — click any feature for details
+            <div style={{ fontSize: '12px', color: 'var(--dash-muted)', marginTop: '3px' }}>
+              LSTM feature attribution · click any factor for detail
             </div>
           </div>
           <div style={{
             fontSize: '11px',
-            fontFamily: 'var(--mono)',
-            color: '#1e4d1f',
-            background: '#e8f5e9',
-            border: '1px solid #c8e6c9',
+            fontFamily: 'var(--sans)',
+            color: 'var(--accent)',
+            background: 'var(--accent-subtle)',
+            border: '1px solid var(--accent-border)',
             padding: '4px 10px',
             borderRadius: '6px',
-            fontWeight: '600'
+            fontWeight: '600',
           }}>
-            Multi-Horizon LSTM + MC Dropout
+            Multi-horizon LSTM + MC Dropout
           </div>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-          {prediction.shap_explainability.map((f, i) => {
-            const cat = getCategory(f.feature);
-            const displayName = f.feature_display || f.feature.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-            const description = f.feature_description || '';
-            const isExpanded = expandedFeature === i;
-            const barWidth = Math.min(100, Math.round(f.importance_score * 100 * 3));
-
-            return (
-              <div
-                key={i}
-                onClick={() => setExpandedFeature(isExpanded ? null : i)}
-                style={{
-                  padding: '14px 16px',
-                  background: isExpanded ? '#f0fdf4' : '#ffffff',
-                  border: `1px solid ${isExpanded ? '#86efac' : '#e2e8f0'}`,
-                  borderRadius: '10px',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                  boxShadow: '0 1px 2px rgba(0,0,0,0.02)'
-                }}
-              >
-                {/* Main Row */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  {/* Category Icon */}
-                  <span style={{ fontSize: '16px', width: '24px', textAlign: 'center' }}>{cat.icon}</span>
-
-                  {/* Feature Name + Category Badge */}
-                  <div style={{ flex: 1 }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <span style={{ fontSize: '13px', fontWeight: '600', color: '#0f172a', fontFamily: 'var(--mono)' }}>
-                        {displayName}
-                      </span>
-                      <span style={{
-                        fontSize: '9px',
-                        padding: '2px 6px',
-                        borderRadius: '4px',
-                        background: cat.color + '15',
-                        color: cat.color,
-                        fontFamily: 'var(--mono)',
-                        fontWeight: '700',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.5px',
-                        border: `1px solid ${cat.color}30`
-                      }}>
-                        {cat.label}
-                      </span>
-                    </div>
-
-                    {/* Importance Bar */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '6px' }}>
-                      <div style={{
-                        flex: 1,
-                        height: '6px',
-                        background: '#f1f5f9',
-                        borderRadius: '3px',
-                        overflow: 'hidden',
-                        position: 'relative',
-                      }}>
-                        <div style={{
-                          position: 'absolute',
-                          left: f.direction === 'negative' ? `${100 - barWidth}%` : '0',
-                          width: `${barWidth}%`,
-                          height: '100%',
-                          background: f.direction === 'positive'
-                            ? 'linear-gradient(90deg, #4ade80, #16a34a)'
-                            : 'linear-gradient(270deg, #f87171, #dc2626)',
-                          borderRadius: '3px',
-                          transition: 'width 0.3s ease',
-                        }} />
-                      </div>
-                      <span style={{
-                        fontSize: '12px',
-                        fontWeight: '700',
-                        fontFamily: 'var(--mono)',
-                        color: f.direction === 'positive' ? '#16a34a' : '#dc2626',
-                        minWidth: '50px',
-                        textAlign: 'right',
-                      }}>
-                        {f.direction === 'positive' ? '▲' : '▼'} {(f.importance_score * 100).toFixed(1)}%
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Current Value */}
-                  {f.current_value !== undefined && f.current_value !== null && (
-                    <div style={{ textAlign: 'right', minWidth: '80px' }}>
-                      <div style={{ fontSize: '10px', color: '#94a3b8', fontFamily: 'var(--mono)' }}>CURRENT</div>
-                      <div style={{ fontSize: '13px', fontWeight: '700', color: '#0f172a', fontFamily: 'var(--mono)' }}>
-                        {typeof f.current_value === 'number'
-                          ? (Math.abs(f.current_value) > 1000
-                            ? f.current_value.toLocaleString('en-IN', { maximumFractionDigits: 0 })
-                            : f.current_value.toFixed(2))
-                          : f.current_value}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Expand Arrow */}
-                  <span style={{ color: '#94a3b8', fontSize: '12px', transform: isExpanded ? 'rotate(90deg)' : 'none', transition: 'transform 0.15s' }}>
-                    ▸
-                  </span>
-                </div>
-
-                {/* Expanded Description */}
-                {isExpanded && description && (
-                  <div style={{
-                    marginTop: '12px',
-                    padding: '12px 14px 10px 36px',
-                    fontSize: '12px',
-                    lineHeight: '1.6',
-                    color: '#475569',
-                    borderTop: '1px solid #e2e8f0',
-                  }}>
-                    <span style={{ color: cat.color, fontWeight: '700' }}>What this means: </span>
-                    {description}
-                    {f.direction === 'positive'
-                      ? ' This feature is currently pushing the prediction higher.'
-                      : ' This feature is currently pulling the prediction lower.'}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        {prediction.shap_explainability.length === 0 && (
-          <div style={{ padding: '24px', textAlign: 'center', color: '#94a3b8', fontSize: '13px', fontFamily: 'var(--mono)' }}>
+        {allFeatures.length === 0 ? (
+          <div style={{ padding: '24px', textAlign: 'center', color: 'var(--dash-muted)', fontSize: '13px' }}>
             No feature attribution data available for this ticker.
           </div>
+        ) : (
+          <>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+              {visibleFeatures.map((f, i) => {
+                const cat = getCategory(f.feature);
+                const displayName = f.feature_display || f.feature
+                  .replace(/_/g, ' ')
+                  .replace(/\b\w/g, c => c.toUpperCase());
+                const description = f.feature_description || '';
+                const isExpanded = expandedFeature === i;
+
+                // Relative bar: scaled to the top-ranked feature
+                const barWidth = Math.round((f.importance_score / maxScore) * 100);
+
+                return (
+                  <div
+                    key={i}
+                    onClick={() => setExpandedFeature(isExpanded ? null : i)}
+                    style={{
+                      padding: '12px 14px',
+                      background: isExpanded ? 'var(--accent-subtle)' : '#ffffff',
+                      border: `1px solid ${isExpanded ? 'var(--accent-border)' : 'var(--rule)'}`,
+                      borderRadius: '10px',
+                      cursor: 'pointer',
+                      transition: 'all 0.18s ease',
+                    }}
+                  >
+                    {/* Main row */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+
+                      {/* Rank badge — positional context */}
+                      <span style={{
+                        fontFamily: 'var(--mono)',
+                        fontSize: '10px',
+                        fontWeight: '700',
+                        color: 'var(--dash-muted)',
+                        width: '18px',
+                        textAlign: 'right',
+                        flexShrink: 0,
+                      }}>
+                        {i + 1}
+                      </span>
+
+                      {/* Feature name + category chip */}
+                      <div style={{ flex: 1 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                          <span style={{
+                            fontSize: '13px',
+                            fontWeight: '600',
+                            color: 'var(--ink)',
+                            fontFamily: 'var(--sans)',
+                          }}>
+                            {displayName}
+                          </span>
+                          {/* Category chip — only shown when category is known */}
+                          {cat && (
+                            <span style={{
+                              fontSize: '9px',
+                              padding: '1px 6px',
+                              borderRadius: '4px',
+                              background: cat.color + '14',
+                              color: cat.color,
+                              fontFamily: 'var(--sans)',
+                              fontWeight: '600',
+                              border: `1px solid ${cat.color}28`,
+                              letterSpacing: '0.2px',
+                            }}>
+                              {cat.label}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Relative importance bar */}
+                        <div style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '8px',
+                          marginTop: '7px',
+                        }}>
+                          <div style={{
+                            flex: 1,
+                            height: '5px',
+                            background: 'var(--paper)',
+                            borderRadius: '3px',
+                            overflow: 'hidden',
+                            position: 'relative',
+                          }}>
+                            <div style={{
+                              position: 'absolute',
+                              left: f.direction === 'negative' ? `${100 - barWidth}%` : '0',
+                              width: `${barWidth}%`,
+                              height: '100%',
+                              background: f.direction === 'positive'
+                                ? 'var(--gain)'
+                                : 'var(--loss)',
+                              borderRadius: '3px',
+                              transition: 'width 0.35s ease',
+                            }} />
+                          </div>
+                          <span style={{
+                            fontSize: '12px',
+                            fontWeight: '600',
+                            fontFamily: 'var(--mono)',
+                            fontVariantNumeric: 'tabular-nums',
+                            color: f.direction === 'positive' ? 'var(--gain)' : 'var(--loss)',
+                            minWidth: '52px',
+                            textAlign: 'right',
+                          }}>
+                            {f.direction === 'positive' ? '▲' : '▼'} {(f.importance_score * 100).toFixed(1)}%
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Current value — mono, tabular */}
+                      {f.current_value !== undefined && f.current_value !== null && (
+                        <div style={{ textAlign: 'right', minWidth: '72px' }}>
+                          <div style={{
+                            fontSize: '10px',
+                            color: 'var(--dash-muted)',
+                            fontFamily: 'var(--sans)',
+                            marginBottom: '2px',
+                          }}>
+                            Current
+                          </div>
+                          <div style={{
+                            fontSize: '13px',
+                            fontWeight: '700',
+                            color: 'var(--ink)',
+                            fontFamily: 'var(--mono)',
+                            fontVariantNumeric: 'tabular-nums',
+                          }}>
+                            {typeof f.current_value === 'number'
+                              ? (Math.abs(f.current_value) > 1000
+                                ? f.current_value.toLocaleString('en-IN', { maximumFractionDigits: 0 })
+                                : f.current_value.toFixed(2))
+                              : f.current_value}
+                          </div>
+                        </div>
+                      )}
+
+                      <span style={{
+                        color: 'var(--dash-muted)',
+                        fontSize: '11px',
+                        transform: isExpanded ? 'rotate(90deg)' : 'none',
+                        transition: 'transform 0.15s',
+                        flexShrink: 0,
+                      }}>
+                        ▸
+                      </span>
+                    </div>
+
+                    {/* Expanded description */}
+                    {isExpanded && description && (
+                      <div style={{
+                        marginTop: '12px',
+                        padding: '10px 12px 10px 30px',
+                        fontSize: '12px',
+                        lineHeight: '1.65',
+                        color: '#475569',
+                        borderTop: '1px solid var(--accent-border)',
+                      }}>
+                        <span style={{ color: cat?.color ?? 'var(--accent)', fontWeight: '600' }}>
+                          What this means:{' '}
+                        </span>
+                        {description}
+                        {f.direction === 'positive'
+                          ? ' This factor is currently pushing the forecast higher.'
+                          : ' This factor is currently pulling the forecast lower.'}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Progressive disclosure control */}
+            {allFeatures.length > DEFAULT_VISIBLE && (
+              <div style={{ marginTop: '14px', display: 'flex', justifyContent: 'center' }}>
+                <button
+                  className="ledger-btn-accent"
+                  onClick={() => {
+                    setShowAllFeatures(v => !v);
+                    if (showAllFeatures) setExpandedFeature(null);
+                  }}
+                >
+                  {showAllFeatures
+                    ? 'Show fewer factors'
+                    : `Show all ${allFeatures.length} factors`}
+                </button>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>

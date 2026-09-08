@@ -321,14 +321,11 @@ export function App() {
     <div className="dashboard-mode">
       {/* ═══════════ AMBIENT BACKGROUND DECORATIONS ═══════════ */}
       <div className="landing-bg-decorations" aria-hidden="true">
-        <div className="bg-glow-orb orb-1" />
-        <div className="bg-glow-orb orb-2" />
-        <div className="bg-glow-orb orb-3" />
         <svg className="bg-svg-pattern" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="stock-grid-dash" width="80" height="80" patternUnits="userSpaceOnUse">
-              <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(45, 106, 46, 0.035)" strokeWidth="1" />
-              <circle cx="80" cy="80" r="1.5" fill="rgba(45, 106, 46, 0.07)" />
+              <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(28, 35, 49, 0.03)" strokeWidth="1" />
+              <circle cx="80" cy="80" r="1.5" fill="rgba(28, 35, 49, 0.05)" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#stock-grid-dash)" />
@@ -371,8 +368,8 @@ export function App() {
               <div style={{ width: 1, height: 16, background: '#e2e8f0' }} />
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <span style={{ fontSize: '10px', color: '#64748b', fontFamily: 'var(--mono)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                  Suggestion:
+                <span style={{ fontSize: '11px', color: '#5A6478', fontFamily: 'var(--sans)', fontWeight: '500' }}>
+                  Signal
                 </span>
                 <span
                   className="dash-nav-suggestion"
@@ -397,8 +394,8 @@ export function App() {
           {/* Sidebar Controls */}
           <aside className="dash-sidebar">
             <div>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: '11px', fontWeight: '700', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '8px' }}>
-                Select Stock
+              <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', fontWeight: '600', color: 'var(--dash-muted)', marginBottom: '8px' }}>
+                Stock
               </div>
               <select
                 className="dash-select"
@@ -414,8 +411,8 @@ export function App() {
             </div>
 
             <div style={{ borderTop: '1px solid #edf2f7', paddingTop: '16px' }}>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: '11px', fontWeight: '700', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '10px' }}>
-                Analysis Views
+              <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', fontWeight: '600', color: 'var(--dash-muted)', marginBottom: '10px' }}>
+                Analysis views
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 {[
@@ -433,9 +430,9 @@ export function App() {
                       className={`dash-tab-btn ${isActive ? 'active' : ''}`}
                       onClick={() => handleTabChange(tab.id as DashboardTab)}
                     >
-                      <Icon size={16} strokeWidth={isActive ? 2.4 : 1.8} style={{ color: isActive ? '#1e4d1f' : '#64748b' }} />
+                      <Icon size={16} strokeWidth={isActive ? 2.4 : 1.8} style={{ color: isActive ? 'var(--accent)' : '#64748b' }} />
                       <span style={{ flex: 1 }}>{tab.label}</span>
-                      {isActive && <ChevronRight size={14} style={{ color: '#1e4d1f' }} />}
+                      {isActive && <ChevronRight size={14} style={{ color: 'var(--accent)' }} />}
                     </button>
                   );
                 })}
@@ -500,18 +497,18 @@ export function App() {
             <footer style={{
               marginTop: '40px',
               padding: '20px 0',
-              borderTop: '1px solid rgba(220, 235, 222, 0.9)',
+              borderTop: '1px solid var(--rule)',
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
               flexWrap: 'wrap',
               gap: '12px',
-              fontFamily: 'var(--mono)',
-              fontSize: '11px',
-              color: '#64748b'
+              fontFamily: 'var(--sans)',
+              fontSize: '12px',
+              color: 'var(--dash-muted)'
             }}>
-              <div>StockReason / NIFTY 50 Analysis Terminal — {systemStatus?.data_source === 'real' ? '100% Real Alternative Data' : 'Live Data Stream'}</div>
-              <div>Active Ticker: <strong style={{ color: '#0f172a' }}>{selectedTicker}</strong>{systemStatus ? ` · Refreshed: ${systemStatus.last_refreshed}` : ''}</div>
+              <div>StockReason · NIFTY 50 analysis terminal</div>
+              <div style={{ fontFamily: 'var(--mono)', fontSize: '11px' }}>Active: <strong style={{ color: 'var(--ink)' }}>{selectedTicker.replace('.NS', '')}</strong>{systemStatus ? `  ·  Refreshed: ${systemStatus.last_refreshed} IST` : ''}</div>
             </footer>
           </main>
 

@@ -26,31 +26,31 @@ export const DigestView: React.FC<DigestViewProps> = ({
       {/* Executive Market Brief */}
       <div className="ledger-panel">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '8px' }}>
-          <h2 style={{ fontFamily: 'var(--display)', fontSize: '24px', fontWeight: '700', color: 'var(--text-primary)' }}>
-            Daily "What Changed" Digest
+          <h2 style={{ fontFamily: 'var(--sans)', fontSize: '20px', fontWeight: '700', color: 'var(--ink)' }}>
+            Daily digest
           </h2>
           <span style={{
             fontFamily: 'var(--mono)',
             fontSize: '11px',
-            color: '#1e4d1f',
-            background: '#e8f5e9',
-            border: '1px solid #c8e6c9',
+            color: 'var(--dash-muted)',
+            background: 'var(--paper)',
+            border: '1px solid var(--rule)',
             padding: '4px 12px',
             borderRadius: '20px',
-            fontWeight: '600'
+            fontWeight: '600',
+            fontVariantNumeric: 'tabular-nums',
           }}>
-            EDITION: {digest.digest_date}
+            {digest.digest_date}
           </span>
         </div>
         <p style={{
           fontSize: '14px',
           lineHeight: '1.7',
-          color: '#1e3a24',
-          background: 'linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%)',
-          padding: '18px 20px',
-          border: '1px solid #bbf7d0',
-          borderRadius: '12px',
-          boxShadow: '0 1px 2px rgba(22, 163, 74, 0.04)'
+          color: 'var(--ink)',
+          background: 'var(--paper)',
+          padding: '16px 20px',
+          border: '1px solid var(--rule)',
+          borderRadius: '10px',
         }}>
           {digest.market_summary}
         </p>
@@ -60,11 +60,13 @@ export const DigestView: React.FC<DigestViewProps> = ({
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '16px' }}>
         {/* Signal Upgrades */}
         <div className="ledger-panel">
-          <div className="ledger-label" style={{ color: '#16a34a', marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span>▲</span> Signal Upgrades Today
+        <div className="ledger-label" style={{ color: 'var(--gain)', marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span>▲</span> Signal upgrades
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {digest.signal_upgrades.map((item) => (
+            {digest.signal_upgrades.length === 0 ? (
+              <p style={{ fontSize: '13px', color: 'var(--dash-muted)', padding: '12px 0' }}>No signal upgrades today.</p>
+            ) : digest.signal_upgrades.map((item) => (
               <div
                 key={item.ticker}
                 onClick={() => onSelectStock(item.ticker)}
@@ -113,11 +115,13 @@ export const DigestView: React.FC<DigestViewProps> = ({
 
         {/* Signal Downgrades */}
         <div className="ledger-panel">
-          <div className="ledger-label" style={{ color: '#dc2626', marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-            <span>▼</span> Signal Downgrades / Flags
+          <div className="ledger-label" style={{ color: 'var(--loss)', marginBottom: '14px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span>▼</span> Signal downgrades
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            {digest.signal_downgrades.map((item) => (
+            {digest.signal_downgrades.length === 0 ? (
+              <p style={{ fontSize: '13px', color: 'var(--dash-muted)', padding: '12px 0' }}>No signal downgrades today.</p>
+            ) : digest.signal_downgrades.map((item) => (
               <div
                 key={item.ticker}
                 onClick={() => onSelectStock(item.ticker)}
@@ -167,84 +171,88 @@ export const DigestView: React.FC<DigestViewProps> = ({
 
       {/* Conviction Universe Focus */}
       <div className="ledger-panel">
-        <div className="ledger-panel-title" style={{ marginBottom: '16px' }}>Actionable Universe Focus</div>
+        <div className="ledger-panel-title" style={{ marginBottom: '16px' }}>Actionable universe</div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
-          <div style={{ padding: '16px', background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '12px' }}>
-            <div style={{ color: '#1e4d1f', fontSize: '11px', fontFamily: 'var(--mono)', fontWeight: '700', marginBottom: '10px' }}>
-              HIGH AI CONVICTION LIST
+          <div style={{ padding: '16px', background: 'var(--gain-bg)', border: '1px solid var(--gain-border)', borderRadius: '10px' }}>
+            <div style={{ color: 'var(--gain)', fontSize: '12px', fontFamily: 'var(--sans)', fontWeight: '600', marginBottom: '12px' }}>
+              High-conviction opportunities
             </div>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              {digest.top_opportunities.map(t => (
-                <button
-                  key={t}
-                  onClick={() => onSelectStock(t)}
-                  style={{
-                    padding: '6px 12px',
-                    background: '#ffffff',
-                    border: '1px solid #86efac',
-                    borderRadius: '6px',
-                    color: '#1e4d1f',
-                    fontFamily: 'var(--mono)',
-                    fontSize: '11px',
-                    fontWeight: '700',
-                    cursor: 'pointer',
-                    boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
-                    transition: 'all 0.15s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#1e4d1f';
-                    e.currentTarget.style.color = '#ffffff';
-                    e.currentTarget.style.transform = 'translateY(-1px)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = '#ffffff';
-                    e.currentTarget.style.color = '#1e4d1f';
-                    e.currentTarget.style.transform = 'none';
-                  }}
-                >
-                  {t}
-                </button>
-              ))}
-            </div>
+            {digest.top_opportunities.length === 0 ? (
+              <p style={{ fontSize: '13px', color: 'var(--dash-muted)' }}>No stocks currently meet high-conviction thresholds.</p>
+            ) : (
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                {digest.top_opportunities.map(t => (
+                  <button
+                    key={t}
+                    onClick={() => onSelectStock(t)}
+                    style={{
+                      padding: '5px 11px',
+                      background: '#ffffff',
+                      border: '1px solid var(--gain-border)',
+                      borderRadius: '6px',
+                      color: 'var(--gain)',
+                      fontFamily: 'var(--mono)',
+                      fontSize: '11px',
+                      fontWeight: '700',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease',
+                      fontVariantNumeric: 'tabular-nums',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'var(--gain)';
+                      e.currentTarget.style.color = '#ffffff';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = '#ffffff';
+                      e.currentTarget.style.color = 'var(--gain)';
+                    }}
+                  >
+                    {t.replace('.NS', '')}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
-          <div style={{ padding: '16px', background: '#fef2f2', border: '1px solid #fecaca', borderRadius: '12px' }}>
-            <div style={{ color: '#b91c1c', fontSize: '11px', fontFamily: 'var(--mono)', fontWeight: '700', marginBottom: '10px' }}>
-              ELEVATED UNCERTAINTY / AVOID LIST
+          <div style={{ padding: '16px', background: 'var(--loss-bg)', border: '1px solid var(--loss-border)', borderRadius: '10px' }}>
+            <div style={{ color: 'var(--loss)', fontSize: '12px', fontFamily: 'var(--sans)', fontWeight: '600', marginBottom: '12px' }}>
+              Elevated uncertainty / avoid
             </div>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-              {digest.high_risk_alerts.map(t => (
-                <button
-                  key={t}
-                  onClick={() => onSelectStock(t)}
-                  style={{
-                    padding: '6px 12px',
-                    background: '#ffffff',
-                    border: '1px solid #fca5a5',
-                    borderRadius: '6px',
-                    color: '#b91c1c',
-                    fontFamily: 'var(--mono)',
-                    fontSize: '11px',
-                    fontWeight: '700',
-                    cursor: 'pointer',
-                    boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
-                    transition: 'all 0.15s ease'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#b91c1c';
-                    e.currentTarget.style.color = '#ffffff';
-                    e.currentTarget.style.transform = 'translateY(-1px)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = '#ffffff';
-                    e.currentTarget.style.color = '#b91c1c';
-                    e.currentTarget.style.transform = 'none';
-                  }}
-                >
-                  {t}
-                </button>
-              ))}
-            </div>
+            {digest.high_risk_alerts.length === 0 ? (
+              <p style={{ fontSize: '13px', color: 'var(--dash-muted)' }}>No stocks flagged for elevated uncertainty.</p>
+            ) : (
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                {digest.high_risk_alerts.map(t => (
+                  <button
+                    key={t}
+                    onClick={() => onSelectStock(t)}
+                    style={{
+                      padding: '5px 11px',
+                      background: '#ffffff',
+                      border: '1px solid var(--loss-border)',
+                      borderRadius: '6px',
+                      color: 'var(--loss)',
+                      fontFamily: 'var(--mono)',
+                      fontSize: '11px',
+                      fontWeight: '700',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease',
+                      fontVariantNumeric: 'tabular-nums',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'var(--loss)';
+                      e.currentTarget.style.color = '#ffffff';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = '#ffffff';
+                      e.currentTarget.style.color = 'var(--loss)';
+                    }}
+                  >
+                    {t.replace('.NS', '')}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

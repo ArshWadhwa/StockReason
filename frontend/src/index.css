@@ -1,7 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
 
 /* ──────────────────── LIGHT THEME VARIABLES (Landing) ──────────────────── */
 :root {
+  /* ── Core palette ── */
+  --ink:   #1C2331; /* deep navy-charcoal — financial print base */
+  --paper: #F5F4F0; /* warm off-white — printed statement feel */
+  --rule:  #DFE3EA; /* hairline divider */
+
+  /* Brand / interactive — indigo-blue. NOT red or green.
+     Conveys institutional precision without carrying gain/loss meaning. */
+  --accent:        #3B6FD4;
+  --accent-subtle: #EBF0FB;
+  --accent-border: #BDD0F5;
+
+  /* Data-semantic colors — STRICTLY gain/loss and BUY/SELL only */
+  --gain:       #1A7F4B;
+  --gain-bg:    #EBF5EE;
+  --gain-border:#A7D4B8;
+  --loss:       #C0392B;
+  --loss-bg:    #FDECEA;
+  --loss-border:#F5B7B1;
+  --hold:       #946C00;
+  --hold-bg:    #FDF6E3;
+  --hold-border:#E8D5A0;
+
+  /* ── Landing / shared ── */
   --bg: #f6f9f6;
   --bg-white: #ffffff;
   --bg-soft: #f1f3f5;
@@ -12,6 +35,7 @@
   --border-light: #e4e6eb;
   --border-soft: #ecedf0;
 
+  /* Landing brand green — kept only for marketing surface (LandingHome) */
   --green-primary: #2d6a2e;
   --green-dark: #1e4d1f;
   --green-light: #e8f5e9;
@@ -21,50 +45,54 @@
   --red-soft: #fff0f0;
   --red-text: #e53935;
 
-  --mono: 'IBM Plex Mono', Consolas, monospace;
-  --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  /* ── Typography ── */
+  --mono:    'IBM Plex Mono', Consolas, 'Courier New', monospace;
+  --sans:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --display: 'Outfit', 'Inter', sans-serif;
+  /* Price / headline serif — authoritative, like a printed financial statement */
+  --serif:   'DM Serif Display', Georgia, 'Times New Roman', serif;
 
-  /* ──────────────────── DASHBOARD THEME TOKENS (Harmonized with Landing) ──────────────────── */
-  --dash-bg: #f6f9f6;
-  --dash-panel: rgba(255, 255, 255, 0.94);
+  /* ── Dashboard tokens ── */
+  --dash-bg: #F5F4F0;
+  --dash-panel: rgba(255, 255, 255, 0.96);
   --dash-card-bg: #ffffff;
-  --dash-line: rgba(220, 235, 222, 0.95);
-  --dash-line-2: #e2e8f0;
-  --dash-text: #0f172a;
-  --dash-muted: #64748b;
+  --dash-line: rgba(223, 227, 234, 0.9);
+  --dash-line-2: #DFE3EA;
+  --dash-text: #1C2331;
+  --dash-muted: #5A6478;
 
-  --success: #16a34a;
-  --success-dark: #1e4d1f;
-  --success-bg: #e8f5e9;
-  --success-border: #c8e6c9;
-  --warning: #b45309;
-  --warning-bg: #fefce8;
-  --warning-border: #fde68a;
-  --danger: #dc2626;
-  --danger-bg: #fef2f2;
-  --danger-border: #fecaca;
-  --info: #2563eb;
-  --info-bg: #eff6ff;
-  --info-border: #bfdbfe;
+  /* ── Semantic aliases (keep for backward compat with view inline styles) ── */
+  --success:        var(--gain);
+  --success-dark:   #14603A;
+  --success-bg:     var(--gain-bg);
+  --success-border: var(--gain-border);
+  --warning:        var(--hold);
+  --warning-bg:     var(--hold-bg);
+  --warning-border: var(--hold-border);
+  --danger:         var(--loss);
+  --danger-bg:      var(--loss-bg);
+  --danger-border:  var(--loss-border);
+  --info:           var(--accent);
+  --info-bg:        var(--accent-subtle);
+  --info-border:    var(--accent-border);
 
-  /* Legacy & Semantic variables for views */
-  --brass-amber: #1e4d1f;
-  --brass-glow: #e8f5e9;
-  --brass-border: #c8e6c9;
-  --rust-avoid: #dc2626;
-  --rust-bg: #fef2f2;
-  --rust-border: #fecaca;
-  --hold-gold: #b45309;
-  --text-parchment: #0f172a;
-  --text-dim: #64748b;
-  --font-data: var(--mono);
-  --font-serif: var(--display);
-  --line-grid: #e2e8f0;
-  --bg-ink: #ffffff;
-  --slate-blue: #2563eb;
-  --slate-subtle: #f8fafc;
-  --line-strong: #cbd5e1;
+  /* Legacy aliases */
+  --brass-amber:    var(--gain);
+  --brass-glow:     var(--gain-bg);
+  --brass-border:   var(--gain-border);
+  --rust-avoid:     var(--loss);
+  --rust-bg:        var(--loss-bg);
+  --rust-border:    var(--loss-border);
+  --hold-gold:      var(--hold);
+  --text-parchment: var(--ink);
+  --text-dim:       #5A6478;
+  --font-data:      var(--mono);
+  --font-serif:     var(--serif);
+  --line-grid:      var(--rule);
+  --bg-ink:         #ffffff;
+  --slate-blue:     var(--accent);
+  --slate-subtle:   var(--accent-subtle);
+  --line-strong:    #C4C9D4;
 }
 
 * {
@@ -1178,23 +1206,11 @@ a {
   color: var(--text-muted);
 }
 
-/* ──────────────────── DASHBOARD MODE (DARK THEME) ──────────────────── */
+/* ──────────────────── DASHBOARD MODE ──────────────────── */
 .dashboard-mode {
   background: var(--dash-bg);
   color: var(--dash-text);
   min-height: 100vh;
-}
-
-.dashboard-mode .navnote, 
-.dashboard-mode .eyebrow, 
-.dashboard-mode .panel-label, 
-.dashboard-mode .section-kicker, 
-.dashboard-mode .feature-meta, 
-.dashboard-mode .stat-title, 
-.dashboard-mode .stat-value {
-  font-family: var(--mono);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
 }
 
 .dashboard-mode .topbar {
@@ -1266,8 +1282,8 @@ a {
 /* ──────────────────── DASHBOARD MODE & LEDGER COMPONENTS ──────────────────── */
 .dashboard-mode {
   min-height: 100vh;
-  background: linear-gradient(165deg, #f0f7f0 0%, #f6f9f6 30%, #f8faf8 60%, #f4f8f2 100%);
-  color: var(--text-primary);
+  background: linear-gradient(160deg, #F0EEE8 0%, #F5F4F0 40%, #F7F6F2 100%);
+  color: var(--ink);
   position: relative;
   overflow-x: hidden;
 }
@@ -1299,11 +1315,11 @@ a {
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #1e4d1f 0%, #2d6a2e 100%);
+  background: linear-gradient(135deg, #2E5AB8 0%, #3B6FD4 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(30, 77, 31, 0.22);
+  box-shadow: 0 4px 12px rgba(59, 111, 212, 0.22);
   color: #ffffff;
 }
 
@@ -1429,13 +1445,13 @@ a {
 
 /* Sidebar Styling */
 .dash-sidebar {
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(220, 235, 222, 0.95);
+  border: 1px solid var(--rule);
   border-radius: 16px;
   padding: 20px;
-  box-shadow: 0 1px 2px rgba(18, 50, 24, 0.03), 0 8px 24px -4px rgba(18, 50, 24, 0.06);
+  box-shadow: 0 1px 2px rgba(28, 35, 49, 0.04), 0 6px 20px -4px rgba(28, 35, 49, 0.06);
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -1450,7 +1466,7 @@ a {
   border-radius: 8px;
   border: 1px solid transparent;
   background: transparent;
-  color: #475569;
+  color: #5A6478;
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 500;
@@ -1460,27 +1476,27 @@ a {
 }
 
 .dash-tab-btn:hover {
-  background: #f1f5f9;
-  color: #0f172a;
+  background: var(--paper);
+  color: var(--ink);
 }
 
 .dash-tab-btn.active {
-  background: #e8f5e9;
-  border-color: #c8e6c9;
-  color: #1e4d1f;
+  background: var(--accent-subtle);
+  border-color: var(--accent-border);
+  color: var(--accent);
   font-weight: 600;
-  box-shadow: 0 1px 2px rgba(30, 77, 31, 0.06);
+  box-shadow: 0 1px 2px rgba(59, 111, 212, 0.08);
 }
 
 .dash-select {
   width: 100%;
   background: #ffffff;
-  color: #0f172a;
-  border: 1px solid #cbd5e1;
+  color: var(--ink);
+  border: 1px solid var(--rule);
   border-radius: 8px;
   padding: 9px 12px;
-  font-family: var(--mono);
-  font-size: 12px;
+  font-family: var(--sans);
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   outline: none;
@@ -1489,8 +1505,8 @@ a {
 }
 
 .dash-select:focus {
-  border-color: #2d6a2e;
-  box-shadow: 0 0 0 3px rgba(45, 106, 46, 0.15);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 111, 212, 0.14);
 }
 
 .dash-status-card {
@@ -1500,23 +1516,48 @@ a {
   border-radius: 10px;
 }
 
-/* Ledger component support for Dashboard views */
+/* ──────────────────── LEDGER COMPONENT SYSTEM — 3-TIER CARD HIERARCHY ──────────────────── */
+
+/* PRIMARY — signal conviction, equity curve. Stronger presence. */
 .ledger-panel {
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(220, 235, 222, 0.95);
-  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid var(--rule);
+  border-radius: 12px;
   padding: 24px;
   box-shadow: 
-    0 1px 2px rgba(18, 50, 24, 0.03),
-    0 8px 24px -4px rgba(18, 50, 24, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 1);
+    0 1px 3px rgba(28, 35, 49, 0.04),
+    0 4px 20px rgba(28, 35, 49, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
   transition: box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
-.ledger-panel:hover {
-  border-color: rgba(45, 106, 46, 0.25);
+/* SECONDARY — stat cells, horizon cards, headline rows */
+.ledger-cell {
+  background: #ffffff;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px 18px;
+  box-shadow: 0 1px 4px rgba(28, 35, 49, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ledger-cell:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(28, 35, 49, 0.08);
+}
+
+/* TERTIARY — reasoning items, table rows, feed entries */
+.ledger-row {
+  background: var(--paper);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 10px 14px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.ledger-row:hover {
+  border-color: var(--rule);
+  background: #fafaf8;
 }
 
 .ledger-panel-header {
@@ -1524,17 +1565,17 @@ a {
   justify-content: space-between;
   align-items: baseline;
   padding-bottom: 14px;
-  border-bottom: 1px solid #edf2f7;
+  border-bottom: 1px solid var(--rule);
   margin-bottom: 16px;
 }
 
+/* Section label — sentence case, weight-based hierarchy, NOT uppercase tracking */
 .ledger-panel-title {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: #64748b;
-  text-transform: uppercase;
+  font-family: var(--sans);
+  font-size: 12px;
   font-weight: 600;
+  color: var(--dash-muted);
+  letter-spacing: 0;
 }
 
 .ledger-stat-table {
@@ -1543,49 +1584,38 @@ a {
   gap: 12px;
 }
 
-.ledger-cell {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 16px 18px;
-  box-shadow: 0 1px 3px rgba(18, 50, 24, 0.03);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.ledger-cell:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
+/* Field label — sentence case, clean sans */
 .ledger-label {
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 11px;
-  letter-spacing: 0.08em;
-  color: #64748b;
-  text-transform: uppercase;
   font-weight: 600;
+  color: var(--dash-muted);
+  letter-spacing: 0;
   margin-bottom: 6px;
 }
 
+/* Price / numeric figures — tabular-nums for column alignment */
 .ledger-metric {
-  font-family: var(--mono);
-  font-size: 26px;
-  font-weight: 700;
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
   line-height: 1.1;
-  color: #0f172a;
+  color: var(--ink);
   margin-bottom: 4px;
+  font-variant-numeric: tabular-nums;
 }
 
-.ledger-metric-brass { color: #16a34a; }
-.ledger-metric-rust { color: #dc2626; }
-.ledger-metric-slate { color: #2563eb; }
+.ledger-metric-brass { color: var(--gain); }
+.ledger-metric-rust  { color: var(--loss); }
+.ledger-metric-slate { color: var(--accent); }
 
 .ledger-note {
   font-size: 12px;
-  line-height: 1.4;
-  color: #64748b;
+  line-height: 1.5;
+  color: var(--dash-muted);
 }
 
+/* Signal badges — mono reserved here because BUY/HOLD/AVOID are code-like short tokens */
 .ledger-tag {
   display: inline-flex;
   align-items: center;
@@ -1594,26 +1624,26 @@ a {
   font-size: 11px;
   padding: 4px 10px;
   border-radius: 6px;
-  letter-spacing: 0.06em;
-  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-weight: 700;
 }
 
 .tag-buy {
-  background: #e8f5e9;
-  color: #1e4d1f;
-  border: 1px solid #c8e6c9;
+  background: var(--gain-bg);
+  color: var(--gain);
+  border: 1px solid var(--gain-border);
 }
 
 .tag-avoid {
-  background: #fef2f2;
-  color: #dc2626;
-  border: 1px solid #fecaca;
+  background: var(--loss-bg);
+  color: var(--loss);
+  border: 1px solid var(--loss-border);
 }
 
 .tag-hold {
-  background: #fefce8;
-  color: #b45309;
-  border: 1px solid #fde68a;
+  background: var(--hold-bg);
+  color: var(--hold);
+  border: 1px solid var(--hold-border);
 }
 
 .ledger-btn-ghost {
@@ -1621,20 +1651,43 @@ a {
   align-items: center;
   gap: 6px;
   background: #ffffff;
-  color: #475569;
-  font-family: var(--mono);
-  font-size: 11px;
-  padding: 6px 12px;
+  color: var(--dash-muted);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
   border-radius: 6px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--rule);
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .ledger-btn-ghost:hover {
-  background: #f8fafc;
-  color: #0f172a;
-  border-color: #94a3b8;
+  background: var(--paper);
+  color: var(--ink);
+  border-color: #C4C9D4;
+}
+
+/* Accent-blue disclosure / action button — for "Show all factors" etc */
+.ledger-btn-accent {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent-subtle);
+  color: var(--accent);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--accent-border);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ledger-btn-accent:hover {
+  background: var(--accent);
+  color: #ffffff;
 }
 
 /* Skeleton loader */
