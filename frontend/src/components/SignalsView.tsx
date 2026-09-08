@@ -97,9 +97,9 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
       {/* Primary Signal Verdict Card */}
       <div className="ledger-panel" style={{
-        borderLeft: `4px solid ${
-          signal.signal === 'BUY' ? 'var(--brass-amber)' :
-          (signal.signal === 'HOLD' ? 'var(--hold-gold)' : 'var(--rust-avoid)')
+        borderLeft: `5px solid ${
+          signal.signal === 'BUY' ? '#16a34a' :
+          (signal.signal === 'HOLD' ? '#b45309' : '#dc2626')
         }`
       }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px' }}>
@@ -108,24 +108,22 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
               <span className={`ledger-tag ${signal.signal === 'BUY' ? 'tag-buy' : (signal.signal === 'HOLD' ? 'tag-hold' : 'tag-avoid')}`}>
                 {signal.signal} SIGNAL
               </span>
-              <span style={{ fontSize: '12px', color: 'var(--text-muted)', fontFamily: 'var(--font-data)' }}>
-                Conviction: <strong style={{ color: 'var(--text-parchment)' }}>{signal.signal_score} / 100</strong>
+              <span style={{ fontSize: '12px', color: '#64748b', fontFamily: 'var(--mono)' }}>
+                Conviction: <strong style={{ color: '#0f172a' }}>{signal.signal_score} / 100</strong>
               </span>
             </div>
-            <div style={{ fontFamily: 'var(--font-serif)', fontSize: '26px', fontWeight: '700', color: 'var(--text-parchment)', marginTop: '12px' }}>
-              {signal.name} ({signal.ticker})
+            <div style={{ fontFamily: 'var(--display)', fontSize: '26px', fontWeight: '700', color: 'var(--text-primary)', marginTop: '10px' }}>
+              {signal.name} <span style={{ fontFamily: 'var(--mono)', fontSize: '18px', color: '#64748b', fontWeight: '500' }}>({signal.ticker})</span>
             </div>
           </div>
 
           <div style={{ textAlign: 'right' }}>
             <div className="ledger-label">MC Dropout Confidence</div>
-            <div style={{ fontSize: '30px', fontWeight: '600', color: 'var(--brass-amber)', fontFamily: 'var(--font-data)' }}>
+            <div style={{ fontSize: '32px', fontWeight: '700', color: '#1e4d1f', fontFamily: 'var(--mono)' }}>
               {Math.round(signal.confidence * 100)}%
             </div>
           </div>
         </div>
-
-
 
         {/* Decision Reasoning Trail */}
         <div style={{ marginTop: '22px' }}>
@@ -134,15 +132,17 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
             {signal.reasoning.map((r, idx) => (
               <li key={idx} style={{
                 fontSize: '13px',
-                color: 'var(--text-parchment)',
+                color: '#334155',
                 display: 'flex',
                 alignItems: 'baseline',
                 gap: '10px',
-                background: '#0B0D0F',
+                background: '#f8fafc',
                 padding: '10px 14px',
-                border: '1px solid var(--line-grid)'
+                borderRadius: '8px',
+                border: '1px solid #e2e8f0',
+                lineHeight: '1.5'
               }}>
-                <span style={{ color: 'var(--brass-amber)', fontFamily: 'var(--font-data)', fontSize: '11px' }}>▸</span>
+                <span style={{ color: '#16a34a', fontWeight: '700', fontSize: '12px' }}>✓</span>
                 {r}
               </li>
             ))}
@@ -151,28 +151,29 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
       </div>
 
       {/* Multi-Horizon Cards */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px' }}>
         {(['1D', '1W', '1M', '6M'] as const).map((hKey) => {
           const h = horizons[hKey];
+          const isPos = h.expected_return >= 0;
           return (
             <div key={hKey} className="ledger-cell">
-              <div style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-dim)', fontSize: '10px', fontFamily: 'var(--font-data)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', color: '#64748b', fontSize: '11px', fontFamily: 'var(--mono)' }}>
                 <span>{hKey === '1D' ? 'NEXT DAY' : (hKey === '1W' ? '1 WEEK' : (hKey === '1M' ? '1 MONTH' : '6 MONTHS'))}</span>
-                <span style={{ fontWeight: '600' }}>{hKey}</span>
+                <span style={{ fontWeight: '700', color: '#0f172a' }}>{hKey}</span>
               </div>
               <div style={{
-                fontSize: '22px',
-                fontWeight: '600',
+                fontSize: '24px',
+                fontWeight: '700',
                 margin: '8px 0',
-                fontFamily: 'var(--font-data)',
-                color: h.expected_return >= 0 ? 'var(--brass-amber)' : 'var(--rust-avoid)'
+                fontFamily: 'var(--mono)',
+                color: isPos ? '#16a34a' : '#dc2626'
               }}>
-                {h.expected_return >= 0 ? `+${(h.expected_return * 100).toFixed(2)}%` : `${(h.expected_return * 100).toFixed(2)}%`}
+                {isPos ? `+${(h.expected_return * 100).toFixed(2)}%` : `${(h.expected_return * 100).toFixed(2)}%`}
               </div>
-              <div style={{ fontSize: '11px', color: 'var(--text-muted)', fontFamily: 'var(--font-data)' }}>
+              <div style={{ fontSize: '12px', color: '#475569', fontFamily: 'var(--mono)', fontWeight: '500' }}>
                 Target: ₹{h.predicted_price.toLocaleString('en-IN', { minimumFractionDigits: 1 })}
               </div>
-              <div style={{ fontSize: '10px', color: '#555', fontFamily: 'var(--font-data)', marginTop: '4px' }}>
+              <div style={{ fontSize: '11px', color: '#94a3b8', fontFamily: 'var(--mono)', marginTop: '4px' }}>
                 Conf: {Math.round(h.confidence * 100)}% · ±₹{Math.round(h.upper_bound - h.lower_bound)}
               </div>
             </div>
@@ -182,21 +183,30 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
 
       {/* SHAP Feature Attribution — Human Readable */}
       <div className="ledger-panel">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', flexWrap: 'wrap', gap: '10px' }}>
           <div>
-            <div style={{ fontFamily: 'var(--font-serif)', fontSize: '18px', fontWeight: '600', color: 'var(--text-parchment)' }}>
+            <div style={{ fontFamily: 'var(--display)', fontSize: '18px', fontWeight: '700', color: 'var(--text-primary)' }}>
               What's Driving This Prediction
             </div>
-            <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: '4px' }}>
+            <div style={{ fontSize: '12px', color: '#64748b', marginTop: '2px' }}>
               LSTM feature attribution — click any feature for details
             </div>
           </div>
-          <div style={{ fontSize: '11px', fontFamily: 'var(--font-data)', color: '#555' }}>
-            MODEL: Multi-Horizon LSTM + MC Dropout
+          <div style={{
+            fontSize: '11px',
+            fontFamily: 'var(--mono)',
+            color: '#1e4d1f',
+            background: '#e8f5e9',
+            border: '1px solid #c8e6c9',
+            padding: '4px 10px',
+            borderRadius: '6px',
+            fontWeight: '600'
+          }}>
+            Multi-Horizon LSTM + MC Dropout
           </div>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
           {prediction.shap_explainability.map((f, i) => {
             const cat = getCategory(f.feature);
             const displayName = f.feature_display || f.feature.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
@@ -209,12 +219,13 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
                 key={i}
                 onClick={() => setExpandedFeature(isExpanded ? null : i)}
                 style={{
-                  padding: '12px 16px',
-                  background: isExpanded ? '#0f1218' : '#0B0D0F',
-                  border: `1px solid ${isExpanded ? '#2a2a3a' : 'var(--line-grid)'}`,
-                  borderRadius: '4px',
+                  padding: '14px 16px',
+                  background: isExpanded ? '#f0fdf4' : '#ffffff',
+                  border: `1px solid ${isExpanded ? '#86efac' : '#e2e8f0'}`,
+                  borderRadius: '10px',
                   cursor: 'pointer',
-                  transition: 'all 0.15s ease',
+                  transition: 'all 0.2s ease',
+                  boxShadow: '0 1px 2px rgba(0,0,0,0.02)'
                 }}
               >
                 {/* Main Row */}
@@ -225,19 +236,20 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
                   {/* Feature Name + Category Badge */}
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                      <span style={{ fontSize: '13px', fontWeight: '600', color: 'var(--text-parchment)', fontFamily: 'var(--font-data)' }}>
+                      <span style={{ fontSize: '13px', fontWeight: '600', color: '#0f172a', fontFamily: 'var(--mono)' }}>
                         {displayName}
                       </span>
                       <span style={{
                         fontSize: '9px',
                         padding: '2px 6px',
-                        borderRadius: '3px',
+                        borderRadius: '4px',
                         background: cat.color + '15',
                         color: cat.color,
-                        fontFamily: 'var(--font-data)',
-                        fontWeight: '600',
+                        fontFamily: 'var(--mono)',
+                        fontWeight: '700',
                         textTransform: 'uppercase',
                         letterSpacing: '0.5px',
+                        border: `1px solid ${cat.color}30`
                       }}>
                         {cat.label}
                       </span>
@@ -248,7 +260,7 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
                       <div style={{
                         flex: 1,
                         height: '6px',
-                        background: '#151820',
+                        background: '#f1f5f9',
                         borderRadius: '3px',
                         overflow: 'hidden',
                         position: 'relative',
@@ -259,8 +271,8 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
                           width: `${barWidth}%`,
                           height: '100%',
                           background: f.direction === 'positive'
-                            ? 'linear-gradient(90deg, #4ade8060, #4ade80)'
-                            : 'linear-gradient(270deg, #ef444460, #ef4444)',
+                            ? 'linear-gradient(90deg, #4ade80, #16a34a)'
+                            : 'linear-gradient(270deg, #f87171, #dc2626)',
                           borderRadius: '3px',
                           transition: 'width 0.3s ease',
                         }} />
@@ -268,8 +280,8 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
                       <span style={{
                         fontSize: '12px',
                         fontWeight: '700',
-                        fontFamily: 'var(--font-data)',
-                        color: f.direction === 'positive' ? '#4ade80' : '#ef4444',
+                        fontFamily: 'var(--mono)',
+                        color: f.direction === 'positive' ? '#16a34a' : '#dc2626',
                         minWidth: '50px',
                         textAlign: 'right',
                       }}>
@@ -280,9 +292,9 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
 
                   {/* Current Value */}
                   {f.current_value !== undefined && f.current_value !== null && (
-                    <div style={{ textAlign: 'right', minWidth: '70px' }}>
-                      <div style={{ fontSize: '10px', color: '#555', fontFamily: 'var(--font-data)' }}>CURRENT</div>
-                      <div style={{ fontSize: '13px', fontWeight: '600', color: '#ccc', fontFamily: 'var(--font-data)' }}>
+                    <div style={{ textAlign: 'right', minWidth: '80px' }}>
+                      <div style={{ fontSize: '10px', color: '#94a3b8', fontFamily: 'var(--mono)' }}>CURRENT</div>
+                      <div style={{ fontSize: '13px', fontWeight: '700', color: '#0f172a', fontFamily: 'var(--mono)' }}>
                         {typeof f.current_value === 'number'
                           ? (Math.abs(f.current_value) > 1000
                             ? f.current_value.toLocaleString('en-IN', { maximumFractionDigits: 0 })
@@ -293,7 +305,7 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
                   )}
 
                   {/* Expand Arrow */}
-                  <span style={{ color: '#555', fontSize: '12px', transform: isExpanded ? 'rotate(90deg)' : 'none', transition: 'transform 0.15s' }}>
+                  <span style={{ color: '#94a3b8', fontSize: '12px', transform: isExpanded ? 'rotate(90deg)' : 'none', transition: 'transform 0.15s' }}>
                     ▸
                   </span>
                 </div>
@@ -302,13 +314,13 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
                 {isExpanded && description && (
                   <div style={{
                     marginTop: '12px',
-                    padding: '10px 14px 10px 36px',
+                    padding: '12px 14px 10px 36px',
                     fontSize: '12px',
                     lineHeight: '1.6',
-                    color: '#aaa',
-                    borderTop: '1px solid #1a1a2a',
+                    color: '#475569',
+                    borderTop: '1px solid #e2e8f0',
                   }}>
-                    <span style={{ color: cat.color, fontWeight: '600' }}>What this means: </span>
+                    <span style={{ color: cat.color, fontWeight: '700' }}>What this means: </span>
                     {description}
                     {f.direction === 'positive'
                       ? ' This feature is currently pushing the prediction higher.'
@@ -321,7 +333,7 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
         </div>
 
         {prediction.shap_explainability.length === 0 && (
-          <div style={{ padding: '20px', textAlign: 'center', color: '#555', fontSize: '13px' }}>
+          <div style={{ padding: '24px', textAlign: 'center', color: '#94a3b8', fontSize: '13px', fontFamily: 'var(--mono)' }}>
             No feature attribution data available for this ticker.
           </div>
         )}

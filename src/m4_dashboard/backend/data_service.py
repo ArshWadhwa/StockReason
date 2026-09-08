@@ -182,6 +182,15 @@ class DataService:
 
         df['date'] = pd.to_datetime(df['date'])
 
+        # Check for real scraped news headlines
+        df_real_news = None
+        raw_news_path = BASE_DIR / "data" / "raw" / "news" / "headlines.parquet"
+        if raw_news_path.exists():
+            try:
+                df_real_news = pd.read_parquet(raw_news_path)
+            except Exception as e:
+                logger.warning(f"Could not read headlines.parquet: {e}")
+
         for ticker, grp in df.groupby('ticker'):
             grp = grp.sort_values('date')
             if grp.empty:
@@ -202,22 +211,39 @@ class DataService:
             div_flag = int(latest.get('sentiment_divergence_flag', 0))
             div_desc = str(latest.get('divergence_desc', ''))
 
-            # Build headlines from all sentiment entries for this ticker
+            # Build headlines from real scraped news or fallback daily entries
             headlines = []
-            for idx, row in grp.iterrows():
-                dt = row['date'].strftime('%Y-%m-%dT%H:%M:%S') if hasattr(row['date'], 'strftime') else str(row['date'])
-                score = float(row.get('sentiment_mean', 0.0))
-                h_label = 'positive' if score > 0.1 else ('negative' if score < -0.1 else 'neutral')
-                headlines.append({
-                    "id": f"{ticker}_{dt[:10]}",
-                    "headline": f"{STOCK_META.get(ticker, {}).get('name', ticker)} sentiment report for {dt[:10]}"
-                                f" — score: {score:+.2f}",
-                    "source": "FinBERT / RSS Pipeline",
-                    "published_at": dt,
-                    "sentiment_score": round(score, 4),
-                    "sentiment_label": h_label,
-                    "confidence": round(abs(score), 2),
-                })
+            if df_real_news is not None and not df_real_news.empty and 'ticker' in df_real_news.columns:
+                t_news = df_real_news[df_real_news['ticker'] == ticker]
+                if not t_news.empty:
+                    for i, r in t_news.iterrows():
+                        score = float(r.get('score_finbert', 0.0))
+                        dt = str(r.get('timestamp', r.get('date', '')))
+                        h_label = str(r.get('sentiment_label', 'neutral')).lower()
+                        headlines.append({
+                            "id": f"{ticker}_news_{i}",
+                            "headline": str(r.get('title', '')).strip(),
+                            "source": str(r.get('source', 'Financial RSS')),
+                            "published_at": dt,
+                            "sentiment_score": round(score, 4),
+                            "sentiment_label": h_label,
+                            "confidence": round(float(r.get('confidence', abs(score))), 2),
+                        })
+
+            if not headlines:
+                for idx, row in grp.iterrows():
+                    dt = row['date'].strftime('%Y-%m-%dT%H:%M:%S') if hasattr(row['date'], 'strftime') else str(row['date'])
+                    score = float(row.get('sentiment_mean', 0.0))
+                    h_label = 'positive' if score > 0.1 else ('negative' if score < -0.1 else 'neutral')
+                    headlines.append({
+                        "id": f"{ticker}_{dt[:10]}",
+                        "headline": f"{STOCK_META.get(ticker, {}).get('name', ticker)} sentiment analysis for {dt[:10]}",
+                        "source": "FinBERT Intelligence",
+                        "published_at": dt,
+                        "sentiment_score": round(score, 4),
+                        "sentiment_label": h_label,
+                        "confidence": round(abs(score), 2),
+                    })
 
             self.sentiment[ticker] = {
                 "ticker": ticker,
@@ -234,7 +260,7 @@ class DataService:
                         else "Divergence detected between price action and news sentiment"
                     ),
                 },
-                "headlines": headlines[-10:],  # Last 10
+                "headlines": headlines[-15:],  # Recent 15 headlines
             }
 
     # ── Signal Generation (real-time from predictions + sentiment) ─────
