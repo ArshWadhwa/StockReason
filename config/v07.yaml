@@ -20,6 +20,42 @@ cost_parameters:
   gst: 0.18                # 18% GST on (brokerage + exchange charges + sebi fees)
   slippage_bps: 5.0        # Assumed execution slippage in basis points (0.05%)
 
+# Model Comparison & Deep Learning (WS4)
+data:
+  features_path: "data/processed/price_features.parquet"
+  horizons:
+    - "5d"
+    - "21d"
+  sequence_length: 60
+  target_type: "excess_return" # excess over market (nifty_50)
+
+cv:
+  n_folds: 3
+  val_ratio: 0.15
+  test_ratio: 0.15
+  purge_window: 21
+  embargo_window: 5
+  min_train_ratio: 0.40
+
+models:
+  - zero
+  - market
+  - ridge
+  - elastic_net
+  - lightgbm
+  - catboost
+  - lstm
+  - gru
+  - dlinear
+
+deep_learning:
+  hidden_dim: 32
+  epochs: 15
+  lr: 0.003
+  patience: 4
+  batch_size: 128
+  n_seeds: 5
+
 # Backtest Configuration (WS3)
 backtest:
   initial_capital: 1000000.0
@@ -63,6 +99,10 @@ paths:
   sentiment_features_parquet: "data/processed/sentiment_features.parquet"
   sentiment_features_csv: "data/processed/sentiment_features.csv"
   predictions_json: "data/processed/predictions.json"
+  predictions_dir: "artifacts/v0.7/predictions"
+  results_json: "artifacts/v0.7/comparison_results.json"
+  report_ws4: "reports/v0.7/WS4_report.md"
+  report_comparison: "reports/v0.7/model_comparison.md"
 
 # Freshness Limits (in trading days)
 freshness:
