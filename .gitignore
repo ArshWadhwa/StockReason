@@ -28,3 +28,5 @@ artifacts/models/best_lstm_secondary.pth
 *.md
 !README.md
 !**/README.md
+.venv
+catboost_info/
