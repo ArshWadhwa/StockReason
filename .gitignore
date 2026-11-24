@@ -30,6 +30,16 @@ data/v0.7.1/
 artifacts/v0.8/
 reports/v0.8/
 data/v0.8/
+artifacts/v0.9/
+reports/v0.9/
+reports/diagnostics/
+data/v0.9/
+artifacts/v0.9.1/
+reports/v0.9.1/
+data/v0.9.1/
+data/indian-markets/
+data/external/
+indian-markets/
 artifacts/ppt_graphs/
 artifacts/*.png
 artifacts/generate_ppt_graphs.py
