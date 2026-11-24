@@ -12,6 +12,7 @@ __pycache__/
 .ipynb_checkpoints/
 mlruns/
 .DS_Store
+catboost_info/
 
 # Temporary & presentation artifacts
 *.pdf
@@ -30,5 +31,3 @@ artifacts/models/best_lstm_secondary.pth
 *.md
 !README.md
 !**/README.md
-.venv
-catboost_info/
