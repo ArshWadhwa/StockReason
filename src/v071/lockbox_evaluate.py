@@ -70,13 +70,13 @@ def run_lockbox_evaluation(
             f"Lockbox evaluation refuses to run on an unfrozen/modified config."
         )
 
-    verify_lockbox_purity()
-
-    # Verify environment variable
+    # Verify environment variable first
     if os.environ.get(UNLOCK_ENV_VAR) != UNLOCK_MAGIC_VALUE:
         raise PermissionError(
             f"Set {UNLOCK_ENV_VAR}={UNLOCK_MAGIC_VALUE} to execute the final lockbox evaluation."
         )
+
+    verify_lockbox_purity()
 
     logger.info("Unlocking lockbox data using panel at %s...", panel_path)
     full_panel = load_panel(path=panel_path, exclude_lockbox=False, config_path=frozen_config_path)
