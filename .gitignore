@@ -53,3 +53,7 @@ artifacts/models/best_lstm_secondary.pth
 *.md
 !README.md
 !**/README.md
+
+# Scratch data files
+data/_*.csv
+data/reports/
