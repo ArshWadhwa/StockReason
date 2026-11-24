@@ -33,6 +33,7 @@ class LightGBMForecaster(BaseForecaster):
         learning_rate: float = 0.03,
         num_leaves: int = 31,
         early_stopping_rounds: int = 20,
+        n_jobs: int = 1,
         **kwargs,
     ) -> None:
         super().__init__(name=name, seed=seed)
@@ -40,6 +41,7 @@ class LightGBMForecaster(BaseForecaster):
         self.learning_rate = learning_rate
         self.num_leaves = num_leaves
         self.early_stopping_rounds = early_stopping_rounds
+        self.n_jobs = n_jobs
         self.model: Optional[lgb.LGBMRegressor] = None
         self.quantile_models: Dict[float, lgb.LGBMRegressor] = {}
 
@@ -71,7 +73,7 @@ class LightGBMForecaster(BaseForecaster):
             learning_rate=self.learning_rate,
             num_leaves=self.num_leaves,
             random_state=self.seed,
-            n_jobs=-1,
+            n_jobs=self.n_jobs,
             verbosity=-1,
         )
 
@@ -103,7 +105,7 @@ class LightGBMForecaster(BaseForecaster):
                 learning_rate=self.learning_rate,
                 num_leaves=self.num_leaves,
                 random_state=self.seed + int(q * 100),
-                n_jobs=-1,
+                n_jobs=self.n_jobs,
                 verbosity=-1,
             )
             if eval_set is not None:
@@ -189,6 +191,7 @@ class CatBoostForecaster(BaseForecaster):
             loss_function="RMSE",
             eval_metric="RMSE",
             random_seed=self.seed,
+            thread_count=1,
             early_stopping_rounds=self.early_stopping_rounds if eval_set is not None else None,
             verbose=0,
         )
