@@ -1,5 +1,6 @@
 # StockReason v0.7 System Configuration
 # Core specification shared across workstreams WS1 - WS10
+version: "0.7.0-dev"
 
 # Forecast & Modeling Parameters
 horizons: [5, 21]
@@ -18,6 +19,37 @@ cost_parameters:
   stamp_duty: 0.00015      # Stamp duty on buy side (0.015%)
   gst: 0.18                # 18% GST on (brokerage + exchange charges + sebi fees)
   slippage_bps: 5.0        # Assumed execution slippage in basis points (0.05%)
+
+# Backtest Configuration (WS3)
+backtest:
+  initial_capital: 1000000.0
+  rebalance_freq: "daily"
+  horizon_days: 5
+  risk_free_rate: 0.065 # 6.5% typical RBI 91-day T-bill yield
+  top_k: 10
+  sector_cap: 0.30
+
+  costs:
+    use_statutory_charges: true
+    brokerage_pct: 0.0003       # 0.03%
+    brokerage_flat_cap: 20.0    # ₹20 max per order
+    stt_pct: 0.0010             # 0.1% on delivery buy and sell
+    exchange_txn_pct: 0.0000345 # 0.00345% NSE turnover charge
+    sebi_turnover_pct: 0.000001 # 0.0001% SEBI turnover fee
+    stamp_duty_pct: 0.00015     # 0.015% on buy only
+    gst_pct: 0.18               # 18% on (brokerage + txn + sebi)
+    base_slippage_bps: 5.0      # 5 bps base slippage per side
+    impact_factor: 0.1          # Liquidity participation impact
+
+  execution:
+    execution_time: "open"      # Strictly t+1 open
+    stop_loss_pct: null         # Optional trailing or fixed stop-loss
+    take_profit_pct: null       # Optional take-profit target
+    limit_entry_pct: null       # Optional limit order offset
+
+  benchmarks:
+    nifty_50_symbol: "^NSEI"
+    random_seeds: 200
 
 # Canonical Output and Data Paths
 paths:
