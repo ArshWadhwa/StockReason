@@ -5,7 +5,9 @@ data/sample/
 .env
 __pycache__/
 *.pyc
+.venv
 .venv/
+.venv_py311
 .venv_py311/
 .ipynb_checkpoints/
 mlruns/
@@ -15,8 +17,14 @@ mlruns/
 *.pdf
 *.doc
 *.docx
+*.npz
+*.png
+artifacts/**/*.png
+artifacts/v0.7/plots/
 docs/
+graphify-out
 graphify-out/
+.agents
 .agents/
 artifacts/ppt_graphs/
 artifacts/*.png
