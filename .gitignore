@@ -5,6 +5,7 @@ data/sample/
 .env
 __pycache__/
 *.pyc
+.venv
 .venv/
 .venv*
 .venv_py311/
@@ -19,8 +20,11 @@ catboost_info/
 *.doc
 *.docx
 docs/
+graphify-out
 graphify-out/
 .agents/
+data/v0.7/raw/
+data/v0.7/metadata/*.csv
 artifacts/ppt_graphs/
 artifacts/*.png
 artifacts/generate_ppt_graphs.py
