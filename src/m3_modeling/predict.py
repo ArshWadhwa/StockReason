@@ -34,8 +34,8 @@ MODEL_DIR = PROJECT_ROOT / "artifacts" / "models"
 OUTPUT_PATH = PROCESSED_DIR / "predictions.json"
 LOG_PATH = PROCESSED_DIR / "predictions_log.jsonl"
 
-PRICE_PARQUET = PROCESSED_DIR / "price_features.parquet"
-SENTIMENT_PARQUET = PROCESSED_DIR / "sentiment_features.parquet"
+PRICE_CSV = PROCESSED_DIR / "price_features.csv"
+SENTIMENT_CSV = PROCESSED_DIR / "sentiment_features.csv"
 
 PRIMARY_PATH = MODEL_DIR / "best_lstm_primary.pth"
 SECONDARY_PATH = MODEL_DIR / "best_lstm_secondary.pth"
@@ -205,18 +205,18 @@ def generate_predictions() -> dict:
     Also appends to predictions_log.jsonl for drift monitoring.
     """
     print("[M3] Loading data …")
-    df_price = pd.read_parquet(PRICE_PARQUET)
+    df_price = pd.read_csv(PRICE_CSV)
     if 'ticker' not in df_price.columns and 'ticker' in df_price.index.names:
         df_price = df_price.reset_index()
     elif 'ticker' not in df_price.columns:
-        print("[M3 Error] price_features.parquet is missing 'ticker'. Please run refresh_data.py")
+        print("[M3 Error] price_features.csv is missing 'ticker'. Please run refresh_data.py")
         return {}
 
     df_price['date'] = pd.to_datetime(df_price['date'])
 
     # Merge sentiment
-    if SENTIMENT_PARQUET.exists():
-        df_sent = pd.read_parquet(SENTIMENT_PARQUET)
+    if SENTIMENT_CSV.exists():
+        df_sent = pd.read_csv(SENTIMENT_CSV)
         if 'ticker' not in df_sent.columns and 'ticker' in df_sent.index.names:
             df_sent = df_sent.reset_index()
         df_sent['date'] = pd.to_datetime(df_sent['date'])

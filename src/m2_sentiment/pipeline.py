@@ -77,13 +77,9 @@ def run_sentiment_pipeline(
         df_headlines = pd.DataFrame(all_scored_articles)
         if "finbert_probs" in df_headlines.columns:
             df_headlines = df_headlines.drop(columns=["finbert_probs"])
-        headlines_parquet_path = RAW_NEWS_DIR / "headlines.parquet"
-        try:
-            df_headlines.to_parquet(headlines_parquet_path, index=False)
-            print(f"[M2 Pipeline] Saved {len(df_headlines)} scored headlines to {headlines_parquet_path}")
-        except Exception:
-            df_headlines.to_csv(RAW_NEWS_DIR / "headlines.csv", index=False)
-            print(f"[M2 Pipeline] Saved {len(df_headlines)} scored headlines to CSV fallback")
+        headlines_csv_path = RAW_NEWS_DIR / "headlines.csv"
+        df_headlines.to_csv(headlines_csv_path, index=False)
+        print(f"[M2 Pipeline] Saved {len(df_headlines)} scored headlines to {headlines_csv_path}")
     else:
         df_headlines = pd.DataFrame()
 
@@ -93,15 +89,15 @@ def run_sentiment_pipeline(
     
     # 3. Check for M1 Price Data to calculate Divergence
     price_candidates = [
-        PROCESSED_DATA_DIR / "price_features.parquet",
-        Path("data/raw/prices/pilot_stocks.parquet"),
-        Path("data/raw/ohlcv/pilot_stocks.parquet")
+        PROCESSED_DATA_DIR / "price_features.csv",
+        Path("data/raw/prices/pilot_stocks.csv"),
+        Path("data/raw/ohlcv/pilot_stocks.csv")
     ]
     df_price = None
     for p_path in price_candidates:
         if p_path.exists():
             try:
-                df_price = pd.read_parquet(p_path)
+                df_price = pd.read_csv(p_path)
                 print(f"[M2 Pipeline] Found price dataset at {p_path} with {len(df_price)} records for divergence analysis.")
                 break
             except Exception:
@@ -113,16 +109,14 @@ def run_sentiment_pipeline(
             df_price=df_price
         )
         
-    # 4. Save final sentiment_features.parquet
-    out_file = PROCESSED_DATA_DIR / "sentiment_features.parquet"
+    # 4. Save final sentiment_features.csv
+    out_file = PROCESSED_DATA_DIR / "sentiment_features.csv"
     if not df_daily.empty:
         try:
-            df_daily.to_parquet(out_file, index=False)
+            df_daily.to_csv(out_file, index=False)
             print(f"[M2 Pipeline] Successfully exported final daily sentiment dataset: {out_file} ({len(df_daily)} rows)")
-        except Exception:
-            csv_out = PROCESSED_DATA_DIR / "sentiment_features.csv"
-            df_daily.to_csv(csv_out, index=False)
-            print(f"[M2 Pipeline] Successfully exported final daily sentiment dataset to CSV: {csv_out} ({len(df_daily)} rows)")
+        except Exception as exc:
+            print(f"[M2 Pipeline] Failed to export CSV: {exc}")
     else:
         print("[M2 Pipeline] Warning: No sentiment features generated.")
         

@@ -10,27 +10,27 @@ import joblib
 
 def load_data_from_directory(data_dir):
     """
-    Loads all Parquet files in a directory and merges them on date and ticker.
+    Loads all CSV files in a directory and merges them on date and ticker.
     If a single file is passed, loads just that file.
     """
     if os.path.isfile(data_dir):
-        if data_dir.endswith('.parquet'):
-            return pd.read_parquet(data_dir)
+        if data_dir.endswith('.csv'):
+            return pd.read_csv(data_dir)
         return pd.read_csv(data_dir, index_col=0, parse_dates=True)
 
-    parquet_files = glob.glob(os.path.join(data_dir, "*.parquet"))
-    if not parquet_files:
-        raise FileNotFoundError(f"No Parquet files found in {data_dir}")
+    csv_files = glob.glob(os.path.join(data_dir, "*.csv"))
+    if not csv_files:
+        raise FileNotFoundError(f"No CSV files found in {data_dir}")
 
     df_merged = None
-    # Prioritize price_features.parquet as the base dataframe
-    parquet_files = sorted(parquet_files, key=lambda x: 0 if 'price_features' in x else 1)
+    # Prioritize price_features.csv as the base dataframe
+    csv_files = sorted(csv_files, key=lambda x: 0 if 'price_features' in x else 1)
 
-    for file in parquet_files:
+    for file in csv_files:
         # Skip predictions.json or non-feature files
         if 'predictions' in os.path.basename(file):
             continue
-        df = pd.read_parquet(file)
+        df = pd.read_csv(file)
         # Ensure date is datetime
         if 'date' in df.columns:
             df['date'] = pd.to_datetime(df['date'])

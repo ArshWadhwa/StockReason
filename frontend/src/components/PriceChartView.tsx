@@ -53,8 +53,8 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({ priceData, loadi
     ? priceData.current_price - prev.close
     : (latest.close - prev.close);
 
-  const return1w = ((latest.close - allHistory[Math.max(0, allHistory.length - 6)].close) / allHistory[Math.max(0, allHistory.length - 6)].close) * 100;
-  const return1m = ((latest.close - allHistory[Math.max(0, allHistory.length - 22)].close) / allHistory[Math.max(0, allHistory.length - 22)].close) * 100;
+  const return1w = ((currentPrice - allHistory[Math.max(0, allHistory.length - 6)].close) / allHistory[Math.max(0, allHistory.length - 6)].close) * 100;
+  const return1m = ((currentPrice - allHistory[Math.max(0, allHistory.length - 22)].close) / allHistory[Math.max(0, allHistory.length - 22)].close) * 100;
 
   // 180D / all-time range calculations
   const allLows = allHistory.map(h => h.low || h.close);
@@ -62,7 +62,7 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({ priceData, loadi
   const periodLow = Math.min(...allLows);
   const periodHigh = Math.max(...allHighs);
   const rangeSpan = periodHigh - periodLow || 1;
-  const currentPosPct = Math.min(100, Math.max(0, ((latest.close - periodLow) / rangeSpan) * 100));
+  const currentPosPct = Math.min(100, Math.max(0, ((currentPrice - periodLow) / rangeSpan) * 100));
 
   // Chart dimensions & scaling for displayed slice
   const width = 920;
@@ -140,6 +140,18 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({ priceData, loadi
                 fontWeight: '600'
               }}>
                 NSE
+              </span>
+              <span style={{
+                fontFamily: 'var(--mono)',
+                fontSize: '10px',
+                color: priceData.quote_status === 'LIVE' ? '#15803d' : '#64748b',
+                background: priceData.quote_status === 'LIVE' ? '#f0fdf4' : '#f8fafc',
+                padding: '3px 8px',
+                borderRadius: '6px',
+                border: `1px solid ${priceData.quote_status === 'LIVE' ? '#bbf7d0' : '#e2e8f0'}`,
+                fontWeight: '700',
+              }}>
+                {priceData.quote_status === 'LIVE' ? 'LIVE QUOTE' : 'LAST CLOSE'}
               </span>
             </div>
 

@@ -28,8 +28,8 @@ def fetch_stock_data(ticker="RELIANCE.NS", period="5y", interval="1d", output_di
     if isinstance(df.columns, pd.MultiIndex):
         df.columns = df.columns.droplevel(1)
 
-    output_path = os.path.join(output_dir, f"{ticker.replace('.', '_')}.parquet")
-    df.to_parquet(output_path)
+    output_path = os.path.join(output_dir, f"{ticker.replace('.', '_')}.csv")
+    df.to_csv(output_path)
     print(f"Saved data to {output_path}")
 
     return output_path

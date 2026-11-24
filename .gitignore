@@ -13,9 +13,18 @@ mlruns/
 
 # Temporary & presentation artifacts
 *.pdf
+*.doc
+*.docx
+docs/
+graphify-out/
+.agents/
 artifacts/ppt_graphs/
 artifacts/*.png
 artifacts/generate_ppt_graphs.py
 artifacts/models/best_lstm_primary.pth
 artifacts/models/best_lstm_secondary.pth
-AUDIT_AND_VERIFICATION_REPORT.md
+
+# Markdown policy: ignore all markdown except README.md
+*.md
+!README.md
+!**/README.md

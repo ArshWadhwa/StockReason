@@ -122,6 +122,8 @@ async def live_price_poller():
                             new_price = live_data["price"]
                             data_service.prices[ticker]["current_price"] = new_price
                             data_service.prices[ticker]["live_price_source"] = "yahoo_finance_live"
+                            data_service.prices[ticker]["quote_status"] = live_data.get("status", "LIVE")
+                            data_service.prices[ticker]["quote_updated_at"] = live_data.get("fetched_at")
                             if prev_close and prev_close > 0:
                                 data_service.prices[ticker]["day_change_pct"] = round(
                                     ((new_price - prev_close) / prev_close) * 100, 2

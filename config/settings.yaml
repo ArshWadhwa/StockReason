@@ -7,3 +7,8 @@ paths:
   raw_indices_dir: "data/raw/indices"
   raw_ohlcv_dir: "data/raw/ohlcv"
   schema_dir: "schemas"
+  processed_dir: "data/processed"
+  metadata_dir: "data/metadata"
+  reports_dir: "reports"
+processed:
+  output_csv: "data/processed/price_features.csv"

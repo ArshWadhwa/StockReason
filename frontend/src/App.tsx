@@ -167,6 +167,10 @@ export function App() {
       }
     }
     loadStockDetails();
+    // Refresh the quote while the dashboard is open so the header does not
+    // remain stuck at the value loaded when the page was first opened.
+    const refreshTimer = window.setInterval(loadStockDetails, 60_000);
+    return () => window.clearInterval(refreshTimer);
   }, [selectedTicker]);
 
   // Lenis Smooth Scroll (Landing Mode)

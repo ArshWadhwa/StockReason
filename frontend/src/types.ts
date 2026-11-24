@@ -55,6 +55,8 @@ export interface StockPriceData {
   universe: string;
   current_price: number;
   day_change_pct: number;
+  quote_status?: 'LIVE' | 'LAST_CLOSE' | 'UNAVAILABLE' | string;
+  quote_updated_at?: string;
   history: PricePoint[];
 }
 

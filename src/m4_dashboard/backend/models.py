@@ -49,6 +49,8 @@ class PriceHistoryResponse(BaseModel):
     universe: str
     current_price: float
     day_change_pct: float
+    quote_status: Optional[str] = None
+    quote_updated_at: Optional[str] = None
     history: List[PricePoint]
 
 class HeadlineItem(BaseModel):

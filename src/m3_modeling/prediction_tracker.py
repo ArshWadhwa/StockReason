@@ -1,7 +1,7 @@
 """
 Prediction Tracker — Drift Monitoring & Rolling Accuracy
 =========================================================
-Reads predictions_log.jsonl and price_features.parquet to compute
+Reads predictions_log.jsonl and price_features.csv to compute
 rolling directional accuracy for each ticker and horizon.
 
 Outputs accuracy_report.json to data/processed/ for the dashboard.
@@ -21,7 +21,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
 LOG_PATH = PROCESSED_DIR / "predictions_log.jsonl"
-PRICE_PARQUET = PROCESSED_DIR / "price_features.parquet"
+PRICE_CSV = PROCESSED_DIR / "price_features.csv"
 REPORT_PATH = PROCESSED_DIR / "accuracy_report.json"
 
 # If rolling accuracy drops below this, recommend retraining
@@ -54,9 +54,9 @@ def load_prediction_history():
 
 def load_price_data():
     """Load price features for realized return computation."""
-    if not PRICE_PARQUET.exists():
+    if not PRICE_CSV.exists():
         return None
-    df = pd.read_parquet(PRICE_PARQUET)
+    df = pd.read_csv(PRICE_CSV)
     if 'ticker' not in df.columns and 'ticker' in df.index.names:
         df = df.reset_index()
     df['date'] = pd.to_datetime(df['date'])

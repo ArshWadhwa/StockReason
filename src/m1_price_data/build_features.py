@@ -24,7 +24,7 @@ def load_configs():
 def build_pipeline():
     """
     Master pipeline orchestrator (Week 1 -> Week 3):
-    Fetch Raw Data -> Clean & Align -> Merge Market Context -> 100+ Features -> Lag Features -> Regime Detection -> Export price_features.parquet
+    Fetch Raw Data -> Clean & Align -> Merge Market Context -> 100+ Features -> Lag Features -> Regime Detection -> Export price_features.csv
     """
     logger.info("==================================================")
     logger.info("Starting M1 Feature Pipeline Execution (Week 1 to Week 3)")
@@ -64,13 +64,13 @@ def build_pipeline():
 
     # Save raw datasets
     if not stocks_raw_df.empty:
-        stocks_raw_df.to_parquet(raw_prices_dir / "all_stocks_raw.parquet", index=False)
+        stocks_raw_df.to_csv(raw_prices_dir / "all_stocks_raw.csv", index=False)
 
     for idx_name, df_idx in indices_raw_dfs.items():
-        df_idx.to_parquet(raw_indices_dir / f"{idx_name}.parquet", index=False)
+        df_idx.to_csv(raw_indices_dir / f"{idx_name}.csv", index=False)
 
     for mac_name, df_mac in macro_raw_dfs.items():
-        df_mac.to_parquet(raw_macro_dir / f"{mac_name}.parquet", index=False)
+        df_mac.to_csv(raw_macro_dir / f"{mac_name}.csv", index=False)
 
     # Save excluded tickers metadata
     excluded_df = pd.DataFrame(excluded_stocks) if excluded_stocks else pd.DataFrame(columns=["ticker", "reason", "rows_fetched"])
@@ -97,9 +97,9 @@ def build_pipeline():
         final_df = final_df.dropna(subset=["sma_50"]).reset_index(drop=True)
 
     # 7. Export Final Dataset
-    output_parquet_path = BASE_DIR / settings_cfg.get("processed", {}).get("output_parquet", "data/processed/price_features.parquet")
-    final_df.to_parquet(output_parquet_path, index=False)
-    logger.info(f"SUCCESS! Exported final dataset ({final_df.shape[0]} rows, {final_df.shape[1]} columns) -> {output_parquet_path.relative_to(BASE_DIR)}")
+    output_csv_path = BASE_DIR / settings_cfg.get("processed", {}).get("output_csv", "data/processed/price_features.csv")
+    final_df.to_csv(output_csv_path, index=False)
+    logger.info(f"SUCCESS! Exported final dataset ({final_df.shape[0]} rows, {final_df.shape[1]} columns) -> {output_csv_path.relative_to(BASE_DIR)}")
 
     # 8. Data Quality Report
     date_min = str(final_df["date"].min().date()) if "date" in final_df.columns else "N/A"
@@ -116,7 +116,7 @@ def build_pipeline():
         "date_range_end": date_max,
         "total_missing_values": total_missing_cells,
         "excluded_tickers_count": len(excluded_stocks),
-        "output_file": str(output_parquet_path.relative_to(BASE_DIR))
+        "output_file": str(output_csv_path.relative_to(BASE_DIR))
     }]
 
     quality_report_df = pd.DataFrame(quality_summary)
