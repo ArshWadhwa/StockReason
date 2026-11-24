@@ -5,8 +5,11 @@ data/sample/
 .env
 __pycache__/
 *.pyc
+.venv
 .venv/
+.venv_py311
 .venv_py311/
+/v07
 .ipynb_checkpoints/
 mlruns/
 .DS_Store

@@ -1,0 +1,37 @@
+# StockReason v0.7 System Configuration
+# Core specification shared across workstreams WS1 - WS10
+
+# Forecast & Modeling Parameters
+horizons: [5, 21]
+sequence_length: 60
+embargo: 5
+
+# Reproducibility Seeds
+seeds: [0, 1, 2, 3, 4]
+
+# Transaction Cost Parameters (Indian Equity Market - Delivery / Swing)
+cost_parameters:
+  brokerage: 0.0003        # 0.03% or flat rate ceiling
+  stt: 0.001               # 0.1% Securities Transaction Tax (Delivery)
+  exchange_charges: 0.0000345  # NSE turnover charge (0.00345%)
+  sebi_turnover: 0.000001  # SEBI turnover fee (₹10 / crore)
+  stamp_duty: 0.00015      # Stamp duty on buy side (0.015%)
+  gst: 0.18                # 18% GST on (brokerage + exchange charges + sebi fees)
+  slippage_bps: 5.0        # Assumed execution slippage in basis points (0.05%)
+
+# Canonical Output and Data Paths
+paths:
+  data_dir: "data/v0.7"
+  artifacts_dir: "artifacts/v0.7"
+  reports_dir: "reports/v0.7"
+  raw_data_dir: "data/raw"
+  processed_data_dir: "data/processed"
+  price_features_parquet: "data/processed/price_features.parquet"
+  price_features_csv: "data/processed/price_features.csv"
+  sentiment_features_parquet: "data/processed/sentiment_features.parquet"
+  sentiment_features_csv: "data/processed/sentiment_features.csv"
+  predictions_json: "data/processed/predictions.json"
+
+# Freshness Limits (in trading days)
+freshness:
+  max_stale_trading_days: 3
