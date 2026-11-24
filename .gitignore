@@ -5,6 +5,7 @@ data/sample/
 .env
 __pycache__/
 *.pyc
+.venv
 .venv/
 .venv_py311/
 .ipynb_checkpoints/
