@@ -1,0 +1,39 @@
+{
+  "configs": {
+    "A (16 stocks \u00d7 5 years)": {
+      "num_stocks": 16,
+      "years": 5
+    },
+    "B (100 stocks \u00d7 5 years)": {
+      "num_stocks": 100,
+      "years": 5
+    },
+    "C (100 stocks \u00d7 10 years)": {
+      "num_stocks": 100,
+      "years": 10
+    },
+    "D (300 stocks \u00d7 10 years)": {
+      "num_stocks": 300,
+      "years": 10
+    }
+  },
+  "fractions": [
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "feature_cols": [
+    "ret_1d",
+    "ret_5d",
+    "ret_21d",
+    "vol_20d",
+    "rsi_14d",
+    "vol_ratio_20d",
+    "high_low_spread",
+    "close_to_sma20"
+  ],
+  "forward_horizon_days": 5,
+  "test_days": 250,
+  "seed": 42
+}

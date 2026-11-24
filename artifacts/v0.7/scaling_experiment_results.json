@@ -1,0 +1,256 @@
+{
+  "environment": {
+    "lightgbm_version": "4.7.0",
+    "torch_version": "2.15.0",
+    "pandas_version": "3.1.1",
+    "numpy_version": "2.5.5",
+    "python_version": "3.12.13",
+    "random_seed": 42
+  },
+  "test_window": {
+    "cutoff_date": "2025-11-11",
+    "start_test_date": "2025-11-11",
+    "end_test_date": "2026-11-13",
+    "test_trading_days": 250
+  },
+  "configs": {
+    "A (16 stocks \u00d7 5 years)": {
+      "num_stocks": 16,
+      "years": 5,
+      "train_rows": 16000,
+      "test_u16_rows": 4000,
+      "test_full_rows": 4000,
+      "lightgbm": {
+        "eval_u16": {
+          "hit_rate": 0.4796,
+          "ic": -0.0537,
+          "rmse": 0.037178,
+          "mae": 0.027585,
+          "count": 4000
+        },
+        "eval_full": {
+          "hit_rate": 0.4796,
+          "ic": -0.0537,
+          "rmse": 0.037178,
+          "mae": 0.027585,
+          "count": 4000
+        }
+      },
+      "gru": {
+        "eval_u16": {
+          "hit_rate": 0.4828,
+          "ic": -0.0276,
+          "rmse": 0.037349,
+          "mae": 0.027795,
+          "count": 4000
+        },
+        "eval_full": {
+          "hit_rate": 0.4828,
+          "ic": -0.0276,
+          "rmse": 0.037349,
+          "mae": 0.027795,
+          "count": 4000
+        }
+      }
+    },
+    "B (100 stocks \u00d7 5 years)": {
+      "num_stocks": 100,
+      "years": 5,
+      "train_rows": 99126,
+      "test_u16_rows": 4000,
+      "test_full_rows": 25000,
+      "lightgbm": {
+        "eval_u16": {
+          "hit_rate": 0.4891,
+          "ic": -0.0851,
+          "rmse": 0.037044,
+          "mae": 0.027456,
+          "count": 4000
+        },
+        "eval_full": {
+          "hit_rate": 0.4722,
+          "ic": -0.0536,
+          "rmse": 0.0406,
+          "mae": 0.029685,
+          "count": 25000
+        }
+      },
+      "gru": {
+        "eval_u16": {
+          "hit_rate": 0.4826,
+          "ic": -0.0694,
+          "rmse": 0.037132,
+          "mae": 0.027516,
+          "count": 4000
+        },
+        "eval_full": {
+          "hit_rate": 0.4748,
+          "ic": -0.0408,
+          "rmse": 0.040552,
+          "mae": 0.029668,
+          "count": 25000
+        }
+      }
+    },
+    "C (100 stocks \u00d7 10 years)": {
+      "num_stocks": 100,
+      "years": 10,
+      "train_rows": 211873,
+      "test_u16_rows": 4000,
+      "test_full_rows": 25000,
+      "lightgbm": {
+        "eval_u16": {
+          "hit_rate": 0.4976,
+          "ic": -0.0179,
+          "rmse": 0.036943,
+          "mae": 0.027342,
+          "count": 4000
+        },
+        "eval_full": {
+          "hit_rate": 0.4829,
+          "ic": -0.0019,
+          "rmse": 0.040449,
+          "mae": 0.029584,
+          "count": 25000
+        }
+      },
+      "gru": {
+        "eval_u16": {
+          "hit_rate": 0.4986,
+          "ic": 0.0186,
+          "rmse": 0.036734,
+          "mae": 0.027089,
+          "count": 4000
+        },
+        "eval_full": {
+          "hit_rate": 0.4835,
+          "ic": 0.0338,
+          "rmse": 0.040192,
+          "mae": 0.029306,
+          "count": 25000
+        }
+      }
+    },
+    "D (300 stocks \u00d7 10 years)": {
+      "num_stocks": 300,
+      "years": 10,
+      "train_rows": 649999,
+      "test_u16_rows": 4000,
+      "test_full_rows": 75000,
+      "lightgbm": {
+        "eval_u16": {
+          "hit_rate": 0.4964,
+          "ic": -0.0038,
+          "rmse": 0.036867,
+          "mae": 0.027254,
+          "count": 4000
+        },
+        "eval_full": {
+          "hit_rate": 0.5119,
+          "ic": -0.0011,
+          "rmse": 0.036314,
+          "mae": 0.027791,
+          "count": 75000
+        }
+      },
+      "gru": {
+        "eval_u16": {
+          "hit_rate": 0.4941,
+          "ic": -0.0262,
+          "rmse": 0.036806,
+          "mae": 0.027183,
+          "count": 4000
+        },
+        "eval_full": {
+          "hit_rate": 0.5117,
+          "ic": 0.0072,
+          "rmse": 0.03628,
+          "mae": 0.027768,
+          "count": 75000
+        }
+      }
+    }
+  },
+  "data_fraction_curve": {
+    "25%": {
+      "fraction": 0.25,
+      "train_rows": 52968,
+      "lightgbm": {
+        "eval_u16": {
+          "hit_rate": 0.4994,
+          "ic": -0.0352,
+          "rmse": 0.037089,
+          "mae": 0.027493,
+          "count": 4000
+        },
+        "eval_full": {
+          "hit_rate": 0.484,
+          "ic": 0.0008,
+          "rmse": 0.04052,
+          "mae": 0.029671,
+          "count": 25000
+        }
+      }
+    },
+    "50%": {
+      "fraction": 0.5,
+      "train_rows": 105936,
+      "lightgbm": {
+        "eval_u16": {
+          "hit_rate": 0.4976,
+          "ic": -0.0514,
+          "rmse": 0.037036,
+          "mae": 0.027416,
+          "count": 4000
+        },
+        "eval_full": {
+          "hit_rate": 0.4814,
+          "ic": -0.0106,
+          "rmse": 0.040636,
+          "mae": 0.029694,
+          "count": 25000
+        }
+      }
+    },
+    "75%": {
+      "fraction": 0.75,
+      "train_rows": 158904,
+      "lightgbm": {
+        "eval_u16": {
+          "hit_rate": 0.4999,
+          "ic": -0.0389,
+          "rmse": 0.036976,
+          "mae": 0.02738,
+          "count": 4000
+        },
+        "eval_full": {
+          "hit_rate": 0.4818,
+          "ic": -0.0161,
+          "rmse": 0.040506,
+          "mae": 0.029631,
+          "count": 25000
+        }
+      }
+    },
+    "100%": {
+      "fraction": 1.0,
+      "train_rows": 211873,
+      "lightgbm": {
+        "eval_u16": {
+          "hit_rate": 0.4976,
+          "ic": -0.0179,
+          "rmse": 0.036943,
+          "mae": 0.027342,
+          "count": 4000
+        },
+        "eval_full": {
+          "hit_rate": 0.4829,
+          "ic": -0.0019,
+          "rmse": 0.040449,
+          "mae": 0.029584,
+          "count": 25000
+        }
+      }
+    }
+  }
+}
