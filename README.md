@@ -1,11 +1,23 @@
-# StockReason `v0.7.0-dev`
+# StockReason `v0.7.1`
 > **Trustworthy Forecasting and Evaluation Engine for NSE Equities**
 
-StockReason is a production-grade machine learning and forecasting framework for National Stock Exchange (NSE) Indian equities. It provides leak-free time-series modeling, purged walk-forward cross-validation, honest post-market cost-aware backtesting, conformal prediction intervals, and transparent feature attribution.
+StockReason is a production-grade machine learning and forecasting framework for National Stock Exchange (NSE) Indian equities. It provides leak-free time-series modeling, purged walk-forward cross-validation, honest post-market cost-aware backtesting, conformal prediction intervals, transparent feature attribution, and a strictly enforced out-of-sample lockbox protocol.
 
 ---
 
-## What's New in v0.7: The Trustworthy Engine
+## What's New in v0.7.1: Skeptical Audit & Broken Result Reconciliation
+
+StockReason v0.7.1 subjected the v0.7 headline results to a skeptical audit across 8 workstreams, resolving anomalies, enforcing mathematical rigor, and adding strict out-of-sample lockbox evaluation:
+1. **Cryptographically Protected Lockbox (`src/v07/common/lockbox.py`)**: Enforces a strict one-time evaluation protocol on the final 6 calendar months of trading data (May–October 2026), rejecting unauthorized or repeat access with tamper-proof cryptographic audit logging.
+2. **Audited Cross-Sectional Metrics (`src/v071/metrics.py`)**: Replaced pooled Spearman correlation with per-date cross-sectional Rank IC. Proved that `MarketForecaster` yields exactly 0.0000 IC across stocks on every single date, and resolved `ZeroForecaster` directional accuracy against the true test base rate.
+3. **Reconciled U100 Multi-Model Benchmark (`src/v071/reconciled_comparison.py`)**: Expanded evaluation to 96 liquid NSE equities across 8 purged walk-forward folds. Demonstrated that CatBoost 21D IC collapses from +0.1513 (observed on a 16-stock, 62.5% bank-heavy cluster with pooled correlation) to **+0.0004** (95% block-bootstrap CI `[-0.0056, +0.0126]`), establishing the mechanical verdict of "No demonstrated edge".
+4. **Official Regulatory Cost Schedule (`src/v071/cost_model.py`)**: Audited statutory Indian cash delivery fees against NSE, SEBI, and brokerage tariff schedules, updating NSE transaction charges to the official true-to-label rate of 0.00297% (₹2.97 / lakh, effective Oct 1, 2024).
+5. **Horizon-Matched Low-Turnover Strategy & Fair Benchmarks (`src/v071/strategy_and_benchmarks.py`)**: Matched rebalancing frequency to the 21-day label horizon with hysteresis bands, cutting annualized turnover from 42.8x to 6.3x and reducing friction drag from 1,594 bps to 233 bps. Benchmarked against Nifty 50, Equal-Weight Buy-and-Hold, Equal-Weight Monthly, Random Top-K, and a 126-day Momentum baseline.
+6. **Full Test Suite (185 Passed)**: 32 new deterministic audit tests under `tests/v071/` testing leakage, metrics, bootstrap statistics, strategy execution, costs, and promotion gates.
+
+---
+
+## What Was Established in v0.7: The Trustworthy Engine
 
 StockReason v0.7 eliminates five foundational architectural vulnerabilities present in conventional financial ML pipelines:
 1. **Forecast-Origin Alignment**: Ensures training sequences $[t-L+1 \dots t]$ use information available strictly at market close of day $t$ to forecast $\text{Close}_{t+h}/\text{Close}_t - 1$, fixing legacy 1-day timing misalignment.
