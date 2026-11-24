@@ -30,7 +30,18 @@ def main():
     parser.add_argument("--m2", action="store_true", help="Run M2 News & Sentiment pipeline only")
     parser.add_argument("--m3", action="store_true", help="Run M3 Prediction Generation only")
     parser.add_argument("--fast", action="store_true", help="Use fast baseline scoring for M2")
+    parser.add_argument("--v07", action="store_true", help="Run v0.7 trustworthy pipeline (freshness -> features -> inference -> calibration -> signals -> archive)")
+    parser.add_argument("--max-stale-days", type=int, default=5, help="Maximum allowed days for market data freshness check")
+    parser.add_argument("--force-freshness", action="store_true", help="Proceed even if freshness check warns")
     args = parser.parse_args()
+
+    if args.v07:
+        print("\n=======================================================")
+        print(">>> Launching StockReason v0.7 Trustworthy Pipeline")
+        print("=======================================================")
+        from src.v07.reporting.pipeline import run_v07_pipeline
+        run_v07_pipeline(max_stale_days=args.max_stale_days, force_freshness=args.force_freshness)
+        return
 
     run_all = not (args.m1 or args.m2 or args.m3)
 

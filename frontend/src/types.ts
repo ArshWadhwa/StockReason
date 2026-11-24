@@ -117,6 +117,14 @@ export interface PredictionData {
     direction: 'positive' | 'negative';
     current_value?: number;
   }>;
+  // v0.7 trustworthy engine fields
+  prob_up?: number;
+  prob_up_calibrated?: number;
+  interval_80?: [number, number];
+  interval_coverage_observed?: number;
+  feature_attribution?: Record<string, number>;
+  forecast_origin_date?: string;
+  invalidation_conditions?: string[];
 }
 
 export interface SignalData {
@@ -133,6 +141,14 @@ export interface SignalData {
   regime: string;
   ensemble_agreement: boolean;
   reasoning: string[];
+  // v0.7 trustworthy engine fields
+  prob_up?: number;
+  prob_up_calibrated?: number;
+  interval_80?: [number, number];
+  interval_coverage_observed?: number;
+  feature_attribution?: Record<string, number>;
+  forecast_origin_date?: string;
+  invalidation_conditions?: string[];
 }
 
 export interface BacktestData {
@@ -195,10 +211,59 @@ export interface DailyDigestData {
 }
 
 export interface SystemStatus {
+  status?: string;
+  data_as_of?: string;
+  model_version?: string;
+  rolling_oos_rank_ic?: number | null;
+  edge_verdict?: string;
+  is_stale?: boolean;
+  freshness_message?: string;
   last_refreshed: string;
   tickers_loaded: number;
   predictions_loaded: number;
   sentiment_loaded: number;
   signals_generated: number;
   data_source: string;
+}
+
+export interface ModelReport {
+  model_name: string;
+  timestamp: string;
+  as_of_date: string;
+  verdict: string;
+  has_edge: boolean;
+  metrics: {
+    ic: number;
+    rank_ic: number;
+    icir: number;
+    rank_icir: number;
+    mae: number;
+    rmse: number;
+    dir_acc: number;
+    dir_acc_vs_base: number;
+    brier?: number;
+    n: number;
+    n_dates: number;
+    rank_ic_ci_95?: [number, number];
+    by_regime?: Record<string, any>;
+    by_sector?: Record<string, any>;
+  };
+  calibration: {
+    ece: number;
+    brier: number;
+    bins: any[];
+  };
+  backtest: {
+    sharpe: number;
+    max_drawdown: number;
+    annualized_return: number;
+    annualized_turnover: number;
+    transaction_cost_bps?: number;
+  };
+  git_commit?: string;
+  config_hash?: string;
+  delta_rank_ic?: number;
+  baseline_name?: string;
+  universe?: string;
+  feature_count?: number;
 }

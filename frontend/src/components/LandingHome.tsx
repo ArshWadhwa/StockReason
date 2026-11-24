@@ -597,11 +597,10 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
         <div className="landing-section">
           <div className="landing-section-split">
             <div className="section-text-block reveal reveal-left">
-              <h2>AI Signals Powered by SHAP Explainability</h2>
+              <h2>AI Signals Powered by Feature Attribution (gradient × input)</h2>
               <p>
-                Every BUY / HOLD / AVOID signal is backed by SHAP
-                feature attribution, showing exactly which technical
-                and sentiment factors drove the recommendation.
+                Every BUY / HOLD / AVOID signal is backed by Feature attribution (gradient × input),
+                showing exactly which technical and sentiment factors drove the recommendation.
                 No black boxes — full transparency.
               </p>
 
@@ -712,7 +711,7 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
           <div className="cta-content">
             <h2>Built for Faster, Smarter<br />Market Reading</h2>
             <p>
-              LSTM predictions · FinBERT sentiment · SHAP explainability · Backtest validation
+              LSTM predictions · FinBERT sentiment · Feature attribution (gradient × input) · Backtest validation
             </p>
 
             <div className="cta-buttons-row">

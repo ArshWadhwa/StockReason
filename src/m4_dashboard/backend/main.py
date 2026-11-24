@@ -280,8 +280,13 @@ def health_check():
 
 @app.get("/api/system/status", tags=["System"])
 def get_system_status():
-    """Returns system status including last data refresh timestamp."""
+    """Returns system status including data-as-of date, model version, and rolling out-of-sample Rank IC."""
     return data_service.get_system_status()
+
+@app.get("/api/model/report", tags=["Model"])
+def get_model_report():
+    """Returns latest v0.7 quantitative model evaluation report, bootstrap CI, and edge verdict."""
+    return data_service.get_latest_model_report()
 
 @app.get("/api/system/accuracy", tags=["System"])
 def get_accuracy_report():

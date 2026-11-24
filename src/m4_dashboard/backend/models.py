@@ -106,6 +106,14 @@ class PredictionResponse(BaseModel):
     horizons: Dict[str, HorizonForecast]
     ensemble: EnsembleComparison
     shap_explainability: List[ShapFeature]
+    # v0.7 trustworthy engine extensions (WS8/WS9/WS10)
+    prob_up: Optional[float] = None
+    prob_up_calibrated: Optional[float] = None
+    interval_80: Optional[List[float]] = None
+    interval_coverage_observed: Optional[float] = None
+    feature_attribution: Optional[Dict[str, float]] = None
+    forecast_origin_date: Optional[str] = None
+    invalidation_conditions: Optional[List[str]] = None
 
 class EntryExitBracket(BaseModel):
     entry_price: float
@@ -130,6 +138,14 @@ class SignalResponse(BaseModel):
     ensemble_agreement: bool
     reasoning: List[str]
     entry_exit: Optional[EntryExitBracket] = None
+    # v0.7 trustworthy engine extensions (WS8/WS9/WS10)
+    prob_up: Optional[float] = None
+    prob_up_calibrated: Optional[float] = None
+    interval_80: Optional[List[float]] = None
+    interval_coverage_observed: Optional[float] = None
+    feature_attribution: Optional[Dict[str, float]] = None
+    forecast_origin_date: Optional[str] = None
+    invalidation_conditions: Optional[List[str]] = None
 
 class BacktestMetrics(BaseModel):
     cumulative_return: float
@@ -153,3 +169,34 @@ class DailyDigest(BaseModel):
     signal_downgrades: List[Dict[str, Any]]
     top_opportunities: List[str]
     high_risk_alerts: List[str]
+
+class SystemStatusResponse(BaseModel):
+    status: str = "operational"
+    data_as_of: str
+    model_version: str = "0.7.0"
+    rolling_oos_rank_ic: Optional[float] = None
+    edge_verdict: str = "No demonstrated edge"
+    is_stale: bool = False
+    freshness_message: str = "Data is up to date"
+    last_refreshed: str
+    tickers_loaded: int = 0
+    predictions_loaded: int = 0
+    sentiment_loaded: int = 0
+    signals_generated: int = 0
+    data_source: str = "real"
+
+class ModelReportResponse(BaseModel):
+    model_name: str
+    timestamp: str
+    as_of_date: str
+    verdict: str
+    has_edge: bool
+    metrics: Dict[str, Any]
+    calibration: Dict[str, Any]
+    backtest: Dict[str, Any]
+    git_commit: Optional[str] = None
+    config_hash: Optional[str] = None
+    delta_rank_ic: Optional[float] = None
+    baseline_metrics: Optional[Dict[str, Any]] = None
+    universe: Optional[str] = None
+    feature_count: Optional[int] = None

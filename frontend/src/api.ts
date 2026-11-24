@@ -1,7 +1,7 @@
 import type {
   UniverseIndex, UniverseStock, MarketOverviewData,
   StockPriceData, SentimentData, PredictionData,
-  SignalData, BacktestData, DailyDigestData, SystemStatus
+  SignalData, BacktestData, DailyDigestData, SystemStatus, ModelReport
 } from './types';
 
 const API_BASE = 'http://localhost:8000/api';
@@ -43,4 +43,7 @@ export const api = {
   
   getDailyDigest: () =>
     fetchJson<DailyDigestData>(`${API_BASE}/digest/daily`),
+
+  getModelReport: () =>
+    fetchJson<ModelReport>(`${API_BASE}/model/report`),
 };
