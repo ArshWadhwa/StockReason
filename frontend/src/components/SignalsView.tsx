@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import type { SignalData, PredictionData } from '../types';
+import { ModelReliabilityPanel } from './ModelReliabilityPanel';
 
 interface SignalsViewProps {
   signal: SignalData | null;
@@ -202,20 +203,68 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
             </div>
           </div>
 
-          {/* Confidence score — primary metric, serif */}
-          <div style={{ textAlign: 'right' }}>
-            <div className="ledger-label">MC Dropout confidence</div>
-            <div style={{
-              fontFamily: 'var(--serif)',
-              fontSize: '38px',
-              fontWeight: '400',
-              color: signalColor,
-              fontVariantNumeric: 'tabular-nums',
-              lineHeight: '1',
-              marginTop: '4px',
-            }}>
-              {Math.round(signal.confidence * 100)}%
+          {/* Calibrated Probability & 80% Interval Badge */}
+          <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-end' }}>
+            <div>
+              <div className="ledger-label">MC Dropout confidence</div>
+              <div style={{
+                fontFamily: 'var(--serif)',
+                fontSize: '32px',
+                fontWeight: '400',
+                color: signalColor,
+                fontVariantNumeric: 'tabular-nums',
+                lineHeight: '1',
+                marginTop: '4px',
+              }}>
+                {Math.round(signal.confidence * 100)}%
+              </div>
             </div>
+
+            {signal.prob_up_calibrated !== undefined && signal.prob_up_calibrated !== null && (
+              <div style={{
+                background: 'var(--paper)',
+                padding: '6px 10px',
+                borderRadius: '8px',
+                border: '1px solid #e2e8f0',
+                fontSize: '11px',
+                textAlign: 'right',
+              }}>
+                <div style={{ color: 'var(--dash-muted)', fontWeight: '600' }}>Calibrated Prob (Up)</div>
+                <div style={{ fontFamily: 'var(--mono)', fontWeight: '700', color: signal.prob_up_calibrated >= 0.5 ? '#1A7F4B' : '#DC2626' }}>
+                  {(signal.prob_up_calibrated * 100).toFixed(1)}%
+                </div>
+              </div>
+            )}
+
+            {signal.interval_80 && (
+              <div style={{
+                background: '#f8fafc',
+                padding: '6px 10px',
+                borderRadius: '8px',
+                border: '1px solid #e2e8f0',
+                fontSize: '11px',
+                textAlign: 'right',
+              }}>
+                <div style={{ color: 'var(--dash-muted)', fontWeight: '600' }}>
+                  80% Interval{' '}
+                  {signal.interval_coverage_observed !== undefined && (
+                    <span style={{
+                      background: '#ecfdf5',
+                      color: '#065f46',
+                      padding: '1px 5px',
+                      borderRadius: '4px',
+                      fontSize: '10px',
+                      fontWeight: '700',
+                    }}>
+                      Observed: {(signal.interval_coverage_observed * 100).toFixed(0)}%
+                    </span>
+                  )}
+                </div>
+                <div style={{ fontFamily: 'var(--mono)', color: 'var(--ink)' }}>
+                  [{(signal.interval_80[0] * 100).toFixed(1)}%, {(signal.interval_80[1] * 100).toFixed(1)}%]
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -238,6 +287,23 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
             ))}
           </ul>
         </div>
+
+        {/* Invalidation Conditions */}
+        {signal.invalidation_conditions && signal.invalidation_conditions.length > 0 && (
+          <div style={{ marginTop: '16px', borderTop: '1px dashed #e2e8f0', paddingTop: '14px' }}>
+            <div className="ledger-label" style={{ marginBottom: '8px', color: '#B45309' }}>
+              ⚡ Invalidation Conditions
+            </div>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: '4px', listStyleType: 'none' }}>
+              {signal.invalidation_conditions.map((cond, cIdx) => (
+                <li key={cIdx} style={{ fontSize: '12px', color: '#64748b', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ color: '#F59E0B', fontSize: '10px' }}>•</span>
+                  {cond}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
 
       {/* ── Multi-Horizon Cards — SECONDARY treatment ── */}
@@ -319,10 +385,10 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
               fontWeight: '700',
               color: 'var(--ink)',
             }}>
-              Why the 1-month forecast leans this way
+              Feature attribution (gradient × input)
             </div>
             <div style={{ fontSize: '12px', color: 'var(--dash-muted)', marginTop: '3px' }}>
-              The model’s most influential market inputs — these are not separate buy or sell signals.
+              The model’s most influential market inputs and sensitivities — these are not separate buy or sell signals.
             </div>
           </div>
           <div style={{
@@ -557,6 +623,9 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
           </>
         )}
       </div>
+
+      {/* ── Model Reliability & MLOps Verification Panel ── */}
+      <ModelReliabilityPanel />
     </div>
   );
 };

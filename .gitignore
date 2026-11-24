@@ -2,6 +2,7 @@
 data/raw/
 data/processed/
 data/sample/
+data/v0.7/
 .env
 __pycache__/
 *.pyc
@@ -21,11 +22,10 @@ catboost_info/
 docs/
 graphify-out/
 .agents/
-data/v0.7/raw/
-data/v0.7/metadata/*.csv
+artifacts/v0.7/
+reports/v0.7/
 artifacts/ppt_graphs/
 artifacts/*.png
-artifacts/v0.7/plots/
 artifacts/generate_ppt_graphs.py
 artifacts/models/best_lstm_primary.pth
 artifacts/models/best_lstm_secondary.pth

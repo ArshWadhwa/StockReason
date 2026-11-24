@@ -416,7 +416,7 @@ export function App() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 {[
                   { id: 'chart', label: 'Price Action & Chart', icon: LineChart },
-                  { id: 'signals', label: 'AI Signals & SHAP', icon: Zap },
+                  { id: 'signals', label: 'AI Signals & Attribution', icon: Zap },
                   { id: 'sentiment', label: 'News & FinBERT', icon: Newspaper },
                   { id: 'backtest', label: 'Backtest vs Baseline', icon: BarChart3 },
                   { id: 'digest', label: 'Daily Digest', icon: FileText },
@@ -441,6 +441,92 @@ export function App() {
 
           {/* Dashboard Main Workspace */}
           <main style={{ minWidth: 0 }}>
+            {/* ── v0.7 Model Version & Data Freshness Banner ── */}
+            {systemStatus && (
+              <div style={{
+                background: '#ffffff',
+                border: '1px solid #e2e8f0',
+                borderRadius: '10px',
+                padding: '10px 16px',
+                marginBottom: '16px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '10px',
+                fontSize: '12px',
+                fontFamily: 'var(--sans)',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.03)',
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span style={{ color: 'var(--dash-muted)', fontWeight: '500' }}>Data as-of:</span>
+                    <strong style={{ fontFamily: 'var(--mono)', color: 'var(--ink)' }}>{systemStatus.data_as_of || '2026-11-23'}</strong>
+                  </div>
+                  <div style={{ width: 1, height: 14, background: '#cbd5e1' }} />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span style={{ color: 'var(--dash-muted)', fontWeight: '500' }}>Model:</span>
+                    <strong style={{ fontFamily: 'var(--mono)', color: 'var(--accent)' }}>v{systemStatus.model_version || '0.7.0'}</strong>
+                  </div>
+                  {systemStatus.rolling_oos_rank_ic !== undefined && systemStatus.rolling_oos_rank_ic !== null && (
+                    <>
+                      <div style={{ width: 1, height: 14, background: '#cbd5e1' }} />
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                        <span style={{ color: 'var(--dash-muted)', fontWeight: '500' }}>Rolling OOS Rank IC:</span>
+                        <strong style={{ fontFamily: 'var(--mono)', color: systemStatus.rolling_oos_rank_ic > 0 ? '#1A7F4B' : '#DC2626' }}>
+                          {systemStatus.rolling_oos_rank_ic.toFixed(4)}
+                        </strong>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  {/* Warning: Stale Data */}
+                  {systemStatus.is_stale && (
+                    <span style={{
+                      background: '#fef2f2',
+                      color: '#b91c1c',
+                      border: '1px solid #fecaca',
+                      padding: '3px 8px',
+                      borderRadius: '6px',
+                      fontWeight: '600',
+                      fontSize: '11px',
+                    }}>
+                      ⚠️ Market Data Stale ({systemStatus.data_as_of})
+                    </span>
+                  )}
+
+                  {/* Warning / Badge: Edge Verdict */}
+                  {systemStatus.edge_verdict === 'No demonstrated edge' ? (
+                    <span style={{
+                      background: '#fffbeb',
+                      color: '#b45309',
+                      border: '1px solid #fde68a',
+                      padding: '3px 8px',
+                      borderRadius: '6px',
+                      fontWeight: '600',
+                      fontSize: '11px',
+                    }}>
+                      ⚠️ No demonstrated edge
+                    </span>
+                  ) : (
+                    <span style={{
+                      background: '#ecfdf5',
+                      color: '#065f46',
+                      border: '1px solid #a7f3d0',
+                      padding: '3px 8px',
+                      borderRadius: '6px',
+                      fontWeight: '600',
+                      fontSize: '11px',
+                    }}>
+                      ✓ {systemStatus.edge_verdict || 'Edge demonstrated'}
+                    </span>
+                  )}
+                </div>
+              </div>
+            )}
+
             {error && (
               <div style={{
                 background: 'var(--danger-bg)',
