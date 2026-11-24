@@ -22,7 +22,7 @@ import logging
 import os
 import sys
 from pathlib import Path
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 import numpy as np
 import pandas as pd
 from catboost import CatBoostRegressor
@@ -126,7 +126,7 @@ def run_lockbox_evaluation(
     strat_res = run_hysteresis_backtest(eval_df, ret_df, k=10, band=20, rebalance_freq=21)
 
     # Nifty benchmark on lockbox dates
-    bench_returns = te_df.groupby("date")["nifty_50_close"].first().pct_change().fillna(0).to_numpy()
+    bench_returns = te_df.groupby("date")["nifty_50_close"].first().pct_change().dropna().to_numpy()
     nifty_total_return = float((te_df["nifty_50_close"].iloc[-1] / te_df["nifty_50_close"].iloc[0]) - 1.0) if len(te_df) > 0 else 0.0
 
     attrib_res = run_attribution_regression(strat_res["daily_returns"], bench_returns)
