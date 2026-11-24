@@ -1,0 +1,2738 @@
+{
+  "AUBANK.NS": {
+    "ticker": "AUBANK.NS",
+    "prediction_date": "2026-09-07",
+    "current_price": 1065.0,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.000187,
+        "predicted_price": 1065.2,
+        "prob_up": 0.5108,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1046.09,
+          1084.31
+        ],
+        "interval_coverage_observed": 0.8163,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5108,
+        "uncertainty_std": 0.000225,
+        "lower_bound": 1046.09,
+        "upper_bound": 1084.31,
+        "confidence_note": null
+      },
+      "1W": {
+        "expected_return": 0.00121,
+        "predicted_price": 1066.29,
+        "prob_up": 0.5098,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1020.17,
+          1112.41
+        ],
+        "interval_coverage_observed": 0.8385,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5098,
+        "uncertainty_std": 0.001054,
+        "lower_bound": 1020.17,
+        "upper_bound": 1112.41,
+        "confidence_note": null
+      },
+      "1M": {
+        "expected_return": 0.008677,
+        "predicted_price": 1074.24,
+        "prob_up": 0.5217,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          983.59,
+          1164.89
+        ],
+        "interval_coverage_observed": 0.7905,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5217,
+        "uncertainty_std": 0.003959,
+        "lower_bound": 983.59,
+        "upper_bound": 1164.89,
+        "confidence_note": null
+      },
+      "6M": {
+        "expected_return": 0.05402,
+        "predicted_price": 1122.53,
+        "prob_up": 0.5556,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          948.83,
+          1296.23
+        ],
+        "interval_coverage_observed": 0.6243,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5556,
+        "uncertainty_std": 0.010992,
+        "lower_bound": 948.83,
+        "upper_bound": 1296.23,
+        "confidence_note": "Low statistical power \u2014 only ~9.5 independent windows per ticker. Confidence discounted by 50%."
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.007975,
+      "secondary_return_1M": 0.00938,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.001405
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_28",
+        "feature_display": "RSI (28-day)",
+        "feature_description": "",
+        "impact": -0.026514,
+        "importance_score": 0.0265,
+        "direction": "negative",
+        "current_value": 53.7471
+      },
+      {
+        "feature": "rsi_14_lag_10",
+        "feature_display": "Rsi 14 Lag 10",
+        "feature_description": "",
+        "impact": -0.023374,
+        "importance_score": 0.0234,
+        "direction": "negative",
+        "current_value": 66.7072
+      },
+      {
+        "feature": "log_return_63d",
+        "feature_display": "Log Return 63D",
+        "feature_description": "",
+        "impact": -0.020973,
+        "importance_score": 0.021,
+        "direction": "negative",
+        "current_value": 0.1046
+      },
+      {
+        "feature": "dist_sma_50",
+        "feature_display": "Distance from 50-day SMA",
+        "feature_description": "How far price is from its 50-day average \u2014 positive means trading above trend",
+        "impact": -0.0206,
+        "importance_score": 0.0206,
+        "direction": "negative",
+        "current_value": 0.0047
+      },
+      {
+        "feature": "log_return_42d",
+        "feature_display": "Log Return 42D",
+        "feature_description": "",
+        "impact": -0.019361,
+        "importance_score": 0.0194,
+        "direction": "negative",
+        "current_value": 0.0167
+      },
+      {
+        "feature": "volatility_120d",
+        "feature_display": "Volatility 120D",
+        "feature_description": "",
+        "impact": -0.019138,
+        "importance_score": 0.0191,
+        "direction": "negative",
+        "current_value": 0.3162
+      },
+      {
+        "feature": "dist_sma_100",
+        "feature_display": "Dist Sma 100",
+        "feature_description": "",
+        "impact": -0.017649,
+        "importance_score": 0.0176,
+        "direction": "negative",
+        "current_value": 0.0298
+      },
+      {
+        "feature": "rsi_14_lag_21",
+        "feature_display": "Rsi 14 Lag 21",
+        "feature_description": "",
+        "impact": -0.016718,
+        "importance_score": 0.0167,
+        "direction": "negative",
+        "current_value": 66.4143
+      }
+    ]
+  },
+  "AXISBANK.NS": {
+    "ticker": "AXISBANK.NS",
+    "prediction_date": "2026-09-07",
+    "current_price": 1273.0,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.000274,
+        "predicted_price": 1273.35,
+        "prob_up": 0.5108,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1250.51,
+          1296.19
+        ],
+        "interval_coverage_observed": 0.8163,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5108,
+        "uncertainty_std": 0.000176,
+        "lower_bound": 1250.51,
+        "upper_bound": 1296.19,
+        "confidence_note": null
+      },
+      "1W": {
+        "expected_return": 0.001556,
+        "predicted_price": 1274.98,
+        "prob_up": 0.5098,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1219.85,
+          1330.11
+        ],
+        "interval_coverage_observed": 0.8385,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5098,
+        "uncertainty_std": 0.000842,
+        "lower_bound": 1219.85,
+        "upper_bound": 1330.11,
+        "confidence_note": null
+      },
+      "1M": {
+        "expected_return": 0.009658,
+        "predicted_price": 1285.29,
+        "prob_up": 0.5217,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1176.94,
+          1393.65
+        ],
+        "interval_coverage_observed": 0.7905,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5217,
+        "uncertainty_std": 0.003267,
+        "lower_bound": 1176.94,
+        "upper_bound": 1393.65,
+        "confidence_note": null
+      },
+      "6M": {
+        "expected_return": 0.054798,
+        "predicted_price": 1342.76,
+        "prob_up": 0.5556,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1135.14,
+          1550.38
+        ],
+        "interval_coverage_observed": 0.6243,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5556,
+        "uncertainty_std": 0.009594,
+        "lower_bound": 1135.14,
+        "upper_bound": 1550.38,
+        "confidence_note": "Low statistical power \u2014 only ~9.5 independent windows per ticker. Confidence discounted by 50%."
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.009818,
+      "secondary_return_1M": 0.009497,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.000321
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_28",
+        "feature_display": "RSI (28-day)",
+        "feature_description": "",
+        "impact": -0.030218,
+        "importance_score": 0.0302,
+        "direction": "negative",
+        "current_value": 55.8168
+      },
+      {
+        "feature": "rsi_14_lag_10",
+        "feature_display": "Rsi 14 Lag 10",
+        "feature_description": "",
+        "impact": -0.026751,
+        "importance_score": 0.0268,
+        "direction": "negative",
+        "current_value": 40.242
+      },
+      {
+        "feature": "volatility_120d",
+        "feature_display": "Volatility 120D",
+        "feature_description": "",
+        "impact": -0.023627,
+        "importance_score": 0.0236,
+        "direction": "negative",
+        "current_value": 0.2563
+      },
+      {
+        "feature": "dist_sma_50",
+        "feature_display": "Distance from 50-day SMA",
+        "feature_description": "How far price is from its 50-day average \u2014 positive means trading above trend",
+        "impact": -0.021615,
+        "importance_score": 0.0216,
+        "direction": "negative",
+        "current_value": 0.0029
+      },
+      {
+        "feature": "log_return_63d",
+        "feature_display": "Log Return 63D",
+        "feature_description": "",
+        "impact": -0.020105,
+        "importance_score": 0.0201,
+        "direction": "negative",
+        "current_value": -0.0321
+      },
+      {
+        "feature": "log_return_42d",
+        "feature_display": "Log Return 42D",
+        "feature_description": "",
+        "impact": -0.019827,
+        "importance_score": 0.0198,
+        "direction": "negative",
+        "current_value": -0.0191
+      },
+      {
+        "feature": "williams_r_28",
+        "feature_display": "Williams R 28",
+        "feature_description": "",
+        "impact": -0.018018,
+        "importance_score": 0.018,
+        "direction": "negative",
+        "current_value": -29.5405
+      },
+      {
+        "feature": "bb_pct_b_50",
+        "feature_display": "Bb Pct B 50",
+        "feature_description": "",
+        "impact": -0.017722,
+        "importance_score": 0.0177,
+        "direction": "negative",
+        "current_value": 0.5217
+      }
+    ]
+  },
+  "BANKBARODA.NS": {
+    "ticker": "BANKBARODA.NS",
+    "prediction_date": "2026-09-07",
+    "current_price": 239.0,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.000386,
+        "predicted_price": 239.09,
+        "prob_up": 0.5108,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          234.8,
+          243.38
+        ],
+        "interval_coverage_observed": 0.8163,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5108,
+        "uncertainty_std": 0.000132,
+        "lower_bound": 234.8,
+        "upper_bound": 243.38,
+        "confidence_note": null
+      },
+      "1W": {
+        "expected_return": 0.002408,
+        "predicted_price": 239.58,
+        "prob_up": 0.5098,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          229.23,
+          249.93
+        ],
+        "interval_coverage_observed": 0.8385,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5098,
+        "uncertainty_std": 0.000537,
+        "lower_bound": 229.23,
+        "upper_bound": 249.93,
+        "confidence_note": null
+      },
+      "1M": {
+        "expected_return": 0.013285,
+        "predicted_price": 242.18,
+        "prob_up": 0.5217,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          221.83,
+          262.52
+        ],
+        "interval_coverage_observed": 0.7905,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5217,
+        "uncertainty_std": 0.002031,
+        "lower_bound": 221.83,
+        "upper_bound": 262.52,
+        "confidence_note": null
+      },
+      "6M": {
+        "expected_return": 0.066856,
+        "predicted_price": 254.98,
+        "prob_up": 0.5556,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          216.0,
+          293.96
+        ],
+        "interval_coverage_observed": 0.6243,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5556,
+        "uncertainty_std": 0.005858,
+        "lower_bound": 216.0,
+        "upper_bound": 293.96,
+        "confidence_note": "Low statistical power \u2014 only ~9.5 independent windows per ticker. Confidence discounted by 50%."
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.011253,
+      "secondary_return_1M": 0.015317,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.004064
+    },
+    "shap_explainability": [
+      {
+        "feature": "volatility_60d",
+        "feature_display": "60-day Volatility",
+        "feature_description": "",
+        "impact": 0.015289,
+        "importance_score": 0.0153,
+        "direction": "positive",
+        "current_value": 0.237
+      },
+      {
+        "feature": "rsi_28",
+        "feature_display": "RSI (28-day)",
+        "feature_description": "",
+        "impact": -0.014528,
+        "importance_score": 0.0145,
+        "direction": "negative",
+        "current_value": 46.1429
+      },
+      {
+        "feature": "rsi_14_lag_10",
+        "feature_display": "Rsi 14 Lag 10",
+        "feature_description": "",
+        "impact": -0.013724,
+        "importance_score": 0.0137,
+        "direction": "negative",
+        "current_value": 44.622
+      },
+      {
+        "feature": "mom_42",
+        "feature_display": "Mom 42",
+        "feature_description": "",
+        "impact": -0.013547,
+        "importance_score": 0.0135,
+        "direction": "negative",
+        "current_value": -5.6
+      },
+      {
+        "feature": "log_return_63d",
+        "feature_display": "Log Return 63D",
+        "feature_description": "",
+        "impact": -0.012365,
+        "importance_score": 0.0124,
+        "direction": "negative",
+        "current_value": -0.1194
+      },
+      {
+        "feature": "volatility_120d",
+        "feature_display": "Volatility 120D",
+        "feature_description": "",
+        "impact": 0.011937,
+        "importance_score": 0.0119,
+        "direction": "positive",
+        "current_value": 0.2957
+      },
+      {
+        "feature": "rsi_14_lag_21",
+        "feature_display": "Rsi 14 Lag 21",
+        "feature_description": "",
+        "impact": -0.011678,
+        "importance_score": 0.0117,
+        "direction": "negative",
+        "current_value": 45.0888
+      },
+      {
+        "feature": "bb_pct_b_50",
+        "feature_display": "Bb Pct B 50",
+        "feature_description": "",
+        "impact": -0.01155,
+        "importance_score": 0.0116,
+        "direction": "negative",
+        "current_value": 0.2238
+      }
+    ]
+  },
+  "BHARTIARTL.NS": {
+    "ticker": "BHARTIARTL.NS",
+    "prediction_date": "2026-09-07",
+    "current_price": 1840.0,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.000175,
+        "predicted_price": 1840.32,
+        "prob_up": 0.5108,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1807.31,
+          1873.33
+        ],
+        "interval_coverage_observed": 0.8163,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5108,
+        "uncertainty_std": 0.000239,
+        "lower_bound": 1807.31,
+        "upper_bound": 1873.33,
+        "confidence_note": null
+      },
+      "1W": {
+        "expected_return": 0.001126,
+        "predicted_price": 1842.07,
+        "prob_up": 0.5098,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1762.39,
+          1921.75
+        ],
+        "interval_coverage_observed": 0.8385,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5098,
+        "uncertainty_std": 0.001044,
+        "lower_bound": 1762.39,
+        "upper_bound": 1921.75,
+        "confidence_note": null
+      },
+      "1M": {
+        "expected_return": 0.007237,
+        "predicted_price": 1853.32,
+        "prob_up": 0.5217,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1696.7,
+          2009.93
+        ],
+        "interval_coverage_observed": 0.7905,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5217,
+        "uncertainty_std": 0.003978,
+        "lower_bound": 1696.7,
+        "upper_bound": 2009.93,
+        "confidence_note": null
+      },
+      "6M": {
+        "expected_return": 0.054943,
+        "predicted_price": 1941.1,
+        "prob_up": 0.5556,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1641.0,
+          2241.19
+        ],
+        "interval_coverage_observed": 0.6243,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5556,
+        "uncertainty_std": 0.008819,
+        "lower_bound": 1641.0,
+        "upper_bound": 2241.19,
+        "confidence_note": "Low statistical power \u2014 only ~9.5 independent windows per ticker. Confidence discounted by 50%."
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.008961,
+      "secondary_return_1M": 0.005513,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.003448
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_28",
+        "feature_display": "RSI (28-day)",
+        "feature_description": "",
+        "impact": -0.01784,
+        "importance_score": 0.0178,
+        "direction": "negative",
+        "current_value": 40.5359
+      },
+      {
+        "feature": "rsi_14_lag_21",
+        "feature_display": "Rsi 14 Lag 21",
+        "feature_description": "",
+        "impact": -0.016032,
+        "importance_score": 0.016,
+        "direction": "negative",
+        "current_value": 55.1509
+      },
+      {
+        "feature": "rsi_14_lag_10",
+        "feature_display": "Rsi 14 Lag 10",
+        "feature_description": "",
+        "impact": -0.015907,
+        "importance_score": 0.0159,
+        "direction": "negative",
+        "current_value": 43.9126
+      },
+      {
+        "feature": "log_return_63d",
+        "feature_display": "Log Return 63D",
+        "feature_description": "",
+        "impact": -0.015877,
+        "importance_score": 0.0159,
+        "direction": "negative",
+        "current_value": 0.0359
+      },
+      {
+        "feature": "log_return_42d",
+        "feature_display": "Log Return 42D",
+        "feature_description": "",
+        "impact": -0.014854,
+        "importance_score": 0.0149,
+        "direction": "negative",
+        "current_value": -0.0483
+      },
+      {
+        "feature": "dist_sma_50",
+        "feature_display": "Distance from 50-day SMA",
+        "feature_description": "How far price is from its 50-day average \u2014 positive means trading above trend",
+        "impact": -0.013996,
+        "importance_score": 0.014,
+        "direction": "negative",
+        "current_value": -0.0413
+      },
+      {
+        "feature": "dist_ema_50",
+        "feature_display": "Distance from 50-day EMA",
+        "feature_description": "",
+        "impact": -0.01341,
+        "importance_score": 0.0134,
+        "direction": "negative",
+        "current_value": -0.0336
+      },
+      {
+        "feature": "mom_42",
+        "feature_display": "Mom 42",
+        "feature_description": "",
+        "impact": -0.012976,
+        "importance_score": 0.013,
+        "direction": "negative",
+        "current_value": -91.1
+      }
+    ]
+  },
+  "HDFCBANK.NS": {
+    "ticker": "HDFCBANK.NS",
+    "prediction_date": "2026-09-07",
+    "current_price": 712.1,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.000348,
+        "predicted_price": 712.35,
+        "prob_up": 0.5108,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          699.57,
+          725.12
+        ],
+        "interval_coverage_observed": 0.8163,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5108,
+        "uncertainty_std": 0.000144,
+        "lower_bound": 699.57,
+        "upper_bound": 725.12,
+        "confidence_note": null
+      },
+      "1W": {
+        "expected_return": 0.00215,
+        "predicted_price": 713.63,
+        "prob_up": 0.5098,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          682.79,
+          744.47
+        ],
+        "interval_coverage_observed": 0.8385,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5098,
+        "uncertainty_std": 0.000687,
+        "lower_bound": 682.79,
+        "upper_bound": 744.47,
+        "confidence_note": null
+      },
+      "1M": {
+        "expected_return": 0.012421,
+        "predicted_price": 720.94,
+        "prob_up": 0.5217,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          660.33,
+          781.56
+        ],
+        "interval_coverage_observed": 0.7905,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5217,
+        "uncertainty_std": 0.002444,
+        "lower_bound": 660.33,
+        "upper_bound": 781.56,
+        "confidence_note": null
+      },
+      "6M": {
+        "expected_return": 0.064367,
+        "predicted_price": 757.94,
+        "prob_up": 0.5556,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          641.79,
+          874.08
+        ],
+        "interval_coverage_observed": 0.6243,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5556,
+        "uncertainty_std": 0.005645,
+        "lower_bound": 641.79,
+        "upper_bound": 874.08,
+        "confidence_note": "Low statistical power \u2014 only ~9.5 independent windows per ticker. Confidence discounted by 50%."
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.010423,
+      "secondary_return_1M": 0.014418,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.003995
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_14_lag_21",
+        "feature_display": "Rsi 14 Lag 21",
+        "feature_description": "",
+        "impact": -0.017474,
+        "importance_score": 0.0175,
+        "direction": "negative",
+        "current_value": 25.0535
+      },
+      {
+        "feature": "rsi_28",
+        "feature_display": "RSI (28-day)",
+        "feature_description": "",
+        "impact": -0.017304,
+        "importance_score": 0.0173,
+        "direction": "negative",
+        "current_value": 36.1473
+      },
+      {
+        "feature": "mom_42",
+        "feature_display": "Mom 42",
+        "feature_description": "",
+        "impact": -0.016297,
+        "importance_score": 0.0163,
+        "direction": "negative",
+        "current_value": -105.45
+      },
+      {
+        "feature": "volatility_120d",
+        "feature_display": "Volatility 120D",
+        "feature_description": "",
+        "impact": 0.015918,
+        "importance_score": 0.0159,
+        "direction": "positive",
+        "current_value": 0.2648
+      },
+      {
+        "feature": "macd_line_12_26_lag_10",
+        "feature_display": "Macd Line 12 26 Lag 10",
+        "feature_description": "",
+        "impact": -0.015356,
+        "importance_score": 0.0154,
+        "direction": "negative",
+        "current_value": -12.1321
+      },
+      {
+        "feature": "rsi_14_lag_10",
+        "feature_display": "Rsi 14 Lag 10",
+        "feature_description": "",
+        "impact": -0.015143,
+        "importance_score": 0.0151,
+        "direction": "negative",
+        "current_value": 33.3333
+      },
+      {
+        "feature": "macd_signal_12_26",
+        "feature_display": "MACD Signal",
+        "feature_description": "",
+        "impact": -0.013756,
+        "importance_score": 0.0138,
+        "direction": "negative",
+        "current_value": -11.7948
+      },
+      {
+        "feature": "mom_63",
+        "feature_display": "Mom 63",
+        "feature_description": "",
+        "impact": -0.013598,
+        "importance_score": 0.0136,
+        "direction": "negative",
+        "current_value": -34.75
+      }
+    ]
+  },
+  "ICICIBANK.NS": {
+    "ticker": "ICICIBANK.NS",
+    "prediction_date": "2026-09-07",
+    "current_price": 1423.2,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.000273,
+        "predicted_price": 1423.59,
+        "prob_up": 0.5108,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1398.05,
+          1449.12
+        ],
+        "interval_coverage_observed": 0.8163,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5108,
+        "uncertainty_std": 0.000202,
+        "lower_bound": 1398.05,
+        "upper_bound": 1449.12,
+        "confidence_note": null
+      },
+      "1W": {
+        "expected_return": 0.001375,
+        "predicted_price": 1425.16,
+        "prob_up": 0.5098,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1363.53,
+          1486.79
+        ],
+        "interval_coverage_observed": 0.8385,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5098,
+        "uncertainty_std": 0.00087,
+        "lower_bound": 1363.53,
+        "upper_bound": 1486.79,
+        "confidence_note": null
+      },
+      "1M": {
+        "expected_return": 0.008699,
+        "predicted_price": 1435.58,
+        "prob_up": 0.5217,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1314.44,
+          1556.72
+        ],
+        "interval_coverage_observed": 0.7905,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5217,
+        "uncertainty_std": 0.003325,
+        "lower_bound": 1314.44,
+        "upper_bound": 1556.72,
+        "confidence_note": null
+      },
+      "6M": {
+        "expected_return": 0.05401,
+        "predicted_price": 1500.07,
+        "prob_up": 0.5556,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1267.95,
+          1732.19
+        ],
+        "interval_coverage_observed": 0.6243,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5556,
+        "uncertainty_std": 0.009167,
+        "lower_bound": 1267.95,
+        "upper_bound": 1732.19,
+        "confidence_note": "Low statistical power \u2014 only ~9.5 independent windows per ticker. Confidence discounted by 50%."
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.009313,
+      "secondary_return_1M": 0.008084,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.001228
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_28",
+        "feature_display": "RSI (28-day)",
+        "feature_description": "",
+        "impact": -0.022409,
+        "importance_score": 0.0224,
+        "direction": "negative",
+        "current_value": 47.4594
+      },
+      {
+        "feature": "rsi_14_lag_10",
+        "feature_display": "Rsi 14 Lag 10",
+        "feature_description": "",
+        "impact": -0.019295,
+        "importance_score": 0.0193,
+        "direction": "negative",
+        "current_value": 35.5051
+      },
+      {
+        "feature": "log_return_63d",
+        "feature_display": "Log Return 63D",
+        "feature_description": "",
+        "impact": -0.018448,
+        "importance_score": 0.0184,
+        "direction": "negative",
+        "current_value": 0.0957
+      },
+      {
+        "feature": "dist_sma_50",
+        "feature_display": "Distance from 50-day SMA",
+        "feature_description": "How far price is from its 50-day average \u2014 positive means trading above trend",
+        "impact": -0.017511,
+        "importance_score": 0.0175,
+        "direction": "negative",
+        "current_value": -0.001
+      },
+      {
+        "feature": "log_return_42d",
+        "feature_display": "Log Return 42D",
+        "feature_description": "",
+        "impact": -0.016729,
+        "importance_score": 0.0167,
+        "direction": "negative",
+        "current_value": 0.0303
+      },
+      {
+        "feature": "volatility_120d",
+        "feature_display": "Volatility 120D",
+        "feature_description": "",
+        "impact": -0.016248,
+        "importance_score": 0.0162,
+        "direction": "negative",
+        "current_value": 0.2062
+      },
+      {
+        "feature": "dist_sma_100",
+        "feature_display": "Dist Sma 100",
+        "feature_description": "",
+        "impact": -0.016162,
+        "importance_score": 0.0162,
+        "direction": "negative",
+        "current_value": 0.0474
+      },
+      {
+        "feature": "bb_pct_b_50",
+        "feature_display": "Bb Pct B 50",
+        "feature_description": "",
+        "impact": -0.015264,
+        "importance_score": 0.0153,
+        "direction": "negative",
+        "current_value": 0.4831
+      }
+    ]
+  },
+  "IDFCFIRSTB.NS": {
+    "ticker": "IDFCFIRSTB.NS",
+    "prediction_date": "2026-09-07",
+    "current_price": 86.71,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.000164,
+        "predicted_price": 86.72,
+        "prob_up": 0.5108,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          85.17,
+          88.28
+        ],
+        "interval_coverage_observed": 0.8163,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5108,
+        "uncertainty_std": 0.0002,
+        "lower_bound": 85.17,
+        "upper_bound": 88.28,
+        "confidence_note": null
+      },
+      "1W": {
+        "expected_return": 0.001099,
+        "predicted_price": 86.81,
+        "prob_up": 0.5098,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          83.05,
+          90.56
+        ],
+        "interval_coverage_observed": 0.8385,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5098,
+        "uncertainty_std": 0.000803,
+        "lower_bound": 83.05,
+        "upper_bound": 90.56,
+        "confidence_note": null
+      },
+      "1M": {
+        "expected_return": 0.008952,
+        "predicted_price": 87.49,
+        "prob_up": 0.5217,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          80.11,
+          94.87
+        ],
+        "interval_coverage_observed": 0.7905,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5217,
+        "uncertainty_std": 0.002851,
+        "lower_bound": 80.11,
+        "upper_bound": 94.87,
+        "confidence_note": null
+      },
+      "6M": {
+        "expected_return": 0.05274,
+        "predicted_price": 91.28,
+        "prob_up": 0.5556,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          77.14,
+          105.43
+        ],
+        "interval_coverage_observed": 0.6243,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5556,
+        "uncertainty_std": 0.008569,
+        "lower_bound": 77.14,
+        "upper_bound": 105.43,
+        "confidence_note": "Low statistical power \u2014 only ~9.5 independent windows per ticker. Confidence discounted by 50%."
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.004749,
+      "secondary_return_1M": 0.013154,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.008404
+    },
+    "shap_explainability": [
+      {
+        "feature": "volatility_120d",
+        "feature_display": "Volatility 120D",
+        "feature_description": "",
+        "impact": -0.021661,
+        "importance_score": 0.0217,
+        "direction": "negative",
+        "current_value": 0.2853
+      },
+      {
+        "feature": "volatility_60d",
+        "feature_display": "60-day Volatility",
+        "feature_description": "",
+        "impact": -0.017978,
+        "importance_score": 0.018,
+        "direction": "negative",
+        "current_value": 0.2238
+      },
+      {
+        "feature": "sma_50_200_ratio",
+        "feature_display": "SMA 50/200 Golden Cross Ratio",
+        "feature_description": "Golden cross ratio \u2014 above 1.0 means 50-day SMA above 200-day (bullish)",
+        "impact": 0.015094,
+        "importance_score": 0.0151,
+        "direction": "positive",
+        "current_value": 1.0794
+      },
+      {
+        "feature": "bb_pct_b_50",
+        "feature_display": "Bb Pct B 50",
+        "feature_description": "",
+        "impact": -0.014485,
+        "importance_score": 0.0145,
+        "direction": "negative",
+        "current_value": 0.8028
+      },
+      {
+        "feature": "rsi_28",
+        "feature_display": "RSI (28-day)",
+        "feature_description": "",
+        "impact": -0.013946,
+        "importance_score": 0.0139,
+        "direction": "negative",
+        "current_value": 53.9394
+      },
+      {
+        "feature": "williams_r_28",
+        "feature_display": "Williams R 28",
+        "feature_description": "",
+        "impact": -0.012881,
+        "importance_score": 0.0129,
+        "direction": "negative",
+        "current_value": -24.8214
+      },
+      {
+        "feature": "rsi_14_lag_10",
+        "feature_display": "Rsi 14 Lag 10",
+        "feature_description": "",
+        "impact": -0.012454,
+        "importance_score": 0.0125,
+        "direction": "negative",
+        "current_value": 49.4336
+      },
+      {
+        "feature": "nifty_bank_close",
+        "feature_display": "Nifty Bank Level",
+        "feature_description": "",
+        "impact": 0.011455,
+        "importance_score": 0.0115,
+        "direction": "positive",
+        "current_value": 57369.6484
+      }
+    ]
+  },
+  "INDUSINDBK.NS": {
+    "ticker": "INDUSINDBK.NS",
+    "prediction_date": "2026-09-07",
+    "current_price": 1008.5,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.000285,
+        "predicted_price": 1008.79,
+        "prob_up": 0.5108,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          990.69,
+          1026.88
+        ],
+        "interval_coverage_observed": 0.8163,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5108,
+        "uncertainty_std": 0.000177,
+        "lower_bound": 990.69,
+        "upper_bound": 1026.88,
+        "confidence_note": null
+      },
+      "1W": {
+        "expected_return": 0.001554,
+        "predicted_price": 1010.07,
+        "prob_up": 0.5098,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          966.39,
+          1053.74
+        ],
+        "interval_coverage_observed": 0.8385,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5098,
+        "uncertainty_std": 0.000873,
+        "lower_bound": 966.39,
+        "upper_bound": 1053.74,
+        "confidence_note": null
+      },
+      "1M": {
+        "expected_return": 0.010111,
+        "predicted_price": 1018.7,
+        "prob_up": 0.5217,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          932.86,
+          1104.54
+        ],
+        "interval_coverage_observed": 0.7905,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5217,
+        "uncertainty_std": 0.003345,
+        "lower_bound": 932.86,
+        "upper_bound": 1104.54,
+        "confidence_note": null
+      },
+      "6M": {
+        "expected_return": 0.056688,
+        "predicted_price": 1065.67,
+        "prob_up": 0.5556,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          901.19,
+          1230.15
+        ],
+        "interval_coverage_observed": 0.6243,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5556,
+        "uncertainty_std": 0.009794,
+        "lower_bound": 901.19,
+        "upper_bound": 1230.15,
+        "confidence_note": "Low statistical power \u2014 only ~9.5 independent windows per ticker. Confidence discounted by 50%."
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.008449,
+      "secondary_return_1M": 0.011773,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.003324
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_28",
+        "feature_display": "RSI (28-day)",
+        "feature_description": "",
+        "impact": -0.021654,
+        "importance_score": 0.0217,
+        "direction": "negative",
+        "current_value": 49.1966
+      },
+      {
+        "feature": "rsi_14_lag_10",
+        "feature_display": "Rsi 14 Lag 10",
+        "feature_description": "",
+        "impact": -0.018888,
+        "importance_score": 0.0189,
+        "direction": "negative",
+        "current_value": 46.1694
+      },
+      {
+        "feature": "log_return_63d",
+        "feature_display": "Log Return 63D",
+        "feature_description": "",
+        "impact": -0.018732,
+        "importance_score": 0.0187,
+        "direction": "negative",
+        "current_value": 0.1318
+      },
+      {
+        "feature": "volatility_120d",
+        "feature_display": "Volatility 120D",
+        "feature_description": "",
+        "impact": -0.01792,
+        "importance_score": 0.0179,
+        "direction": "negative",
+        "current_value": 0.3196
+      },
+      {
+        "feature": "dist_sma_50",
+        "feature_display": "Distance from 50-day SMA",
+        "feature_description": "How far price is from its 50-day average \u2014 positive means trading above trend",
+        "impact": -0.016928,
+        "importance_score": 0.0169,
+        "direction": "negative",
+        "current_value": 0.0002
+      },
+      {
+        "feature": "log_return_42d",
+        "feature_display": "Log Return 42D",
+        "feature_description": "",
+        "impact": -0.01652,
+        "importance_score": 0.0165,
+        "direction": "negative",
+        "current_value": -0.0066
+      },
+      {
+        "feature": "dist_sma_100",
+        "feature_display": "Dist Sma 100",
+        "feature_description": "",
+        "impact": -0.016361,
+        "importance_score": 0.0164,
+        "direction": "negative",
+        "current_value": 0.0516
+      },
+      {
+        "feature": "bb_pct_b_50",
+        "feature_display": "Bb Pct B 50",
+        "feature_description": "",
+        "impact": -0.014873,
+        "importance_score": 0.0149,
+        "direction": "negative",
+        "current_value": 0.5022
+      }
+    ]
+  },
+  "INFY.NS": {
+    "ticker": "INFY.NS",
+    "prediction_date": "2026-09-07",
+    "current_price": 1130.0,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.000274,
+        "predicted_price": 1130.31,
+        "prob_up": 0.5108,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1110.04,
+          1150.58
+        ],
+        "interval_coverage_observed": 0.8163,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5108,
+        "uncertainty_std": 0.000194,
+        "lower_bound": 1110.04,
+        "upper_bound": 1150.58,
+        "confidence_note": null
+      },
+      "1W": {
+        "expected_return": 0.0016,
+        "predicted_price": 1131.81,
+        "prob_up": 0.5098,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1082.87,
+          1180.74
+        ],
+        "interval_coverage_observed": 0.8385,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5098,
+        "uncertainty_std": 0.00086,
+        "lower_bound": 1082.87,
+        "upper_bound": 1180.74,
+        "confidence_note": null
+      },
+      "1M": {
+        "expected_return": 0.010229,
+        "predicted_price": 1141.56,
+        "prob_up": 0.5217,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1045.38,
+          1237.74
+        ],
+        "interval_coverage_observed": 0.7905,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5217,
+        "uncertainty_std": 0.003102,
+        "lower_bound": 1045.38,
+        "upper_bound": 1237.74,
+        "confidence_note": null
+      },
+      "6M": {
+        "expected_return": 0.057742,
+        "predicted_price": 1195.25,
+        "prob_up": 0.5556,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1010.95,
+          1379.55
+        ],
+        "interval_coverage_observed": 0.6243,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5556,
+        "uncertainty_std": 0.008037,
+        "lower_bound": 1010.95,
+        "upper_bound": 1379.55,
+        "confidence_note": "Low statistical power \u2014 only ~9.5 independent windows per ticker. Confidence discounted by 50%."
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.009231,
+      "secondary_return_1M": 0.011226,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.001995
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_28",
+        "feature_display": "RSI (28-day)",
+        "feature_description": "",
+        "impact": -0.027012,
+        "importance_score": 0.027,
+        "direction": "negative",
+        "current_value": 46.6012
+      },
+      {
+        "feature": "volatility_120d",
+        "feature_display": "Volatility 120D",
+        "feature_description": "",
+        "impact": -0.025823,
+        "importance_score": 0.0258,
+        "direction": "negative",
+        "current_value": 0.3397
+      },
+      {
+        "feature": "rsi_14_lag_10",
+        "feature_display": "Rsi 14 Lag 10",
+        "feature_description": "",
+        "impact": -0.023719,
+        "importance_score": 0.0237,
+        "direction": "negative",
+        "current_value": 37.4917
+      },
+      {
+        "feature": "dist_sma_50",
+        "feature_display": "Distance from 50-day SMA",
+        "feature_description": "How far price is from its 50-day average \u2014 positive means trading above trend",
+        "impact": -0.019378,
+        "importance_score": 0.0194,
+        "direction": "negative",
+        "current_value": 0.0161
+      },
+      {
+        "feature": "volatility_60d",
+        "feature_display": "60-day Volatility",
+        "feature_description": "",
+        "impact": -0.018995,
+        "importance_score": 0.019,
+        "direction": "negative",
+        "current_value": 0.337
+      },
+      {
+        "feature": "log_return_63d",
+        "feature_display": "Log Return 63D",
+        "feature_description": "",
+        "impact": -0.01815,
+        "importance_score": 0.0181,
+        "direction": "negative",
+        "current_value": -0.0134
+      },
+      {
+        "feature": "log_return_42d",
+        "feature_display": "Log Return 42D",
+        "feature_description": "",
+        "impact": -0.01783,
+        "importance_score": 0.0178,
+        "direction": "negative",
+        "current_value": 0.0727
+      },
+      {
+        "feature": "bb_pct_b_50",
+        "feature_display": "Bb Pct B 50",
+        "feature_description": "",
+        "impact": -0.016332,
+        "importance_score": 0.0163,
+        "direction": "negative",
+        "current_value": 0.5893
+      }
+    ]
+  },
+  "ITC.NS": {
+    "ticker": "ITC.NS",
+    "prediction_date": "2026-09-07",
+    "current_price": 264.1,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.000383,
+        "predicted_price": 264.2,
+        "prob_up": 0.5108,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          259.46,
+          268.94
+        ],
+        "interval_coverage_observed": 0.8163,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5108,
+        "uncertainty_std": 0.000161,
+        "lower_bound": 259.46,
+        "upper_bound": 268.94,
+        "confidence_note": null
+      },
+      "1W": {
+        "expected_return": 0.002335,
+        "predicted_price": 264.72,
+        "prob_up": 0.5098,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          253.28,
+          276.15
+        ],
+        "interval_coverage_observed": 0.8385,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5098,
+        "uncertainty_std": 0.000657,
+        "lower_bound": 253.28,
+        "upper_bound": 276.15,
+        "confidence_note": null
+      },
+      "1M": {
+        "expected_return": 0.012983,
+        "predicted_price": 267.53,
+        "prob_up": 0.5217,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          245.05,
+          290.01
+        ],
+        "interval_coverage_observed": 0.7905,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5217,
+        "uncertainty_std": 0.002409,
+        "lower_bound": 245.05,
+        "upper_bound": 290.01,
+        "confidence_note": null
+      },
+      "6M": {
+        "expected_return": 0.065866,
+        "predicted_price": 281.5,
+        "prob_up": 0.5556,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          238.42,
+          324.57
+        ],
+        "interval_coverage_observed": 0.6243,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5556,
+        "uncertainty_std": 0.006436,
+        "lower_bound": 238.42,
+        "upper_bound": 324.57,
+        "confidence_note": "Low statistical power \u2014 only ~9.5 independent windows per ticker. Confidence discounted by 50%."
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.010917,
+      "secondary_return_1M": 0.015049,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.004131
+    },
+    "shap_explainability": [
+      {
+        "feature": "mom_42",
+        "feature_display": "Mom 42",
+        "feature_description": "",
+        "impact": -0.014113,
+        "importance_score": 0.0141,
+        "direction": "negative",
+        "current_value": -17.95
+      },
+      {
+        "feature": "volatility_60d",
+        "feature_display": "60-day Volatility",
+        "feature_description": "",
+        "impact": 0.013695,
+        "importance_score": 0.0137,
+        "direction": "positive",
+        "current_value": 0.1851
+      },
+      {
+        "feature": "volatility_120d",
+        "feature_display": "Volatility 120D",
+        "feature_description": "",
+        "impact": 0.013252,
+        "importance_score": 0.0133,
+        "direction": "positive",
+        "current_value": 0.1969
+      },
+      {
+        "feature": "rsi_28",
+        "feature_display": "RSI (28-day)",
+        "feature_description": "",
+        "impact": -0.012278,
+        "importance_score": 0.0123,
+        "direction": "negative",
+        "current_value": 36.3018
+      },
+      {
+        "feature": "rsi_14_lag_10",
+        "feature_display": "Rsi 14 Lag 10",
+        "feature_description": "",
+        "impact": -0.011589,
+        "importance_score": 0.0116,
+        "direction": "negative",
+        "current_value": 21.7837
+      },
+      {
+        "feature": "rsi_14_lag_21",
+        "feature_display": "Rsi 14 Lag 21",
+        "feature_description": "",
+        "impact": -0.01117,
+        "importance_score": 0.0112,
+        "direction": "negative",
+        "current_value": 56.4638
+      },
+      {
+        "feature": "cmf_20",
+        "feature_display": "Chaikin Money Flow (20)",
+        "feature_description": "Money flow in/out \u2014 positive means institutional buying pressure",
+        "impact": -0.011158,
+        "importance_score": 0.0112,
+        "direction": "negative",
+        "current_value": -0.1204
+      },
+      {
+        "feature": "bb_pct_b_50",
+        "feature_display": "Bb Pct B 50",
+        "feature_description": "",
+        "impact": -0.010703,
+        "importance_score": 0.0107,
+        "direction": "negative",
+        "current_value": 0.0919
+      }
+    ]
+  },
+  "KOTAKBANK.NS": {
+    "ticker": "KOTAKBANK.NS",
+    "prediction_date": "2026-09-07",
+    "current_price": 424.5,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.000165,
+        "predicted_price": 424.57,
+        "prob_up": 0.5108,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          416.95,
+          432.19
+        ],
+        "interval_coverage_observed": 0.8163,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5108,
+        "uncertainty_std": 0.000208,
+        "lower_bound": 416.95,
+        "upper_bound": 432.19,
+        "confidence_note": null
+      },
+      "1W": {
+        "expected_return": 0.001008,
+        "predicted_price": 424.93,
+        "prob_up": 0.5098,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          406.55,
+          443.31
+        ],
+        "interval_coverage_observed": 0.8385,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5098,
+        "uncertainty_std": 0.000889,
+        "lower_bound": 406.55,
+        "upper_bound": 443.31,
+        "confidence_note": null
+      },
+      "1M": {
+        "expected_return": 0.007813,
+        "predicted_price": 427.82,
+        "prob_up": 0.5217,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          391.68,
+          463.95
+        ],
+        "interval_coverage_observed": 0.7905,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5217,
+        "uncertainty_std": 0.003299,
+        "lower_bound": 391.68,
+        "upper_bound": 463.95,
+        "confidence_note": null
+      },
+      "6M": {
+        "expected_return": 0.048806,
+        "predicted_price": 445.22,
+        "prob_up": 0.5556,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          375.98,
+          514.45
+        ],
+        "interval_coverage_observed": 0.6243,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5556,
+        "uncertainty_std": 0.009715,
+        "lower_bound": 375.98,
+        "upper_bound": 514.45,
+        "confidence_note": "Low statistical power \u2014 only ~9.5 independent windows per ticker. Confidence discounted by 50%."
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.006205,
+      "secondary_return_1M": 0.009421,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.003216
+    },
+    "shap_explainability": [
+      {
+        "feature": "volatility_120d",
+        "feature_display": "Volatility 120D",
+        "feature_description": "",
+        "impact": -0.037296,
+        "importance_score": 0.0373,
+        "direction": "negative",
+        "current_value": 0.229
+      },
+      {
+        "feature": "volatility_60d",
+        "feature_display": "60-day Volatility",
+        "feature_description": "",
+        "impact": -0.031246,
+        "importance_score": 0.0312,
+        "direction": "negative",
+        "current_value": 0.2181
+      },
+      {
+        "feature": "sma_50_200_ratio",
+        "feature_display": "SMA 50/200 Golden Cross Ratio",
+        "feature_description": "Golden cross ratio \u2014 above 1.0 means 50-day SMA above 200-day (bullish)",
+        "impact": 0.024257,
+        "importance_score": 0.0243,
+        "direction": "positive",
+        "current_value": 0.9866
+      },
+      {
+        "feature": "rsi_28",
+        "feature_display": "RSI (28-day)",
+        "feature_description": "",
+        "impact": -0.0216,
+        "importance_score": 0.0216,
+        "direction": "negative",
+        "current_value": 68.4408
+      },
+      {
+        "feature": "rsi_14_lag_10",
+        "feature_display": "Rsi 14 Lag 10",
+        "feature_description": "",
+        "impact": -0.01927,
+        "importance_score": 0.0193,
+        "direction": "negative",
+        "current_value": 53.9885
+      },
+      {
+        "feature": "bb_pct_b_50",
+        "feature_display": "Bb Pct B 50",
+        "feature_description": "",
+        "impact": -0.019078,
+        "importance_score": 0.0191,
+        "direction": "negative",
+        "current_value": 0.9927
+      },
+      {
+        "feature": "volatility_20d_lag_21",
+        "feature_display": "Volatility 20D Lag 21",
+        "feature_description": "",
+        "impact": -0.017186,
+        "importance_score": 0.0172,
+        "direction": "negative",
+        "current_value": 0.2073
+      },
+      {
+        "feature": "williams_r_28",
+        "feature_display": "Williams R 28",
+        "feature_description": "",
+        "impact": -0.015547,
+        "importance_score": 0.0155,
+        "direction": "negative",
+        "current_value": -10.5991
+      }
+    ]
+  },
+  "LT.NS": {
+    "ticker": "LT.NS",
+    "prediction_date": "2026-09-07",
+    "current_price": 3964.1,
+    "horizons": {
+      "1D": {
+        "expected_return": -0.004916,
+        "predicted_price": 3944.61,
+        "prob_up": 0.5108,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          3873.49,
+          4015.73
+        ],
+        "interval_coverage_observed": 0.8163,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5108,
+        "uncertainty_std": 0.001711,
+        "lower_bound": 3873.49,
+        "upper_bound": 4015.73,
+        "confidence_note": null
+      },
+      "1W": {
+        "expected_return": -0.019328,
+        "predicted_price": 3887.48,
+        "prob_up": 0.5098,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          3715.82,
+          4059.14
+        ],
+        "interval_coverage_observed": 0.8385,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5098,
+        "uncertainty_std": 0.004894,
+        "lower_bound": 3715.82,
+        "upper_bound": 4059.14,
+        "confidence_note": null
+      },
+      "1M": {
+        "expected_return": -0.044817,
+        "predicted_price": 3786.44,
+        "prob_up": 0.5217,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          3449.02,
+          4123.86
+        ],
+        "interval_coverage_observed": 0.7905,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5217,
+        "uncertainty_std": 0.012628,
+        "lower_bound": 3449.02,
+        "upper_bound": 4123.86,
+        "confidence_note": null
+      },
+      "6M": {
+        "expected_return": -0.108683,
+        "predicted_price": 3533.27,
+        "prob_up": 0.5556,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          2886.74,
+          4179.8
+        ],
+        "interval_coverage_observed": 0.6243,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5556,
+        "uncertainty_std": 0.038786,
+        "lower_bound": 2886.74,
+        "upper_bound": 4179.8,
+        "confidence_note": "Low statistical power \u2014 only ~9.5 independent windows per ticker. Confidence discounted by 50%."
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": -0.037867,
+      "secondary_return_1M": -0.051768,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.0139
+    },
+    "shap_explainability": [
+      {
+        "feature": "atr_14_lag_21",
+        "feature_display": "Atr 14 Lag 21",
+        "feature_description": "",
+        "impact": -0.017273,
+        "importance_score": 0.0173,
+        "direction": "negative",
+        "current_value": 61.4572
+      },
+      {
+        "feature": "atr_14_lag_10",
+        "feature_display": "Atr 14 Lag 10",
+        "feature_description": "",
+        "impact": -0.016574,
+        "importance_score": 0.0166,
+        "direction": "negative",
+        "current_value": 48.15
+      },
+      {
+        "feature": "dist_ema_200",
+        "feature_display": "Dist Ema 200",
+        "feature_description": "",
+        "impact": -0.013307,
+        "importance_score": 0.0133,
+        "direction": "negative",
+        "current_value": 0.0062
+      },
+      {
+        "feature": "atr_14_lag_5",
+        "feature_display": "Atr 14 Lag 5",
+        "feature_description": "",
+        "impact": -0.012115,
+        "importance_score": 0.0121,
+        "direction": "negative",
+        "current_value": 51.8357
+      },
+      {
+        "feature": "atr_21",
+        "feature_display": "Atr 21",
+        "feature_description": "",
+        "impact": -0.010619,
+        "importance_score": 0.0106,
+        "direction": "negative",
+        "current_value": 50.919
+      },
+      {
+        "feature": "atr_14",
+        "feature_display": "Average True Range (14)",
+        "feature_description": "Average daily price range over 14 days \u2014 higher means more volatile",
+        "impact": -0.010365,
+        "importance_score": 0.0104,
+        "direction": "negative",
+        "current_value": 49.4285
+      },
+      {
+        "feature": "atr_14_lag_1",
+        "feature_display": "Atr 14 Lag 1",
+        "feature_description": "",
+        "impact": -0.010279,
+        "importance_score": 0.0103,
+        "direction": "negative",
+        "current_value": 48.9071
+      },
+      {
+        "feature": "dist_ema_150",
+        "feature_display": "Dist Ema 150",
+        "feature_description": "",
+        "impact": -0.010108,
+        "importance_score": 0.0101,
+        "direction": "negative",
+        "current_value": -0.0007
+      }
+    ]
+  },
+  "PNB.NS": {
+    "ticker": "PNB.NS",
+    "prediction_date": "2026-09-07",
+    "current_price": 117.0,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.000107,
+        "predicted_price": 117.01,
+        "prob_up": 0.5108,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          114.91,
+          119.11
+        ],
+        "interval_coverage_observed": 0.8163,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5108,
+        "uncertainty_std": 0.000249,
+        "lower_bound": 114.91,
+        "upper_bound": 119.11,
+        "confidence_note": null
+      },
+      "1W": {
+        "expected_return": 0.000682,
+        "predicted_price": 117.08,
+        "prob_up": 0.5098,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          112.01,
+          122.15
+        ],
+        "interval_coverage_observed": 0.8385,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5098,
+        "uncertainty_std": 0.001221,
+        "lower_bound": 112.01,
+        "upper_bound": 122.15,
+        "confidence_note": null
+      },
+      "1M": {
+        "expected_return": 0.007317,
+        "predicted_price": 117.86,
+        "prob_up": 0.5217,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          107.9,
+          127.81
+        ],
+        "interval_coverage_observed": 0.7905,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5217,
+        "uncertainty_std": 0.004427,
+        "lower_bound": 107.9,
+        "upper_bound": 127.81,
+        "confidence_note": null
+      },
+      "6M": {
+        "expected_return": 0.050023,
+        "predicted_price": 122.85,
+        "prob_up": 0.5556,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          103.77,
+          141.94
+        ],
+        "interval_coverage_observed": 0.6243,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5556,
+        "uncertainty_std": 0.013261,
+        "lower_bound": 103.77,
+        "upper_bound": 141.94,
+        "confidence_note": "Low statistical power \u2014 only ~9.5 independent windows per ticker. Confidence discounted by 50%."
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.004619,
+      "secondary_return_1M": 0.010015,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.005396
+    },
+    "shap_explainability": [
+      {
+        "feature": "volatility_120d",
+        "feature_display": "Volatility 120D",
+        "feature_description": "",
+        "impact": -0.028541,
+        "importance_score": 0.0285,
+        "direction": "negative",
+        "current_value": 0.2762
+      },
+      {
+        "feature": "volatility_60d",
+        "feature_display": "60-day Volatility",
+        "feature_description": "",
+        "impact": -0.026738,
+        "importance_score": 0.0267,
+        "direction": "negative",
+        "current_value": 0.2087
+      },
+      {
+        "feature": "sma_50_200_ratio",
+        "feature_display": "SMA 50/200 Golden Cross Ratio",
+        "feature_description": "Golden cross ratio \u2014 above 1.0 means 50-day SMA above 200-day (bullish)",
+        "impact": 0.015694,
+        "importance_score": 0.0157,
+        "direction": "positive",
+        "current_value": 0.976
+      },
+      {
+        "feature": "obv",
+        "feature_display": "On-Balance Volume",
+        "feature_description": "Cumulative volume direction \u2014 rising OBV confirms uptrend",
+        "impact": -0.015102,
+        "importance_score": 0.0151,
+        "direction": "negative",
+        "current_value": 8085089637.0
+      },
+      {
+        "feature": "rsi_28",
+        "feature_display": "RSI (28-day)",
+        "feature_description": "",
+        "impact": -0.013508,
+        "importance_score": 0.0135,
+        "direction": "negative",
+        "current_value": 61.4818
+      },
+      {
+        "feature": "volatility_20d_lag_21",
+        "feature_display": "Volatility 20D Lag 21",
+        "feature_description": "",
+        "impact": -0.013404,
+        "importance_score": 0.0134,
+        "direction": "negative",
+        "current_value": 0.2237
+      },
+      {
+        "feature": "bb_pct_b_50",
+        "feature_display": "Bb Pct B 50",
+        "feature_description": "",
+        "impact": -0.013173,
+        "importance_score": 0.0132,
+        "direction": "negative",
+        "current_value": 0.7569
+      },
+      {
+        "feature": "rsi_14_lag_10",
+        "feature_display": "Rsi 14 Lag 10",
+        "feature_description": "",
+        "impact": -0.012965,
+        "importance_score": 0.013,
+        "direction": "negative",
+        "current_value": 56.0596
+      }
+    ]
+  },
+  "RELIANCE.NS": {
+    "ticker": "RELIANCE.NS",
+    "prediction_date": "2026-09-07",
+    "current_price": 1322.0,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.000273,
+        "predicted_price": 1322.36,
+        "prob_up": 0.5108,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1298.64,
+          1346.08
+        ],
+        "interval_coverage_observed": 0.8163,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5108,
+        "uncertainty_std": 0.000189,
+        "lower_bound": 1298.64,
+        "upper_bound": 1346.08,
+        "confidence_note": null
+      },
+      "1W": {
+        "expected_return": 0.001508,
+        "predicted_price": 1323.99,
+        "prob_up": 0.5098,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1266.75,
+          1381.24
+        ],
+        "interval_coverage_observed": 0.8385,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5098,
+        "uncertainty_std": 0.000856,
+        "lower_bound": 1266.75,
+        "upper_bound": 1381.24,
+        "confidence_note": null
+      },
+      "1M": {
+        "expected_return": 0.009305,
+        "predicted_price": 1334.3,
+        "prob_up": 0.5217,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1221.77,
+          1446.83
+        ],
+        "interval_coverage_observed": 0.7905,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5217,
+        "uncertainty_std": 0.003263,
+        "lower_bound": 1221.77,
+        "upper_bound": 1446.83,
+        "confidence_note": null
+      },
+      "6M": {
+        "expected_return": 0.054585,
+        "predicted_price": 1394.16,
+        "prob_up": 0.5556,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          1178.55,
+          1609.78
+        ],
+        "interval_coverage_observed": 0.6243,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5556,
+        "uncertainty_std": 0.009453,
+        "lower_bound": 1178.55,
+        "upper_bound": 1609.78,
+        "confidence_note": "Low statistical power \u2014 only ~9.5 independent windows per ticker. Confidence discounted by 50%."
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.009894,
+      "secondary_return_1M": 0.008716,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.001177
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_28",
+        "feature_display": "RSI (28-day)",
+        "feature_description": "",
+        "impact": -0.030469,
+        "importance_score": 0.0305,
+        "direction": "negative",
+        "current_value": 57.0039
+      },
+      {
+        "feature": "rsi_14_lag_10",
+        "feature_display": "Rsi 14 Lag 10",
+        "feature_description": "",
+        "impact": -0.026882,
+        "importance_score": 0.0269,
+        "direction": "negative",
+        "current_value": 57.0052
+      },
+      {
+        "feature": "volatility_120d",
+        "feature_display": "Volatility 120D",
+        "feature_description": "",
+        "impact": -0.022466,
+        "importance_score": 0.0225,
+        "direction": "negative",
+        "current_value": 0.2211
+      },
+      {
+        "feature": "dist_sma_50",
+        "feature_display": "Distance from 50-day SMA",
+        "feature_description": "How far price is from its 50-day average \u2014 positive means trading above trend",
+        "impact": -0.021366,
+        "importance_score": 0.0214,
+        "direction": "negative",
+        "current_value": 0.0142
+      },
+      {
+        "feature": "log_return_63d",
+        "feature_display": "Log Return 63D",
+        "feature_description": "",
+        "impact": -0.020926,
+        "importance_score": 0.0209,
+        "direction": "negative",
+        "current_value": 0.049
+      },
+      {
+        "feature": "log_return_42d",
+        "feature_display": "Log Return 42D",
+        "feature_description": "",
+        "impact": -0.019877,
+        "importance_score": 0.0199,
+        "direction": "negative",
+        "current_value": 0.0324
+      },
+      {
+        "feature": "williams_r_28",
+        "feature_display": "Williams R 28",
+        "feature_description": "",
+        "impact": -0.017958,
+        "importance_score": 0.018,
+        "direction": "negative",
+        "current_value": -22.4215
+      },
+      {
+        "feature": "sma_20_50_ratio",
+        "feature_display": "SMA 20/50 Ratio",
+        "feature_description": "",
+        "impact": -0.017851,
+        "importance_score": 0.0179,
+        "direction": "negative",
+        "current_value": 1.0049
+      }
+    ]
+  },
+  "SBIN.NS": {
+    "ticker": "SBIN.NS",
+    "prediction_date": "2026-09-07",
+    "current_price": 1016.1,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.000274,
+        "predicted_price": 1016.38,
+        "prob_up": 0.5108,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          998.15,
+          1034.61
+        ],
+        "interval_coverage_observed": 0.8163,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5108,
+        "uncertainty_std": 0.000183,
+        "lower_bound": 998.15,
+        "upper_bound": 1034.61,
+        "confidence_note": null
+      },
+      "1W": {
+        "expected_return": 0.001733,
+        "predicted_price": 1017.86,
+        "prob_up": 0.5098,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          973.86,
+          1061.86
+        ],
+        "interval_coverage_observed": 0.8385,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5098,
+        "uncertainty_std": 0.000729,
+        "lower_bound": 973.86,
+        "upper_bound": 1061.86,
+        "confidence_note": null
+      },
+      "1M": {
+        "expected_return": 0.010983,
+        "predicted_price": 1027.26,
+        "prob_up": 0.5217,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          940.77,
+          1113.75
+        ],
+        "interval_coverage_observed": 0.7905,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5217,
+        "uncertainty_std": 0.002519,
+        "lower_bound": 940.77,
+        "upper_bound": 1113.75,
+        "confidence_note": null
+      },
+      "6M": {
+        "expected_return": 0.061533,
+        "predicted_price": 1078.62,
+        "prob_up": 0.5556,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          912.9,
+          1244.35
+        ],
+        "interval_coverage_observed": 0.6243,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5556,
+        "uncertainty_std": 0.00658,
+        "lower_bound": 912.9,
+        "upper_bound": 1244.35,
+        "confidence_note": "Low statistical power \u2014 only ~9.5 independent windows per ticker. Confidence discounted by 50%."
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.009763,
+      "secondary_return_1M": 0.012203,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.002439
+    },
+    "shap_explainability": [
+      {
+        "feature": "rsi_28",
+        "feature_display": "RSI (28-day)",
+        "feature_description": "",
+        "impact": -0.02033,
+        "importance_score": 0.0203,
+        "direction": "negative",
+        "current_value": 50.4464
+      },
+      {
+        "feature": "rsi_14_lag_10",
+        "feature_display": "Rsi 14 Lag 10",
+        "feature_description": "",
+        "impact": -0.018566,
+        "importance_score": 0.0186,
+        "direction": "negative",
+        "current_value": 48.916
+      },
+      {
+        "feature": "rsi_14_lag_21",
+        "feature_display": "Rsi 14 Lag 21",
+        "feature_description": "",
+        "impact": -0.017925,
+        "importance_score": 0.0179,
+        "direction": "negative",
+        "current_value": 62.2853
+      },
+      {
+        "feature": "dist_sma_50",
+        "feature_display": "Distance from 50-day SMA",
+        "feature_description": "How far price is from its 50-day average \u2014 positive means trading above trend",
+        "impact": -0.017267,
+        "importance_score": 0.0173,
+        "direction": "negative",
+        "current_value": -0.0246
+      },
+      {
+        "feature": "log_return_63d",
+        "feature_display": "Log Return 63D",
+        "feature_description": "",
+        "impact": -0.016291,
+        "importance_score": 0.0163,
+        "direction": "negative",
+        "current_value": 0.0127
+      },
+      {
+        "feature": "bb_pct_b_50",
+        "feature_display": "Bb Pct B 50",
+        "feature_description": "",
+        "impact": -0.015222,
+        "importance_score": 0.0152,
+        "direction": "negative",
+        "current_value": 0.1902
+      },
+      {
+        "feature": "mom_42",
+        "feature_display": "Mom 42",
+        "feature_description": "",
+        "impact": -0.015131,
+        "importance_score": 0.0151,
+        "direction": "negative",
+        "current_value": -6.0
+      },
+      {
+        "feature": "macd_signal_12_26",
+        "feature_display": "MACD Signal",
+        "feature_description": "",
+        "impact": -0.014561,
+        "importance_score": 0.0146,
+        "direction": "negative",
+        "current_value": -1.297
+      }
+    ]
+  },
+  "TCS.NS": {
+    "ticker": "TCS.NS",
+    "prediction_date": "2026-09-07",
+    "current_price": 2304.0,
+    "horizons": {
+      "1D": {
+        "expected_return": 0.000216,
+        "predicted_price": 2304.5,
+        "prob_up": 0.5108,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          2263.16,
+          2345.83
+        ],
+        "interval_coverage_observed": 0.8163,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5108,
+        "uncertainty_std": 0.000235,
+        "lower_bound": 2263.16,
+        "upper_bound": 2345.83,
+        "confidence_note": null
+      },
+      "1W": {
+        "expected_return": 0.00112,
+        "predicted_price": 2306.58,
+        "prob_up": 0.5098,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          2206.81,
+          2406.35
+        ],
+        "interval_coverage_observed": 0.8385,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5098,
+        "uncertainty_std": 0.001173,
+        "lower_bound": 2206.81,
+        "upper_bound": 2406.35,
+        "confidence_note": null
+      },
+      "1M": {
+        "expected_return": 0.005482,
+        "predicted_price": 2316.63,
+        "prob_up": 0.5217,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          2120.52,
+          2512.74
+        ],
+        "interval_coverage_observed": 0.7905,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5217,
+        "uncertainty_std": 0.005065,
+        "lower_bound": 2120.52,
+        "upper_bound": 2512.74,
+        "confidence_note": null
+      },
+      "6M": {
+        "expected_return": 0.044657,
+        "predicted_price": 2406.89,
+        "prob_up": 0.5556,
+        "prob_up_calibrated": true,
+        "prob_excess_up": null,
+        "prob_net_up": null,
+        "interval_80": [
+          2031.11,
+          2782.67
+        ],
+        "interval_coverage_observed": 0.6243,
+        "n_calibration_samples": 3206,
+        "model_version": "0.7.0",
+        "forecast_origin_date": "2026-09-07",
+        "confidence": 0.5556,
+        "uncertainty_std": 0.015468,
+        "lower_bound": 2031.11,
+        "upper_bound": 2782.67,
+        "confidence_note": "Low statistical power \u2014 only ~9.5 independent windows per ticker. Confidence discounted by 50%."
+      }
+    },
+    "ensemble": {
+      "lstm_return_1M": 0.008965,
+      "secondary_return_1M": 0.001999,
+      "disagreement_detected": false,
+      "disagreement_delta": 0.006966
+    },
+    "shap_explainability": [
+      {
+        "feature": "volatility_120d",
+        "feature_display": "Volatility 120D",
+        "feature_description": "",
+        "impact": -0.0241,
+        "importance_score": 0.0241,
+        "direction": "negative",
+        "current_value": 0.3305
+      },
+      {
+        "feature": "volatility_60d",
+        "feature_display": "60-day Volatility",
+        "feature_description": "",
+        "impact": -0.019384,
+        "importance_score": 0.0194,
+        "direction": "negative",
+        "current_value": 0.3305
+      },
+      {
+        "feature": "rsi_28",
+        "feature_display": "RSI (28-day)",
+        "feature_description": "",
+        "impact": -0.018087,
+        "importance_score": 0.0181,
+        "direction": "negative",
+        "current_value": 42.7156
+      },
+      {
+        "feature": "rsi_14_lag_10",
+        "feature_display": "Rsi 14 Lag 10",
+        "feature_description": "",
+        "impact": -0.016593,
+        "importance_score": 0.0166,
+        "direction": "negative",
+        "current_value": 31.2833
+      },
+      {
+        "feature": "log_return_63d",
+        "feature_display": "Log Return 63D",
+        "feature_description": "",
+        "impact": -0.014966,
+        "importance_score": 0.015,
+        "direction": "negative",
+        "current_value": 0.0674
+      },
+      {
+        "feature": "rsi_14_lag_21",
+        "feature_display": "Rsi 14 Lag 21",
+        "feature_description": "",
+        "impact": -0.014218,
+        "importance_score": 0.0142,
+        "direction": "negative",
+        "current_value": 65.4934
+      },
+      {
+        "feature": "dist_sma_100",
+        "feature_display": "Dist Sma 100",
+        "feature_description": "",
+        "impact": -0.01339,
+        "importance_score": 0.0134,
+        "direction": "negative",
+        "current_value": 0.0089
+      },
+      {
+        "feature": "nifty_50_close",
+        "feature_display": "Nifty 50 Level",
+        "feature_description": "",
+        "impact": -0.01334,
+        "importance_score": 0.0133,
+        "direction": "negative",
+        "current_value": 23897.6992
+      }
+    ]
+  }
+}
