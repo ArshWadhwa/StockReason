@@ -74,7 +74,7 @@ export const BacktestView: React.FC<BacktestViewProps> = ({ backtest, loading })
           <div style={{ fontSize: '12px', color: 'var(--dash-muted)', display: 'flex', flexDirection: 'column', gap: '5px', fontVariantNumeric: 'tabular-nums' }}>
             <div>Sharpe ratio: <strong style={{ color: 'var(--ink)', fontFamily: 'var(--mono)' }}>{bench.sharpe_ratio}</strong></div>
             <div>Max drawdown: <strong style={{ color: 'var(--ink)', fontFamily: 'var(--mono)' }}>{bench.max_drawdown}%</strong></div>
-            <div>Ann. return: <strong style={{ color: 'var(--ink)', fontFamily: 'var(--mono)' }}>+{bench.annualized_return}%</strong></div>
+            <div>Annualized return: <strong style={{ color: 'var(--ink)', fontFamily: 'var(--mono)' }}>+{bench.annualized_return}%</strong></div>
           </div>
         </div>
 
@@ -99,7 +99,7 @@ export const BacktestView: React.FC<BacktestViewProps> = ({ backtest, loading })
               Cumulative out-of-sample performance
             </div>
             <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: 'var(--dash-muted)', marginTop: '2px' }}>
-              AI strategy vs benchmark and random baseline
+              Artificial Intelligence strategy versus benchmark and random baseline
             </div>
           </div>
 
@@ -218,8 +218,8 @@ export const BacktestView: React.FC<BacktestViewProps> = ({ backtest, loading })
           <div>
             <div className="ledger-panel-title">Confidence calibration</div>
             <div style={{ fontSize: '12px', color: 'var(--dash-muted)', marginTop: '4px', maxWidth: '60ch' }}>
-              Comparison of stated model confidence vs empirical accuracy on held-out trades.
-              Rows highlighted in red are bins where the model overstates confidence by &gt;10 pp.
+              Comparison of stated model confidence versus empirical accuracy on held-out trades.
+              Rows highlighted in red are bins where the model overstates confidence by &gt;10 percentage points.
             </div>
           </div>
         </div>
@@ -234,7 +234,7 @@ export const BacktestView: React.FC<BacktestViewProps> = ({ backtest, loading })
                 <thead>
                   <tr style={{ borderBottom: '2px solid var(--rule)', color: 'var(--dash-muted)', background: 'var(--paper)' }}>
                     <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Confidence bin</th>
-                    <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Stated prob.</th>
+                    <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Stated probability</th>
                     <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Empirical accuracy</th>
                     <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Gap (stated − empirical)</th>
                     <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Trades</th>
@@ -255,7 +255,7 @@ export const BacktestView: React.FC<BacktestViewProps> = ({ backtest, loading })
                         <td style={{ padding: '11px 12px', color: 'var(--dash-muted)' }}>{stated.toFixed(0)}%</td>
                         <td style={{ padding: '11px 12px', color: 'var(--gain)', fontWeight: '700' }}>{actual.toFixed(0)}%</td>
                         <td style={{ padding: '11px 12px', color: isOverconfident ? 'var(--loss)' : 'var(--dash-muted)', fontWeight: isOverconfident ? '700' : '400' }}>
-                          {isOverconfident ? `+${gap.toFixed(0)} pp ⚠` : `+${gap.toFixed(0)} pp`}
+                          {isOverconfident ? `+${gap.toFixed(0)} percentage points ⚠` : `+${gap.toFixed(0)} percentage points`}
                         </td>
                         <td style={{ padding: '11px 12px', color: 'var(--dash-muted)' }}>{bin.sample_count}</td>
                       </tr>
@@ -265,7 +265,7 @@ export const BacktestView: React.FC<BacktestViewProps> = ({ backtest, loading })
               </table>
             </div>
             <div style={{ marginTop: '14px', padding: '10px 14px', background: 'var(--paper)', borderRadius: '8px', fontSize: '11px', color: 'var(--dash-muted)', fontFamily: 'var(--sans)' }}>
-              <strong style={{ color: 'var(--ink)' }}>Methodology note:</strong> Cumulative performance compares a 1-day-lagged top-quantile cross-sectional rank portfolio across the 16 NSE pilot equities against NIFTY 50 and equal-weight baselines (2024–2026). See <em>Model Benchmarks &amp; Audit</em> for the full 836,297-observation evaluation.
+              <strong style={{ color: 'var(--ink)' }}>Methodology note:</strong> Cumulative performance compares a 1-day-lagged top-quantile cross-sectional rank portfolio across the 16 National Stock Exchange pilot equities against NIFTY 50 and equal-weight baselines (2024–2026). See <em>Model Benchmarks &amp; Audit</em> for the full 836,297-observation evaluation.
             </div>
           </>
         )}

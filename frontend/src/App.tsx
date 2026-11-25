@@ -203,7 +203,7 @@ export function App() {
       cancelled = true;
       window.clearInterval(refreshTimer);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTicker]);
 
   // Lenis Smooth Scroll (Landing Mode)
@@ -395,37 +395,84 @@ export function App() {
             StockReason
           </a>
 
-          {selectedStock && (
-            <div className="dash-nav-stock-badge">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span className="dash-nav-stock-name" title={selectedStock.name}>
-                  {selectedStock.name}
-                </span>
-                <span className="dash-nav-stock-ticker">
-                  {selectedTicker.replace('.NS', '')}
-                </span>
-              </div>
+          {selectedStock && (() => {
+            const h1M = predictionData && predictionData.ticker === selectedTicker
+              ? predictionData.horizons['1M']
+              : null;
+            const sigScore = signalData && signalData.ticker === selectedTicker
+              ? signalData.signal_score
+              : rankedSignals.find((s) => s.ticker === selectedTicker)?.signal_score;
+            const isUp = h1M ? h1M.expected_return >= 0 : true;
+            return (
+              <button
+                type="button"
+                className="dash-nav-stock-badge"
+                onClick={() => handleTabChange('signals')}
+                title="Open Signals & Forecast Lab"
+                style={{ cursor: 'pointer', textAlign: 'left' }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span className="dash-nav-stock-name" title={selectedStock.name}>
+                    {selectedStock.name}
+                  </span>
+                  <span className="dash-nav-stock-ticker">
+                    {selectedTicker.replace('.NS', '')}
+                  </span>
+                </div>
 
-              <div style={{ width: 1, height: 16, background: '#e2e8f0' }} />
+                {h1M && (
+                  <>
+                    <div style={{ width: 1, height: 22, background: '#e2e8f0' }} />
+                    <div className="dash-nav-prediction-chip">
+                      <span style={{ fontSize: '10px', fontWeight: '600', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                        1-Month Target
+                      </span>
+                      <div style={{ display: 'flex', alignItems: 'baseline', gap: '6px' }}>
+                        <strong style={{ fontFamily: 'var(--mono)', fontSize: '14px', fontWeight: '700', color: 'var(--ink)' }}>
+                          ₹{h1M.predicted_price.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                        </strong>
+                        <span style={{
+                          fontFamily: 'var(--mono)',
+                          fontSize: '12px',
+                          fontWeight: '700',
+                          color: isUp ? 'var(--gain)' : 'var(--loss)',
+                        }}>
+                          ({isUp ? '+' : ''}{(h1M.expected_return * 100).toFixed(2)}%)
+                        </span>
+                      </div>
+                    </div>
+                  </>
+                )}
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <span style={{ fontSize: '11px', color: '#5A6478', fontFamily: 'var(--sans)', fontWeight: '500' }}>
-                  Signal
-                </span>
-                <span
-                  className="dash-nav-suggestion"
-                  style={{
-                    color: suggestion.color,
-                    background: suggestion.bg,
-                    border: `1px solid ${suggestion.border}`,
-                  }}
-                >
-                  <span style={{ fontSize: '9px' }}>{suggestion.icon}</span>
-                  {suggestion.label}
-                </span>
-              </div>
-            </div>
-          )}
+                <div style={{ width: 1, height: 22, background: '#e2e8f0' }} />
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', lineHeight: '1.15' }}>
+                    <span style={{ fontSize: '10px', color: '#64748b', fontFamily: 'var(--sans)', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                      Signal
+                    </span>
+                    {sigScore !== undefined && (
+                      <span style={{ fontSize: '11px', color: 'var(--ink)', fontFamily: 'var(--mono)', fontWeight: '700' }}>
+                        {sigScore}/100
+                      </span>
+                    )}
+                  </div>
+                  <span
+                    className="dash-nav-suggestion"
+                    style={{
+                      color: suggestion.color,
+                      background: suggestion.bg,
+                      border: `1.5px solid ${suggestion.border}`,
+                      boxShadow: `0 2px 8px ${suggestion.color}18`,
+                    }}
+                  >
+                    <span style={{ fontSize: '11px' }}>{suggestion.icon}</span>
+                    {suggestion.label}
+                  </span>
+                </div>
+              </button>
+            );
+          })()}
         </nav>
       </header>
 
@@ -434,8 +481,8 @@ export function App() {
           {/* Sidebar Controls */}
           <aside className="dash-sidebar">
             <div>
-              <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', fontWeight: '600', color: 'var(--dash-muted)', marginBottom: '8px' }}>
-                Stock Selector ({stocks.length} NSE Pilot)
+              <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', fontWeight: '600', color: 'var(--dash-muted)', marginBottom: '8px', lineHeight: '1.35' }}>
+                Stock Selector ({stocks.length} National Stock Exchange Pilot)
               </div>
 
               <div style={{ position: 'relative', marginBottom: '8px' }}>
@@ -561,14 +608,14 @@ export function App() {
                   </div>
                   <div style={{ width: 1, height: 14, background: '#cbd5e1' }} />
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <span style={{ color: 'var(--dash-muted)', fontWeight: '500' }}>Baseline MAE:</span>
+                    <span style={{ color: 'var(--dash-muted)', fontWeight: '500' }}>Baseline Mean Absolute Error:</span>
                     <strong style={{ fontFamily: 'var(--mono)', color: 'var(--ink)' }}>₹{(systemStatus.baseline_mae_inr ?? 103.4).toFixed(2)}</strong>
                   </div>
                   {systemStatus.rolling_oos_rank_ic !== undefined && systemStatus.rolling_oos_rank_ic !== null && (
                     <>
                       <div style={{ width: 1, height: 14, background: '#cbd5e1' }} />
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <span style={{ color: 'var(--dash-muted)', fontWeight: '500' }}>OOS Rank IC:</span>
+                        <span style={{ color: 'var(--dash-muted)', fontWeight: '500' }}>Out-of-Sample Rank Information Coefficient:</span>
                         <strong style={{ fontFamily: 'var(--mono)', color: '#1A7F4B' }}>
                           +{systemStatus.rolling_oos_rank_ic.toFixed(4)}
                         </strong>
@@ -589,7 +636,7 @@ export function App() {
                       fontSize: '10px',
                       fontFamily: 'var(--mono)',
                     }}>
-                      ML GATE: {systemStatus.ml_promotion_status}
+                      Machine Learning Gate: {systemStatus.ml_promotion_status}
                     </span>
                   )}
                 </div>
@@ -609,6 +656,157 @@ export function App() {
               }}>
                 {error}
               </div>
+            )}
+
+            {/* ── Main Prediction Output Hero (always visible on stock views) ── */}
+            {['chart', 'signals', 'risk', 'sentiment'].includes(activeTab) && (
+              (loading || (stockLoading && !predictionData)) ? (
+                <div className="ledger-panel skeleton" style={{ height: '132px', marginBottom: '18px' }} />
+              ) : predictionData && signalData && (() => {
+                const h1M = predictionData.horizons['1M'];
+                const isUp = h1M.expected_return >= 0;
+                const sigColor = signalData.signal === 'BUY' ? 'var(--gain)' : (signalData.signal === 'HOLD' ? 'var(--hold)' : 'var(--loss)');
+                const sigBg = signalData.signal === 'BUY' ? 'var(--gain-bg)' : (signalData.signal === 'HOLD' ? 'var(--hold-bg)' : 'var(--loss-bg)');
+                const sigBorder = signalData.signal === 'BUY' ? 'var(--gain-border)' : (signalData.signal === 'HOLD' ? 'var(--hold-border)' : 'var(--loss-border)');
+                return (
+                  <div
+                    className="ledger-panel"
+                    style={{
+                      marginBottom: '18px',
+                      padding: '20px 24px',
+                      borderLeft: `5px solid ${sigColor}`,
+                      background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+                      boxShadow: '0 4px 16px rgba(28, 35, 49, 0.06)',
+                      borderRadius: '12px',
+                    }}
+                  >
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      flexWrap: 'wrap',
+                      gap: '20px',
+                    }}>
+                      {/* Left: Context & Verdict */}
+                      <div style={{ minWidth: '210px' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '6px' }}>
+                          <span style={{
+                            fontFamily: 'var(--mono)',
+                            fontSize: '11px',
+                            fontWeight: '700',
+                            letterSpacing: '0.06em',
+                            textTransform: 'uppercase',
+                            color: 'var(--accent)',
+                          }}>
+                            Main Prediction · 1 Month (21 Trading Days)
+                          </span>
+                          <span style={{
+                            fontFamily: 'var(--mono)',
+                            fontSize: '12px',
+                            fontWeight: '700',
+                            padding: '3px 10px',
+                            borderRadius: '6px',
+                            color: sigColor,
+                            background: sigBg,
+                            border: `1px solid ${sigBorder}`,
+                          }}>
+                            {signalData.signal} · {signalData.signal_score}/100
+                          </span>
+                        </div>
+                        <div style={{
+                          fontFamily: 'var(--serif)',
+                          fontSize: '24px',
+                          color: 'var(--ink)',
+                          lineHeight: '1.15',
+                        }}>
+                          {signalData.name}{' '}
+                          <span style={{ fontFamily: 'var(--mono)', fontSize: '13px', color: 'var(--dash-muted)', fontWeight: '600' }}>
+                            ({signalData.ticker.replace('.NS', '')})
+                          </span>
+                        </div>
+                        <div style={{ fontSize: '12px', color: 'var(--dash-muted)', marginTop: '4px', fontFamily: 'var(--mono)' }}>
+                          Current: <strong style={{ color: 'var(--ink)' }}>₹{predictionData.current_price.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
+                          {predictionData.target_trading_date && (
+                            <span> · Target Date: <strong style={{ color: 'var(--ink)' }}>{predictionData.target_trading_date}</strong></span>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Center/Right: Big Predicted Price & Expected Return */}
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '28px', flexWrap: 'wrap' }}>
+                        <div>
+                          <div style={{ fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--dash-muted)', marginBottom: '2px' }}>
+                            Predicted Price (1 Month)
+                          </div>
+                          <div style={{
+                            fontFamily: 'var(--serif)',
+                            fontSize: '40px',
+                            fontWeight: '400',
+                            color: 'var(--ink)',
+                            lineHeight: '1',
+                            fontVariantNumeric: 'tabular-nums',
+                          }}>
+                            ₹{h1M.predicted_price.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                          </div>
+                        </div>
+
+                        <div>
+                          <div style={{ fontSize: '11px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--dash-muted)', marginBottom: '2px' }}>
+                            Expected Return
+                          </div>
+                          <div style={{
+                            fontFamily: 'var(--serif)',
+                            fontSize: '36px',
+                            fontWeight: '400',
+                            color: isUp ? 'var(--gain)' : 'var(--loss)',
+                            lineHeight: '1',
+                            fontVariantNumeric: 'tabular-nums',
+                          }}>
+                            {isUp ? '+' : ''}{(h1M.expected_return * 100).toFixed(2)}%
+                          </div>
+                        </div>
+
+                        <div style={{
+                          padding: '10px 14px',
+                          borderRadius: '10px',
+                          background: 'var(--paper)',
+                          border: '1px solid var(--rule)',
+                          minWidth: '175px',
+                        }}>
+                          <div style={{ fontSize: '11px', fontWeight: '600', color: 'var(--dash-muted)', marginBottom: '3px' }}>
+                            Forecast Range · {Math.round(h1M.confidence * 100)}% confidence
+                          </div>
+                          <div style={{ fontFamily: 'var(--mono)', fontSize: '13px', fontWeight: '700', color: 'var(--ink)', fontVariantNumeric: 'tabular-nums' }}>
+                            ₹{h1M.lower_bound.toLocaleString('en-IN', { maximumFractionDigits: 0 })} – ₹{h1M.upper_bound.toLocaleString('en-IN', { maximumFractionDigits: 0 })}
+                          </div>
+                          {activeTab !== 'signals' && (
+                            <button
+                              type="button"
+                              onClick={() => handleTabChange('signals')}
+                              style={{
+                                marginTop: '6px',
+                                background: 'none',
+                                border: 'none',
+                                padding: 0,
+                                color: 'var(--accent)',
+                                fontFamily: 'var(--sans)',
+                                fontSize: '11px',
+                                fontWeight: '700',
+                                cursor: 'pointer',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '3px',
+                              }}
+                            >
+                              Open Forecast Lab <ChevronRight size={12} />
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()
             )}
 
             {activeTab === 'chart' && (
@@ -676,7 +874,7 @@ export function App() {
               fontSize: '12px',
               color: 'var(--dash-muted)',
             }}>
-              <div>StockReason v0.14.0 · NSE Quantitative Intelligence Terminal</div>
+              <div>StockReason v0.14.0 · National Stock Exchange Quantitative Intelligence Terminal</div>
               <div style={{ fontFamily: 'var(--mono)', fontSize: '11px' }}>
                 Active: <strong style={{ color: 'var(--ink)' }}>{selectedTicker.replace('.NS', '')}</strong>
                 {systemStatus ? `  ·  Data: ${systemStatus.data_as_of}  ·  ${systemStatus.tickers_loaded} equities` : ''}

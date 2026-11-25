@@ -57,14 +57,14 @@ export const SentimentView: React.FC<SentimentViewProps> = ({ sentiment, loading
               FinBERT sentiment trajectory
             </h2>
             <p style={{ fontSize: '13px', color: 'var(--dash-muted)', marginTop: '6px', margin: '6px 0 0' }}>
-              Domain-tuned NLP scoring for <strong style={{ color: 'var(--ink)' }}>{sentiment.ticker.replace('.NS', '')}</strong>
+              Domain-tuned Natural Language Processing scoring for <strong style={{ color: 'var(--ink)' }}>{sentiment.ticker.replace('.NS', '')}</strong>
             </p>
           </div>
 
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-            {/* Daily NLP Score */}
-            <div className="ledger-cell" style={{ minWidth: '130px', padding: '12px 18px' }}>
-              <div className="ledger-label">FinBERT NLP score</div>
+            {/* Daily Natural Language Processing Score */}
+            <div className="ledger-cell" style={{ minWidth: '150px', padding: '12px 18px' }}>
+              <div className="ledger-label">FinBERT Natural Language Processing score</div>
               <div style={{
                 fontFamily: 'var(--serif)',
                 fontSize: '28px',
@@ -117,8 +117,8 @@ export const SentimentView: React.FC<SentimentViewProps> = ({ sentiment, loading
             </div>
 
             {sentiment.sentiment_momentum_3d !== undefined && (
-              <div className="ledger-cell" style={{ minWidth: '130px', padding: '12px 18px' }}>
-                <div className="ledger-label">3D / 7D Momentum</div>
+              <div className="ledger-cell" style={{ minWidth: '150px', padding: '12px 18px' }}>
+                <div className="ledger-label">3-Day / 7-Day Momentum</div>
                 <div style={{
                   fontFamily: 'var(--mono)',
                   fontSize: '15px',
@@ -170,7 +170,7 @@ export const SentimentView: React.FC<SentimentViewProps> = ({ sentiment, loading
               Recent news and sentiment
             </div>
             <div style={{ fontFamily: 'var(--sans)', fontSize: '12px', color: 'var(--dash-muted)', marginTop: '3px' }}>
-              Financial RSS headlines scored with FinBERT NLP
+              Financial RSS headlines scored with FinBERT Natural Language Processing
             </div>
           </div>
           <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
@@ -242,7 +242,7 @@ export const SentimentView: React.FC<SentimentViewProps> = ({ sentiment, loading
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '11px', color: 'var(--dash-muted)' }}>
                     <span style={{ fontWeight: '600', color: 'var(--ink)' }}>{item.source}</span>
                     <span style={{ opacity: 0.35 }}>|</span>
-                    <span style={{ fontFamily: 'var(--mono)', fontVariantNumeric: 'tabular-nums' }}>{formatPublishDate(item.published_at)} IST</span>
+                    <span style={{ fontFamily: 'var(--mono)', fontVariantNumeric: 'tabular-nums' }}>{formatPublishDate(item.published_at)} Indian Standard Time</span>
                   </div>
                 </div>
 

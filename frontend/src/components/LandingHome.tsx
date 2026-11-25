@@ -198,8 +198,8 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
           <div className="landing-hero-text reveal reveal-left">
             <h1>Quantitative Forecasting &amp; Risk Transparency for Indian Equities</h1>
             <p>
-              Inspect NSE equities with empirical baseline rigor: No-Change Random Walk benchmarks,
-              LightGBM &amp; CatBoost cross-sectional ranking, FinBERT news sentiment, and GARCH(1,1) split-conformal intervals.
+              Inspect National Stock Exchange equities with empirical baseline rigor: No-Change Random Walk benchmarks,
+              LightGBM &amp; CatBoost cross-sectional ranking, FinBERT news sentiment, and Generalized Autoregressive Conditional Heteroskedasticity (1,1) split-conformal intervals.
             </p>
           </div>
 
@@ -210,8 +210,8 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
                 <TrendingUp size={15} />
               </div>
               <div className="badge-text-box">
-                <span className="badge-micro">OOS RANKING ALPHA</span>
-                <span className="badge-title">Rank IC +0.0732 (v0.14)</span>
+                <span className="badge-micro">OUT-OF-SAMPLE RANKING ALPHA</span>
+                <span className="badge-title">Rank Information Coefficient +0.0732 (version 0.14)</span>
               </div>
             </div>
 
@@ -253,11 +253,11 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
               </div>
 
               <div className="hero-chart-tabs">
-                <button>1D</button>
-                <button>1W</button>
-                <button className="active">1M</button>
-                <button>3M</button>
-                <button>1Y</button>
+                <button>1 Day</button>
+                <button>1 Week</button>
+                <button className="active">1 Month</button>
+                <button>3 Months</button>
+                <button>1 Year</button>
               </div>
 
               {/* Candlestick SVG chart with Volume & Trend Depth */}
@@ -379,12 +379,12 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
                     {topBuy && topBuy.expected_return_1M >= 0 ? (
                       <span className="price-change up">
                         <TrendingUp size={12} />
-                        +{Math.abs(topBuy.expected_return_1M * 100).toFixed(2)}% (1M)
+                        +{Math.abs(topBuy.expected_return_1M * 100).toFixed(2)}% (1 Month)
                       </span>
                     ) : (
                       <span className="price-change down">
                         <TrendingDown size={12} />
-                        -{topBuy ? Math.abs(topBuy.expected_return_1M * 100).toFixed(2) : '1.28'}% (1M)
+                        -{topBuy ? Math.abs(topBuy.expected_return_1M * 100).toFixed(2) : '1.28'}% (1 Month)
                       </span>
                     )}
                   </div>
@@ -444,15 +444,15 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
               cat: 'Market Regime',
               name: overview?.market_regime?.replace(/_/g, ' ') || 'Low Volatility',
               val: `${overview?.active_coverage_count || 16}`,
-              change: 'NSE Pilot Live',
+              change: 'National Stock Exchange Pilot Live',
               up: true,
               icon: <Compass size={18} />,
             },
             {
               cat: 'Baseline & Risk Gate',
-              name: 'No-Change RW · ₹103.40 MAE',
+              name: 'No-Change Random Walk · ₹103.40 Mean Absolute Error',
               val: '+0.0732',
-              change: 'LGBM Rank IC',
+              change: 'LightGBM Rank Information Coefficient',
               up: true,
               icon: <Cpu size={18} />,
             },
@@ -486,8 +486,8 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
             <div className="top-stocks-card depth-card reveal reveal-left hover-lift">
               <div className="top-stocks-header">
                 <div>
-                  <h3>Top Ranked NSE Pilot Equities</h3>
-                  <p className="top-stocks-subtitle">Ranked by 21D Signal Score, FinBERT Momentum &amp; Conformal Risk</p>
+                  <h3>Top Ranked National Stock Exchange Pilot Equities</h3>
+                  <p className="top-stocks-subtitle">Ranked by 21-Day Signal Score, FinBERT Momentum &amp; Conformal Risk</p>
                 </div>
                 <button className="view-all-btn" onClick={() => onOpenDashboard()}>
                   <span>View All</span>
@@ -567,7 +567,7 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
             <div className="section-text-block reveal reveal-right">
               <h2>What Stocks are Trending?</h2>
               <p>
-                Explore 16 covered NSE pilot equities backed by an 836,297-observation
+                Explore 16 covered National Stock Exchange pilot equities backed by an 836,297-observation
                 research cohort. Signals fuse LightGBM cross-sectional ranking, FinBERT
                 sentiment, and split-conformal volatility bounds without lookahead bias.
               </p>
@@ -575,7 +575,7 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
               <div className="section-bullet-group">
                 <div className="bullet-item">
                   <CheckCircle2 size={16} className="bullet-icon" />
-                  <span>Real-time NSE market depth and OHLCV ingestion</span>
+                  <span>Real-time National Stock Exchange market depth and Open-High-Low-Close-Volume ingestion</span>
                 </div>
                 <div className="bullet-item">
                   <CheckCircle2 size={16} className="bullet-icon" />
@@ -606,7 +606,7 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
               <div className="section-bullet-group">
                 <div className="bullet-item">
                   <CheckCircle2 size={16} className="bullet-icon" />
-                  <span>Quantifies the exact contribution of RSI, MACD, and Bollinger bands</span>
+                  <span>Quantifies the exact contribution of Relative Strength Index, Moving Average Convergence Divergence, and Bollinger Bands</span>
                 </div>
                 <div className="bullet-item">
                   <CheckCircle2 size={16} className="bullet-icon" />
@@ -639,7 +639,7 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
             </div>
 
             <div className="section-text-block reveal reveal-right">
-              <h2>Real-Time Sentiment from FinBERT NLP</h2>
+              <h2>Real-Time Sentiment from FinBERT Natural Language Processing</h2>
               <p>
                 Track headline bias, sentiment shifts, and divergence
                 alerts across your NIFTY 50 watchlist. FinBERT scores
@@ -710,7 +710,7 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
           <div className="cta-content">
             <h2>Built for Honest, Transparent<br />Quantitative Reading</h2>
             <p>
-              No-Change RW Baseline · LightGBM / CatBoost · FinBERT Sentiment · GARCH(1,1) &amp; Split-Conformal Intervals
+              No-Change Random Walk Baseline · LightGBM / CatBoost · FinBERT Sentiment · Generalized Autoregressive Conditional Heteroskedasticity (1,1) &amp; Split-Conformal Intervals
             </p>
 
             <div className="cta-buttons-row">
@@ -736,7 +736,7 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
             <p className="footer-desc">Multi-Horizon Quantitative Forecasting &amp; Decision Support for Indian Equities.</p>
           </div>
           <div className="footer-right">
-            <p>StockReason v0.14.0 · NSE Research &amp; Decision Terminal © 2026</p>
+            <p>StockReason v0.14.0 · National Stock Exchange Research &amp; Decision Terminal © 2026</p>
           </div>
         </div>
       </div>

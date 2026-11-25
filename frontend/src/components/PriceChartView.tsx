@@ -345,8 +345,9 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({
                         background: row.ret1m >= 0 ? '#EBF5EE' : '#FDECEA',
                         color: row.ret1m >= 0 ? 'var(--gain)' : 'var(--loss)',
                         border: `1px solid ${row.ret1m >= 0 ? 'var(--gain-border)' : 'var(--loss-border)'}`,
+                        whiteSpace: 'nowrap',
                       }}>
-                        {row.ret1m >= 0 ? '+' : ''}{(row.ret1m * 100).toFixed(1)}% 1M
+                        {row.ret1m >= 0 ? '+' : ''}{(row.ret1m * 100).toFixed(1)}% (1 Month)
                       </span>
                     </div>
                   )}
@@ -394,7 +395,7 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({
                 border: '1px solid #a7f3d0',
                 fontWeight: '600'
               }}>
-                NSE
+                National Stock Exchange
               </span>
               <span style={{
                 fontFamily: 'var(--mono)',
@@ -456,16 +457,16 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({
       </div>
 
       {/* Technical & Range Metrics Row */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: '14px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(215px, 1fr))', gap: '14px' }}>
         <div className="ledger-cell" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
           <div>
             <div className="ledger-label">180-Day Range & Position</div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginTop: '6px' }}>
               <span style={{ fontSize: '12px', fontFamily: 'var(--mono)', color: '#64748b' }}>
-                L: <strong style={{ color: '#0f172a' }}>₹{periodLow.toFixed(1)}</strong>
+                Low: <strong style={{ color: '#0f172a' }}>₹{periodLow.toFixed(1)}</strong>
               </span>
               <span style={{ fontSize: '12px', fontFamily: 'var(--mono)', color: '#64748b' }}>
-                H: <strong style={{ color: '#0f172a' }}>₹{periodHigh.toFixed(1)}</strong>
+                High: <strong style={{ color: '#0f172a' }}>₹{periodHigh.toFixed(1)}</strong>
               </span>
             </div>
           </div>
@@ -482,7 +483,7 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({
               }} />
             </div>
             <div className="ledger-note" style={{ marginTop: '6px', textAlign: 'right' }}>
-              At {currentPosPct.toFixed(0)}% of {allHistory.length}D band
+              At {currentPosPct.toFixed(0)}% of {allHistory.length}-Day band
             </div>
           </div>
         </div>
@@ -504,14 +505,14 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({
         </div>
 
         <div className="ledger-cell">
-          <div className="ledger-label">RSI (14) & MACD</div>
+          <div className="ledger-label">Relative Strength Index (14) & Moving Average Convergence Divergence</div>
           <div style={{ fontFamily: 'var(--serif)', fontSize: '26px', color: rsiColor, marginTop: '4px', lineHeight: '1.1' }}>
             {latest.rsi_14.toFixed(1)}
           </div>
           <div className="ledger-note" style={{ marginTop: '4px', fontFamily: 'var(--mono)' }}>
             MACD: <strong style={{ color: macdBullish ? 'var(--gain)' : 'var(--loss)' }}>
               {latest.macd_line_12_26.toFixed(2)}
-            </strong> (sig {latest.macd_signal.toFixed(2)})
+            </strong> (signal {latest.macd_signal.toFixed(2)})
           </div>
         </div>
       </div>
@@ -524,7 +525,7 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({
               Historical Price, Technical Overlays & Volume
             </div>
             <div style={{ fontFamily: 'var(--mono)', fontSize: '11px', color: '#64748b', marginTop: '2px' }}>
-              Candlestick price discovery · Toggleable SMA-20, SMA-50, and Bollinger Bands
+              Candlestick price discovery · Toggleable Simple Moving Average 20, Simple Moving Average 50, and Bollinger Bands
             </div>
           </div>
 
@@ -545,7 +546,7 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({
                 cursor: 'pointer',
               }}
             >
-              SMA 20
+              Simple Moving Average 20
             </button>
             <button
               type="button"
@@ -562,7 +563,7 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({
                 cursor: 'pointer',
               }}
             >
-              SMA 50
+              Simple Moving Average 50
             </button>
             <button
               type="button"
@@ -579,7 +580,7 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({
                 cursor: 'pointer',
               }}
             >
-              BB (20)
+              Bollinger Bands (20)
             </button>
 
             <div style={{ display: 'inline-flex', background: '#f1f5f9', padding: '3px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
@@ -620,15 +621,20 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({
             </div>
 
             <div style={{ display: 'inline-flex', background: '#f1f5f9', padding: '3px', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-              {(['1M', '3M', '6M', 'ALL'] as const).map(range => (
+              {([
+                { key: '1M', label: '1 Month' },
+                { key: '3M', label: '3 Months' },
+                { key: '6M', label: '6 Months' },
+                { key: 'ALL', label: 'All' },
+              ] as const).map(range => (
                 <button
-                  key={range}
+                  key={range.key}
                   type="button"
-                  onClick={() => setTimeRange(range)}
+                  onClick={() => setTimeRange(range.key)}
                   style={{
                     border: 'none',
-                    background: timeRange === range ? '#2d6a2e' : 'transparent',
-                    color: timeRange === range ? '#ffffff' : '#64748b',
+                    background: timeRange === range.key ? '#2d6a2e' : 'transparent',
+                    color: timeRange === range.key ? '#ffffff' : '#64748b',
                     fontSize: '11px',
                     fontFamily: 'var(--mono)',
                     fontWeight: '700',
@@ -637,7 +643,7 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({
                     cursor: 'pointer',
                   }}
                 >
-                  {range}
+                  {range.label}
                 </button>
               ))}
             </div>
@@ -660,19 +666,19 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({
           flexWrap: 'wrap'
         }}>
           <div>Date: <strong style={{ color: '#0f172a' }}>{activePoint.date}</strong></div>
-          <div>O: <strong style={{ color: '#0f172a' }}>₹{activePoint.open?.toFixed(2)}</strong></div>
-          <div>H: <strong style={{ color: '#16a34a' }}>₹{activePoint.high?.toFixed(2)}</strong></div>
-          <div>L: <strong style={{ color: '#dc2626' }}>₹{activePoint.low?.toFixed(2)}</strong></div>
-          <div>C: <strong style={{ color: '#0f172a' }}>₹{activePoint.close?.toFixed(2)}</strong></div>
+          <div>Open: <strong style={{ color: '#0f172a' }}>₹{activePoint.open?.toFixed(2)}</strong></div>
+          <div>High: <strong style={{ color: '#16a34a' }}>₹{activePoint.high?.toFixed(2)}</strong></div>
+          <div>Low: <strong style={{ color: '#dc2626' }}>₹{activePoint.low?.toFixed(2)}</strong></div>
+          <div>Close: <strong style={{ color: '#0f172a' }}>₹{activePoint.close?.toFixed(2)}</strong></div>
           <div>
-            Chg:{' '}
+            Change:{' '}
             <strong style={{ color: activeCandleChange >= 0 ? '#16a34a' : '#dc2626' }}>
               {activeCandleChange >= 0 ? `+${activeCandleChange.toFixed(2)}%` : `${activeCandleChange.toFixed(2)}%`}
             </strong>
           </div>
-          {showSma20 && <div>SMA20: <strong style={{ color: '#3B6FD4' }}>₹{activePoint.sma_20?.toFixed(1)}</strong></div>}
-          {showSma50 && <div>SMA50: <strong style={{ color: '#B45309' }}>₹{activePoint.sma_50?.toFixed(1)}</strong></div>}
-          {activePoint.volume > 0 && <div>Vol: <strong style={{ color: '#475569' }}>{(activePoint.volume / 1000000).toFixed(2)}M</strong></div>}
+          {showSma20 && <div>Simple Moving Average 20: <strong style={{ color: '#3B6FD4' }}>₹{activePoint.sma_20?.toFixed(1)}</strong></div>}
+          {showSma50 && <div>Simple Moving Average 50: <strong style={{ color: '#B45309' }}>₹{activePoint.sma_50?.toFixed(1)}</strong></div>}
+          {activePoint.volume > 0 && <div>Volume: <strong style={{ color: '#475569' }}>{(activePoint.volume / 1000000).toFixed(2)} Million</strong></div>}
         </div>
 
         {/* SVG Canvas */}
@@ -716,7 +722,7 @@ export const PriceChartView: React.FC<PriceChartViewProps> = ({
             })}
 
             <line x1={paddingLeft} y1={priceAreaHeight} x2={width - paddingRight} y2={priceAreaHeight} stroke="#e2e8f0" strokeWidth="1" strokeDasharray="2 2" />
-            <text x={width - paddingRight + 8} y={priceAreaHeight + 14} fill="#cbd5e1" fontSize="9" fontFamily="var(--mono)">VOL</text>
+            <text x={width - paddingRight + 8} y={priceAreaHeight + 14} fill="#cbd5e1" fontSize="9" fontFamily="var(--mono)">VOLUME</text>
 
             {chartStyle === 'candles' && (
               <g>

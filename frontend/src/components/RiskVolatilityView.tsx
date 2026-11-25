@@ -76,7 +76,7 @@ export const RiskVolatilityView: React.FC<RiskVolatilityViewProps> = ({ risk, lo
             </div>
             <p style={{ fontSize: '12px', color: 'var(--dash-muted)', marginTop: '4px' }}>
               Annualized decimal-return volatility models & finite-sample split-conformal intervals for{' '}
-              <strong style={{ color: 'var(--ink)' }}>{risk.ticker.replace('.NS', '')}</strong> · Horizon {risk.horizon_days}D (Target {risk.target_trading_date})
+              <strong style={{ color: 'var(--ink)' }}>{risk.ticker.replace('.NS', '')}</strong> · Horizon {risk.horizon_days} Days (Target {risk.target_trading_date})
             </p>
           </div>
           <span style={{
@@ -93,18 +93,18 @@ export const RiskVolatilityView: React.FC<RiskVolatilityViewProps> = ({ risk, lo
           </span>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: '12px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px' }}>
           {[
-            { key: 'ewma_94', label: 'Recursive EWMA (λ=0.94)', val: risk.volatility_latest.ewma_94_pct, q: qlikes.ewma_94, color: 'var(--accent)' },
-            { key: 'garch_11', label: 'GARCH(1,1) Constrained MLE', val: risk.volatility_latest.garch_11_pct, q: qlikes.garch_11, color: '#1A7F4B' },
-            { key: 'har_rv', label: 'Fitted HAR-RV', val: risk.volatility_latest.har_rv_pct, q: qlikes.har_rv, color: '#7C3AED' },
-            { key: 'trailing_60d', label: 'Trailing 60D Realized', val: risk.volatility_latest.trailing_60d_pct, q: qlikes.trailing_60d, color: '#64748b' },
+            { key: 'ewma_94', label: 'Recursive Exponentially Weighted Moving Average (λ=0.94)', val: risk.volatility_latest.ewma_94_pct, q: qlikes.ewma_94, color: 'var(--accent)' },
+            { key: 'garch_11', label: 'Generalized Autoregressive Conditional Heteroskedasticity (1,1) Constrained Maximum Likelihood Estimation', val: risk.volatility_latest.garch_11_pct, q: qlikes.garch_11, color: '#1A7F4B' },
+            { key: 'har_rv', label: 'Fitted Heterogeneous Autoregressive Realized Volatility', val: risk.volatility_latest.har_rv_pct, q: qlikes.har_rv, color: '#7C3AED' },
+            { key: 'trailing_60d', label: 'Trailing 60-Day Realized', val: risk.volatility_latest.trailing_60d_pct, q: qlikes.trailing_60d, color: '#64748b' },
           ].map((item) => {
             const isBest = bestQlikeKey === item.key;
             return (
               <div key={item.key} className="ledger-cell" style={{ borderTop: `3px solid ${item.color}` }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '6px' }}>
-                  <div className="ledger-label">{item.label}</div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '6px' }}>
+                  <div className="ledger-label" style={{ lineHeight: '1.35' }}>{item.label}</div>
                   {isBest && (
                     <span style={{
                       fontSize: '9px',
@@ -115,8 +115,10 @@ export const RiskVolatilityView: React.FC<RiskVolatilityViewProps> = ({ risk, lo
                       border: '1px solid var(--gain-border)',
                       padding: '1px 6px',
                       borderRadius: '4px',
+                      whiteSpace: 'nowrap',
+                      flexShrink: 0,
                     }}>
-                      BEST QLIKE
+                      BEST QUASI-LIKELIHOOD
                     </span>
                   )}
                 </div>
@@ -124,7 +126,7 @@ export const RiskVolatilityView: React.FC<RiskVolatilityViewProps> = ({ risk, lo
                   {item.val.toFixed(2)}%
                 </div>
                 <div style={{ fontSize: '11px', fontFamily: 'var(--mono)', color: 'var(--dash-muted)', marginTop: '6px' }}>
-                  OOS QLIKE: <strong style={{ color: 'var(--ink)' }}>{item.q !== null && item.q !== undefined ? item.q.toFixed(4) : 'N/A'}</strong>
+                  Out-of-Sample Quasi-Likelihood: <strong style={{ color: 'var(--ink)' }}>{item.q !== null && item.q !== undefined ? item.q.toFixed(4) : 'Not Available'}</strong>
                 </div>
               </div>
             );
@@ -146,17 +148,17 @@ export const RiskVolatilityView: React.FC<RiskVolatilityViewProps> = ({ risk, lo
           color: 'var(--dash-muted)',
         }}>
           <div>
-            GARCH(1,1): <strong style={{ color: 'var(--ink)' }}>α={risk.garch_params.alpha.toFixed(4)}</strong>,{' '}
+            Generalized Autoregressive Conditional Heteroskedasticity (1,1): <strong style={{ color: 'var(--ink)' }}>α={risk.garch_params.alpha.toFixed(4)}</strong>,{' '}
             <strong style={{ color: 'var(--ink)' }}>β={risk.garch_params.beta.toFixed(4)}</strong>,{' '}
             persistence <strong style={{ color: risk.garch_params.persistence < 0.99 ? 'var(--gain)' : 'var(--hold)' }}>
               {risk.garch_params.persistence.toFixed(4)}
             </strong>{' '}
-            ({risk.garch_params.converged ? 'MLE converged' : 'fallback'})
+            ({risk.garch_params.converged ? 'Maximum Likelihood Estimation converged' : 'fallback'})
           </div>
           <div>
-            HAR-RV weights: <strong style={{ color: 'var(--ink)' }}>D={risk.har_rv_coefs.daily.toFixed(3)}</strong> ·{' '}
-            <strong style={{ color: 'var(--ink)' }}>W={risk.har_rv_coefs.weekly.toFixed(3)}</strong> ·{' '}
-            <strong style={{ color: 'var(--ink)' }}>M={risk.har_rv_coefs.monthly.toFixed(3)}</strong>
+            Heterogeneous Autoregressive Realized Volatility weights: <strong style={{ color: 'var(--ink)' }}>Daily={risk.har_rv_coefs.daily.toFixed(3)}</strong> ·{' '}
+            <strong style={{ color: 'var(--ink)' }}>Weekly={risk.har_rv_coefs.weekly.toFixed(3)}</strong> ·{' '}
+            <strong style={{ color: 'var(--ink)' }}>Monthly={risk.har_rv_coefs.monthly.toFixed(3)}</strong>
           </div>
         </div>
       </div>
@@ -168,12 +170,12 @@ export const RiskVolatilityView: React.FC<RiskVolatilityViewProps> = ({ risk, lo
             <div>
               <div className="ledger-panel-title">Annualized Volatility Term-Structure (120 Sessions)</div>
               <div style={{ fontSize: '12px', color: 'var(--dash-muted)', marginTop: '2px' }}>
-                Comparing EWMA (λ=0.94) against GARCH(1,1), HAR-RV, and 60-day realized volatility
+                Comparing Exponentially Weighted Moving Average (λ=0.94) against Generalized Autoregressive Conditional Heteroskedasticity (1,1), Heterogeneous Autoregressive Realized Volatility, and 60-day realized volatility
               </div>
             </div>
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', fontSize: '11px', fontFamily: 'var(--mono)' }}>
               <span style={{ padding: '4px 9px', borderRadius: '6px', background: 'var(--accent-subtle)', color: 'var(--accent)', fontWeight: '700' }}>
-                ── EWMA
+                ── Exponentially Weighted Moving Average
               </span>
               <button
                 type="button"
@@ -189,7 +191,7 @@ export const RiskVolatilityView: React.FC<RiskVolatilityViewProps> = ({ risk, lo
                   fontWeight: '600',
                 }}
               >
-                {showGarch ? '✓' : '+'} GARCH(1,1)
+                {showGarch ? '✓' : '+'} Generalized Autoregressive Conditional Heteroskedasticity (1,1)
               </button>
               <button
                 type="button"
@@ -205,7 +207,7 @@ export const RiskVolatilityView: React.FC<RiskVolatilityViewProps> = ({ risk, lo
                   fontWeight: '600',
                 }}
               >
-                {showHar ? '✓' : '+'} HAR-RV
+                {showHar ? '✓' : '+'} Heterogeneous Autoregressive Realized Volatility
               </button>
               <button
                 type="button"
@@ -221,7 +223,7 @@ export const RiskVolatilityView: React.FC<RiskVolatilityViewProps> = ({ risk, lo
                   fontWeight: '600',
                 }}
               >
-                {showTrailing ? '✓' : '+'} Trailing 60D
+                {showTrailing ? '✓' : '+'} Trailing 60-Day
               </button>
             </div>
           </div>
@@ -271,10 +273,10 @@ export const RiskVolatilityView: React.FC<RiskVolatilityViewProps> = ({ risk, lo
             <div style={{ display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', marginTop: '10px', fontFamily: 'var(--mono)', fontSize: '11px', color: 'var(--dash-muted)' }}>
               <div>Date: <strong style={{ color: 'var(--ink)' }}>{activePoint.date}</strong></div>
               <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
-                <span>EWMA: <strong style={{ color: '#3B6FD4' }}>{activePoint.ewma_vol_pct.toFixed(2)}%</strong></span>
-                <span>GARCH: <strong style={{ color: '#1A7F4B' }}>{activePoint.garch_vol_pct.toFixed(2)}%</strong></span>
-                <span>HAR-RV: <strong style={{ color: '#7C3AED' }}>{activePoint.har_rv_vol_pct.toFixed(2)}%</strong></span>
-                <span>Trail-60D: <strong style={{ color: '#475569' }}>{activePoint.trailing_60d_vol_pct.toFixed(2)}%</strong></span>
+                <span>Exponentially Weighted Moving Average: <strong style={{ color: '#3B6FD4' }}>{activePoint.ewma_vol_pct.toFixed(2)}%</strong></span>
+                <span>Generalized Autoregressive Conditional Heteroskedasticity: <strong style={{ color: '#1A7F4B' }}>{activePoint.garch_vol_pct.toFixed(2)}%</strong></span>
+                <span>Heterogeneous Autoregressive Realized Volatility: <strong style={{ color: '#7C3AED' }}>{activePoint.har_rv_vol_pct.toFixed(2)}%</strong></span>
+                <span>Trailing 60-Day: <strong style={{ color: '#475569' }}>{activePoint.trailing_60d_vol_pct.toFixed(2)}%</strong></span>
               </div>
             </div>
           )}
@@ -285,9 +287,9 @@ export const RiskVolatilityView: React.FC<RiskVolatilityViewProps> = ({ risk, lo
       <div className="ledger-panel">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px', marginBottom: '16px' }}>
           <div>
-            <div className="ledger-panel-title">Split-Conformal 21D Price & Return Intervals</div>
+            <div className="ledger-panel-title">Split-Conformal 21-Day Price & Return Intervals</div>
             <div style={{ fontSize: '12px', color: 'var(--dash-muted)', marginTop: '3px' }}>
-              Finite-sample order-statistic calibration scaled by EWMA volatility (no arbitrary clamping). Center prior: No-Change Random Walk (₹{risk.current_price.toLocaleString('en-IN')}).
+              Finite-sample order-statistic calibration scaled by Exponentially Weighted Moving Average volatility (no arbitrary clamping). Center prior: No-Change Random Walk (₹{risk.current_price.toLocaleString('en-IN')}).
             </div>
           </div>
         </div>
@@ -297,11 +299,11 @@ export const RiskVolatilityView: React.FC<RiskVolatilityViewProps> = ({ risk, lo
             <thead>
               <tr style={{ borderBottom: '2px solid var(--rule)', background: 'var(--paper)', color: 'var(--dash-muted)' }}>
                 <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Nominal</th>
-                <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Empirical Cov.</th>
-                <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>21D Return Band</th>
+                <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Empirical Coverage</th>
+                <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>21-Day Return Band</th>
                 <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Calibrated Price Band (₹)</th>
                 <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Winkler Score</th>
-                <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Tail Miss (L / U)</th>
+                <th style={{ padding: '10px 12px', fontFamily: 'var(--sans)', fontWeight: '600', fontSize: '11px' }}>Tail Miss (Lower / Upper)</th>
               </tr>
             </thead>
             <tbody>
@@ -313,7 +315,7 @@ export const RiskVolatilityView: React.FC<RiskVolatilityViewProps> = ({ risk, lo
                     <td style={{ padding: '11px 12px', color: covOk ? 'var(--gain)' : 'var(--hold)', fontWeight: '600' }}>
                       {(iv.empirical_coverage * 100).toFixed(1)}%{' '}
                       <span style={{ fontSize: '10px', color: 'var(--dash-muted)', fontWeight: '400' }}>
-                        ({iv.coverage_error >= 0 ? '+' : ''}{(iv.coverage_error * 100).toFixed(1)} pp)
+                        ({iv.coverage_error >= 0 ? '+' : ''}{(iv.coverage_error * 100).toFixed(1)} percentage points)
                       </span>
                     </td>
                     <td style={{ padding: '11px 12px', color: '#334155' }}>
@@ -354,7 +356,7 @@ export const RiskVolatilityView: React.FC<RiskVolatilityViewProps> = ({ risk, lo
             )}
             <div>
               <div style={{ fontSize: '13px', fontWeight: '700', color: 'var(--ink)' }}>
-                Downside Risk Probability Gate (&lt; −5% in 21D):{' '}
+                Downside Risk Probability Gate (&lt; −5% in 21 Days):{' '}
                 <span style={{ fontFamily: 'var(--mono)', color: prob.is_calibrated ? 'var(--gain)' : 'var(--hold)' }}>
                   {prob.action}
                 </span>
@@ -374,15 +376,15 @@ export const RiskVolatilityView: React.FC<RiskVolatilityViewProps> = ({ risk, lo
               </strong>
             </div>
             <div>
-              <div style={{ color: 'var(--dash-muted)' }}>Model / Ref Brier</div>
+              <div style={{ color: 'var(--dash-muted)' }}>Model / Reference Brier</div>
               <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
-                {prob.brier_score_model !== null ? prob.brier_score_model.toFixed(4) : 'N/A'} / {prob.brier_score_reference !== null ? prob.brier_score_reference.toFixed(4) : 'N/A'}
+                {prob.brier_score_model !== null ? prob.brier_score_model.toFixed(4) : 'Not Available'} / {prob.brier_score_reference !== null ? prob.brier_score_reference.toFixed(4) : 'Not Available'}
               </strong>
             </div>
             <div>
-              <div style={{ color: 'var(--dash-muted)' }}>Hist. Base Rate</div>
+              <div style={{ color: 'var(--dash-muted)' }}>Historical Base Rate</div>
               <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
-                {prob.base_rate !== null ? `${(prob.base_rate * 100).toFixed(1)}%` : 'N/A'}
+                {prob.base_rate !== null ? `${(prob.base_rate * 100).toFixed(1)}%` : 'Not Available'}
               </strong>
             </div>
           </div>

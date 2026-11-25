@@ -72,7 +72,7 @@ export const ModelBenchmarksView: React.FC = () => {
             <p style={{ fontSize: '12px', color: 'var(--dash-muted)', marginTop: '4px' }}>
               Out-of-sample 2024–2026 diagnostic holdout across{' '}
               <strong style={{ color: 'var(--ink)' }}>{benchmarks.evaluation_cohort_obs.toLocaleString('en-IN')}</strong>{' '}
-              matched NSE observations (21-trading-day horizon).
+              matched National Stock Exchange observations (21-trading-day horizon).
             </p>
           </div>
           <span style={{
@@ -85,28 +85,28 @@ export const ModelBenchmarksView: React.FC = () => {
             color: 'var(--hold)',
             border: '1px solid var(--hold-border)',
           }}>
-            HURDLE GATE: 2.0% MIN MAPE REDUCTION
+            HURDLE GATE: 2.0% MINIMUM MEAN ABSOLUTE PERCENTAGE ERROR REDUCTION
           </span>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px' }}>
           <div className="ledger-cell">
             <div className="ledger-label">Promoted Price Baseline</div>
             <div style={{ fontFamily: 'var(--serif)', fontSize: '26px', color: 'var(--ink)', marginTop: '4px' }}>
               ₹{benchmarks.no_change_reference.inr_price_mae.toFixed(2)}
             </div>
             <div style={{ fontSize: '11px', fontFamily: 'var(--mono)', color: 'var(--dash-muted)', marginTop: '4px' }}>
-              No-Change RW · {benchmarks.no_change_reference.true_price_mape.toFixed(4)}% MAPE
+              No-Change Random Walk · {benchmarks.no_change_reference.true_price_mape.toFixed(4)}% Mean Absolute Percentage Error
             </div>
           </div>
 
           <div className="ledger-cell">
-            <div className="ledger-label">Best ML Price Reduction</div>
+            <div className="ledger-label">Best Machine Learning Price Reduction</div>
             <div style={{ fontFamily: 'var(--serif)', fontSize: '26px', color: 'var(--hold)', marginTop: '4px' }}>
               +0.113%
             </div>
             <div style={{ fontSize: '11px', fontFamily: 'var(--mono)', color: 'var(--dash-muted)', marginTop: '4px' }}>
-              LightGBM Direct Log (F0) · Sub-Hurdle (&lt;2%)
+              LightGBM Direct Log (F0) · Below Hurdle (&lt;2%)
             </div>
           </div>
 
@@ -116,17 +116,17 @@ export const ModelBenchmarksView: React.FC = () => {
               +0.0732
             </div>
             <div style={{ fontSize: '11px', fontFamily: 'var(--mono)', color: 'var(--dash-muted)', marginTop: '4px' }}>
-              Mean Daily Rank IC · ICIR 0.9836
+              Mean Daily Rank Information Coefficient · Information Ratio 0.9836
             </div>
           </div>
 
           <div className="ledger-cell">
-            <div className="ledger-label">High-VIX Directional Edge</div>
+            <div className="ledger-label">High-Volatility Index Directional Edge</div>
             <div style={{ fontFamily: 'var(--serif)', fontSize: '26px', color: 'var(--accent)', marginTop: '4px' }}>
               62.12%
             </div>
             <div style={{ fontSize: '11px', fontFamily: 'var(--mono)', color: 'var(--dash-muted)', marginTop: '4px' }}>
-              India VIX ≥ 20 regime (50,013 rows)
+              India Volatility Index ≥ 20 regime (50,013 rows)
             </div>
           </div>
         </div>
@@ -171,13 +171,13 @@ export const ModelBenchmarksView: React.FC = () => {
               <tr style={{ borderBottom: '2px solid var(--rule)', background: 'var(--paper)', color: 'var(--dash-muted)' }}>
                 <th style={{ padding: '10px', fontFamily: 'var(--sans)', fontSize: '11px' }}>Model</th>
                 <th style={{ padding: '10px', fontFamily: 'var(--sans)', fontSize: '11px' }}>Category</th>
-                <th style={{ padding: '10px', fontFamily: 'var(--sans)', fontSize: '11px' }}>Feats</th>
-                <th style={{ padding: '10px', fontFamily: 'var(--sans)', fontSize: '11px' }}>MAPE (%)</th>
-                <th style={{ padding: '10px', fontFamily: 'var(--sans)', fontSize: '11px' }}>MAE (₹)</th>
-                <th style={{ padding: '10px', fontFamily: 'var(--sans)', fontSize: '11px' }}>Rel. vs RW</th>
-                <th style={{ padding: '10px', fontFamily: 'var(--sans)', fontSize: '11px' }}>Dir Acc</th>
-                <th style={{ padding: '10px', fontFamily: 'var(--sans)', fontSize: '11px' }}>Rank IC</th>
-                <th style={{ padding: '10px', fontFamily: 'var(--sans)', fontSize: '11px' }}>ICIR</th>
+                <th style={{ padding: '10px', fontFamily: 'var(--sans)', fontSize: '11px' }}>Features</th>
+                <th style={{ padding: '10px', fontFamily: 'var(--sans)', fontSize: '11px' }}>Mean Absolute Percentage Error (%)</th>
+                <th style={{ padding: '10px', fontFamily: 'var(--sans)', fontSize: '11px' }}>Mean Absolute Error (₹)</th>
+                <th style={{ padding: '10px', fontFamily: 'var(--sans)', fontSize: '11px' }}>Relative versus Random Walk</th>
+                <th style={{ padding: '10px', fontFamily: 'var(--sans)', fontSize: '11px' }}>Directional Accuracy</th>
+                <th style={{ padding: '10px', fontFamily: 'var(--sans)', fontSize: '11px' }}>Rank Information Coefficient</th>
+                <th style={{ padding: '10px', fontFamily: 'var(--sans)', fontSize: '11px' }}>Information Ratio</th>
                 <th style={{ padding: '10px', fontFamily: 'var(--sans)', fontSize: '11px' }}>Hurdle</th>
               </tr>
             </thead>
@@ -239,9 +239,9 @@ export const ModelBenchmarksView: React.FC = () => {
       <div className="ledger-panel">
         <div className="ledger-panel-title" style={{ marginBottom: '4px' }}>Regime-Conditional Performance Matrix</div>
         <div style={{ fontSize: '12px', color: 'var(--dash-muted)', marginBottom: '16px' }}>
-          Model behavior segmented by India VIX volatility regime and NSE market breadth across the 2024–2026 cohort
+          Model behavior segmented by India Volatility Index regime and National Stock Exchange market breadth across the 2024–2026 cohort
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '12px' }}>
           {regimeEntries.map(([regName, r]) => {
             const isHighVix = regName.includes('High_VIX');
             return (
@@ -256,26 +256,26 @@ export const ModelBenchmarksView: React.FC = () => {
                     {r.pct_of_cohort.toFixed(1)}%
                   </span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '10px', fontSize: '12px', fontFamily: 'var(--mono)' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', gap: '8px', marginTop: '10px', fontSize: '12px', fontFamily: 'var(--mono)' }}>
                   <div>
-                    <div style={{ fontSize: '10px', color: 'var(--dash-muted)' }}>Dir. Acc</div>
+                    <div style={{ fontSize: '10px', color: 'var(--dash-muted)' }}>Directional Accuracy</div>
                     <strong style={{ color: r.best_model_dir_acc >= 55 ? 'var(--gain)' : 'var(--ink)' }}>
                       {r.best_model_dir_acc.toFixed(2)}%
                     </strong>
                   </div>
                   <div>
-                    <div style={{ fontSize: '10px', color: 'var(--dash-muted)' }}>Rank IC</div>
+                    <div style={{ fontSize: '10px', color: 'var(--dash-muted)' }}>Rank Info. Coeff.</div>
                     <strong style={{ color: r.best_model_rank_ic >= 0 ? 'var(--gain)' : 'var(--loss)' }}>
                       {r.best_model_rank_ic >= 0 ? '+' : ''}{r.best_model_rank_ic.toFixed(4)}
                     </strong>
                   </div>
                   <div>
-                    <div style={{ fontSize: '10px', color: 'var(--dash-muted)' }}>MAPE</div>
+                    <div style={{ fontSize: '10px', color: 'var(--dash-muted)' }}>Mean Abs. % Error</div>
                     <strong style={{ color: 'var(--ink)' }}>{r.best_model_mape.toFixed(2)}%</strong>
                   </div>
                 </div>
                 <div style={{ fontSize: '10px', fontFamily: 'var(--mono)', color: 'var(--dash-muted)', marginTop: '8px' }}>
-                  {r.n_obs.toLocaleString('en-IN')} obs · Rel red: {r.relative_error_reduction_pct >= 0 ? '+' : ''}{r.relative_error_reduction_pct.toFixed(2)}%
+                  {r.n_obs.toLocaleString('en-IN')} observations · Relative reduction: {r.relative_error_reduction_pct >= 0 ? '+' : ''}{r.relative_error_reduction_pct.toFixed(2)}%
                 </div>
               </div>
             );
@@ -395,7 +395,7 @@ export const ModelBenchmarksView: React.FC = () => {
                 </div>
                 <div style={{ fontSize: '12px', color: '#334155', marginTop: '6px', fontWeight: '500' }}>{mod.algorithm}</div>
                 <div style={{ fontSize: '11px', fontFamily: 'var(--mono)', color: 'var(--dash-muted)', marginTop: '6px' }}>
-                  MAPE {mod.mape}% · MAE ₹{mod.mae_inr} · Rank IC {mod.rank_ic}
+                  Mean Absolute Percentage Error {mod.mape}% · Mean Absolute Error ₹{mod.mae_inr} · Rank Information Coefficient {mod.rank_ic}
                 </div>
                 {mod.sha256 && (
                   <div style={{ fontSize: '10px', fontFamily: 'var(--mono)', color: '#94a3b8', marginTop: '4px' }}>

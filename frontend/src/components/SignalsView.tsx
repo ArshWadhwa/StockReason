@@ -254,7 +254,7 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
           {/* Calibrated Probability & 80% Interval Badge */}
           <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-end' }}>
             <div>
-              <div className="ledger-label">MC Dropout confidence</div>
+              <div className="ledger-label">Monte Carlo Dropout confidence</div>
               <div style={{
                 fontFamily: 'var(--serif)',
                 fontSize: '32px',
@@ -277,7 +277,7 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
                 fontSize: '11px',
                 textAlign: 'right',
               }}>
-                <div style={{ color: 'var(--dash-muted)', fontWeight: '600' }}>Calibrated Prob (Up)</div>
+                <div style={{ color: 'var(--dash-muted)', fontWeight: '600' }}>Calibrated Probability (Up)</div>
                 <div style={{ fontFamily: 'var(--mono)', fontWeight: '700', color: signal.prob_up_calibrated >= 0.5 ? '#1A7F4B' : '#DC2626' }}>
                   {(signal.prob_up_calibrated * 100).toFixed(1)}%
                 </div>
@@ -293,7 +293,7 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
               }}>
                 <div style={{ color: '#92400e', fontWeight: '600' }}>Probability Gate</div>
                 <div style={{ fontFamily: 'var(--mono)', fontWeight: '700', color: '#b45309' }}>
-                  SUPPRESSED (BSS ≤ 0)
+                  SUPPRESSED (Brier Skill Score ≤ 0)
                 </div>
               </div>
             )}
@@ -374,9 +374,9 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <SlidersHorizontal size={18} style={{ color: 'var(--accent)' }} />
             <div>
-              <div className="ledger-panel-title">Interactive Forecast & NSE Calendar Simulator</div>
+              <div className="ledger-panel-title">Interactive Forecast & National Stock Exchange Calendar Simulator</div>
               <div style={{ fontSize: '12px', color: 'var(--dash-muted)' }}>
-                Runs live <code style={{ fontFamily: 'var(--mono)' }}>POST /api/forecast</code> with nominal price reconstruction, NSE holiday skipping, and automatic fail-safe fallback
+                Runs live <code style={{ fontFamily: 'var(--mono)' }}>POST /api/forecast</code> with nominal price reconstruction, National Stock Exchange holiday skipping, and automatic fail-safe fallback
               </div>
             </div>
           </div>
@@ -395,7 +395,7 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
               fontWeight: '600',
             }}>
               <Calendar size={12} style={{ color: 'var(--accent)' }} />
-              21D NSE Target: {prediction.target_trading_date}
+              21-Day National Stock Exchange Target: {prediction.target_trading_date}
             </span>
           )}
         </div>
@@ -453,8 +453,8 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
               style={{ padding: '9px 11px' }}
             >
               <option value="baseline">No-Change Random Walk (Promoted)</option>
-              <option value="lightgbm">LightGBM 21D (Experimental)</option>
-              <option value="catboost">CatBoost 21D (Experimental)</option>
+              <option value="lightgbm">LightGBM 21-Day (Experimental)</option>
+              <option value="catboost">CatBoost 21-Day (Experimental)</option>
             </select>
           </div>
 
@@ -475,39 +475,46 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
         )}
 
         {simResult && (
-          <div style={{ marginTop: '16px', padding: '14px 16px', background: 'var(--paper)', borderRadius: '10px', border: '1px solid var(--rule)' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '12px', marginBottom: '10px' }}>
+          <div style={{
+            marginTop: '18px',
+            padding: '20px 22px',
+            background: 'linear-gradient(135deg, #ffffff 0%, var(--paper) 100%)',
+            borderRadius: '12px',
+            border: '2px solid var(--accent-border)',
+            boxShadow: '0 4px 14px rgba(59, 111, 212, 0.08)',
+          }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: '18px', alignItems: 'center', marginBottom: '12px' }}>
               <div>
-                <div className="ledger-label">Predicted Price</div>
-                <div style={{ fontFamily: 'var(--serif)', fontSize: '24px', color: 'var(--ink)' }}>
-                  ₹{simResult.predicted_price.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+                <div className="ledger-label" style={{ fontSize: '11px', fontWeight: '700' }}>Simulated Predicted Price</div>
+                <div style={{ fontFamily: 'var(--serif)', fontSize: '36px', lineHeight: '1.05', color: 'var(--ink)', marginTop: '4px', fontVariantNumeric: 'tabular-nums' }}>
+                  ₹{simResult.predicted_price.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </div>
               </div>
               <div>
-                <div className="ledger-label">Expected Return</div>
-                <div style={{ fontFamily: 'var(--serif)', fontSize: '24px', color: simResult.predicted_return >= 0 ? 'var(--gain)' : 'var(--loss)' }}>
+                <div className="ledger-label" style={{ fontSize: '11px', fontWeight: '700' }}>Expected Return</div>
+                <div style={{ fontFamily: 'var(--serif)', fontSize: '34px', lineHeight: '1.05', color: simResult.predicted_return >= 0 ? 'var(--gain)' : 'var(--loss)', marginTop: '4px', fontVariantNumeric: 'tabular-nums' }}>
                   {simResult.predicted_return >= 0 ? '+' : ''}{(simResult.predicted_return * 100).toFixed(2)}%
                 </div>
               </div>
               <div>
-                <div className="ledger-label">Target NSE Date</div>
-                <div style={{ fontFamily: 'var(--mono)', fontSize: '14px', fontWeight: '700', color: 'var(--ink)', marginTop: '6px' }}>
+                <div className="ledger-label">Target National Stock Exchange Date</div>
+                <div style={{ fontFamily: 'var(--mono)', fontSize: '16px', fontWeight: '700', color: 'var(--ink)', marginTop: '6px' }}>
                   {simResult.target_trading_date}
                 </div>
               </div>
               <div>
                 <div className="ledger-label">Model & Gate</div>
-                <div style={{ fontFamily: 'var(--mono)', fontSize: '11px', fontWeight: '700', color: 'var(--accent)', marginTop: '6px' }}>
+                <div style={{ fontFamily: 'var(--mono)', fontSize: '12px', fontWeight: '700', color: 'var(--accent)', marginTop: '6px' }}>
                   {simResult.model_name}
                 </div>
-                <div style={{ fontFamily: 'var(--mono)', fontSize: '10px', color: 'var(--hold)' }}>
+                <div style={{ fontFamily: 'var(--mono)', fontSize: '11px', color: 'var(--hold)' }}>
                   {simResult.model_status}
                 </div>
               </div>
             </div>
 
             {simResult.price_prediction_interval_80 && (
-              <div style={{ fontSize: '12px', fontFamily: 'var(--mono)', color: '#334155', marginBottom: '8px' }}>
+              <div style={{ fontSize: '13px', fontFamily: 'var(--mono)', color: '#334155', marginBottom: '8px' }}>
                 80% Split-Conformal Price Band: <strong>₹{simResult.price_prediction_interval_80[0].toLocaleString('en-IN')} – ₹{simResult.price_prediction_interval_80[1].toLocaleString('en-IN')}</strong>
                 {simResult.price_prediction_interval_90 && (
                   <span> · 90% Band: <strong>₹{simResult.price_prediction_interval_90[0].toLocaleString('en-IN')} – ₹{simResult.price_prediction_interval_90[1].toLocaleString('en-IN')}</strong></span>
@@ -529,62 +536,81 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
         )}
       </div>
 
-      {/* ── Multi-Horizon Cards — SECONDARY treatment ── */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
+      {/* ── Multi-Horizon Prediction Cards ── */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '14px' }}>
         {(['1D', '1W', '1M', '6M'] as const).map((hKey) => {
           const h = horizons[hKey];
           const isPos = h.expected_return >= 0;
-          const labelMap = { '1D': 'Next day', '1W': '1 week', '1M': '1 month', '6M': '6 months' };
+          const isPrimary = hKey === '1M';
+          const labelMap = { '1D': 'Next day', '1W': '1 week', '1M': '1 month · Primary', '6M': '6 months' };
+          const badgeMap = { '1D': '1 Day', '1W': '1 Week', '1M': '1 Month', '6M': '6 Months' };
           return (
-            <div key={hKey} className="ledger-cell">
+            <div
+              key={hKey}
+              className="ledger-cell"
+              style={{
+                padding: '18px 20px',
+                border: isPrimary ? '2px solid var(--accent-border)' : undefined,
+                background: isPrimary ? 'linear-gradient(180deg, #ffffff 0%, var(--accent-subtle) 100%)' : undefined,
+              }}
+            >
               <div style={{
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                marginBottom: '8px',
+                marginBottom: '10px',
+                gap: '8px',
               }}>
-                <span style={{ fontSize: '12px', color: 'var(--dash-muted)', fontFamily: 'var(--sans)', fontWeight: '500' }}>
+                <span style={{
+                  fontSize: '12px',
+                  color: isPrimary ? 'var(--accent)' : 'var(--dash-muted)',
+                  fontFamily: 'var(--sans)',
+                  fontWeight: isPrimary ? '700' : '600',
+                }}>
                   {labelMap[hKey]}
                 </span>
                 <span style={{
                   fontFamily: 'var(--mono)',
-                  fontSize: '10px',
+                  fontSize: '11px',
                   fontWeight: '700',
-                  color: 'var(--ink)',
-                  background: 'var(--paper)',
-                  padding: '2px 6px',
+                  color: isPrimary ? '#ffffff' : 'var(--ink)',
+                  background: isPrimary ? 'var(--accent)' : 'var(--paper)',
+                  padding: '2px 7px',
                   borderRadius: '4px',
+                  whiteSpace: 'nowrap',
                 }}>
-                  {hKey}
+                  {badgeMap[hKey]}
                 </span>
               </div>
               <div style={{
                 fontFamily: 'var(--serif)',
-                fontSize: '26px',
+                fontSize: '30px',
                 fontWeight: '400',
+                color: 'var(--ink)',
+                fontVariantNumeric: 'tabular-nums',
+                lineHeight: '1.05',
+                marginBottom: '6px',
+              }}>
+                ₹{h.predicted_price.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+              </div>
+              <div style={{
+                fontFamily: 'var(--mono)',
+                fontSize: '18px',
+                fontWeight: '700',
                 color: isPos ? 'var(--gain)' : 'var(--loss)',
                 fontVariantNumeric: 'tabular-nums',
-                lineHeight: '1.1',
-                marginBottom: '6px',
+                lineHeight: '1.2',
+                marginBottom: '8px',
               }}>
                 {isPos ? `+${(h.expected_return * 100).toFixed(2)}%` : `${(h.expected_return * 100).toFixed(2)}%`}
               </div>
               <div style={{
                 fontSize: '12px',
-                color: 'var(--dash-muted)',
+                color: '#475569',
                 fontFamily: 'var(--mono)',
                 fontVariantNumeric: 'tabular-nums',
               }}>
-                ₹{h.predicted_price.toLocaleString('en-IN', { minimumFractionDigits: 1 })}
-              </div>
-              <div style={{
-                fontSize: '11px',
-                color: '#94a3b8',
-                fontFamily: 'var(--mono)',
-                marginTop: '3px',
-                fontVariantNumeric: 'tabular-nums',
-              }}>
-                {Math.round(h.confidence * 100)}% conf · ±₹{Math.round(h.upper_bound - h.lower_bound)}
+                ₹{h.lower_bound.toLocaleString('en-IN', { maximumFractionDigits: 0 })}–₹{h.upper_bound.toLocaleString('en-IN', { maximumFractionDigits: 0 })} · {Math.round(h.confidence * 100)}% confidence
               </div>
             </div>
           );

@@ -93,13 +93,13 @@ export const ModelReliabilityPanel: React.FC<ModelReliabilityPanelProps> = ({ on
       {/* Grid of Key Reliability Metrics */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
         gap: '12px',
         marginBottom: '16px',
       }}>
-        {/* Metric 1: Rank IC */}
+        {/* Metric 1: Rank Information Coefficient */}
         <div className="ledger-cell">
-          <div className="ledger-label">Rolling Out-of-Sample Rank IC</div>
+          <div className="ledger-label">Rolling Out-of-Sample Rank Information Coefficient</div>
           <div style={{
             fontSize: '22px',
             fontFamily: 'var(--serif)',
@@ -109,13 +109,13 @@ export const ModelReliabilityPanel: React.FC<ModelReliabilityPanelProps> = ({ on
             {m.rank_ic.toFixed(4)}
           </div>
           <div style={{ fontSize: '11px', color: 'var(--dash-muted)', marginTop: '2px', fontFamily: 'var(--mono)' }}>
-            95% CI: [{ci[0].toFixed(3)}, {ci[1].toFixed(3)}]
+            95% Confidence Interval: [{ci[0].toFixed(3)}, {ci[1].toFixed(3)}]
           </div>
         </div>
 
-        {/* Metric 2: Rank ICIR */}
+        {/* Metric 2: Rank Information Coefficient Information Ratio */}
         <div className="ledger-cell">
-          <div className="ledger-label">Annualized Rank ICIR</div>
+          <div className="ledger-label">Annualized Rank Information Coefficient Information Ratio</div>
           <div style={{
             fontSize: '22px',
             fontFamily: 'var(--serif)',
@@ -125,13 +125,13 @@ export const ModelReliabilityPanel: React.FC<ModelReliabilityPanelProps> = ({ on
             {m.rank_icir.toFixed(2)}
           </div>
           <div style={{ fontSize: '11px', color: 'var(--dash-muted)', marginTop: '2px' }}>
-            Information Ratio (ann.)
+            Information Ratio (annualized)
           </div>
         </div>
 
         {/* Metric 3: Directional Accuracy vs Base */}
         <div className="ledger-cell">
-          <div className="ledger-label">Dir Acc vs Base Rate</div>
+          <div className="ledger-label">Directional Accuracy versus Base Rate</div>
           <div style={{
             fontSize: '22px',
             fontFamily: 'var(--serif)',
@@ -180,7 +180,7 @@ export const ModelReliabilityPanel: React.FC<ModelReliabilityPanelProps> = ({ on
             <div key={reg} style={{ display: 'flex', gap: '6px' }}>
               <span style={{ fontWeight: '500' }}>{reg}:</span>
               <span style={{ fontFamily: 'var(--mono)', color: data.rank_ic > 0 ? '#1A7F4B' : '#DC2626' }}>
-                Rank IC {data.rank_ic.toFixed(3)}
+                Rank Information Coefficient {data.rank_ic.toFixed(3)}
               </span>
               <span style={{ color: 'var(--dash-muted)' }}>({data.n} rows)</span>
             </div>
