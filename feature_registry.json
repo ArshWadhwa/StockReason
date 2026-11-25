@@ -1,0 +1,1778 @@
+{
+  "registry_version": "0.13.1",
+  "release": "StockReason v0.13B",
+  "execution_date": "2026-11-24",
+  "total_unique_features": 80,
+  "families": {
+    "F0": {
+      "description": "Verified price and volume technical features (17 features)",
+      "features": [
+        "close",
+        "ret_1d",
+        "ret_5d",
+        "ret_10d",
+        "ret_21d",
+        "ret_63d",
+        "ret_126d",
+        "vol_20d",
+        "vol_60d",
+        "dist_ma20",
+        "dist_ma50",
+        "dist_ma200",
+        "rsi_14",
+        "macd_diff",
+        "hl_spread",
+        "vol_ratio_20d",
+        "log_turnover"
+      ],
+      "feature_count": 17,
+      "status": "AVAILABLE_STAGE_B"
+    },
+    "F1": {
+      "description": "F0 plus market-wide features (24 features)",
+      "features": [
+        "close",
+        "ret_1d",
+        "ret_5d",
+        "ret_10d",
+        "ret_21d",
+        "ret_63d",
+        "ret_126d",
+        "vol_20d",
+        "vol_60d",
+        "dist_ma20",
+        "dist_ma50",
+        "dist_ma200",
+        "rsi_14",
+        "macd_diff",
+        "hl_spread",
+        "vol_ratio_20d",
+        "log_turnover",
+        "nifty50_ret_1d",
+        "nifty50_ret_5d",
+        "nifty50_ret_21d",
+        "nifty50_vol_20d",
+        "india_vix_level",
+        "india_vix_change_5d",
+        "market_breadth_pct_up"
+      ],
+      "feature_count": 24,
+      "status": "AVAILABLE_STAGE_B"
+    },
+    "F2": {
+      "description": "F1 plus sector and cross-sectional features (29 features)",
+      "features": [
+        "close",
+        "ret_1d",
+        "ret_5d",
+        "ret_10d",
+        "ret_21d",
+        "ret_63d",
+        "ret_126d",
+        "vol_20d",
+        "vol_60d",
+        "dist_ma20",
+        "dist_ma50",
+        "dist_ma200",
+        "rsi_14",
+        "macd_diff",
+        "hl_spread",
+        "vol_ratio_20d",
+        "log_turnover",
+        "nifty50_ret_1d",
+        "nifty50_ret_5d",
+        "nifty50_ret_21d",
+        "nifty50_vol_20d",
+        "india_vix_level",
+        "india_vix_change_5d",
+        "market_breadth_pct_up",
+        "excess_ret_market_1d",
+        "excess_ret_market_21d",
+        "cross_sec_volume_pctile",
+        "cross_sec_turnover_pctile",
+        "cross_sec_vol_pctile"
+      ],
+      "feature_count": 29,
+      "status": "AVAILABLE_STAGE_B"
+    },
+    "F3": {
+      "description": "F2 plus annual financial statement features (49 features)",
+      "features": [
+        "close",
+        "ret_1d",
+        "ret_5d",
+        "ret_10d",
+        "ret_21d",
+        "ret_63d",
+        "ret_126d",
+        "vol_20d",
+        "vol_60d",
+        "dist_ma20",
+        "dist_ma50",
+        "dist_ma200",
+        "rsi_14",
+        "macd_diff",
+        "hl_spread",
+        "vol_ratio_20d",
+        "log_turnover",
+        "nifty50_ret_1d",
+        "nifty50_ret_5d",
+        "nifty50_ret_21d",
+        "nifty50_vol_20d",
+        "india_vix_level",
+        "india_vix_change_5d",
+        "market_breadth_pct_up",
+        "excess_ret_market_1d",
+        "excess_ret_market_21d",
+        "cross_sec_volume_pctile",
+        "cross_sec_turnover_pctile",
+        "cross_sec_vol_pctile",
+        "rev_growth_yoy",
+        "rev_acceleration",
+        "pat_growth_yoy",
+        "eps_growth_yoy",
+        "ebit_growth_yoy",
+        "operating_margin",
+        "net_profit_margin",
+        "gross_margin",
+        "margin_expansion_yoy",
+        "debt_to_equity",
+        "interest_coverage",
+        "current_ratio",
+        "debt_growth_yoy",
+        "free_cash_flow",
+        "capex_intensity",
+        "cash_conversion",
+        "profit_to_fcf_divergence",
+        "earnings_quality",
+        "pe_ratio",
+        "earnings_yield"
+      ],
+      "feature_count": 49,
+      "status": "AVAILABLE_STAGE_B"
+    },
+    "F4": {
+      "description": "F2 plus quarterly financial & earnings expectation features (38 features)",
+      "features": [
+        "close",
+        "ret_1d",
+        "ret_5d",
+        "ret_10d",
+        "ret_21d",
+        "ret_63d",
+        "ret_126d",
+        "vol_20d",
+        "vol_60d",
+        "dist_ma20",
+        "dist_ma50",
+        "dist_ma200",
+        "rsi_14",
+        "macd_diff",
+        "hl_spread",
+        "vol_ratio_20d",
+        "log_turnover",
+        "nifty50_ret_1d",
+        "nifty50_ret_5d",
+        "nifty50_ret_21d",
+        "nifty50_vol_20d",
+        "india_vix_level",
+        "india_vix_change_5d",
+        "market_breadth_pct_up",
+        "excess_ret_market_1d",
+        "excess_ret_market_21d",
+        "cross_sec_volume_pctile",
+        "cross_sec_turnover_pctile",
+        "cross_sec_vol_pctile",
+        "q_rev_growth_qoq",
+        "q_rev_growth_yoy",
+        "q_pat_growth_qoq",
+        "q_pat_growth_yoy",
+        "q_ebitda_margin",
+        "q_net_margin",
+        "earnings_surprise_prior_year_proxy",
+        "revenue_surprise_prior_year_proxy",
+        "earnings_surprise_sequential_proxy"
+      ],
+      "feature_count": 38,
+      "status": "AVAILABLE_STAGE_B"
+    },
+    "F5": {
+      "description": "F2 plus corporate announcement features (32 features)",
+      "features": [
+        "close",
+        "ret_1d",
+        "ret_5d",
+        "ret_10d",
+        "ret_21d",
+        "ret_63d",
+        "ret_126d",
+        "vol_20d",
+        "vol_60d",
+        "dist_ma20",
+        "dist_ma50",
+        "dist_ma200",
+        "rsi_14",
+        "macd_diff",
+        "hl_spread",
+        "vol_ratio_20d",
+        "log_turnover",
+        "nifty50_ret_1d",
+        "nifty50_ret_5d",
+        "nifty50_ret_21d",
+        "nifty50_vol_20d",
+        "india_vix_level",
+        "india_vix_change_5d",
+        "market_breadth_pct_up",
+        "excess_ret_market_1d",
+        "excess_ret_market_21d",
+        "cross_sec_volume_pctile",
+        "cross_sec_turnover_pctile",
+        "cross_sec_vol_pctile",
+        "announcement_velocity_30d",
+        "days_since_last_announcement",
+        "has_recent_announcement_7d"
+      ],
+      "feature_count": 32,
+      "status": "AVAILABLE_STAGE_B"
+    },
+    "F6": {
+      "description": "F2 plus ownership, delivery and market-structure features (48 features)",
+      "features": [
+        "close",
+        "ret_1d",
+        "ret_5d",
+        "ret_10d",
+        "ret_21d",
+        "ret_63d",
+        "ret_126d",
+        "vol_20d",
+        "vol_60d",
+        "dist_ma20",
+        "dist_ma50",
+        "dist_ma200",
+        "rsi_14",
+        "macd_diff",
+        "hl_spread",
+        "vol_ratio_20d",
+        "log_turnover",
+        "nifty50_ret_1d",
+        "nifty50_ret_5d",
+        "nifty50_ret_21d",
+        "nifty50_vol_20d",
+        "india_vix_level",
+        "india_vix_change_5d",
+        "market_breadth_pct_up",
+        "excess_ret_market_1d",
+        "excess_ret_market_21d",
+        "cross_sec_volume_pctile",
+        "cross_sec_turnover_pctile",
+        "cross_sec_vol_pctile",
+        "promoter_pct",
+        "promoter_change_qoq",
+        "promoter_change_yoy",
+        "fii_pct",
+        "fii_change_qoq",
+        "dii_pct",
+        "dii_change_qoq",
+        "institutional_pct",
+        "institutional_change_qoq",
+        "public_pct",
+        "public_change_qoq",
+        "smart_money_delta",
+        "delivery_pct",
+        "abnormal_delivery_ratio",
+        "delivery_pct_spread",
+        "turnover_ratio_20d",
+        "amihud_illiquidity",
+        "is_trading_resumption",
+        "is_prolonged_suspension"
+      ],
+      "feature_count": 48,
+      "status": "AVAILABLE_STAGE_B"
+    },
+    "F7": {
+      "description": "F2 plus genuinely new external information (e.g. licensed analyst consensus, transcripts)",
+      "features": [],
+      "feature_count": 0,
+      "status": "NOT_AVAILABLE",
+      "governance_note": "No unauthorized external datasets were acquired. Formally marked NOT_AVAILABLE per Section 13."
+    },
+    "F8": {
+      "description": "Development-selected combination to be chosen in Stage C using authorized cross-validation",
+      "features": [],
+      "feature_count": 0,
+      "status": "RESERVED_FOR_STAGE_C",
+      "governance_note": "Selection will strictly use pre-2023 training partition, NOT 2024-2026 diagnostic outcomes."
+    }
+  },
+  "features": {
+    "close": {
+      "name": "close",
+      "economic_interpretation": "Unadjusted daily closing price in nominal INR",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "P_t",
+      "required_source_fields": [
+        "close"
+      ],
+      "publication_availability_rule": "Published at 15:30 IST on trade date t",
+      "lookback_window": "1 session",
+      "data_type": "float64",
+      "unit": "INR",
+      "missingness_policy": "Zero tolerance; missing session rows are excluded",
+      "security_coverage": "2,528 NSE equities (100% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20 (100% complete)",
+      "feature_family": "F0",
+      "known_limitations": "Corporate actions create raw nominal price jumps if not split-adjusted"
+    },
+    "ret_1d": {
+      "name": "ret_1d",
+      "economic_interpretation": "1-day trailing historical return",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "(P_t / P_{t-1}) - 1.0",
+      "required_source_fields": [
+        "close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "1 session",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "NaN for first trading session of an IPO",
+      "security_coverage": "2,528 NSE equities (100% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F0",
+      "known_limitations": "Suspension gaps can distort return unless gap flagged"
+    },
+    "ret_5d": {
+      "name": "ret_5d",
+      "economic_interpretation": "5-day trailing weekly historical return",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "(P_t / P_{t-5}) - 1.0",
+      "required_source_fields": [
+        "close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "5 sessions",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "NaN for first 5 sessions",
+      "security_coverage": "2,528 NSE equities (100% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F0",
+      "known_limitations": "Subject to weekly mean reversion effects"
+    },
+    "ret_10d": {
+      "name": "ret_10d",
+      "economic_interpretation": "10-day trailing bi-weekly historical return",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "(P_t / P_{t-10}) - 1.0",
+      "required_source_fields": [
+        "close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "10 sessions",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "NaN for first 10 sessions",
+      "security_coverage": "2,528 NSE equities (100% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F0",
+      "known_limitations": "Intermediate momentum signal"
+    },
+    "ret_21d": {
+      "name": "ret_21d",
+      "economic_interpretation": "21-day trailing 1-month historical return",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "(P_t / P_{t-21}) - 1.0",
+      "required_source_fields": [
+        "close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "21 sessions",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "NaN for first 21 sessions",
+      "security_coverage": "2,528 NSE equities (100% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F0",
+      "known_limitations": "Standard monthly momentum lookback"
+    },
+    "ret_63d": {
+      "name": "ret_63d",
+      "economic_interpretation": "63-day trailing 3-month historical return",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "(P_t / P_{t-63}) - 1.0",
+      "required_source_fields": [
+        "close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "63 sessions",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "NaN for first 63 sessions",
+      "security_coverage": "2,528 NSE equities (100% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F0",
+      "known_limitations": "Quarterly trend factor"
+    },
+    "ret_126d": {
+      "name": "ret_126d",
+      "economic_interpretation": "126-day trailing 6-month historical return",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "(P_t / P_{t-126}) - 1.0",
+      "required_source_fields": [
+        "close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "126 sessions",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "NaN for first 126 sessions",
+      "security_coverage": "2,528 NSE equities (100% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F0",
+      "known_limitations": "Half-year momentum; requires long tenure"
+    },
+    "vol_20d": {
+      "name": "vol_20d",
+      "economic_interpretation": "20-day annualized historical realized volatility",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "StdDev(ret_1d, 20) * sqrt(252)",
+      "required_source_fields": [
+        "ret_1d"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "20 sessions",
+      "data_type": "float64",
+      "unit": "annualized decimal",
+      "missingness_policy": "Requires at least 10 non-null returns",
+      "security_coverage": "2,528 NSE equities (100% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F0",
+      "known_limitations": "Must be computed on returns, NOT raw rupee prices (repaired in v0.13A)"
+    },
+    "vol_60d": {
+      "name": "vol_60d",
+      "economic_interpretation": "60-day annualized historical realized volatility",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "StdDev(ret_1d, 60) * sqrt(252)",
+      "required_source_fields": [
+        "ret_1d"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "60 sessions",
+      "data_type": "float64",
+      "unit": "annualized decimal",
+      "missingness_policy": "Requires at least 30 non-null returns",
+      "security_coverage": "2,528 NSE equities (100% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F0",
+      "known_limitations": "Quarterly baseline volatility scale"
+    },
+    "dist_ma20": {
+      "name": "dist_ma20",
+      "economic_interpretation": "Relative distance from 20-day simple moving average",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "(P_t / SMA_{20}(P)) - 1.0",
+      "required_source_fields": [
+        "close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "20 sessions",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "NaN for first 20 sessions",
+      "security_coverage": "2,528 NSE equities (100% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F0",
+      "known_limitations": "Short-term trend overextension measure"
+    },
+    "dist_ma50": {
+      "name": "dist_ma50",
+      "economic_interpretation": "Relative distance from 50-day simple moving average",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "(P_t / SMA_{50}(P)) - 1.0",
+      "required_source_fields": [
+        "close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "50 sessions",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "NaN for first 50 sessions",
+      "security_coverage": "2,528 NSE equities (100% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F0",
+      "known_limitations": "Medium-term trend overextension measure"
+    },
+    "dist_ma200": {
+      "name": "dist_ma200",
+      "economic_interpretation": "Relative distance from 200-day simple moving average",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "(P_t / SMA_{200}(P)) - 1.0",
+      "required_source_fields": [
+        "close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "200 sessions",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "NaN for first 200 sessions",
+      "security_coverage": "2,528 NSE equities (100% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F0",
+      "known_limitations": "Long-term trend baseline"
+    },
+    "rsi_14": {
+      "name": "rsi_14",
+      "economic_interpretation": "14-day Relative Strength Index oscillator",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "100.0 - (100.0 / (1.0 + RS_{14}))",
+      "required_source_fields": [
+        "close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "14 sessions",
+      "data_type": "float64",
+      "unit": "index 0-100",
+      "missingness_policy": "Bounded between 0 and 100",
+      "security_coverage": "2,528 NSE equities (100% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F0",
+      "known_limitations": "Bounded oscillator; prone to saturation in bull regimes"
+    },
+    "macd_diff": {
+      "name": "macd_diff",
+      "economic_interpretation": "MACD histogram divergence (12-day EMA minus 26-day EMA minus 9-day signal)",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "EMA_{12}(P) - EMA_{26}(P) - Signal_{9}",
+      "required_source_fields": [
+        "close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "35 sessions",
+      "data_type": "float64",
+      "unit": "INR",
+      "missingness_policy": "NaN for first 35 sessions",
+      "security_coverage": "2,528 NSE equities (100% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F0",
+      "known_limitations": "Price-scale dependent; requires percentage scaling for cross-stock comparisons"
+    },
+    "hl_spread": {
+      "name": "hl_spread",
+      "economic_interpretation": "Intraday high-low range divided by close",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "(High_t - Low_t) / Close_t",
+      "required_source_fields": [
+        "high",
+        "low",
+        "close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "1 session",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "Must be >= 0.0",
+      "security_coverage": "2,528 NSE equities (100% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F0",
+      "known_limitations": "Intraday volatility proxy (Parkinson estimator component)"
+    },
+    "vol_ratio_20d": {
+      "name": "vol_ratio_20d",
+      "economic_interpretation": "Trading volume relative to 20-day volume moving average",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "Volume_t / SMA_{20}(Volume)",
+      "required_source_fields": [
+        "volume"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "20 sessions",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "Requires SMA > 0",
+      "security_coverage": "2,528 NSE equities (100% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F0",
+      "known_limitations": "Volume surge indicator"
+    },
+    "log_turnover": {
+      "name": "log_turnover",
+      "economic_interpretation": "Natural log of daily rupee turnover",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "ln(Turnover_t + 1.0)",
+      "required_source_fields": [
+        "turnover"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "1 session",
+      "data_type": "float64",
+      "unit": "log INR",
+      "missingness_policy": "Zero turnover maps to 0.0",
+      "security_coverage": "2,528 NSE equities (100% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F0",
+      "known_limitations": "Measures nominal trading size and market participation"
+    },
+    "nifty50_ret_1d": {
+      "name": "nifty50_ret_1d",
+      "economic_interpretation": "1-day benchmark market return",
+      "source_dataset": "NSE Indices (NIFTY 50)",
+      "calculation_formula": "(NiftyClose_t / NiftyClose_{t-1}) - 1.0",
+      "required_source_fields": [
+        "Close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "1 session",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "Zero tolerance for trading sessions",
+      "security_coverage": "Market-wide (all panel equities)",
+      "historical_availability": "2007-09-17 to 2026-11-20",
+      "feature_family": "F1",
+      "known_limitations": "Headline large-cap index return"
+    },
+    "nifty50_ret_5d": {
+      "name": "nifty50_ret_5d",
+      "economic_interpretation": "5-day benchmark market return",
+      "source_dataset": "NSE Indices (NIFTY 50)",
+      "calculation_formula": "(NiftyClose_t / NiftyClose_{t-5}) - 1.0",
+      "required_source_fields": [
+        "Close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "5 sessions",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "Zero tolerance",
+      "security_coverage": "Market-wide",
+      "historical_availability": "2007-09-17 to 2026-11-20",
+      "feature_family": "F1",
+      "known_limitations": "Weekly market regime indicator"
+    },
+    "nifty50_ret_21d": {
+      "name": "nifty50_ret_21d",
+      "economic_interpretation": "21-day benchmark market return",
+      "source_dataset": "NSE Indices (NIFTY 50)",
+      "calculation_formula": "(NiftyClose_t / NiftyClose_{t-21}) - 1.0",
+      "required_source_fields": [
+        "Close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "21 sessions",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "Zero tolerance",
+      "security_coverage": "Market-wide",
+      "historical_availability": "2007-09-17 to 2026-11-20",
+      "feature_family": "F1",
+      "known_limitations": "Monthly market trend indicator"
+    },
+    "nifty50_vol_20d": {
+      "name": "nifty50_vol_20d",
+      "economic_interpretation": "20-day annualized realized volatility of NIFTY 50",
+      "source_dataset": "NSE Indices (NIFTY 50)",
+      "calculation_formula": "StdDev(nifty50_ret_1d, 20) * sqrt(252)",
+      "required_source_fields": [
+        "Close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "20 sessions",
+      "data_type": "float64",
+      "unit": "annualized decimal",
+      "missingness_policy": "Requires 20 sessions",
+      "security_coverage": "Market-wide",
+      "historical_availability": "2007-09-17 to 2026-11-20",
+      "feature_family": "F1",
+      "known_limitations": "Macro market volatility baseline"
+    },
+    "india_vix_level": {
+      "name": "india_vix_level",
+      "economic_interpretation": "India VIX implied volatility level (expected 30d annualized volatility)",
+      "source_dataset": "NSE Indices (INDIA VIX)",
+      "calculation_formula": "IndiaVIXClose_t",
+      "required_source_fields": [
+        "Close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "1 session",
+      "data_type": "float64",
+      "unit": "index level",
+      "missingness_policy": "Forward filled with historical median (15.0) if missing",
+      "security_coverage": "Market-wide",
+      "historical_availability": "2007-09-17 to 2026-11-20",
+      "feature_family": "F1",
+      "known_limitations": "Option-implied index volatility"
+    },
+    "india_vix_change_5d": {
+      "name": "india_vix_change_5d",
+      "economic_interpretation": "5-day change in India VIX fear index",
+      "source_dataset": "NSE Indices (INDIA VIX)",
+      "calculation_formula": "IndiaVIXClose_t - IndiaVIXClose_{t-5}",
+      "required_source_fields": [
+        "Close"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "5 sessions",
+      "data_type": "float64",
+      "unit": "index points",
+      "missingness_policy": "Zero if VIX missing",
+      "security_coverage": "Market-wide",
+      "historical_availability": "2007-09-17 to 2026-11-20",
+      "feature_family": "F1",
+      "known_limitations": "Measures shifts in aggregate market risk aversion"
+    },
+    "market_breadth_pct_up": {
+      "name": "market_breadth_pct_up",
+      "economic_interpretation": "Proportion of active trading equities advancing on date t",
+      "source_dataset": "Cross-sectional Panel",
+      "calculation_formula": "Mean(ret_1d > 0.0) across all observable stocks on date t",
+      "required_source_fields": [
+        "ret_1d"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "1 session",
+      "data_type": "float64",
+      "unit": "ratio 0-1",
+      "missingness_policy": "Evaluated on all active equities",
+      "security_coverage": "Market-wide",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F1",
+      "known_limitations": "Measures market advance-decline ratio and underlying participation breadth"
+    },
+    "excess_ret_market_1d": {
+      "name": "excess_ret_market_1d",
+      "economic_interpretation": "Stock 1-day return minus NIFTY 50 return (alpha component)",
+      "source_dataset": "Engine Derived",
+      "calculation_formula": "ret_1d - nifty50_ret_1d",
+      "required_source_fields": [
+        "ret_1d",
+        "nifty50_ret_1d"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "1 session",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "Requires stock and market return",
+      "security_coverage": "2,528 NSE equities",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F2",
+      "known_limitations": "Idiosyncratic daily performance vs broad market"
+    },
+    "excess_ret_market_21d": {
+      "name": "excess_ret_market_21d",
+      "economic_interpretation": "Stock 21-day return minus NIFTY 50 21-day return",
+      "source_dataset": "Engine Derived",
+      "calculation_formula": "ret_21d - nifty50_ret_21d",
+      "required_source_fields": [
+        "ret_21d",
+        "nifty50_ret_21d"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "21 sessions",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "Requires stock and market 21d return",
+      "security_coverage": "2,528 NSE equities",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F2",
+      "known_limitations": "Monthly market-relative momentum"
+    },
+    "cross_sec_volume_pctile": {
+      "name": "cross_sec_volume_pctile",
+      "economic_interpretation": "Percentile rank of daily trading volume across all equities on date t",
+      "source_dataset": "Cross-sectional Panel",
+      "calculation_formula": "Rank(Volume_i,t) / N_t",
+      "required_source_fields": [
+        "volume"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "1 session",
+      "data_type": "float64",
+      "unit": "percentile 0-1",
+      "missingness_policy": "Uniformly distributed between 0 and 1",
+      "security_coverage": "2,528 NSE equities",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F2",
+      "known_limitations": "Calculated strictly across observable equities on date t (no survivorship bias)"
+    },
+    "cross_sec_turnover_pctile": {
+      "name": "cross_sec_turnover_pctile",
+      "economic_interpretation": "Percentile rank of daily turnover in INR across all equities on date t",
+      "source_dataset": "Cross-sectional Panel",
+      "calculation_formula": "Rank(Turnover_i,t) / N_t",
+      "required_source_fields": [
+        "turnover"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "1 session",
+      "data_type": "float64",
+      "unit": "percentile 0-1",
+      "missingness_policy": "Uniformly distributed between 0 and 1",
+      "security_coverage": "2,528 NSE equities",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F2",
+      "known_limitations": "Point-in-time liquidity ranking across universe"
+    },
+    "cross_sec_vol_pctile": {
+      "name": "cross_sec_vol_pctile",
+      "economic_interpretation": "Percentile rank of 20-day realized volatility across all equities on date t",
+      "source_dataset": "Cross-sectional Panel",
+      "calculation_formula": "Rank(vol_20d_i,t) / N_t",
+      "required_source_fields": [
+        "vol_20d"
+      ],
+      "publication_availability_rule": "Observable at 15:30 IST on trade date t",
+      "lookback_window": "20 sessions",
+      "data_type": "float64",
+      "unit": "percentile 0-1",
+      "missingness_policy": "Uniformly distributed between 0 and 1",
+      "security_coverage": "2,528 NSE equities",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F2",
+      "known_limitations": "Cross-sectional risk rank"
+    },
+    "rev_growth_yoy": {
+      "name": "rev_growth_yoy",
+      "economic_interpretation": "Annual year-on-year revenue growth from operations",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "(Rev_T / Rev_{T-1}) - 1.0",
+      "required_source_fields": [
+        "revenue_from_operations"
+      ],
+      "publication_availability_rule": "Enforces conservative July 31 publication lag (120 days post March 31)",
+      "lookback_window": "1 fiscal year",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "NaN when annual statement missing; has_valid_financials flag provided",
+      "security_coverage": "1,056 NSE equities (66.45% of panel rows)",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "Updated annually; step-function persistence until next July 31"
+    },
+    "rev_acceleration": {
+      "name": "rev_acceleration",
+      "economic_interpretation": "YoY revenue growth acceleration (change in growth rate)",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "g_{rev,T} - g_{rev,T-1}",
+      "required_source_fields": [
+        "revenue_from_operations"
+      ],
+      "publication_availability_rule": "July 31 lag",
+      "lookback_window": "2 fiscal years",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "Requires 2 consecutive trailing annual growth rates",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "Second-derivative revenue signal"
+    },
+    "pat_growth_yoy": {
+      "name": "pat_growth_yoy",
+      "economic_interpretation": "Annual year-on-year net profit growth (PAT)",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "(PAT_T / PAT_{T-1}) - 1.0",
+      "required_source_fields": [
+        "profit_for_year"
+      ],
+      "publication_availability_rule": "July 31 lag",
+      "lookback_window": "1 fiscal year",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "Requires positive base PAT",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "High volatility in turnaround firms"
+    },
+    "eps_growth_yoy": {
+      "name": "eps_growth_yoy",
+      "economic_interpretation": "Annual year-on-year basic earnings per share growth",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "(EPS_T / EPS_{T-1}) - 1.0",
+      "required_source_fields": [
+        "eps_basic"
+      ],
+      "publication_availability_rule": "July 31 lag",
+      "lookback_window": "1 fiscal year",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "Requires positive base EPS",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "Subject to share dilution"
+    },
+    "ebit_growth_yoy": {
+      "name": "ebit_growth_yoy",
+      "economic_interpretation": "Annual year-on-year operating profit (PBT) growth",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "(PBT_T / PBT_{T-1}) - 1.0",
+      "required_source_fields": [
+        "profit_before_tax"
+      ],
+      "publication_availability_rule": "July 31 lag",
+      "lookback_window": "1 fiscal year",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "Requires positive base PBT",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "Pre-tax operational earnings growth"
+    },
+    "operating_margin": {
+      "name": "operating_margin",
+      "economic_interpretation": "Profit before tax divided by revenue from operations",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "PBT_T / Rev_T",
+      "required_source_fields": [
+        "profit_before_tax",
+        "revenue_from_operations"
+      ],
+      "publication_availability_rule": "July 31 lag",
+      "lookback_window": "1 fiscal year",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "Requires Rev > 0",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "Industry-dependent baseline"
+    },
+    "net_profit_margin": {
+      "name": "net_profit_margin",
+      "economic_interpretation": "Net profit after tax divided by revenue from operations",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "PAT_T / Rev_T",
+      "required_source_fields": [
+        "profit_for_year",
+        "revenue_from_operations"
+      ],
+      "publication_availability_rule": "July 31 lag",
+      "lookback_window": "1 fiscal year",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "Requires Rev > 0",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "Reflects bottom-line operational efficiency"
+    },
+    "gross_margin": {
+      "name": "gross_margin",
+      "economic_interpretation": "(Revenue minus Cost of Materials) divided by Revenue",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "(Rev_T - Materials_T) / Rev_T",
+      "required_source_fields": [
+        "revenue_from_operations",
+        "cost_of_materials"
+      ],
+      "publication_availability_rule": "July 31 lag",
+      "lookback_window": "1 fiscal year",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "NaN for financial/service firms without material costs",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "Manufacturing / industrial firms specific"
+    },
+    "margin_expansion_yoy": {
+      "name": "margin_expansion_yoy",
+      "economic_interpretation": "Operating margin expansion or contraction YoY",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "OpMargin_T - OpMargin_{T-1}",
+      "required_source_fields": [
+        "operating_margin"
+      ],
+      "publication_availability_rule": "July 31 lag",
+      "lookback_window": "1 fiscal year",
+      "data_type": "float64",
+      "unit": "ratio diff",
+      "missingness_policy": "Requires 2 consecutive annual margins",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "Pricing power indicator"
+    },
+    "debt_to_equity": {
+      "name": "debt_to_equity",
+      "economic_interpretation": "Total borrowings divided by total shareholders equity",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "(BorrowingsLong_T + BorrowingsShort_T) / Equity_T",
+      "required_source_fields": [
+        "non_current_borrowings",
+        "current_borrowings",
+        "total_equity"
+      ],
+      "publication_availability_rule": "July 31 lag",
+      "lookback_window": "1 fiscal year",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "Clipped at 50.0",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "Financial leverage measure"
+    },
+    "interest_coverage": {
+      "name": "interest_coverage",
+      "economic_interpretation": "Profit before tax divided by finance costs",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "PBT_T / FinanceCosts_T",
+      "required_source_fields": [
+        "profit_before_tax",
+        "finance_costs"
+      ],
+      "publication_availability_rule": "July 31 lag",
+      "lookback_window": "1 fiscal year",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "Clipped at 100.0",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "Solvency indicator"
+    },
+    "current_ratio": {
+      "name": "current_ratio",
+      "economic_interpretation": "Total current assets divided by total current liabilities",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "CurrentAssets_T / CurrentLiabilities_T",
+      "required_source_fields": [
+        "total_current_assets",
+        "total_current_liabilities"
+      ],
+      "publication_availability_rule": "July 31 lag",
+      "lookback_window": "1 fiscal year",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "Clipped at 20.0",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "Short-term liquidity indicator"
+    },
+    "debt_growth_yoy": {
+      "name": "debt_growth_yoy",
+      "economic_interpretation": "Annual total debt growth YoY",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "(Debt_T / Debt_{T-1}) - 1.0",
+      "required_source_fields": [
+        "total_debt"
+      ],
+      "publication_availability_rule": "July 31 lag",
+      "lookback_window": "1 fiscal year",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "Requires debt in base year",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "Deleveraging / re-leveraging pace"
+    },
+    "free_cash_flow": {
+      "name": "free_cash_flow",
+      "economic_interpretation": "Operating cash flow minus capital expenditures",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "CFO_T - |Capex_T|",
+      "required_source_fields": [
+        "cfo",
+        "capex"
+      ],
+      "publication_availability_rule": "July 31 lag",
+      "lookback_window": "1 fiscal year",
+      "data_type": "float64",
+      "unit": "INR crore",
+      "missingness_policy": "NaN when cash flow statement missing",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "True free cash generation"
+    },
+    "capex_intensity": {
+      "name": "capex_intensity",
+      "economic_interpretation": "Capital expenditures divided by revenue from operations",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "|Capex_T| / Rev_T",
+      "required_source_fields": [
+        "capex",
+        "revenue_from_operations"
+      ],
+      "publication_availability_rule": "July 31 lag",
+      "lookback_window": "1 fiscal year",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "Requires Rev > 0",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "Reinvestment intensity"
+    },
+    "cash_conversion": {
+      "name": "cash_conversion",
+      "economic_interpretation": "Operating cash flow divided by net profit after tax",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "CFO_T / PAT_T",
+      "required_source_fields": [
+        "cfo",
+        "profit_for_year"
+      ],
+      "publication_availability_rule": "July 31 lag",
+      "lookback_window": "1 fiscal year",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "Requires PAT > 0",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "Earnings-to-cash conversion quality"
+    },
+    "profit_to_fcf_divergence": {
+      "name": "profit_to_fcf_divergence",
+      "economic_interpretation": "Net profit after tax minus free cash flow (accrual build-up proxy)",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "PAT_T - FCF_T",
+      "required_source_fields": [
+        "profit_for_year",
+        "free_cash_flow"
+      ],
+      "publication_availability_rule": "July 31 lag",
+      "lookback_window": "1 fiscal year",
+      "data_type": "float64",
+      "unit": "INR crore",
+      "missingness_policy": "Requires both PAT and FCF",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "High positive divergence indicates aggressive accounting accruals"
+    },
+    "earnings_quality": {
+      "name": "earnings_quality",
+      "economic_interpretation": "Operating cash flow divided by revenue from operations",
+      "source_dataset": "Phddata Annual Statements",
+      "calculation_formula": "CFO_T / Rev_T",
+      "required_source_fields": [
+        "cfo",
+        "revenue_from_operations"
+      ],
+      "publication_availability_rule": "July 31 lag",
+      "lookback_window": "1 fiscal year",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "Requires Rev > 0",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2009 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "Cash margin quality"
+    },
+    "pe_ratio": {
+      "name": "pe_ratio",
+      "economic_interpretation": "Point-in-time price to trailing published EPS ratio",
+      "source_dataset": "Engine Derived (Bhavcopy & Phddata)",
+      "calculation_formula": "P_{t} / EPS_{basic,T}",
+      "required_source_fields": [
+        "close",
+        "eps_basic"
+      ],
+      "publication_availability_rule": "Dynamic as-of July 31 trailing statement",
+      "lookback_window": "Daily price / Annual EPS",
+      "data_type": "float64",
+      "unit": "multiple",
+      "missingness_policy": "Clipped between 1.0 and 200.0; NaN for loss-making firms",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2010 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "Trailing valuation multiple"
+    },
+    "earnings_yield": {
+      "name": "earnings_yield",
+      "economic_interpretation": "Trailing published EPS divided by daily closing price",
+      "source_dataset": "Engine Derived (Bhavcopy & Phddata)",
+      "calculation_formula": "EPS_{basic,T} / P_{t}",
+      "required_source_fields": [
+        "close",
+        "eps_basic"
+      ],
+      "publication_availability_rule": "Dynamic as-of July 31 trailing statement",
+      "lookback_window": "Daily price / Annual EPS",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "Clipped between -0.50 and +0.50",
+      "security_coverage": "1,056 NSE equities",
+      "historical_availability": "2010 to 2026",
+      "feature_family": "F3",
+      "known_limitations": "Inverse PE ratio, continuous across positive and negative earnings"
+    },
+    "q_rev_growth_qoq": {
+      "name": "q_rev_growth_qoq",
+      "economic_interpretation": "Sequential quarter-on-quarter revenue growth",
+      "source_dataset": "Quarterly Sample",
+      "calculation_formula": "(Rev_{Q} / Rev_{Q-1}) - 1.0",
+      "required_source_fields": [
+        "revenue_inr"
+      ],
+      "publication_availability_rule": "Observable strictly on or after report_date",
+      "lookback_window": "1 quarter",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "NaN when quarterly filing absent",
+      "security_coverage": "151 direct NSE equities",
+      "historical_availability": "2018 to 2026",
+      "feature_family": "F4",
+      "known_limitations": "Subject to quarter-to-quarter seasonality"
+    },
+    "q_rev_growth_yoy": {
+      "name": "q_rev_growth_yoy",
+      "economic_interpretation": "Quarterly year-on-year revenue growth",
+      "source_dataset": "Quarterly Sample",
+      "calculation_formula": "(Rev_{Q} / Rev_{Q-4}) - 1.0",
+      "required_source_fields": [
+        "revenue_inr"
+      ],
+      "publication_availability_rule": "Observable on or after report_date",
+      "lookback_window": "4 quarters",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "Requires Rev > 0 in Q-4",
+      "security_coverage": "151 direct NSE equities",
+      "historical_availability": "2018 to 2026",
+      "feature_family": "F4",
+      "known_limitations": "Seasonality-neutral revenue expansion"
+    },
+    "q_pat_growth_qoq": {
+      "name": "q_pat_growth_qoq",
+      "economic_interpretation": "Sequential quarter-on-quarter net profit growth",
+      "source_dataset": "Quarterly Sample",
+      "calculation_formula": "(PAT_{Q} / PAT_{Q-1}) - 1.0",
+      "required_source_fields": [
+        "net_profit_inr"
+      ],
+      "publication_availability_rule": "Observable on or after report_date",
+      "lookback_window": "1 quarter",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "Requires PAT > 0 in Q-1",
+      "security_coverage": "151 direct NSE equities",
+      "historical_availability": "2018 to 2026",
+      "feature_family": "F4",
+      "known_limitations": "High earnings volatility"
+    },
+    "q_pat_growth_yoy": {
+      "name": "q_pat_growth_yoy",
+      "economic_interpretation": "Quarterly year-on-year net profit growth",
+      "source_dataset": "Quarterly Sample",
+      "calculation_formula": "(PAT_{Q} / PAT_{Q-4}) - 1.0",
+      "required_source_fields": [
+        "net_profit_inr"
+      ],
+      "publication_availability_rule": "Observable on or after report_date",
+      "lookback_window": "4 quarters",
+      "data_type": "float64",
+      "unit": "decimal",
+      "missingness_policy": "Requires PAT > 0 in Q-4",
+      "security_coverage": "151 direct NSE equities",
+      "historical_availability": "2018 to 2026",
+      "feature_family": "F4",
+      "known_limitations": "Seasonality-neutral quarterly earnings growth"
+    },
+    "q_ebitda_margin": {
+      "name": "q_ebitda_margin",
+      "economic_interpretation": "Quarterly EBITDA divided by revenue",
+      "source_dataset": "Quarterly Sample",
+      "calculation_formula": "EBITDA_{Q} / Rev_{Q}",
+      "required_source_fields": [
+        "ebitda_inr",
+        "revenue_inr"
+      ],
+      "publication_availability_rule": "Observable on or after report_date",
+      "lookback_window": "1 quarter",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "Requires Rev > 0",
+      "security_coverage": "151 direct NSE equities",
+      "historical_availability": "2018 to 2026",
+      "feature_family": "F4",
+      "known_limitations": "Quarterly operational cash profitability"
+    },
+    "q_net_margin": {
+      "name": "q_net_margin",
+      "economic_interpretation": "Quarterly net profit divided by revenue",
+      "source_dataset": "Quarterly Sample",
+      "calculation_formula": "PAT_{Q} / Rev_{Q}",
+      "required_source_fields": [
+        "net_profit_inr",
+        "revenue_inr"
+      ],
+      "publication_availability_rule": "Observable on or after report_date",
+      "lookback_window": "1 quarter",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "Requires Rev > 0",
+      "security_coverage": "151 direct NSE equities",
+      "historical_availability": "2018 to 2026",
+      "feature_family": "F4",
+      "known_limitations": "Quarterly bottom-line margin"
+    },
+    "earnings_surprise_prior_year_proxy": {
+      "name": "earnings_surprise_prior_year_proxy",
+      "economic_interpretation": "Earnings surprise proxy: Actual PAT minus prior-year comparable quarter PAT",
+      "source_dataset": "Quarterly Sample",
+      "calculation_formula": "(PAT_{Q} - PAT_{Q-4}) / (|PAT_{Q-4}| + eps)",
+      "required_source_fields": [
+        "net_profit_inr"
+      ],
+      "publication_availability_rule": "Observable on or after report_date",
+      "lookback_window": "4 quarters",
+      "data_type": "float64",
+      "unit": "normalized delta",
+      "missingness_policy": "Clipped between -5.0 and +5.0",
+      "security_coverage": "151 direct NSE equities",
+      "historical_availability": "2018 to 2026",
+      "feature_family": "F4",
+      "known_limitations": "Historical proxy, NOT analyst consensus; flagged is_analyst_consensus = False"
+    },
+    "revenue_surprise_prior_year_proxy": {
+      "name": "revenue_surprise_prior_year_proxy",
+      "economic_interpretation": "Revenue surprise proxy: Actual revenue minus prior-year comparable quarter revenue",
+      "source_dataset": "Quarterly Sample",
+      "calculation_formula": "(Rev_{Q} - Rev_{Q-4}) / (|Rev_{Q-4}| + eps)",
+      "required_source_fields": [
+        "revenue_inr"
+      ],
+      "publication_availability_rule": "Observable on or after report_date",
+      "lookback_window": "4 quarters",
+      "data_type": "float64",
+      "unit": "normalized delta",
+      "missingness_policy": "Clipped between -2.0 and +2.0",
+      "security_coverage": "151 direct NSE equities",
+      "historical_availability": "2018 to 2026",
+      "feature_family": "F4",
+      "known_limitations": "Historical proxy, NOT analyst consensus; flagged is_analyst_consensus = False"
+    },
+    "earnings_surprise_sequential_proxy": {
+      "name": "earnings_surprise_sequential_proxy",
+      "economic_interpretation": "Sequential earnings surprise proxy: Actual PAT minus prior quarter PAT",
+      "source_dataset": "Quarterly Sample",
+      "calculation_formula": "(PAT_{Q} - PAT_{Q-1}) / (|PAT_{Q-1}| + eps)",
+      "required_source_fields": [
+        "net_profit_inr"
+      ],
+      "publication_availability_rule": "Observable on or after report_date",
+      "lookback_window": "1 quarter",
+      "data_type": "float64",
+      "unit": "normalized delta",
+      "missingness_policy": "Clipped between -5.0 and +5.0",
+      "security_coverage": "151 direct NSE equities",
+      "historical_availability": "2018 to 2026",
+      "feature_family": "F4",
+      "known_limitations": "Historical proxy, NOT analyst consensus; flagged is_analyst_consensus = False"
+    },
+    "announcement_velocity_30d": {
+      "name": "announcement_velocity_30d",
+      "economic_interpretation": "Count of official company announcements published in trailing 30 sessions",
+      "source_dataset": "NSE Corporate Announcements Feed",
+      "calculation_formula": "Count(announcements in [t-30, t])",
+      "required_source_fields": [
+        "broadcast_ts",
+        "symbol"
+      ],
+      "publication_availability_rule": "Microsecond broadcast timestamp (pre-15:30 IST)",
+      "lookback_window": "30 sessions",
+      "data_type": "float64",
+      "unit": "count",
+      "missingness_policy": "Zero if no filings",
+      "security_coverage": "2,528 NSE equities",
+      "historical_availability": "2024-02-01 to 2026-11-24",
+      "feature_family": "F5",
+      "known_limitations": "Only available for 2024\u20132026 diagnostic evaluation partition"
+    },
+    "days_since_last_announcement": {
+      "name": "days_since_last_announcement",
+      "economic_interpretation": "Trading sessions elapsed since the most recent corporate announcement",
+      "source_dataset": "NSE Corporate Announcements Feed",
+      "calculation_formula": "t - Date(last_announcement)",
+      "required_source_fields": [
+        "broadcast_ts",
+        "symbol"
+      ],
+      "publication_availability_rule": "Microsecond broadcast timestamp",
+      "lookback_window": "Trailing continuous",
+      "data_type": "float64",
+      "unit": "days",
+      "missingness_policy": "Clipped at 180 days",
+      "security_coverage": "2,528 NSE equities",
+      "historical_availability": "2024-02-01 to 2026-11-24",
+      "feature_family": "F5",
+      "known_limitations": "Measures corporate disclosure recency"
+    },
+    "has_recent_announcement_7d": {
+      "name": "has_recent_announcement_7d",
+      "economic_interpretation": "Binary flag indicating official company filing published within trailing 7 sessions",
+      "source_dataset": "NSE Corporate Announcements Feed",
+      "calculation_formula": "days_since_last_announcement <= 7",
+      "required_source_fields": [
+        "broadcast_ts",
+        "symbol"
+      ],
+      "publication_availability_rule": "Microsecond broadcast timestamp",
+      "lookback_window": "7 sessions",
+      "data_type": "int8",
+      "unit": "boolean",
+      "missingness_policy": "False if no announcement",
+      "security_coverage": "2,528 NSE equities",
+      "historical_availability": "2024-02-01 to 2026-11-24",
+      "feature_family": "F5",
+      "known_limitations": "High-frequency information burst flag"
+    },
+    "promoter_pct": {
+      "name": "promoter_pct",
+      "economic_interpretation": "Promoter and promoter group shareholding percentage",
+      "source_dataset": "BSE XBRL Shareholding Patterns Archive",
+      "calculation_formula": "PromoterShares / TotalShares * 100.0",
+      "required_source_fields": [
+        "promoter_pct"
+      ],
+      "publication_availability_rule": "Point-in-time XBRL upload timestamp",
+      "lookback_window": "Trailing quarter",
+      "data_type": "float64",
+      "unit": "percentage",
+      "missingness_policy": "NaN when filing missing; has_valid_ownership flag provided",
+      "security_coverage": "1,335 NSE equities (81.55% of panel rows)",
+      "historical_availability": "2017 to 2026",
+      "feature_family": "F6",
+      "known_limitations": "Quarterly step function persistence until next filing"
+    },
+    "promoter_change_qoq": {
+      "name": "promoter_change_qoq",
+      "economic_interpretation": "Sequential QoQ change in promoter shareholding percentage",
+      "source_dataset": "BSE XBRL Shareholding Patterns Archive",
+      "calculation_formula": "PromoterPct_{Q} - PromoterPct_{Q-1}",
+      "required_source_fields": [
+        "promoter_pct"
+      ],
+      "publication_availability_rule": "XBRL upload timestamp",
+      "lookback_window": "1 quarter",
+      "data_type": "float64",
+      "unit": "pct diff",
+      "missingness_policy": "Requires 2 consecutive quarterly filings",
+      "security_coverage": "1,335 NSE equities",
+      "historical_availability": "2017 to 2026",
+      "feature_family": "F6",
+      "known_limitations": "Promoter buying / selling signal"
+    },
+    "promoter_change_yoy": {
+      "name": "promoter_change_yoy",
+      "economic_interpretation": "4-quarter YoY change in promoter shareholding percentage",
+      "source_dataset": "BSE XBRL Shareholding Patterns Archive",
+      "calculation_formula": "PromoterPct_{Q} - PromoterPct_{Q-4}",
+      "required_source_fields": [
+        "promoter_pct"
+      ],
+      "publication_availability_rule": "XBRL upload timestamp",
+      "lookback_window": "4 quarters",
+      "data_type": "float64",
+      "unit": "pct diff",
+      "missingness_policy": "Requires 4 trailing quarters",
+      "security_coverage": "1,335 NSE equities",
+      "historical_availability": "2017 to 2026",
+      "feature_family": "F6",
+      "known_limitations": "Annual promoter accumulation / distribution trend"
+    },
+    "fii_pct": {
+      "name": "fii_pct",
+      "economic_interpretation": "Foreign Institutional Investor (FII/FPI) shareholding percentage",
+      "source_dataset": "BSE XBRL Shareholding Patterns Archive",
+      "calculation_formula": "FIIShares / TotalShares * 100.0",
+      "required_source_fields": [
+        "fii_pct"
+      ],
+      "publication_availability_rule": "XBRL upload timestamp",
+      "lookback_window": "Trailing quarter",
+      "data_type": "float64",
+      "unit": "percentage",
+      "missingness_policy": "Defaults to 0.0 if explicitly zero",
+      "security_coverage": "1,335 NSE equities",
+      "historical_availability": "2017 to 2026",
+      "feature_family": "F6",
+      "known_limitations": "Measures foreign capital allocation"
+    },
+    "fii_change_qoq": {
+      "name": "fii_change_qoq",
+      "economic_interpretation": "Sequential QoQ change in FII holding percentage",
+      "source_dataset": "BSE XBRL Shareholding Patterns Archive",
+      "calculation_formula": "FIIPct_{Q} - FIIPct_{Q-1}",
+      "required_source_fields": [
+        "fii_pct"
+      ],
+      "publication_availability_rule": "XBRL upload timestamp",
+      "lookback_window": "1 quarter",
+      "data_type": "float64",
+      "unit": "pct diff",
+      "missingness_policy": "Requires 2 consecutive quarterly filings",
+      "security_coverage": "1,335 NSE equities",
+      "historical_availability": "2017 to 2026",
+      "feature_family": "F6",
+      "known_limitations": "Foreign institutional flow momentum"
+    },
+    "dii_pct": {
+      "name": "dii_pct",
+      "economic_interpretation": "Domestic Institutional Investor (Mutual Funds, Insurance, Banks) holding percentage",
+      "source_dataset": "BSE XBRL Shareholding Patterns Archive",
+      "calculation_formula": "DIIShares / TotalShares * 100.0",
+      "required_source_fields": [
+        "dii_pct"
+      ],
+      "publication_availability_rule": "XBRL upload timestamp",
+      "lookback_window": "Trailing quarter",
+      "data_type": "float64",
+      "unit": "percentage",
+      "missingness_policy": "Defaults to 0.0 if explicitly zero",
+      "security_coverage": "1,335 NSE equities",
+      "historical_availability": "2017 to 2026",
+      "feature_family": "F6",
+      "known_limitations": "Measures domestic institutional capital allocation"
+    },
+    "dii_change_qoq": {
+      "name": "dii_change_qoq",
+      "economic_interpretation": "Sequential QoQ change in DII holding percentage",
+      "source_dataset": "BSE XBRL Shareholding Patterns Archive",
+      "calculation_formula": "DIIPct_{Q} - DIIPct_{Q-1}",
+      "required_source_fields": [
+        "dii_pct"
+      ],
+      "publication_availability_rule": "XBRL upload timestamp",
+      "lookback_window": "1 quarter",
+      "data_type": "float64",
+      "unit": "pct diff",
+      "missingness_policy": "Requires 2 consecutive quarterly filings",
+      "security_coverage": "1,335 NSE equities",
+      "historical_availability": "2017 to 2026",
+      "feature_family": "F6",
+      "known_limitations": "Domestic mutual fund flow momentum"
+    },
+    "institutional_pct": {
+      "name": "institutional_pct",
+      "economic_interpretation": "Combined institutional shareholding percentage (FII + DII)",
+      "source_dataset": "BSE XBRL Shareholding Patterns Archive",
+      "calculation_formula": "fii_pct + dii_pct",
+      "required_source_fields": [
+        "fii_pct",
+        "dii_pct"
+      ],
+      "publication_availability_rule": "XBRL upload timestamp",
+      "lookback_window": "Trailing quarter",
+      "data_type": "float64",
+      "unit": "percentage",
+      "missingness_policy": "Defaults to 0.0 if both zero",
+      "security_coverage": "1,335 NSE equities",
+      "historical_availability": "2017 to 2026",
+      "feature_family": "F6",
+      "known_limitations": "Total institutional sponsorship depth"
+    },
+    "institutional_change_qoq": {
+      "name": "institutional_change_qoq",
+      "economic_interpretation": "Sequential QoQ change in combined institutional holding percentage",
+      "source_dataset": "BSE XBRL Shareholding Patterns Archive",
+      "calculation_formula": "InstPct_{Q} - InstPct_{Q-1}",
+      "required_source_fields": [
+        "institutional_pct"
+      ],
+      "publication_availability_rule": "XBRL upload timestamp",
+      "lookback_window": "1 quarter",
+      "data_type": "float64",
+      "unit": "pct diff",
+      "missingness_policy": "Requires 2 consecutive quarterly filings",
+      "security_coverage": "1,335 NSE equities",
+      "historical_availability": "2017 to 2026",
+      "feature_family": "F6",
+      "known_limitations": "Total institutional net inflow / outflow"
+    },
+    "public_pct": {
+      "name": "public_pct",
+      "economic_interpretation": "Non-promoter, non-institutional retail and public holding percentage",
+      "source_dataset": "BSE XBRL Shareholding Patterns Archive",
+      "calculation_formula": "PublicShares / TotalShares * 100.0",
+      "required_source_fields": [
+        "public_pct"
+      ],
+      "publication_availability_rule": "XBRL upload timestamp",
+      "lookback_window": "Trailing quarter",
+      "data_type": "float64",
+      "unit": "percentage",
+      "missingness_policy": "Required field",
+      "security_coverage": "1,335 NSE equities",
+      "historical_availability": "2017 to 2026",
+      "feature_family": "F6",
+      "known_limitations": "Retail ownership float"
+    },
+    "public_change_qoq": {
+      "name": "public_change_qoq",
+      "economic_interpretation": "Sequential QoQ change in public holding percentage",
+      "source_dataset": "BSE XBRL Shareholding Patterns Archive",
+      "calculation_formula": "PublicPct_{Q} - PublicPct_{Q-1}",
+      "required_source_fields": [
+        "public_pct"
+      ],
+      "publication_availability_rule": "XBRL upload timestamp",
+      "lookback_window": "1 quarter",
+      "data_type": "float64",
+      "unit": "pct diff",
+      "missingness_policy": "Requires 2 consecutive quarterly filings",
+      "security_coverage": "1,335 NSE equities",
+      "historical_availability": "2017 to 2026",
+      "feature_family": "F6",
+      "known_limitations": "Retail accumulation / distribution signal"
+    },
+    "smart_money_delta": {
+      "name": "smart_money_delta",
+      "economic_interpretation": "Institutional flow minus retail flow delta: (dFII + dDII) - dPublic",
+      "source_dataset": "Engine Derived",
+      "calculation_formula": "(dFII + dDII) - dPublic",
+      "required_source_fields": [
+        "fii_change_qoq",
+        "dii_change_qoq",
+        "public_change_qoq"
+      ],
+      "publication_availability_rule": "XBRL upload timestamp",
+      "lookback_window": "1 quarter",
+      "data_type": "float64",
+      "unit": "pct diff",
+      "missingness_policy": "Requires all 3 components",
+      "security_coverage": "1,335 NSE equities",
+      "historical_availability": "2017 to 2026",
+      "feature_family": "F6",
+      "known_limitations": "Proxy for smart money accumulation vs retail distribution"
+    },
+    "delivery_pct": {
+      "name": "delivery_pct",
+      "economic_interpretation": "Percentage of daily trading volume settled via actual physical delivery",
+      "source_dataset": "NSE Daily Delivery Archives",
+      "calculation_formula": "DeliveryQty_t / Volume_t * 100.0",
+      "required_source_fields": [
+        "delivery_qty",
+        "volume"
+      ],
+      "publication_availability_rule": "Published daily post-market (~18:30 IST); observable at session t+1",
+      "lookback_window": "1 session",
+      "data_type": "float64",
+      "unit": "percentage",
+      "missingness_policy": "NaN when delivery file missing; 97.41% complete",
+      "security_coverage": "1,815 NSE equities (98.64% of panel)",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F6",
+      "known_limitations": "Varies by circuit filter; not confirmed institutional buying"
+    },
+    "abnormal_delivery_ratio": {
+      "name": "abnormal_delivery_ratio",
+      "economic_interpretation": "Daily delivery quantity divided by trailing 20-day delivery moving average",
+      "source_dataset": "NSE Daily Delivery Archives",
+      "calculation_formula": "DeliveryQty_t / SMA_{20}(DeliveryQty)",
+      "required_source_fields": [
+        "delivery_qty"
+      ],
+      "publication_availability_rule": "Post-market 18:30 IST",
+      "lookback_window": "20 sessions",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "Requires 5 delivery sessions in trailing 20d",
+      "security_coverage": "1,815 NSE equities",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F6",
+      "known_limitations": "Flow surge indicator"
+    },
+    "delivery_pct_spread": {
+      "name": "delivery_pct_spread",
+      "economic_interpretation": "Delivery percentage minus 20-day delivery percentage moving average",
+      "source_dataset": "NSE Daily Delivery Archives",
+      "calculation_formula": "delivery_pct_t - SMA_{20}(delivery_pct)",
+      "required_source_fields": [
+        "delivery_pct"
+      ],
+      "publication_availability_rule": "Post-market 18:30 IST",
+      "lookback_window": "20 sessions",
+      "data_type": "float64",
+      "unit": "pct diff",
+      "missingness_policy": "Requires trailing delivery MA",
+      "security_coverage": "1,815 NSE equities",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F6",
+      "known_limitations": "Delivery intensity expansion"
+    },
+    "turnover_ratio_20d": {
+      "name": "turnover_ratio_20d",
+      "economic_interpretation": "Daily rupee turnover divided by 20-day turnover moving average",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "Turnover_t / SMA_{20}(Turnover)",
+      "required_source_fields": [
+        "turnover"
+      ],
+      "publication_availability_rule": "EOD 15:30 IST",
+      "lookback_window": "20 sessions",
+      "data_type": "float64",
+      "unit": "ratio",
+      "missingness_policy": "Requires SMA > 0",
+      "security_coverage": "2,528 NSE equities",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F6",
+      "known_limitations": "Relative liquidity liquidity shock proxy"
+    },
+    "amihud_illiquidity": {
+      "name": "amihud_illiquidity",
+      "economic_interpretation": "Amihud price impact illiquidity proxy: |ret_1d| / turnover * 1e8",
+      "source_dataset": "NSE Daily Bhavcopy (Equities)",
+      "calculation_formula": "(|ret_1d| / Turnover_t) * 1e8",
+      "required_source_fields": [
+        "ret_1d",
+        "turnover"
+      ],
+      "publication_availability_rule": "EOD 15:30 IST",
+      "lookback_window": "1 session",
+      "data_type": "float64",
+      "unit": "ratio * 1e8",
+      "missingness_policy": "Requires Turnover > 0",
+      "security_coverage": "2,528 NSE equities",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F6",
+      "known_limitations": "Measures price impact per unit of turnover"
+    },
+    "is_trading_resumption": {
+      "name": "is_trading_resumption",
+      "economic_interpretation": "Binary flag indicating trading resumption after > 10 calendar days gap",
+      "source_dataset": "Calendar Session Gaps",
+      "calculation_formula": "(Date_t - Date_{t-1}) > 10 days",
+      "required_source_fields": [
+        "date"
+      ],
+      "publication_availability_rule": "EOD 15:30 IST",
+      "lookback_window": "Calendar gap",
+      "data_type": "int8",
+      "unit": "boolean",
+      "missingness_policy": "Evaluated on all active equities",
+      "security_coverage": "2,528 NSE equities",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F6",
+      "known_limitations": "Insulates models from gap return volatility spikes"
+    },
+    "is_prolonged_suspension": {
+      "name": "is_prolonged_suspension",
+      "economic_interpretation": "Binary flag indicating severe trading resumption after > 60 calendar days gap",
+      "source_dataset": "Calendar Session Gaps",
+      "calculation_formula": "(Date_t - Date_{t-1}) > 60 days",
+      "required_source_fields": [
+        "date"
+      ],
+      "publication_availability_rule": "EOD 15:30 IST",
+      "lookback_window": "Calendar gap",
+      "data_type": "int8",
+      "unit": "boolean",
+      "missingness_policy": "Evaluated on all active equities",
+      "security_coverage": "2,528 NSE equities",
+      "historical_availability": "2010-01-04 to 2026-11-20",
+      "feature_family": "F6",
+      "known_limitations": "Detects major structural exchange suspensions"
+    }
+  }
+}

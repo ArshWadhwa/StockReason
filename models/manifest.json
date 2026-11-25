@@ -1,0 +1,54 @@
+{
+  "manifest_version": "0.14.0",
+  "repository": "StockReason",
+  "evaluation_horizon": "21 Trading Days",
+  "training_cutoff": "2022-12-31",
+  "calibration_period": "2023-01-01 to 2023-12-31",
+  "diagnostic_period": "2024-01-01 to 2026-11-23",
+  "training_dataset_sha256": "bd717815bd559aff58ed0ac9ef5ad69e4bf06dd3051c709d55036ac866305f24",
+  "models": [
+    {
+      "model_id": "no_change_random_walk",
+      "algorithm": "Statistical Baseline (Zero-Return Random Walk)",
+      "horizon": "21d",
+      "target": "P_{t+21} = P_t",
+      "artifact_file": null,
+      "status": "PRODUCTION_BASELINE_REFERENCE",
+      "mape": 8.7648,
+      "mae_inr": 103.4,
+      "directional_accuracy": 0.15,
+      "rank_ic": 0.0,
+      "limitations": "Non-directional martingale benchmark; does not capture mean reversion or momentum."
+    },
+    {
+      "model_id": "lightgbm_21d",
+      "algorithm": "LightGBM Regressor (L1 Objective)",
+      "horizon": "21d",
+      "target": "Direct Log Return / Nominal Return",
+      "artifact_file": "lightgbm_21d.txt",
+      "sha256": "6401867a2590147c84fe0e3fc288c461042e9a64ff86b7173aca8123ddd1b916",
+      "feature_count": 21,
+      "status": "EXPERIMENTAL_NOT_PROMOTED",
+      "mape": 8.7549,
+      "mae_inr": 103.71,
+      "directional_accuracy": 51.51,
+      "rank_ic": 0.0731,
+      "limitations": "Marginal MAPE improvement (+0.113% relative error reduction); does not reduce INR price error vs No-Change baseline."
+    },
+    {
+      "model_id": "catboost_21d",
+      "algorithm": "CatBoost Regressor (MAE Loss)",
+      "horizon": "21d",
+      "target": "Baseline Plus Residual Return",
+      "artifact_file": "catboost_21d.cbm",
+      "sha256": "af8493fe8d15c4a5bef0d005937b5199e57b71e815db984e9510fe31902e150d",
+      "feature_count": 21,
+      "status": "EXPERIMENTAL_NOT_PROMOTED",
+      "mape": 8.7612,
+      "mae_inr": 103.65,
+      "directional_accuracy": 51.09,
+      "rank_ic": 0.0654,
+      "limitations": "Fails the 2.0% minimum hurdle for nominal price forecasting; strong cross-sectional rank IC."
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "model_frameworks": {
+    "lightgbm": "4.5.0+",
+    "catboost": "1.2.0+",
+    "scipy": "1.14.0+",
+    "numpy": "1.26.0+"
+  },
+  "inference_defaults": {
+    "default_horizon_days": 21,
+    "nominal_price_reconstruction": "P_t * (1.0 + R)",
+    "fail_safe_fallback": "no_change_random_walk",
+    "probability_calibration_gate": "Brier Skill Score > 0.0"
+  }
+}

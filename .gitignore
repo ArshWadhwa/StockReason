@@ -1,71 +1,74 @@
-*.parquet
-data/raw/
-data/processed/
-data/sample/
-data/v0.7/
-.env
-__pycache__/
-*.pyc
-.venv/
-.venv*
-.venv_py311/
-/v07
-.ipynb_checkpoints/
-mlruns/
-.DS_Store
-catboost_info/
+# ==============================================================================
+# Git Ignore Rules — StockReason Repository
+# ==============================================================================
 
-# Temporary & presentation artifacts
-*.pdf
-*.doc
-*.docx
-docs/
+# Python Virtual Environments & Packages
+.venv/
+.venv*/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Data Files & Large Parquet Panels
+data/
+*.parquet
+*.csv
+*.feather
+*.h5
+*.sqlite3
+
+# Model Weights & Cache
+models/hf_staging/
+catboost_info/
+mlruns/
+.cache/
+
+# Local Environment & Secrets
+.env
+.env.local
+.env.*.local
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Pytest & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local-Only Knowledge Graphs & Agent Hooks
 graphify-out/
 .agents/
-artifacts/v0.7/
-reports/v0.7/
-artifacts/v0.7.1/
-reports/v0.7.1/
-data/v0.7.1/
-artifacts/v0.8/
-reports/v0.8/
-data/v0.8/
-artifacts/v0.9/
-reports/v0.9/
-reports/diagnostics/
-data/v0.9/
-artifacts/v0.9.1/
-reports/v0.9.1/
-data/v0.9.1/
-artifacts/v0.9.2/
-reports/v0.9.2/
-data/v0.9.2/
-artifacts/v0.10/
-reports/v0.10/
-data/v0.10/
-artifacts/v0.11/
-reports/v0.11/
-data/v0.11/
-artifacts/v0.12/
-reports/v0.12/
-data/v0.12/
-artifacts/v013a/
-reports/v013a/
-data/v0.13a/
-data/indian-markets/
-data/external/
-indian-markets/
-artifacts/ppt_graphs/
-artifacts/*.png
-artifacts/generate_ppt_graphs.py
-artifacts/models/best_lstm_primary.pth
-artifacts/models/best_lstm_secondary.pth
 
-# Markdown policy: ignore all markdown except README.md
+# Documentation & Report Policy: STRICTLY LOCAL ONLY
+# Absolute prohibition against committing .md files EXCEPT README.md
 *.md
 !README.md
 !**/README.md
-
-# Scratch data files
-data/_*.csv
-data/reports/
+docs/
+reports/
+artifacts/
+*.pdf
+*.doc
+*.docx
