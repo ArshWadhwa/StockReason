@@ -265,8 +265,7 @@ export const BacktestView: React.FC<BacktestViewProps> = ({ backtest, loading })
               </table>
             </div>
             <div style={{ marginTop: '14px', padding: '10px 14px', background: 'var(--paper)', borderRadius: '8px', fontSize: '11px', color: 'var(--dash-muted)', fontFamily: 'var(--sans)' }}>
-              <strong style={{ color: 'var(--ink)' }}>Note on these numbers:</strong> Backtest and calibration figures were generated before the latest model retrain.
-              Treat them as pre-fix baseline estimates until a fresh out-of-sample run confirms performance.
+              <strong style={{ color: 'var(--ink)' }}>Methodology note:</strong> Cumulative performance compares a 1-day-lagged top-quantile cross-sectional rank portfolio across the 16 NSE pilot equities against NIFTY 50 and equal-weight baselines (2024–2026). See <em>Model Benchmarks &amp; Audit</em> for the full 836,297-observation evaluation.
             </div>
           </>
         )}

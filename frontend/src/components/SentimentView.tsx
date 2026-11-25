@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { SentimentData } from '../types';
 
 interface SentimentViewProps {
@@ -7,6 +7,8 @@ interface SentimentViewProps {
 }
 
 export const SentimentView: React.FC<SentimentViewProps> = ({ sentiment, loading }) => {
+  const [toneFilter, setToneFilter] = useState<'all' | 'positive' | 'neutral' | 'negative'>('all');
+
   if (loading || !sentiment) {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -15,6 +17,10 @@ export const SentimentView: React.FC<SentimentViewProps> = ({ sentiment, loading
       </div>
     );
   }
+
+  const filteredHeadlines = toneFilter === 'all'
+    ? sentiment.headlines
+    : sentiment.headlines.filter(h => h.sentiment_label === toneFilter);
 
   const alert = sentiment.divergence_alert;
   const isToneBullish = sentiment.sentiment_label === 'bullish';
@@ -109,6 +115,24 @@ export const SentimentView: React.FC<SentimentViewProps> = ({ sentiment, loading
                 {Math.round((sentiment.bullish_ratio || 0) * 100)}%
               </div>
             </div>
+
+            {sentiment.sentiment_momentum_3d !== undefined && (
+              <div className="ledger-cell" style={{ minWidth: '130px', padding: '12px 18px' }}>
+                <div className="ledger-label">3D / 7D Momentum</div>
+                <div style={{
+                  fontFamily: 'var(--mono)',
+                  fontSize: '15px',
+                  fontWeight: '700',
+                  color: sentiment.sentiment_momentum_3d >= 0 ? 'var(--gain)' : 'var(--loss)',
+                  marginTop: '8px',
+                }}>
+                  {sentiment.sentiment_momentum_3d >= 0 ? '+' : ''}{sentiment.sentiment_momentum_3d.toFixed(2)}
+                  <span style={{ color: 'var(--dash-muted)', fontWeight: '500', fontSize: '12px' }}>
+                    {' '} / {(sentiment.sentiment_momentum_7d ?? 0) >= 0 ? '+' : ''}{(sentiment.sentiment_momentum_7d ?? 0).toFixed(2)}
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
 
@@ -140,7 +164,7 @@ export const SentimentView: React.FC<SentimentViewProps> = ({ sentiment, loading
 
       {/* Headlines Feed */}
       <div className="ledger-panel">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
           <div>
             <div style={{ fontFamily: 'var(--sans)', fontSize: '17px', fontWeight: '700', color: 'var(--ink)' }}>
               Recent news and sentiment
@@ -149,22 +173,45 @@ export const SentimentView: React.FC<SentimentViewProps> = ({ sentiment, loading
               Financial RSS headlines scored with FinBERT NLP
             </div>
           </div>
-          <span style={{
-            fontFamily: 'var(--mono)',
-            fontSize: '11px',
-            color: 'var(--dash-muted)',
-            background: 'var(--paper)',
-            border: '1px solid var(--rule)',
-            padding: '4px 10px',
-            borderRadius: '6px',
-            fontWeight: '600',
-          }}>
-            {sentiment.headlines.length} articles
-          </span>
+          <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
+            {(['all', 'positive', 'neutral', 'negative'] as const).map((t) => (
+              <button
+                key={t}
+                type="button"
+                onClick={() => setToneFilter(t)}
+                style={{
+                  padding: '4px 10px',
+                  borderRadius: '6px',
+                  border: `1px solid ${toneFilter === t ? 'var(--accent)' : 'var(--rule)'}`,
+                  background: toneFilter === t ? 'var(--accent)' : '#ffffff',
+                  color: toneFilter === t ? '#ffffff' : 'var(--dash-muted)',
+                  fontSize: '11px',
+                  fontFamily: 'var(--sans)',
+                  fontWeight: '600',
+                  cursor: 'pointer',
+                  textTransform: 'capitalize',
+                }}
+              >
+                {t}
+              </button>
+            ))}
+            <span style={{
+              fontFamily: 'var(--mono)',
+              fontSize: '11px',
+              color: 'var(--dash-muted)',
+              background: 'var(--paper)',
+              border: '1px solid var(--rule)',
+              padding: '4px 10px',
+              borderRadius: '6px',
+              fontWeight: '600',
+            }}>
+              {filteredHeadlines.length} articles
+            </span>
+          </div>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          {sentiment.headlines.map((item) => {
+          {filteredHeadlines.map((item) => {
             const isPos = item.sentiment_label === 'positive';
             const isNeg = item.sentiment_label === 'negative';
             const badgeColor = isPos ? '#15803d' : (isNeg ? '#b91c1c' : '#b45309');

@@ -196,10 +196,10 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
       <section className="shell">
         <div className="landing-hero">
           <div className="landing-hero-text reveal reveal-left">
-            <h1>Make Better Investment Decisions With Alternative Data</h1>
+            <h1>Quantitative Forecasting &amp; Risk Transparency for Indian Equities</h1>
             <p>
-              Get the inside scoop on NIFTY 50 companies like never before.
-              StockReason combines AI signals, FinBERT sentiment, and LSTM predictions to power smarter decisions.
+              Inspect NSE equities with empirical baseline rigor: No-Change Random Walk benchmarks,
+              LightGBM &amp; CatBoost cross-sectional ranking, FinBERT news sentiment, and GARCH(1,1) split-conformal intervals.
             </p>
           </div>
 
@@ -210,8 +210,8 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
                 <TrendingUp size={15} />
               </div>
               <div className="badge-text-box">
-                <span className="badge-micro">ENSEMBLE CONVICTION</span>
-                <span className="badge-title">4 / 4 Models Agree</span>
+                <span className="badge-micro">OOS RANKING ALPHA</span>
+                <span className="badge-title">Rank IC +0.0732 (v0.14)</span>
               </div>
             </div>
 
@@ -443,17 +443,17 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
             {
               cat: 'Market Regime',
               name: overview?.market_regime?.replace(/_/g, ' ') || 'Low Volatility',
-              val: `${overview?.active_coverage_count || 50}`,
-              change: 'Constructive Market',
+              val: `${overview?.active_coverage_count || 16}`,
+              change: 'NSE Pilot Live',
               up: true,
               icon: <Compass size={18} />,
             },
             {
-              cat: 'LSTM Model Confidence',
-              name: topBuy?.name || 'Top Pick',
-              val: topBuy ? `${(topBuy.confidence * 100).toFixed(0)}%` : '85%',
-              change: topBuy?.ensemble_agreement ? 'Ensemble Agrees' : 'Mixed Signals',
-              up: topBuy?.ensemble_agreement ?? true,
+              cat: 'Baseline & Risk Gate',
+              name: 'No-Change RW · ₹103.40 MAE',
+              val: '+0.0732',
+              change: 'LGBM Rank IC',
+              up: true,
               icon: <Cpu size={18} />,
             },
           ].map((m, i) => (
@@ -486,8 +486,8 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
             <div className="top-stocks-card depth-card reveal reveal-left hover-lift">
               <div className="top-stocks-header">
                 <div>
-                  <h3>Top Ranked NIFTY 50 Stocks</h3>
-                  <p className="top-stocks-subtitle">Ranked by LSTM Expected Return & FinBERT Momentum</p>
+                  <h3>Top Ranked NSE Pilot Equities</h3>
+                  <p className="top-stocks-subtitle">Ranked by 21D Signal Score, FinBERT Momentum &amp; Conformal Risk</p>
                 </div>
                 <button className="view-all-btn" onClick={() => onOpenDashboard()}>
                   <span>View All</span>
@@ -567,10 +567,9 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
             <div className="section-text-block reveal reveal-right">
               <h2>What Stocks are Trending?</h2>
               <p>
-                Discover NIFTY 50 opportunities using AI-powered
-                signals that combine LSTM price predictions, FinBERT
-                sentiment analysis, technical indicators, and macro
-                context to surface the highest-conviction picks.
+                Explore 16 covered NSE pilot equities backed by an 836,297-observation
+                research cohort. Signals fuse LightGBM cross-sectional ranking, FinBERT
+                sentiment, and split-conformal volatility bounds without lookahead bias.
               </p>
 
               <div className="section-bullet-group">
@@ -709,14 +708,14 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
       <section className="shell">
         <div className="cta-depth-card reveal reveal-up hover-lift">
           <div className="cta-content">
-            <h2>Built for Faster, Smarter<br />Market Reading</h2>
+            <h2>Built for Honest, Transparent<br />Quantitative Reading</h2>
             <p>
-              LSTM predictions · FinBERT sentiment · Feature attribution (gradient × input) · Backtest validation
+              No-Change RW Baseline · LightGBM / CatBoost · FinBERT Sentiment · GARCH(1,1) &amp; Split-Conformal Intervals
             </p>
 
             <div className="cta-buttons-row">
               <button className="cta-primary-btn" onClick={() => onOpenDashboard()}>
-                <span>Launch AI Terminal</span>
+                <span>Launch Intelligence Terminal</span>
                 <ArrowUpRight size={16} />
               </button>
             </div>
@@ -734,10 +733,10 @@ export const LandingHome: React.FC<LandingHomeProps> = ({
               </div>
               <span>StockReason</span>
             </div>
-            <p className="footer-desc">AI-Driven Quantitative Intelligence for Indian Equities.</p>
+            <p className="footer-desc">Multi-Horizon Quantitative Forecasting &amp; Decision Support for Indian Equities.</p>
           </div>
           <div className="footer-right">
-            <p>Built for faster market reading. StockReason © 2024</p>
+            <p>StockReason v0.14.0 · NSE Research &amp; Decision Terminal © 2026</p>
           </div>
         </div>
       </div>

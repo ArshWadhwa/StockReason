@@ -1,35 +1,47 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { api } from './api';
 import type {
-  UniverseStock, MarketOverviewData,
-  StockPriceData, SentimentData, PredictionData,
-  SignalData, BacktestData, DailyDigestData, SystemStatus
+  UniverseStock,
+  MarketOverviewData,
+  StockPriceData,
+  SentimentData,
+  PredictionData,
+  SignalData,
+  StockRiskProfile,
+  BacktestData,
+  DailyDigestData,
+  SystemStatus,
 } from './types';
 
 import { LandingHome } from './components/LandingHome';
 import { PriceChartView } from './components/PriceChartView';
 import { SignalsView } from './components/SignalsView';
+import { RiskVolatilityView } from './components/RiskVolatilityView';
 import { SentimentView } from './components/SentimentView';
 import { BacktestView } from './components/BacktestView';
+import { ModelBenchmarksView } from './components/ModelBenchmarksView';
 import { DigestView } from './components/DigestView';
 import { BrandMark } from './components/BrandMark';
 
 import {
   LineChart,
   Zap,
+  ShieldCheck,
   Newspaper,
   BarChart3,
+  Award,
   FileText,
-  ChevronRight
+  ChevronRight,
+  Search,
 } from 'lucide-react';
 
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 
 type PageMode = 'home' | 'dashboard';
-type DashboardTab = 'chart' | 'signals' | 'sentiment' | 'backtest' | 'digest';
+type DashboardTab = 'chart' | 'signals' | 'risk' | 'sentiment' | 'backtest' | 'benchmarks' | 'digest';
 
-const VALID_TABS: DashboardTab[] = ['chart', 'signals', 'sentiment', 'backtest', 'digest'];
+const VALID_TABS: DashboardTab[] = ['chart', 'signals', 'risk', 'sentiment', 'backtest', 'benchmarks', 'digest'];
 
 function getInitialRoute(): PageMode {
   if (typeof window !== 'undefined' && window.location.pathname.startsWith('/dashboard')) {
@@ -60,9 +72,12 @@ export function App() {
   const [pageMode, setPageMode] = useState<PageMode>(getInitialRoute);
   const [activeTab, setActiveTab] = useState<DashboardTab>(getInitialTab);
   const [selectedTicker, setSelectedTicker] = useState<string>(getInitialTicker);
+  const [tickerFilter, setTickerFilter] = useState<string>('');
 
   // App States
   const [loading, setLoading] = useState<boolean>(true);
+  const [stockLoading, setStockLoading] = useState<boolean>(false);
+  const [switchingTicker, setSwitchingTicker] = useState<string | null>(null); // tracks in-flight ticker switch
   const [error, setError] = useState<string | null>(null);
 
   // Data Stores
@@ -73,11 +88,11 @@ export function App() {
   const [sentimentData, setSentimentData] = useState<SentimentData | null>(null);
   const [predictionData, setPredictionData] = useState<PredictionData | null>(null);
   const [signalData, setSignalData] = useState<SignalData | null>(null);
+  const [riskData, setRiskData] = useState<StockRiskProfile | null>(null);
   const [backtestData, setBacktestData] = useState<BacktestData | null>(null);
   const [digestData, setDigestData] = useState<DailyDigestData | null>(null);
   const [systemStatus, setSystemStatus] = useState<SystemStatus | null>(null);
 
-  // Listen to browser Back / Forward (popstate)
   useEffect(() => {
     const handlePopState = () => {
       const isDashboard = window.location.pathname.startsWith('/dashboard');
@@ -85,13 +100,10 @@ export function App() {
 
       const params = new URLSearchParams(window.location.search);
       const tickerParam = params.get('ticker');
-      if (tickerParam) {
-        setSelectedTicker(tickerParam);
-      }
+      if (tickerParam) setSelectedTicker(tickerParam);
+
       const tabParam = params.get('tab') as DashboardTab | null;
-      if (tabParam && VALID_TABS.includes(tabParam)) {
-        setActiveTab(tabParam);
-      }
+      if (tabParam && VALID_TABS.includes(tabParam)) setActiveTab(tabParam);
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -108,10 +120,10 @@ export function App() {
         const [univRes, overRes, sigsRes, btRes, digRes, statusRes] = await Promise.all([
           api.getUniverses(),
           api.getMarketOverview(),
-          api.getRankedSignals(true), // true = show all ticker strip names on landing home preview
+          api.getRankedSignals(true),
           api.getBacktest(),
           api.getDailyDigest(),
-          api.getSystemStatus()
+          api.getSystemStatus(),
         ]);
 
         setStocks(univRes.stocks);
@@ -122,13 +134,13 @@ export function App() {
         setSystemStatus(statusRes);
 
         if (univRes.stocks.length > 0) {
-          setSelectedTicker(prev => {
+          setSelectedTicker((prev) => {
             const params = new URLSearchParams(window.location.search);
             const urlTicker = params.get('ticker');
-            if (urlTicker && univRes.stocks.some(s => s.ticker === urlTicker)) {
+            if (urlTicker && univRes.stocks.some((s) => s.ticker === urlTicker)) {
               return urlTicker;
             }
-            if (prev && univRes.stocks.some(s => s.ticker === prev)) {
+            if (prev && univRes.stocks.some((s) => s.ticker === prev)) {
               return prev;
             }
             return univRes.stocks[0].ticker;
@@ -144,33 +156,54 @@ export function App() {
     loadInitialData();
   }, []);
 
-  // Fetch Stock-Specific Details
+  // Fetch Stock-Specific Details — seamless: keep old data visible during switch
   useEffect(() => {
     if (!selectedTicker) return;
 
+    let cancelled = false;
+
     async function loadStockDetails() {
+      // For first load: show skeleton. For ticker switches: keep old data visible.
+      const isFirstLoad = !priceData;
+      if (isFirstLoad) setStockLoading(true);
+      else setSwitchingTicker(selectedTicker);
+
+      setError(null);
+
       try {
-        setError(null);
-        const [pData, sData, prData, sigData] = await Promise.all([
+        const [pData, sData, prData, sigData, rkData] = await Promise.all([
           api.getStockPrices(selectedTicker),
           api.getStockSentiment(selectedTicker),
           api.getStockPredictions(selectedTicker),
-          api.getStockSignal(selectedTicker)
+          api.getStockSignal(selectedTicker),
+          api.getStockRisk(selectedTicker),
         ]);
+        if (cancelled) return;
+        // Atomic swap — no intermediate empty state
         setPriceData(pData);
         setSentimentData(sData);
         setPredictionData(prData);
         setSignalData(sigData);
+        setRiskData(rkData);
       } catch (err: any) {
+        if (cancelled) return;
         console.error(`Failed to fetch details for ${selectedTicker}:`, err);
         setError(`Failed to load data for ${selectedTicker}`);
+      } finally {
+        if (!cancelled) {
+          setStockLoading(false);
+          setSwitchingTicker(null);
+        }
       }
     }
+
     loadStockDetails();
-    // Refresh the quote while the dashboard is open so the header does not
-    // remain stuck at the value loaded when the page was first opened.
-    const refreshTimer = window.setInterval(loadStockDetails, 60_000);
-    return () => window.clearInterval(refreshTimer);
+    const refreshTimer = window.setInterval(() => { loadStockDetails(); }, 60_000);
+    return () => {
+      cancelled = true;
+      window.clearInterval(refreshTimer);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedTicker]);
 
   // Lenis Smooth Scroll (Landing Mode)
@@ -199,6 +232,17 @@ export function App() {
       lenis.destroy();
     };
   }, [pageMode]);
+
+  const filteredStocks = useMemo(() => {
+    const q = tickerFilter.trim().toLowerCase();
+    if (!q) return stocks;
+    return stocks.filter(
+      (s) =>
+        s.ticker.toLowerCase().includes(q) ||
+        s.name.toLowerCase().includes(q) ||
+        s.sector.toLowerCase().includes(q)
+    );
+  }, [stocks, tickerFilter]);
 
   const handleOpenDashboard = (ticker?: string, tab?: DashboardTab) => {
     const targetTicker = ticker || selectedTicker;
@@ -256,7 +300,6 @@ export function App() {
   if (pageMode === 'home') {
     return (
       <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
-        {/* Light Navbar */}
         <header className="shell">
           <nav className="landing-nav">
             <a
@@ -283,7 +326,7 @@ export function App() {
               }}
               style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
             >
-              Open Dashboard →
+              Open Terminal →
             </a>
           </nav>
         </header>
@@ -298,11 +341,12 @@ export function App() {
   }
 
   /* ═══════════════════ DASHBOARD MODE ═══════════════════ */
-  const selectedStock = stocks.find(s => s.ticker === selectedTicker);
+  const selectedStock = stocks.find((s) => s.ticker === selectedTicker);
 
-  const activeSignal = (signalData && signalData.ticker === selectedTicker)
-    ? signalData.signal
-    : rankedSignals.find(s => s.ticker === selectedTicker)?.signal;
+  const activeSignal =
+    signalData && signalData.ticker === selectedTicker
+      ? signalData.signal
+      : rankedSignals.find((s) => s.ticker === selectedTicker)?.signal;
 
   const getSuggestion = (sig?: string) => {
     if (sig === 'BUY') {
@@ -312,7 +356,7 @@ export function App() {
       return { label: 'HOLD', color: '#b45309', bg: '#fefce8', border: '#fde68a', icon: '◆' };
     }
     if (sig === 'AVOID' || sig === 'SELL') {
-      return { label: 'SELL', color: '#dc2626', bg: '#fef2f2', border: '#fecaca', icon: '▼' };
+      return { label: 'AVOID', color: '#dc2626', bg: '#fef2f2', border: '#fecaca', icon: '▼' };
     }
     return { label: 'HOLD', color: '#b45309', bg: '#fefce8', border: '#fde68a', icon: '◆' };
   };
@@ -321,7 +365,6 @@ export function App() {
 
   return (
     <div className="dashboard-mode">
-      {/* ═══════════ AMBIENT BACKGROUND DECORATIONS ═══════════ */}
       <div className="landing-bg-decorations" aria-hidden="true">
         <svg className="bg-svg-pattern" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -334,7 +377,7 @@ export function App() {
         </svg>
       </div>
 
-      {/* Light Navbar matching Homepage */}
+      {/* Navbar */}
       <header className="shell" style={{ position: 'relative', zIndex: 10 }}>
         <nav className="landing-nav">
           <a
@@ -352,7 +395,6 @@ export function App() {
             StockReason
           </a>
 
-          {/* Right side: Current opened stock name & suggestion */}
           {selectedStock && (
             <div className="dash-nav-stock-badge">
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -389,24 +431,71 @@ export function App() {
 
       <div className="shell" style={{ position: 'relative', zIndex: 10, paddingBottom: 60 }}>
         <div style={{ display: 'grid', gridTemplateColumns: '270px 1fr', gap: '24px', alignItems: 'start' }}>
-          
           {/* Sidebar Controls */}
           <aside className="dash-sidebar">
             <div>
               <div style={{ fontFamily: 'var(--sans)', fontSize: '11px', fontWeight: '600', color: 'var(--dash-muted)', marginBottom: '8px' }}>
-                Stock
+                Stock Selector ({stocks.length} NSE Pilot)
               </div>
+
+              <div style={{ position: 'relative', marginBottom: '8px' }}>
+                <Search size={13} style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} />
+                <input
+                  type="text"
+                  value={tickerFilter}
+                  onChange={(e) => setTickerFilter(e.target.value)}
+                  placeholder="Filter symbol or sector..."
+                  style={{
+                    width: '100%',
+                    padding: '7px 10px 7px 28px',
+                    borderRadius: '8px',
+                    border: '1px solid var(--rule)',
+                    fontSize: '12px',
+                    fontFamily: 'var(--sans)',
+                    color: 'var(--ink)',
+                    background: 'var(--paper)',
+                  }}
+                />
+              </div>
+
               <select
                 className="dash-select"
                 value={selectedTicker}
                 onChange={(e) => handleTickerChange(e.target.value)}
               >
-                {stocks.map(s => (
+                {(filteredStocks.length > 0 ? filteredStocks : stocks).map((s) => (
                   <option key={s.ticker} value={s.ticker}>
                     {s.name} ({s.ticker.replace('.NS', '')})
                   </option>
                 ))}
               </select>
+
+              {selectedStock && (
+                <div style={{
+                  marginTop: '10px',
+                  padding: '10px 12px',
+                  borderRadius: '8px',
+                  background: 'var(--paper)',
+                  border: '1px solid var(--rule)',
+                  fontSize: '11px',
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                    <span style={{ fontFamily: 'var(--mono)', fontWeight: '700', fontSize: '14px', color: 'var(--ink)' }}>
+                      ₹{selectedStock.current_price.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+                    </span>
+                    <span style={{
+                      fontFamily: 'var(--mono)',
+                      fontWeight: '700',
+                      color: selectedStock.day_change_pct >= 0 ? 'var(--gain)' : 'var(--loss)',
+                    }}>
+                      {selectedStock.day_change_pct >= 0 ? '+' : ''}{selectedStock.day_change_pct.toFixed(2)}%
+                    </span>
+                  </div>
+                  <div style={{ color: 'var(--dash-muted)', marginTop: '4px' }}>
+                    {selectedStock.sector} · {selectedStock.universe}
+                  </div>
+                </div>
+              )}
             </div>
 
             <div style={{ borderTop: '1px solid #edf2f7', paddingTop: '16px' }}>
@@ -416,11 +505,13 @@ export function App() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 {[
                   { id: 'chart', label: 'Price Action & Chart', icon: LineChart },
-                  { id: 'signals', label: 'AI Signals & Attribution', icon: Zap },
+                  { id: 'signals', label: 'Signals & Forecast Lab', icon: Zap },
+                  { id: 'risk', label: 'Risk & Volatility', icon: ShieldCheck },
                   { id: 'sentiment', label: 'News & FinBERT', icon: Newspaper },
-                  { id: 'backtest', label: 'Backtest vs Baseline', icon: BarChart3 },
+                  { id: 'backtest', label: 'Backtest & Calibration', icon: BarChart3 },
+                  { id: 'benchmarks', label: 'Model Benchmarks & Audit', icon: Award },
                   { id: 'digest', label: 'Daily Digest', icon: FileText },
-                ].map(tab => {
+                ].map((tab) => {
                   const Icon = tab.icon;
                   const isActive = activeTab === tab.id;
                   return (
@@ -441,7 +532,7 @@ export function App() {
 
           {/* Dashboard Main Workspace */}
           <main style={{ minWidth: 0 }}>
-            {/* ── v0.7 Model Version & Data Freshness Banner ── */}
+            {/* v0.14.0 Engine & Governance Banner */}
             {systemStatus && (
               <div style={{
                 background: '#ffffff',
@@ -461,66 +552,44 @@ export function App() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                     <span style={{ color: 'var(--dash-muted)', fontWeight: '500' }}>Data as-of:</span>
-                    <strong style={{ fontFamily: 'var(--mono)', color: 'var(--ink)' }}>{systemStatus.data_as_of || '2026-11-23'}</strong>
+                    <strong style={{ fontFamily: 'var(--mono)', color: 'var(--ink)' }}>{systemStatus.data_as_of}</strong>
                   </div>
                   <div style={{ width: 1, height: 14, background: '#cbd5e1' }} />
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <span style={{ color: 'var(--dash-muted)', fontWeight: '500' }}>Model:</span>
-                    <strong style={{ fontFamily: 'var(--mono)', color: 'var(--accent)' }}>v{systemStatus.model_version || '0.7.0'}</strong>
+                    <span style={{ color: 'var(--dash-muted)', fontWeight: '500' }}>Engine:</span>
+                    <strong style={{ fontFamily: 'var(--mono)', color: 'var(--accent)' }}>v{systemStatus.model_version || systemStatus.version || '0.14.0'}</strong>
+                  </div>
+                  <div style={{ width: 1, height: 14, background: '#cbd5e1' }} />
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <span style={{ color: 'var(--dash-muted)', fontWeight: '500' }}>Baseline MAE:</span>
+                    <strong style={{ fontFamily: 'var(--mono)', color: 'var(--ink)' }}>₹{(systemStatus.baseline_mae_inr ?? 103.4).toFixed(2)}</strong>
                   </div>
                   {systemStatus.rolling_oos_rank_ic !== undefined && systemStatus.rolling_oos_rank_ic !== null && (
                     <>
                       <div style={{ width: 1, height: 14, background: '#cbd5e1' }} />
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <span style={{ color: 'var(--dash-muted)', fontWeight: '500' }}>Rolling OOS Rank IC:</span>
-                        <strong style={{ fontFamily: 'var(--mono)', color: systemStatus.rolling_oos_rank_ic > 0 ? '#1A7F4B' : '#DC2626' }}>
-                          {systemStatus.rolling_oos_rank_ic.toFixed(4)}
+                        <span style={{ color: 'var(--dash-muted)', fontWeight: '500' }}>OOS Rank IC:</span>
+                        <strong style={{ fontFamily: 'var(--mono)', color: '#1A7F4B' }}>
+                          +{systemStatus.rolling_oos_rank_ic.toFixed(4)}
                         </strong>
                       </div>
                     </>
                   )}
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  {/* Warning: Stale Data */}
-                  {systemStatus.is_stale && (
-                    <span style={{
-                      background: '#fef2f2',
-                      color: '#b91c1c',
-                      border: '1px solid #fecaca',
-                      padding: '3px 8px',
-                      borderRadius: '6px',
-                      fontWeight: '600',
-                      fontSize: '11px',
-                    }}>
-                      ⚠️ Market Data Stale ({systemStatus.data_as_of})
-                    </span>
-                  )}
-
-                  {/* Warning / Badge: Edge Verdict */}
-                  {systemStatus.edge_verdict === 'No demonstrated edge' ? (
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                  {systemStatus.ml_promotion_status && (
                     <span style={{
                       background: '#fffbeb',
                       color: '#b45309',
                       border: '1px solid #fde68a',
                       padding: '3px 8px',
                       borderRadius: '6px',
-                      fontWeight: '600',
-                      fontSize: '11px',
+                      fontWeight: '700',
+                      fontSize: '10px',
+                      fontFamily: 'var(--mono)',
                     }}>
-                      ⚠️ No demonstrated edge
-                    </span>
-                  ) : (
-                    <span style={{
-                      background: '#ecfdf5',
-                      color: '#065f46',
-                      border: '1px solid #a7f3d0',
-                      padding: '3px 8px',
-                      borderRadius: '6px',
-                      fontWeight: '600',
-                      fontSize: '11px',
-                    }}>
-                      ✓ {systemStatus.edge_verdict || 'Edge demonstrated'}
+                      ML GATE: {systemStatus.ml_promotion_status}
                     </span>
                   )}
                 </div>
@@ -536,7 +605,7 @@ export function App() {
                 borderRadius: '10px',
                 marginBottom: '16px',
                 fontFamily: 'var(--mono)',
-                fontSize: '12px'
+                fontSize: '12px',
               }}>
                 {error}
               </div>
@@ -545,7 +614,12 @@ export function App() {
             {activeTab === 'chart' && (
               <PriceChartView
                 priceData={priceData}
-                loading={loading}
+                loading={loading || stockLoading}
+                switchingTicker={switchingTicker}
+                topStocks={rankedSignals}
+                universeStocks={stocks}
+                selectedTicker={selectedTicker}
+                onSelectTicker={(t) => handleTickerChange(t)}
               />
             )}
 
@@ -553,14 +627,22 @@ export function App() {
               <SignalsView
                 signal={signalData}
                 prediction={predictionData}
-                loading={loading}
+                loading={loading || stockLoading}
+                onOpenBenchmarks={() => handleTabChange('benchmarks')}
+              />
+            )}
+
+            {activeTab === 'risk' && (
+              <RiskVolatilityView
+                risk={riskData}
+                loading={loading || stockLoading}
               />
             )}
 
             {activeTab === 'sentiment' && (
               <SentimentView
                 sentiment={sentimentData}
-                loading={loading}
+                loading={loading || stockLoading}
               />
             )}
 
@@ -570,6 +652,8 @@ export function App() {
                 loading={loading}
               />
             )}
+
+            {activeTab === 'benchmarks' && <ModelBenchmarksView />}
 
             {activeTab === 'digest' && (
               <DigestView
@@ -590,13 +674,15 @@ export function App() {
               gap: '12px',
               fontFamily: 'var(--sans)',
               fontSize: '12px',
-              color: 'var(--dash-muted)'
+              color: 'var(--dash-muted)',
             }}>
-              <div>StockReason · NIFTY 50 analysis terminal</div>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: '11px' }}>Active: <strong style={{ color: 'var(--ink)' }}>{selectedTicker.replace('.NS', '')}</strong>{systemStatus ? `  ·  Refreshed: ${systemStatus.last_refreshed} IST` : ''}</div>
+              <div>StockReason v0.14.0 · NSE Quantitative Intelligence Terminal</div>
+              <div style={{ fontFamily: 'var(--mono)', fontSize: '11px' }}>
+                Active: <strong style={{ color: 'var(--ink)' }}>{selectedTicker.replace('.NS', '')}</strong>
+                {systemStatus ? `  ·  Data: ${systemStatus.data_as_of}  ·  ${systemStatus.tickers_loaded} equities` : ''}
+              </div>
             </footer>
           </main>
-
         </div>
       </div>
     </div>

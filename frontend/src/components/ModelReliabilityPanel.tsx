@@ -3,7 +3,11 @@ import type { ModelReport } from '../types';
 import { api } from '../api';
 import { ShieldCheck, AlertTriangle, CheckCircle2 } from 'lucide-react';
 
-export const ModelReliabilityPanel: React.FC = () => {
+interface ModelReliabilityPanelProps {
+  onOpenBenchmarks?: () => void;
+}
+
+export const ModelReliabilityPanel: React.FC<ModelReliabilityPanelProps> = ({ onOpenBenchmarks }) => {
   const [report, setReport] = useState<ModelReport | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -60,22 +64,29 @@ export const ModelReliabilityPanel: React.FC = () => {
           </div>
         </div>
 
-        {/* Verdict Badge */}
-        <div style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '6px',
-          padding: '6px 12px',
-          borderRadius: '20px',
-          fontSize: '12px',
-          fontWeight: '600',
-          fontFamily: 'var(--sans)',
-          background: hasEdge ? '#ecfdf5' : '#fefce8',
-          color: hasEdge ? '#065f46' : '#854d0e',
-          border: `1px solid ${hasEdge ? '#a7f3d0' : '#fef08a'}`,
-        }}>
-          {hasEdge ? <CheckCircle2 size={14} /> : <AlertTriangle size={14} />}
-          <span>{report.verdict}</span>
+        {/* Verdict Badge + Benchmarks link */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+          <div style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            padding: '6px 12px',
+            borderRadius: '20px',
+            fontSize: '12px',
+            fontWeight: '600',
+            fontFamily: 'var(--sans)',
+            background: hasEdge ? '#ecfdf5' : '#fefce8',
+            color: hasEdge ? '#065f46' : '#854d0e',
+            border: `1px solid ${hasEdge ? '#a7f3d0' : '#fef08a'}`,
+          }}>
+            {hasEdge ? <CheckCircle2 size={14} /> : <AlertTriangle size={14} />}
+            <span>{report.verdict}</span>
+          </div>
+          {onOpenBenchmarks && (
+            <button type="button" className="ledger-btn-accent" onClick={onOpenBenchmarks} style={{ fontSize: '11px', padding: '5px 10px' }}>
+              Open 15-Model Audit →
+            </button>
+          )}
         </div>
       </div>
 

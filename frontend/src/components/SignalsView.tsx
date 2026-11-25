@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import type { SignalData, PredictionData } from '../types';
+import { api } from '../api';
+import type { SignalData, PredictionData, ForecastResult } from '../types';
 import { ModelReliabilityPanel } from './ModelReliabilityPanel';
+import { SlidersHorizontal, Calendar, AlertCircle } from 'lucide-react';
 
 interface SignalsViewProps {
   signal: SignalData | null;
   prediction: PredictionData | null;
   loading: boolean;
+  onOpenBenchmarks?: () => void;
 }
 
 // Category classification for visual grouping
@@ -147,9 +150,54 @@ const formatCurrentValue = (feature: string, value: number | string) => {
 
 const DEFAULT_VISIBLE = 3;
 
-export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, loading }) => {
+export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, loading, onOpenBenchmarks }) => {
   const [expandedFeature, setExpandedFeature] = useState<number | null>(null);
   const [showAllFeatures, setShowAllFeatures] = useState(false);
+
+  // Interactive Forecast Simulator state (POST /api/forecast)
+  const [simPriceEdit, setSimPriceEdit] = useState<{ ticker: string; value: string } | null>(null);
+  const [simHorizon, setSimHorizon] = useState<number>(21);
+  const [simModel, setSimModel] = useState<'baseline' | 'lightgbm' | 'catboost'>('baseline');
+  const [simResultState, setSimResultState] = useState<{ ticker: string; result: ForecastResult } | null>(null);
+  const [simLoading, setSimLoading] = useState<boolean>(false);
+  const [simError, setSimError] = useState<string | null>(null);
+
+  const simPrice =
+    simPriceEdit && signal && simPriceEdit.ticker === signal.ticker
+      ? simPriceEdit.value
+      : signal?.current_price
+        ? String(signal.current_price)
+        : '';
+  const simResult =
+    simResultState && signal && simResultState.ticker === signal.ticker
+      ? simResultState.result
+      : null;
+
+  const handleRunForecast = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!signal) return;
+    const priceNum = Number(simPrice);
+    if (!Number.isFinite(priceNum) || priceNum <= 0) {
+      setSimError('Enter a valid positive reference price (INR).');
+      return;
+    }
+    try {
+      setSimLoading(true);
+      setSimError(null);
+      const res = await api.runForecast({
+        symbol: signal.ticker,
+        current_price: priceNum,
+        horizon_days: simHorizon,
+        model_type: simModel,
+        reference_date: prediction?.forecast_origin_date,
+      });
+      setSimResultState({ ticker: signal.ticker, result: res });
+    } catch (err: any) {
+      setSimError(err?.message || 'Forecast simulation failed');
+    } finally {
+      setSimLoading(false);
+    }
+  };
 
   if (loading || !signal || !prediction) {
     return (
@@ -220,7 +268,7 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
               </div>
             </div>
 
-            {signal.prob_up_calibrated !== undefined && signal.prob_up_calibrated !== null && (
+            {signal.prob_up_calibrated !== undefined && signal.prob_up_calibrated !== null ? (
               <div style={{
                 background: 'var(--paper)',
                 padding: '6px 10px',
@@ -232,6 +280,20 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
                 <div style={{ color: 'var(--dash-muted)', fontWeight: '600' }}>Calibrated Prob (Up)</div>
                 <div style={{ fontFamily: 'var(--mono)', fontWeight: '700', color: signal.prob_up_calibrated >= 0.5 ? '#1A7F4B' : '#DC2626' }}>
                   {(signal.prob_up_calibrated * 100).toFixed(1)}%
+                </div>
+              </div>
+            ) : (
+              <div style={{
+                background: '#fffbeb',
+                padding: '6px 10px',
+                borderRadius: '8px',
+                border: '1px solid #fde68a',
+                fontSize: '11px',
+                textAlign: 'right',
+              }}>
+                <div style={{ color: '#92400e', fontWeight: '600' }}>Probability Gate</div>
+                <div style={{ fontFamily: 'var(--mono)', fontWeight: '700', color: '#b45309' }}>
+                  SUPPRESSED (BSS ≤ 0)
                 </div>
               </div>
             )}
@@ -247,7 +309,7 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
               }}>
                 <div style={{ color: 'var(--dash-muted)', fontWeight: '600' }}>
                   80% Interval{' '}
-                  {signal.interval_coverage_observed !== undefined && (
+                  {signal.interval_coverage_observed !== undefined && signal.interval_coverage_observed !== null && (
                     <span style={{
                       background: '#ecfdf5',
                       color: '#065f46',
@@ -302,6 +364,167 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
                 </li>
               ))}
             </ul>
+          </div>
+        )}
+      </div>
+
+      {/* ── Interactive v0.14.0 Forecast Simulator (POST /api/forecast) ── */}
+      <div className="ledger-panel" style={{ borderLeft: '4px solid var(--accent)' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px', marginBottom: '14px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <SlidersHorizontal size={18} style={{ color: 'var(--accent)' }} />
+            <div>
+              <div className="ledger-panel-title">Interactive Forecast & NSE Calendar Simulator</div>
+              <div style={{ fontSize: '12px', color: 'var(--dash-muted)' }}>
+                Runs live <code style={{ fontFamily: 'var(--mono)' }}>POST /api/forecast</code> with nominal price reconstruction, NSE holiday skipping, and automatic fail-safe fallback
+              </div>
+            </div>
+          </div>
+          {prediction.target_trading_date && (
+            <span style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              fontFamily: 'var(--mono)',
+              fontSize: '11px',
+              padding: '4px 10px',
+              borderRadius: '6px',
+              background: 'var(--paper)',
+              border: '1px solid var(--rule)',
+              color: 'var(--ink)',
+              fontWeight: '600',
+            }}>
+              <Calendar size={12} style={{ color: 'var(--accent)' }} />
+              21D NSE Target: {prediction.target_trading_date}
+            </span>
+          )}
+        </div>
+
+        <form onSubmit={handleRunForecast} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: '12px', alignItems: 'end' }}>
+          <div>
+            <label style={{ display: 'block', fontSize: '11px', fontWeight: '600', color: 'var(--dash-muted)', marginBottom: '5px' }}>
+              Reference Price (₹)
+            </label>
+            <input
+              type="number"
+              step="0.05"
+              min="1"
+              value={simPrice}
+              onChange={(e) => setSimPriceEdit({ ticker: signal.ticker, value: e.target.value })}
+              style={{
+                width: '100%',
+                padding: '9px 11px',
+                borderRadius: '8px',
+                border: '1px solid var(--rule)',
+                fontFamily: 'var(--mono)',
+                fontSize: '13px',
+                color: 'var(--ink)',
+                background: '#ffffff',
+              }}
+            />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '11px', fontWeight: '600', color: 'var(--dash-muted)', marginBottom: '5px' }}>
+              Horizon (Trading Days)
+            </label>
+            <select
+              value={simHorizon}
+              onChange={(e) => setSimHorizon(Number(e.target.value))}
+              className="dash-select"
+              style={{ padding: '9px 11px' }}
+            >
+              <option value={1}>1 Session (Next Day)</option>
+              <option value={5}>5 Sessions (1 Week)</option>
+              <option value={21}>21 Sessions (1 Month · Primary)</option>
+              <option value={63}>63 Sessions (1 Quarter)</option>
+              <option value={126}>126 Sessions (6 Months)</option>
+            </select>
+          </div>
+
+          <div>
+            <label style={{ display: 'block', fontSize: '11px', fontWeight: '600', color: 'var(--dash-muted)', marginBottom: '5px' }}>
+              Inference Model
+            </label>
+            <select
+              value={simModel}
+              onChange={(e) => setSimModel(e.target.value as 'baseline' | 'lightgbm' | 'catboost')}
+              className="dash-select"
+              style={{ padding: '9px 11px' }}
+            >
+              <option value="baseline">No-Change Random Walk (Promoted)</option>
+              <option value="lightgbm">LightGBM 21D (Experimental)</option>
+              <option value="catboost">CatBoost 21D (Experimental)</option>
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            disabled={simLoading}
+            className="ledger-btn-accent"
+            style={{ height: '39px', justifyContent: 'center', fontWeight: '700' }}
+          >
+            {simLoading ? 'Running…' : 'Run Forecast'}
+          </button>
+        </form>
+
+        {simError && (
+          <div style={{ marginTop: '12px', padding: '10px 12px', borderRadius: '8px', background: 'var(--loss-bg)', color: 'var(--loss)', fontSize: '12px', fontFamily: 'var(--mono)' }}>
+            {simError}
+          </div>
+        )}
+
+        {simResult && (
+          <div style={{ marginTop: '16px', padding: '14px 16px', background: 'var(--paper)', borderRadius: '10px', border: '1px solid var(--rule)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '12px', marginBottom: '10px' }}>
+              <div>
+                <div className="ledger-label">Predicted Price</div>
+                <div style={{ fontFamily: 'var(--serif)', fontSize: '24px', color: 'var(--ink)' }}>
+                  ₹{simResult.predicted_price.toLocaleString('en-IN', { minimumFractionDigits: 2 })}
+                </div>
+              </div>
+              <div>
+                <div className="ledger-label">Expected Return</div>
+                <div style={{ fontFamily: 'var(--serif)', fontSize: '24px', color: simResult.predicted_return >= 0 ? 'var(--gain)' : 'var(--loss)' }}>
+                  {simResult.predicted_return >= 0 ? '+' : ''}{(simResult.predicted_return * 100).toFixed(2)}%
+                </div>
+              </div>
+              <div>
+                <div className="ledger-label">Target NSE Date</div>
+                <div style={{ fontFamily: 'var(--mono)', fontSize: '14px', fontWeight: '700', color: 'var(--ink)', marginTop: '6px' }}>
+                  {simResult.target_trading_date}
+                </div>
+              </div>
+              <div>
+                <div className="ledger-label">Model & Gate</div>
+                <div style={{ fontFamily: 'var(--mono)', fontSize: '11px', fontWeight: '700', color: 'var(--accent)', marginTop: '6px' }}>
+                  {simResult.model_name}
+                </div>
+                <div style={{ fontFamily: 'var(--mono)', fontSize: '10px', color: 'var(--hold)' }}>
+                  {simResult.model_status}
+                </div>
+              </div>
+            </div>
+
+            {simResult.price_prediction_interval_80 && (
+              <div style={{ fontSize: '12px', fontFamily: 'var(--mono)', color: '#334155', marginBottom: '8px' }}>
+                80% Split-Conformal Price Band: <strong>₹{simResult.price_prediction_interval_80[0].toLocaleString('en-IN')} – ₹{simResult.price_prediction_interval_80[1].toLocaleString('en-IN')}</strong>
+                {simResult.price_prediction_interval_90 && (
+                  <span> · 90% Band: <strong>₹{simResult.price_prediction_interval_90[0].toLocaleString('en-IN')} – ₹{simResult.price_prediction_interval_90[1].toLocaleString('en-IN')}</strong></span>
+                )}
+              </div>
+            )}
+
+            {simResult.warnings.length > 0 && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '8px', paddingTop: '8px', borderTop: '1px dashed #cbd5e1' }}>
+                {simResult.warnings.map((w, idx) => (
+                  <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '11px', color: '#92400e' }}>
+                    <AlertCircle size={12} style={{ flexShrink: 0 }} />
+                    <span>{w}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -625,7 +848,7 @@ export const SignalsView: React.FC<SignalsViewProps> = ({ signal, prediction, lo
       </div>
 
       {/* ── Model Reliability & MLOps Verification Panel ── */}
-      <ModelReliabilityPanel />
+      <ModelReliabilityPanel onOpenBenchmarks={onOpenBenchmarks} />
     </div>
   );
 };
