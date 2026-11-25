@@ -69,6 +69,17 @@ graphify-out/
 docs/
 reports/
 artifacts/
+report_material/
 *.pdf
 *.doc
 *.docx
+*.zip
+*.tar.gz
+*.tgz
+FLOWCHARTS_AND_SYSTEM.html
+scripts/fill_docx_report.py
+
+# Frontend dependencies & build artifacts
+node_modules/
+frontend/dist/
+frontend/dist-ssr/
